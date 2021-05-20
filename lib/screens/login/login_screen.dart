@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sale_management/screens/login/widgets/login_body.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class LogInScreen extends StatefulWidget {
   @override
@@ -13,7 +14,7 @@ class _LogInScreenState extends State<LogInScreen> {
       appBar: AppBar(
         backgroundColor: Colors.purple[900],
         foregroundColor: Colors.purple[900],
-        title: Text("Login"),
+        title: Text('login.label.login'.tr()),
       ),
       body: SafeArea(
         child: LoginBody(),

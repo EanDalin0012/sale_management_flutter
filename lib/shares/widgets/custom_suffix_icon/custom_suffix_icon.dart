@@ -5,11 +5,11 @@ import 'package:sale_management/shares/statics/size_config.dart';
 class CustomSufFixIcon extends StatelessWidget {
    Color? color;
    double? svgPaddingLeft;
-   String? svgIcon;
+   String svgIcon;
    CustomSufFixIcon({
     Key? key, this.color,
      this.svgPaddingLeft,
-     this.svgIcon,
+     required this.svgIcon,
   }) : super(key: key);
 
   @override
@@ -27,7 +27,7 @@ class CustomSufFixIcon extends StatelessWidget {
         getProportionateScreenWidth(20),
       ),
       child: SvgPicture.asset(
-        svgIcon!,
+        svgIcon,
         height: getProportionateScreenWidth(20),
         // color: color,
       ),

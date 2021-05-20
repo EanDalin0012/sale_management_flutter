@@ -1,14 +1,70 @@
 {
   "setting": {
-    "setting": "Setting",
-    "userInformation": "User Information",
-    "chooseLanguage": "Language Choose",
-    "saleFromStock": "Sale From Stock",
-    "security": "Security",
-    "changePIN": "Change PIN",
-    "useFingerprintForLogin": "Use Fingerprint For Login",
-    "changedLanguage": "Change Language to {}"
+    "label": {
+      "setting": "Setting",
+      "userInformation": "User Information",
+      "chooseLanguage": "Language Choose",
+      "saleFromStock": "Sale From Stock",
+      "security": "Security",
+      "changePIN": "Change PIN",
+      "useFingerprintForLogin": "Use Fingerprint For Login",
+      "changedLanguage": "Change Language to {}"
+    }
   },
+  "login": {
+    "label": {
+      "login": "Login",
+      "email": "Email",
+      "password": "Password",
+      "dontHaveAnAccount": "Don’t have an account?",
+      "signUp": "Sign Up",
+      "rememberMe": "Remember me",
+      "forgotPassword": "Forgot Password",
+      "continue": "Continue"
+    },
+    "message": {
+      "enterValidEmail": "Please enter valid email."
+    },
+    "holder": {
+      "enterYourEmail": "Enter your email",
+      "enterYourPassword": "Enter your password"
+    }
+  },
+  "signUp": {
+    "label": {
+      "signUp": "Sign Up",
+      "createAccount": "Create Account",
+      "completeDetails": "Complete your details or continue \nwith social media",
+      "save": "Save",
+      "firstName": "First Name",
+      "confirmPassword": "Confirm Password",
+      "password": "Password",
+      "lastName": "Last Name",
+      "email": "Email"
+    },
+    "holder": {
+      "enterYourFistName": "Enter your fist name",
+      "enterYourLastName": "Enter your last name",
+      "enterConfirmPassword": "Enter your confirm password",
+      "enterYourPassword": "Enter your password",
+      "enterYourEmail": "Enter your email"
+    },
+    "message": {
+      "pleaseEnterConfirmPassword": "Please enter your confirm password.",
+      "pleaseEnterPassword": "Please enter your password.",
+      "pleaseEnterFirstName": "Please enter your first name.",
+      "pleaseEnterLastName": "Please enter your last name.",
+      "pleaseEnterEmail": "Please enter your email.",
+      "pleaseEnterValidEmail": "Please Enter Valid Email."
+    }
+  },
+ "genderForm": {
+   "label": {
+     "gender": "Gender",
+     "male": "Male",
+     "female": "Female"
+   }
+ },
   "title": "test",
   "day": {
     "zero": "{} days",
