@@ -32,6 +32,9 @@ dependencies:
   easy_localization: ^3.0.0
   provider: ^5.0.0
   rxdart: ^0.26.0
+  font_awesome_flutter: ^8.11.0
+  get: ^3.17.1
+  flutter_svg: ^0.22.0
 
 dev_dependencies:
   flutter_test:
