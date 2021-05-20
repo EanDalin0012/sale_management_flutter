@@ -161,7 +161,7 @@ class _SignUpBodyState extends State<SignUpBody> {
       onChanged: (value) => checkFormValid(),
       validator: (value) {
         if (value!.isEmpty) {
-          return 'signUp.holder.pleaseEnterFirstName'.tr();
+          return 'signUp.message.pleaseEnterFirstName'.tr();
         }
         return null;
       },
@@ -211,7 +211,7 @@ class _SignUpBodyState extends State<SignUpBody> {
         labelText: 'signUp.label.email'.tr(),
         hintText: 'signUp.holder.enterYourEmail'.tr(),
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSufFixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/Mail.svg"),
+        suffixIcon: CustomSufFixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/mark_as_unread_black_24dp.svg "),
       ),
     );
   }

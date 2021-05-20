@@ -92,10 +92,11 @@ class GenderForm extends FormField<String> {
             ),
             SizedBox(height: 5),
             state.hasError ? Padding(
-              padding: EdgeInsets.only(left: 20),
+              padding: EdgeInsets.only(left: 25),
               child: Text(
                 state.errorText!,
                 style: TextStyle(
+                   fontSize: 12,
                     color: Colors.red
                 ),
               ),
