@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sale_management/screens/home/home_screen.dart';
 import 'package:sale_management/screens/sign_up/sign_up_screen.dart';
 import 'package:sale_management/shares/constants/text_style.dart';
 import 'package:sale_management/shares/statics/size_config.dart';
@@ -65,16 +66,18 @@ class _LoginBodyState extends State<LoginBody> {
                   DefaultButton(
                     text: 'login.label.continue'.tr(),
                     press: () {
-                      if (_formKey.currentState!.validate()) {
-                        _formKey.currentState!.save();
-                        // if all are valid then go to success screen
-
-                      }
-                      // Navigator.push(
-                      //   context,
-                      //   MaterialPageRoute(builder: (context) => Home()),
-                      // );
+                      print('login');
+                      // if (_formKey.currentState!.validate()) {
+                      //   _formKey.currentState!.save();
+                      //   // if all are valid then go to success screen
+                      //
+                      // }
                       KeyboardUtil.hideKeyboard(context);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => HomeScreen()),
+                      );
+
                     },
                   ),
                   SizedBox(height: SizeConfig.screenHeight * 0.04),

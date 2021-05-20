@@ -58,13 +58,26 @@
       "pleaseEnterValidEmail": "Please Enter Valid Email."
     }
   },
- "genderForm": {
-   "label": {
-     "gender": "Gender",
-     "male": "Male",
-     "female": "Female"
-   }
- },
+  "genderForm": {
+     "label": {
+       "gender": "Gender",
+       "male": "Male",
+       "female": "Female"
+     }
+  },
+  "home": {
+    "label": {
+      "home": "Home"
+    }
+  },
+  "drawer": {
+    "label": {
+      "contactUs": "Contact Us",
+      "termsCondition": "Terms & Condition",
+      "settings": "Settings",
+      "logout": "Logout"
+    }
+  },
   "title": "test",
   "day": {
     "zero": "{} days",

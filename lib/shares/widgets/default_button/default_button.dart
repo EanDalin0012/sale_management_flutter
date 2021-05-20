@@ -4,7 +4,7 @@ import 'package:sale_management/shares/statics/size_config.dart';
 
 class DefaultButton  extends StatelessWidget {
   final String? text;
-  final Function? press;
+  final Function press;
   final Color? color;
   final double? borderRadiusCircular;
   final double? elevation;
@@ -41,7 +41,9 @@ class DefaultButton  extends StatelessWidget {
         elevation: _elevation,
         highlightElevation: 8.0,
         disabledElevation: 0.0,
-        onPressed: () => press,
+        onPressed: () {
+          press();
+        },
         child: Text(
           text!,
           style: TextStyle(
