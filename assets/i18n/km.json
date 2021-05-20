@@ -1,0 +1,21 @@
+{
+  "setting": {
+    "setting": "ការកំណត់",
+    "userInformation": "ព័ត៌មានអ្នកប្រើប្រាស់",
+    "chooseLanguage": "ជ្រើសរើសភាសា",
+    "saleFromStock": "លក់កាត់ពីស្តុក",
+    "security": "សន្តិសុខ",
+    "changePIN": "ប្ដូរលេខសំងាត់",
+    "useFingerprintForLogin": "ប្រើស្នាមម្រាមដៃសម្រាប់ចូល",
+    "changedLanguage": "ប្តូរភាសាទៅ {}"
+  },
+  "title": "តេស",
+  "day": {
+    "zero": "{} days",
+    "one": "{} day",
+    "two": "{} days",
+    "few": "{} few days",
+    "many": "{} many days",
+    "other": "{} other days"
+  }
+}

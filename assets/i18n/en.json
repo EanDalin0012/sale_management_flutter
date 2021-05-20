@@ -1,0 +1,21 @@
+{
+  "setting": {
+    "setting": "Setting",
+    "userInformation": "User Information",
+    "chooseLanguage": "Language Choose",
+    "saleFromStock": "Sale From Stock",
+    "security": "Security",
+    "changePIN": "Change PIN",
+    "useFingerprintForLogin": "Use Fingerprint For Login",
+    "changedLanguage": "Change Language to {}"
+  },
+  "title": "test",
+  "day": {
+    "zero": "{} days",
+    "one": "{} day",
+    "two": "{} days",
+    "few": "{} few days",
+    "many": "{} many days",
+    "other": "{} other days"
+  }
+}
