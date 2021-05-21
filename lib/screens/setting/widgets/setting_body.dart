@@ -112,50 +112,50 @@ class _SettingBodyState extends State<SettingBody> {
               child: Text('setting.label.chooseLanguage'.tr(), style: style,),
             ),
 
-            Container(
-              height: 60,
-              padding: EdgeInsets.only(
-                  left: 10,
-                  top: 10,
-                  bottom: 10
-              ),
-              child: GestureDetector(
-                onTap: () {
-                  showDialog(
+            InkWell(
+              onTap: () {
+                showDialog(
                     context: context,
-                  builder: (BuildContext context) {
+                    builder: (BuildContext context) {
                       return AlertDialog(
-                        content: LanguageChoice(
-                          code: languageCode,
-                          onChanged: (data) async {
-                            setState(() {
-                              this.language = data[LanguageKey.text];
-                              this.languageCode = data[LanguageKey.code];
-                            });
-                            if(data[LanguageKey.code] == 'en') {
-                              await context.setLocale(context.supportedLocales[0]);
-                            } else if (data[LanguageKey.code] == 'km') {
-                              await context.setLocale(context.supportedLocales[1]);
-                            }
-                            _showToast();
-                          },
-                        )
+                          content: LanguageChoice(
+                            code: languageCode,
+                            onChanged: (data) async {
+                              setState(() {
+                                this.language = data[LanguageKey.text];
+                                this.languageCode = data[LanguageKey.code];
+                              });
+                              if(data[LanguageKey.code] == 'en') {
+                                await context.setLocale(context.supportedLocales[0]);
+                              } else if (data[LanguageKey.code] == 'km') {
+                                await context.setLocale(context.supportedLocales[1]);
+                              }
+                              _showToast();
+                            },
+                          )
                       );
-                  }
-                  );
-                },
-                child: Row(
-                  children: <Widget>[
-                    _listTileLeading(
-                        height: 25,
-                        width: 20,
-                        svgIcon: 'assets/icons/language_black_24dp.svg'
-                    ),
-                    Padding(
-                        padding: EdgeInsets.only(left: 15),
-                        child: Text('${this.language}', style: style,))
-                  ],
+                    }
+                );
+              },
+              child: Container(
+                height: 60,
+                padding: EdgeInsets.only(
+                    left: 10,
+                    top: 10,
+                    bottom: 10
                 ),
+                child: Row(
+                    children: <Widget>[
+                      _listTileLeading(
+                          height: 25,
+                          width: 20,
+                          svgIcon: 'assets/icons/language_black_24dp.svg'
+                      ),
+                      Padding(
+                          padding: EdgeInsets.only(left: 15),
+                          child: Text('${this.language}', style: style,))
+                    ],
+                  ),
               ),
             ),
 

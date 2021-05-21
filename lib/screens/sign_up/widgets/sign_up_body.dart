@@ -211,7 +211,7 @@ class _SignUpBodyState extends State<SignUpBody> {
         labelText: 'signUp.label.email'.tr(),
         hintText: 'signUp.holder.enterYourEmail'.tr(),
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSufFixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/mark_as_unread_black_24dp.svg "),
+        suffixIcon: CustomSufFixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/mark_as_unread_black_24dp.svg"),
       ),
     );
   }
