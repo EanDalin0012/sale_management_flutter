@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:sale_management/screens/home/widgets/home_container.dart';
 import 'package:sale_management/screens/home/widgets/my_drawer.dart';
+import 'package:sale_management/screens/home/widgets/sheet_container.dart';
 import 'package:sale_management/shares/constants/color.dart';
 import 'package:easy_localization/easy_localization.dart';
 
@@ -131,13 +132,33 @@ class _HomeScreenState extends State<HomeScreen> {
             isShowAppBar = false;
           }
           if(index >= 2) {
-            // _showModelSheet();
+            _showModelSheet();
           } else {
             _selectedIndex = index;
           }
         });
       },
     );
+  }
+
+  void _showModelSheet() {
+    var orientation = MediaQuery.of(context).orientation;
+    double height = (MediaQuery.of(context).copyWith().size.height * 0.6);
+    setState(() {
+      if(orientation != Orientation.portrait){
+        height = MediaQuery.of(context).copyWith().size.height * 0.5;
+      }
+    });
+    showModalBottomSheet(
+        context: context,
+        isScrollControlled: true,
+        builder: (BuildContext builder) {
+          return Container(
+            height: height,
+            width: MediaQuery.of(context).size.width,
+            child: SheetContainer(),
+          );
+        });
   }
 
   // Future<bool> _onBackPressed() {

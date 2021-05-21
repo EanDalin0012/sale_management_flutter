@@ -78,6 +78,29 @@
       "logout": "Logout"
     }
   },
+  "sheetContainer": {
+    "label": {
+      "menu": "Menu",
+      "category": "Category",
+      "stock": "Stock",
+      "vendor": "Vendor",
+      "product": "Product",
+      "package": "Package",
+      "member": "Member",
+      "imports": "Imports"
+    }
+  },
+  "category": {
+    "label": {
+      "category": "Category"
+    }
+  },
+  "search": {
+    "label": {
+      "searchName": "Search name",
+      "search": "Search"
+    }
+  },
   "title": "test",
   "day": {
     "zero": "{} days",

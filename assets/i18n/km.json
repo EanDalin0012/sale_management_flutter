@@ -78,6 +78,24 @@
       "logout": "ចាកចេញ"
     }
   },
+  "sheetContainer": {
+    "label": {
+      "menu": "មឺនុយ",
+      "category": "ប្រភេទ",
+      "stock": "ស្តុក",
+      "vendor": "អ្នកផ្គត់ផ្គង",
+      "product": "ផលិតផល",
+      "package": "តំណាង",
+      "member": "សមាជិក",
+      "imports": "ការនាំចូល"
+    }
+  },
+  "search": {
+    "label": {
+      "searchName": "ស្វែងរកដោយឈ្មោះ",
+      "search": "ស្វែងរកដ"
+    }
+  },
   "title": "test",
   "day": {
     "zero": "{} days",
