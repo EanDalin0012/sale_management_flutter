@@ -7,6 +7,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sale_management/screens/setting/widgets/language_choice.dart';
 import 'package:sale_management/screens/setting/widgets/profile_header.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:sale_management/screens/setting/widgets/stock_choice.dart';
 import 'package:sale_management/shares/constants/fonts.dart';
 import 'package:sale_management/shares/model/key/language_key.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -172,7 +173,7 @@ class _SettingBodyState extends State<SettingBody> {
               child: Text('setting.label.saleFromStock'.tr(), style: style,),
             ) : Container(),
 
-            this.vStock != null  ? GestureDetector(
+            this.vStock != null  ? InkWell(
               onTap: () => changeStock(this.vDataStock[0]),
               child: Container(
                 height: 60,
@@ -283,19 +284,13 @@ class _SettingBodyState extends State<SettingBody> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-              content: LanguageChoice(
-                code: languageCode,
-                onChanged: (data) async {
+              content: StockChoice(
+                vStock: this.vStock,
+                mList: this.vDataStock,
+                onChanged: (value) {
                   setState(() {
-                    this.language = data[LanguageKey.text];
-                    this.languageCode = data[LanguageKey.code];
+                    this.vStock = value;
                   });
-                  if(data[LanguageKey.code] == 'en') {
-                    await context.setLocale(context.supportedLocales[0]);
-                  } else if (data[LanguageKey.code] == 'km') {
-                    await context.setLocale(context.supportedLocales[1]);
-                  }
-                  _showToast();
                 },
               )
           );
