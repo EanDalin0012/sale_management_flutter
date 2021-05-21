@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sale_management/screens/setting/setting.dart';
 import 'package:sale_management/shares/constants/fonts.dart';
 import 'package:easy_localization/easy_localization.dart';
 
@@ -47,10 +48,10 @@ class MyDrawer extends StatelessWidget {
                         ListTile(
                           onTap: () {
                             Navigator.pop(context);
-                            // Navigator.push(
-                            //   context,
-                            //   MaterialPageRoute(builder: (context) => SettingScreen()),
-                            // );
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => SettingScreen()),
+                            );
                           },
                           title: Text('drawer.label.settings'.tr(),style: style), leading: Icon(Icons.settings),
                         ),
@@ -63,7 +64,6 @@ class MyDrawer extends StatelessWidget {
                                   // fontFamily: AppTheme.fontName,
                                   fontWeight: FontWeight.w600,
                                   fontSize: 16,
-                                  // color: AppTheme.darkText,
                                 ),
                                 textAlign: TextAlign.left,
                               ),

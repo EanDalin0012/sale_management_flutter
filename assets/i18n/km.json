@@ -1,15 +1,84 @@
 {
   "setting": {
-    "setting": "ការកំណត់",
-    "userInformation": "ព័ត៌មានអ្នកប្រើប្រាស់",
-    "chooseLanguage": "ជ្រើសរើសភាសា",
-    "saleFromStock": "លក់កាត់ពីស្តុក",
-    "security": "សន្តិសុខ",
-    "changePIN": "ប្ដូរលេខសំងាត់",
-    "useFingerprintForLogin": "ប្រើស្នាមម្រាមដៃសម្រាប់ចូល",
-    "changedLanguage": "ប្តូរភាសាទៅ {}"
+    "label": {
+      "setting": "ការកំណត់",
+      "userInformation": "ព័ត៌មានអ្នកប្រើប្រាស់",
+      "chooseLanguage": "ជ្រើសរើសភាសា",
+      "saleFromStock": "លក់កាត់ចេញស្តុក",
+      "security": "សន្តិសុខ",
+      "changePIN": "ប្តូរលេខសម្ងាត់",
+      "useFingerprintForLogin": "ប្រើស្នាមម្រាមដៃសម្រាប់ចូល",
+      "changedLanguage": "ប្តូរភាសាទៅ{}"
+    }
   },
-  "title": "តេស",
+  "login": {
+    "label": {
+      "login": "ចូល",
+      "email": "អ៊ីមែល",
+      "password": "ពាក្យសម្ងាត់",
+      "dontHaveAnAccount": "កុំមានគណនី?",
+      "signUp": "ចុះឈ្នោះ",
+      "rememberMe": "ចាំខ្ញុំ",
+      "forgotPassword": "ភ្លេចលេខសំងាត់",
+      "continue": "បន្"
+    },
+    "message": {
+      "enterValidEmail": "សូមបញ្ចូលអ៊ីមែលដែលមានសុពលភាព"
+    },
+    "holder": {
+      "enterYourEmail": "បញ្ចូលអ៊ីមែលរបស់អ្នក",
+      "enterYourPassword": "បញ្ចូលពាក្យសម្ងាត់របស់អ្នក"
+    }
+  },
+  "signUp": {
+    "label": {
+      "signUp": "ចុះឈ្នោះ",
+      "createAccount": "បង្កើតគណនី",
+      "completeDetails": "បំពេញព័ត៌មានលម្អិតរបស់អ្នកឬបន្ត \nជាមួយប្រព័ន្ធផ្សព្វផ្សាយសង្គម",
+      "save": "រក្សាទុក",
+      "firstName": "នាមខ្លួន",
+      "confirmPassword": "បញ្ជាក់ពាក្យសម្ងាត់",
+      "password": "ពាក្យសម្ងាត់",
+      "lastName": "នាមត្រកូល",
+      "email": "អ៊ីមែល"
+    },
+    "holder": {
+      "enterYourFistName": "បញ្ចូលឈ្មោះដំបូងរបស់អ្នក",
+      "enterYourLastName": "បញ្ចូលនាមត្រកូលរបស់អ្នក",
+      "enterConfirmPassword": "បញ្ចូលពាក្យសម្ងាត់បញ្ជាក់របស់អ្នក",
+      "enterYourPassword": "បញ្ចូលពាក្យសម្ងាត់របស់អ្នក",
+      "enterYourEmail": "បញ្ចូលអ៊ីមែលរបស់អ្នក"
+    },
+    "message": {
+      "pleaseEnterConfirmPassword": "សូមបញ្ចូលពាក្យសម្ងាត់បញ្ជាក់របស់អ្នក",
+      "pleaseEnterPassword": "សូមបញ្ចូលពាក្សម្ងាត់របស់អ្នក",
+      "pleaseEnterFirstName": "សូមបញ្ចូលនាមខ្លួនរបស់អ្នក",
+      "pleaseEnterLastName": "សូមបញ្ចូលនាមត្រកូលរបស់អ្នក",
+      "pleaseEnterEmail": "សូមបញ្ចូលអ៊ីមែលរបស់អ្នក",
+      "pleaseEnterValidEmail": "សូមបញ្ចូលអ៊ីមែលដែលមានសុពលភាព"
+    }
+  },
+  "genderForm": {
+    "label": {
+      "gender": "ភេទ",
+      "male": "ប្រុស",
+      "female": "ស្រី"
+    }
+  },
+  "home": {
+    "label": {
+      "home": "Home"
+    }
+  },
+  "drawer": {
+    "label": {
+      "contactUs": "ទាក់ទងមកពួកយើង",
+      "termsCondition": "ល័ក្ខខ័ណ្ឌ",
+      "settings": "ការកំណត់",
+      "logout": "ចាកចេញ"
+    }
+  },
+  "title": "test",
   "day": {
     "zero": "{} days",
     "one": "{} day",
