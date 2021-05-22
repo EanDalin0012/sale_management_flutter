@@ -1,4 +1,12 @@
 {
+  "common":{
+    "label": {
+      "edit": "Edit",
+      "delete": "Delete",
+      "yes": "Yes",
+      "no": "No"
+    }
+  },
   "setting": {
     "label": {
       "setting": "Setting",
@@ -92,7 +100,12 @@
   },
   "category": {
     "label": {
-      "category": "Category"
+      "category": "Category",
+      "categoryList": "Category List",
+      "addNewCategory": "Add New Category"
+    },
+    "message": {
+      "doYouWantToDeleteCategory": "Do you want to delete category {}"
     }
   },
   "search": {
