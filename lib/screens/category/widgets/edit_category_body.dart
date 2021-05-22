@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:sale_management/screens/category/category_success_screen.dart';
 import 'package:sale_management/shares/constants/text_style.dart';
+import 'package:sale_management/shares/model/key/category_key.dart';
 import 'package:sale_management/shares/statics/size_config.dart';
 import 'package:sale_management/shares/utils/keyboard_util.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -20,6 +22,13 @@ class _EditCategoryBodyState extends State<EditCategoryBody> {
 
   var nameController    = new TextEditingController();
   var remarkController  = new TextEditingController();
+
+
+  @override
+  void initState() {
+    super.initState();
+    nameController.text = widget.vData[CategoryKey.name];
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -115,16 +124,16 @@ class _EditCategoryBodyState extends State<EditCategoryBody> {
     this.isClickSave = true;
     if( _formKey.currentState!.validate()) {
       print('validate');
-      // Navigator.push(
-      //   context,
-      //   MaterialPageRoute(builder: (context) => CategorySuccessScreen(
-      //     isAddScreen: true,
-      //     vData: {
-      //       CategoryKey.name: nameController.text,
-      //       CategoryKey.remark: remarkController.text
-      //     },
-      //   )),
-      // );
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => CategorySuccessScreen(
+          isEditScreen: true,
+          vData: {
+            CategoryKey.name: nameController.text,
+            CategoryKey.remark: remarkController.text
+          },
+        )),
+      );
     }
   }
 

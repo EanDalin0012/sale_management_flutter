@@ -8,7 +8,9 @@
       "save": "Save",
       "update": "Update",
       "completeYourDetails": "Complete your details",
-      "remark": "Remark"
+      "remark": "Remark",
+      "success": "Success",
+      "back": "Back"
     },
     "holder": {
       "enterRemark": "Enter remark"
@@ -116,7 +118,8 @@
     },
     "message": {
       "doYouWantToDeleteCategory": "Do you want to delete category {}",
-      "pleaseEnterCategoryName": "Please enter category name."
+      "pleaseEnterCategoryName": "Please enter category name.",
+      "isCompleted": "{} is completed"
     },
     "holder": {
       "enterCategoryName": "Enter category name."

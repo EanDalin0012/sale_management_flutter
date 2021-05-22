@@ -8,7 +8,9 @@
       "save": "រក្សាទុក",
       "update": "ធ្វើបច្ចុប្បន្នភាព",
       "completeYourDetails": "បំពេញព័ត៌មានលម្អិតរបស់អ្នក",
-      "remark": "ការកត់សម្គាល់"
+      "remark": "ការកត់សម្គាល់",
+      "success": "ជោគជ័យ",
+      "back": "ថយក្រោយ"
     },
     "holder": {
       "enterRemark": "បញ្ចូលការកត់សម្គាល់"
@@ -116,7 +118,8 @@
     },
     "message": {
       "doYouWantToDeleteCategory": "តើអ្នកចង់លុបប្រភេទទេ {}",
-      "pleaseEnterCategoryName": "សូមបញ្ចូលឈ្មោះប្រភេទ"
+      "pleaseEnterCategoryName": "សូមបញ្ចូលឈ្មោះប្រភេទ",
+      "isCompleted": "{} ត្រូវបានបញ្ចប់"
     },
     "holder": {
       "enterCategoryName": "បញ្ចូលឈ្មោះប្រភេទ."
