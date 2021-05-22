@@ -4,7 +4,14 @@
       "edit": "Edit",
       "delete": "Delete",
       "yes": "Yes",
-      "no": "No"
+      "no": "No",
+      "save": "Save",
+      "update": "Update",
+      "completeYourDetails": "Complete your details",
+      "remark": "Remark"
+    },
+    "holder": {
+      "enterRemark": "Enter remark"
     }
   },
   "setting": {
@@ -102,10 +109,17 @@
     "label": {
       "category": "Category",
       "categoryList": "Category List",
-      "addNewCategory": "Add New Category"
+      "addNewCategory": "Add New Category",
+      "registerCategory": "Register Category",
+      "name": "Name",
+      "updateCategory": "Update Category"
     },
     "message": {
-      "doYouWantToDeleteCategory": "Do you want to delete category {}"
+      "doYouWantToDeleteCategory": "Do you want to delete category {}",
+      "pleaseEnterCategoryName": "Please enter category name."
+    },
+    "holder": {
+      "enterCategoryName": "Enter category name."
     }
   },
   "search": {

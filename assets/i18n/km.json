@@ -4,7 +4,14 @@
       "edit": "កែសម្រួល",
       "delete": "លុប",
       "yes": "បាទ/ចាស",
-      "no": "ទេ"
+      "no": "ទេ",
+      "save": "រក្សាទុក",
+      "update": "ធ្វើបច្ចុប្បន្នភាព",
+      "completeYourDetails": "បំពេញព័ត៌មានលម្អិតរបស់អ្នក",
+      "remark": "ការកត់សម្គាល់"
+    },
+    "holder": {
+      "enterRemark": "បញ្ចូលការកត់សម្គាល់"
     }
   },
   "setting": {
@@ -96,6 +103,23 @@
       "package": "តំណាង",
       "member": "សមាជិក",
       "imports": "ការនាំចូល"
+    }
+  },
+  "category": {
+    "label": {
+      "category": "ប្រភេទ",
+      "categoryList": "បញ្ជីប្រភេទ",
+      "addNewCategory": "បន្ថែមប្រភេទថ្មី",
+      "registerCategory": "ចុះឈ្មោះប្រភេទ",
+      "name": "ឈ្មោះ",
+      "updateCategory": "ធ្វើបច្ចុប្បន្នភាពប្រភេទ"
+    },
+    "message": {
+      "doYouWantToDeleteCategory": "តើអ្នកចង់លុបប្រភេទទេ {}",
+      "pleaseEnterCategoryName": "សូមបញ្ចូលឈ្មោះប្រភេទ"
+    },
+    "holder": {
+      "enterCategoryName": "បញ្ចូលឈ្មោះប្រភេទ."
     }
   },
   "search": {

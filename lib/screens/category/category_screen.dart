@@ -73,8 +73,6 @@ class _CategoryScreenState extends State<CategoryScreen> {
           icon: Icon(isNative ? Icons.close : Icons.search),
           onPressed: () => setState(() {
             this.isNative = !isNative;
-            // this.isItemChanged = false;
-            // this.isFilterByProduct = false;
           }),
         ),
         const SizedBox(width: 8),

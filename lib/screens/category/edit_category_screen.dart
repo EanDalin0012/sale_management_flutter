@@ -20,7 +20,7 @@ class _EditCategoryScreenState extends State<EditCategoryScreen> {
         title: Text('category.label.category'.tr()),
       ),
       body: SafeArea(
-        child: EditCategoryBody(),
+        child: EditCategoryBody(vData: widget.vData),
       ),
     );
   }
