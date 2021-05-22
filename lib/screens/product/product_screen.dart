@@ -1,28 +1,28 @@
 import 'dart:convert';
-import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:sale_management/screens/category/add_new_category_screen.dart';
-import 'package:sale_management/screens/category/edit_category_screen.dart';
 import 'package:sale_management/screens/home/home_screen.dart';
+import 'package:sale_management/screens/product/add_new_product_screen.dart';
 import 'package:sale_management/shares/constants/color.dart';
 import 'package:sale_management/shares/constants/fonts.dart';
 import 'package:sale_management/shares/constants/text_style.dart';
-import 'package:sale_management/shares/model/key/category_key.dart';
+import 'package:sale_management/shares/model/key/product_key.dart';
 import 'package:sale_management/shares/utils/show_dialog_util.dart';
 import 'package:sale_management/shares/widgets/circular_progress_indicator/circular_progress_indicator.dart';
+import 'package:sale_management/shares/widgets/list_tile_leading/list_tile_leading.dart';
 import 'package:sale_management/shares/widgets/over_list_item/over_list_item.dart';
 import 'package:sale_management/shares/widgets/search_widget/search_widget.dart';
 
-class CategoryScreen extends StatefulWidget {
-  const CategoryScreen({Key? key}) : super(key: key);
+class ProductScreen extends StatefulWidget {
+  const ProductScreen({Key? key}) : super(key: key);
 
   @override
-  _CategoryScreenState createState() => _CategoryScreenState();
+  _ProductScreenState createState() => _ProductScreenState();
 }
 
-class _CategoryScreenState extends State<CategoryScreen> {
+class _ProductScreenState extends State<ProductScreen> {
   var isNative = false;
   bool isSearch = false;
   late Size size ;
@@ -43,7 +43,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
         child: Column(
           children: <Widget>[
             OverListItem(
-              text: 'category.label.categoryList'.tr(),
+              text: 'product.label.productList'.tr(),
               length: this.vData.length,
             ),
             if (this.vData.length > 0 ) _buildBody() else CircularProgressLoading()
@@ -57,7 +57,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
   AppBar _buildAppBar() {
     return AppBar(
       backgroundColor: Colors.purple[900],
-      title: Text('category.label.category'.tr()),
+      title: Text('product.label.product'.tr()),
       leading: IconButton(
         icon: Icon(Icons.arrow_back),
         onPressed: () {
@@ -99,6 +99,21 @@ class _CategoryScreenState extends State<CategoryScreen> {
     );
   }
 
+  FloatingActionButton _floatingActionButton() {
+    return FloatingActionButton(
+      backgroundColor: Colors.purple[900],
+      onPressed: (){
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => AddNewProductScreen()),
+        );
+      },
+      tooltip: 'product.label.addNewProduct'.tr(),
+      elevation: 5,
+      child: Icon(Icons.add_circle, size: 50,),
+    );
+  }
+
   Expanded _buildBody () {
     return Expanded(
         child: ListView.separated(
@@ -118,11 +133,12 @@ class _CategoryScreenState extends State<CategoryScreen> {
     required Map dataItem
   }) {
     return ListTile(
-      title: Text( dataItem[CategoryKey.name],
+      title: Text( dataItem[ProductKey.name],
         style: TextStyle( color: Colors.black87, fontSize: 20, fontWeight: FontWeight.w700,fontFamily: fontDefault),
       ),
+      leading: ListTileLeadingWidget(netWorkURL: dataItem[ProductKey.url],),
       subtitle: Text(
-        dataItem[CategoryKey.remark].toString(),
+        dataItem[ProductKey.remark].toString(),
         style: TextStyle(fontSize: 12,fontWeight: FontWeight.w700, fontFamily: fontDefault, color: primaryColor),
       ),
       trailing: Column(
@@ -130,21 +146,6 @@ class _CategoryScreenState extends State<CategoryScreen> {
           _offsetPopup(dataItem),
         ],
       ),
-    );
-  }
-
-  FloatingActionButton _floatingActionButton() {
-    return FloatingActionButton(
-      backgroundColor: Colors.purple[900],
-      onPressed: (){
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => AddNewCategoryScreen()),
-        );
-      },
-      tooltip: 'category.label.addNewCategory'.tr(),
-      elevation: 5,
-      child: Icon(Icons.add_circle, size: 50,),
     );
   }
 
@@ -181,10 +182,10 @@ class _CategoryScreenState extends State<CategoryScreen> {
     offset: Offset(0, 45),
     onSelected: (value) {
       if(value == 0) {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => EditCategoryScreen(vData: item)),
-        );
+        // Navigator.push(
+        //   context,
+        //   MaterialPageRoute(builder: (context) => EditCategoryScreen(vData: item)),
+        // );
       } else if (value == 1) {
         _showDialog(item);
       }
@@ -194,8 +195,8 @@ class _CategoryScreenState extends State<CategoryScreen> {
   void _showDialog(Map item) {
     ShowDialogUtil.showDialogYesNo(
         buildContext: context,
-        title: Text(item[CategoryKey.name]),
-        content: Text('category.message.doYouWantToDeleteCategory'.tr(args: [item[CategoryKey.name]])),
+        title: Text(item[ProductKey.name]),
+        content: Text('category.message.doYouWantToDeleteProduct'.tr(args: [item[ProductKey.name]])),
         onPressedYes: () {
           print('onPressedBntRight');
         },
@@ -206,10 +207,10 @@ class _CategoryScreenState extends State<CategoryScreen> {
   }
 
   _fetchItems() async {
-    final data = await rootBundle.loadString('assets/json_data/category_list.json');
+    final data = await rootBundle.loadString('assets/json_data/product_list.json');
     Map mapItems = jsonDecode(data);
     setState(() {
-      this.vData = mapItems['categoryList'];
+      this.vData = mapItems['products'];
     });
     return this.vData;
   }

@@ -125,6 +125,16 @@
       "enterCategoryName": "Enter category name."
     }
   },
+  "product": {
+    "label": {
+      "product": "Product",
+      "productList": "Product List",
+      "addNewProduct": "Add New Product"
+    },
+    "message": {
+      "doYouWantToDeleteProduct": "Do you want to delete product {}"
+    }
+  },
   "search": {
     "label": {
       "searchName": "Search name",
