@@ -127,7 +127,7 @@ class _SignUpBodyState extends State<SignUpBody> {
         labelText: 'signUp.label.confirmPassword'.tr(),
         hintText: 'signUp.holder.enterConfirmPassword'.tr(),
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSufFixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/help_outline_black_24dp.svg"),
+        suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/help_outline_black_24dp.svg"),
       ),
     );
   }
@@ -148,7 +148,7 @@ class _SignUpBodyState extends State<SignUpBody> {
         labelText: 'signUp.label.password'.tr(),
         hintText: 'signUp.holder.enterYourPassword'.tr(),
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSufFixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/help_outline_black_24dp.svg"),
+        suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/help_outline_black_24dp.svg"),
       ),
     );
   }
@@ -169,7 +169,7 @@ class _SignUpBodyState extends State<SignUpBody> {
         labelText: 'signUp.label.firstName'.tr(),
         hintText: 'signUp.holder.enterYourFistName'.tr(),
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSufFixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/help_outline_black_24dp.svg"),
+        suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/help_outline_black_24dp.svg"),
       ),
     );
   }
@@ -190,7 +190,7 @@ class _SignUpBodyState extends State<SignUpBody> {
         labelText: 'signUp.label.lastName'.tr(),
         hintText: 'signUp.holder.enterYourLastName'.tr(),
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSufFixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/help_outline_black_24dp.svg"),
+        suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/help_outline_black_24dp.svg"),
       ),
     );
   }
@@ -211,7 +211,7 @@ class _SignUpBodyState extends State<SignUpBody> {
         labelText: 'signUp.label.email'.tr(),
         hintText: 'signUp.holder.enterYourEmail'.tr(),
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSufFixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/mark_as_unread_black_24dp.svg"),
+        suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/mark_as_unread_black_24dp.svg"),
       ),
     );
   }

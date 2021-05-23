@@ -36,7 +36,6 @@ class _HomeScreenState extends State<HomeScreen> {
   AppBar _appBar() {
     return AppBar(
       title: Text(_titleBar),
-      backgroundColor: Colors.purple[900],
       elevation: 0,
       leading: Builder(builder: (context) {
         return IconButton(

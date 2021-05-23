@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:sale_management/screens/product/widgets/add_new_product_body.dart';
+import 'package:sale_management/shares/utils/widgets_util.dart';
 
 class AddNewProductScreen extends StatefulWidget {
   const AddNewProductScreen({Key? key}) : super(key: key);
@@ -13,11 +14,7 @@ class _AddNewProductScreenState extends State<AddNewProductScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.purple[900],
-        foregroundColor: Colors.purple[900],
-        title: Text('product.label.product'.tr()),
-      ),
+      appBar: WidgetsUtil.appBar(title: 'product.label.product'.tr()),
       body: SafeArea(
         child: AddNewProductBody(),
       ),

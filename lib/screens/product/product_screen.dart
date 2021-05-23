@@ -56,7 +56,6 @@ class _ProductScreenState extends State<ProductScreen> {
 
   AppBar _buildAppBar() {
     return AppBar(
-      backgroundColor: Colors.purple[900],
       title: Text('product.label.product'.tr()),
       leading: IconButton(
         icon: Icon(Icons.arrow_back),

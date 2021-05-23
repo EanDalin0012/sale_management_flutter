@@ -12,9 +12,8 @@ class _LogInScreenState extends State<LogInScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.purple[900],
-        foregroundColor: Colors.purple[900],
-        title: Text('login.label.login'.tr()),
+        title: Text('login.label.login'.tr()
+        ),
       ),
       body: SafeArea(
         child: LoginBody(),

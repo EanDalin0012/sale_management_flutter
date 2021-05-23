@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sale_management/shares/statics/size_config.dart';
+import 'package:sale_management/shares/utils/colors_util.dart';
 
-class CustomSufFixIcon extends StatelessWidget {
-   Color? color;
+class CustomSuffixIcon extends StatelessWidget {
    double? svgPaddingLeft;
    String svgIcon;
-   CustomSufFixIcon({
-    Key? key, this.color,
+   CustomSuffixIcon({
+    Key? key,
      this.svgPaddingLeft,
      required this.svgIcon,
   }) : super(key: key);
@@ -29,7 +29,7 @@ class CustomSufFixIcon extends StatelessWidget {
       child: SvgPicture.asset(
         svgIcon,
         height: getProportionateScreenWidth(20),
-        // color: color,
+        color: ColorsUtils.svgPictureSufFixIconColor(),
       ),
     );
   }

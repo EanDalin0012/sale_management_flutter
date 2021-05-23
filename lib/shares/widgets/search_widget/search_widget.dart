@@ -30,7 +30,7 @@ class SearchWidget extends StatelessWidget {
                 color: Colors.white54,
               ),
             ),
-            prefixIcon: CustomSufFixIcon(svgPaddingLeft: 15, svgIcon: "assets/icons/Search Icon.svg")
+            prefixIcon: CustomSuffixIcon(svgPaddingLeft: 15, svgIcon: "assets/icons/Search Icon.svg")
         ),
         onChanged: (value) {
           this.onChanged(value);

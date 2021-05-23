@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sale_management/screens/setting/setting.dart';
 import 'package:sale_management/shares/constants/fonts.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:sale_management/shares/utils/colors_util.dart';
 
 class MyDrawer extends StatelessWidget {
   MyDrawer({Key? key}) : super(key: key);
@@ -34,17 +35,19 @@ class MyDrawer extends StatelessWidget {
                                 RichText(
                                     text: TextSpan(
                                         children: [
-                                          TextSpan(text: "Name Surname\n", style: TextStyle(fontWeight: FontWeight.bold, fontFamily: fontDefault, color: Colors.white)),
-                                          TextSpan(text: "@username", style: TextStyle(fontFamily: fontDefault, color: Colors.white)),
+                                          TextSpan(text: "Name Surname\n", style: TextStyle(fontWeight: FontWeight.bold)),
+                                          TextSpan(text: "@username"),
                                         ]
                                     )
                                 )
                               ],
                             )
                         ),
-                        ListTile(title: Text('drawer.label.contactUs'.tr(), style: style,), leading: Icon(Icons.phone),),
-                        ListTile(title: Text('drawer.label.termsCondition'.tr(), style: style), leading: Icon(Icons.card_giftcard),),
-                        Divider(),
+                        ListTile(title: Text('drawer.label.contactUs'.tr(), style: style,), leading: Icon(Icons.phone, color: ColorsUtils.iConColor()),),
+                        ListTile(title: Text('drawer.label.termsCondition'.tr(), style: style), leading: Icon(Icons.card_giftcard, color: ColorsUtils.iConColor()),),
+                        Divider(
+                          color: ColorsUtils.isDarkModeColor(),
+                        ),
                         ListTile(
                           onTap: () {
                             Navigator.pop(context);
@@ -53,7 +56,7 @@ class MyDrawer extends StatelessWidget {
                               MaterialPageRoute(builder: (context) => SettingScreen()),
                             );
                           },
-                          title: Text('drawer.label.settings'.tr(),style: style), leading: Icon(Icons.settings),
+                          title: Text('drawer.label.settings'.tr(),style: style), leading: Icon(Icons.settings,color: ColorsUtils.iConColor()),
                         ),
                         Column(
                           children: <Widget>[

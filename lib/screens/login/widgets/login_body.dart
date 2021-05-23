@@ -3,6 +3,7 @@ import 'package:sale_management/screens/home/home_screen.dart';
 import 'package:sale_management/screens/sign_up/sign_up_screen.dart';
 import 'package:sale_management/shares/constants/text_style.dart';
 import 'package:sale_management/shares/statics/size_config.dart';
+import 'package:sale_management/shares/utils/input_decoration.dart';
 import 'package:sale_management/shares/utils/keyboard_util.dart';
 import 'package:sale_management/shares/widgets/custom_suffix_icon/custom_suffix_icon.dart';
 import 'package:sale_management/shares/widgets/default_button/default_button.dart';
@@ -44,7 +45,8 @@ class _LoginBodyState extends State<LoginBody> {
                     children: <Widget>[
                       Checkbox(
                         value: remember,
-                        activeColor: kPrimaryColor,
+                        // activeColor: kPrimaryColor,
+
                         onChanged: (value) {
                           setState(() {
                             remember = value!;
@@ -106,9 +108,11 @@ class _LoginBodyState extends State<LoginBody> {
       },
       decoration: InputDecoration(
         labelText: 'login.label.email'.tr(),
+        labelStyle: InputDecorationUtils.inputDecorationLabelStyle(),
         hintText: 'login.holder.enterYourEmail'.tr(),
+        hintStyle: InputDecorationUtils.inputDecorationHintStyle(),
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSufFixIcon(svgIcon: "assets/icons/Mail.svg"),
+        suffixIcon: CustomSuffixIcon(svgIcon: "assets/icons/Mail.svg"),
       ),
     );
   }
@@ -122,12 +126,11 @@ class _LoginBodyState extends State<LoginBody> {
       },
       decoration: InputDecoration(
         labelText: 'login.label.password'.tr(),
+        labelStyle: InputDecorationUtils.inputDecorationLabelStyle(),
         hintText: 'login.holder.enterYourPassword'.tr(),
+        hintStyle: InputDecorationUtils.inputDecorationHintStyle(),
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSufFixIcon(
-            color: null,
-            key: null,
-            svgPaddingLeft: null,
+        suffixIcon: CustomSuffixIcon(
             svgIcon: "assets/icons/Lock.svg"
         ),
       ),

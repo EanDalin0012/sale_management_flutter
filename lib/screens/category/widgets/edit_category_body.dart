@@ -101,7 +101,7 @@ class _EditCategoryBodyState extends State<EditCategoryBody> {
         labelText: 'category.label.name'.tr(),
         hintText: 'category.holder.enterCategoryName'.tr(),
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSufFixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/help_outline_black_24dp.svg"),
+        suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/help_outline_black_24dp.svg"),
       ),
     );
   }
@@ -114,7 +114,7 @@ class _EditCategoryBodyState extends State<EditCategoryBody> {
         labelText: 'common.label.remark'.tr(),
         hintText: 'common.holder.enterRemark'.tr(),
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSufFixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/border_color_black_24dp.svg"),
+        suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/border_color_black_24dp.svg"),
       ),
     );
   }
