@@ -14,8 +14,6 @@ class _AddNewCategoryScreenState extends State<AddNewCategoryScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.purple[900],
-        foregroundColor: Colors.purple[900],
         title: Text('category.label.category'.tr()),
       ),
       body: SafeArea(

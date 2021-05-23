@@ -55,4 +55,18 @@ class ColorsUtils {
       }
       return Colors.black45;
     }
+
+    static Color buttonContainer() {
+      if(DarkMode.isDarkMode == true) {
+        return Colors.white;
+      }
+      return Colors.red;
+    }
+
+    static Color buttonColorContainer() {
+      if(DarkMode.isDarkMode == true) {
+        return Colors.black;
+      }
+      return Colors.white;
+    }
 }

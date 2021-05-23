@@ -10,6 +10,7 @@ import 'package:sale_management/shares/constants/color.dart';
 import 'package:sale_management/shares/constants/fonts.dart';
 import 'package:sale_management/shares/constants/text_style.dart';
 import 'package:sale_management/shares/model/key/category_key.dart';
+import 'package:sale_management/shares/utils/colors_util.dart';
 import 'package:sale_management/shares/utils/show_dialog_util.dart';
 import 'package:sale_management/shares/widgets/circular_progress_indicator/circular_progress_indicator.dart';
 import 'package:sale_management/shares/widgets/over_list_item/over_list_item.dart';
@@ -56,7 +57,6 @@ class _CategoryScreenState extends State<CategoryScreen> {
 
   AppBar _buildAppBar() {
     return AppBar(
-      backgroundColor: Colors.purple[900],
       title: Text('category.label.category'.tr()),
       leading: IconButton(
         icon: Icon(Icons.arrow_back),
@@ -104,7 +104,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
         child: ListView.separated(
           itemCount: this.vData.length,
           separatorBuilder: (context, index) => Divider(
-            color: Colors.purple[900]!.withOpacity(0.5),
+            color: ColorsUtils.isDarkModeColor()
           ),
           itemBuilder: (context, index) {
             return _buildListTile(
@@ -119,11 +119,11 @@ class _CategoryScreenState extends State<CategoryScreen> {
   }) {
     return ListTile(
       title: Text( dataItem[CategoryKey.name],
-        style: TextStyle( color: Colors.black87, fontSize: 20, fontWeight: FontWeight.w700,fontFamily: fontDefault),
+        style: TextStyle( color: ColorsUtils.isDarkModeColor(), fontSize: 20, fontWeight: FontWeight.w700,fontFamily: fontDefault),
       ),
       subtitle: Text(
         dataItem[CategoryKey.remark].toString(),
-        style: TextStyle(fontSize: 12,fontWeight: FontWeight.w700, fontFamily: fontDefault, color: primaryColor),
+        style: TextStyle(fontSize: 12,fontWeight: FontWeight.w700, fontFamily: fontDefault, color: ColorsUtils.isDarkModeColor()),
       ),
       trailing: Column(
         children: <Widget>[
@@ -177,7 +177,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
           )
       ),
     ],
-    icon: FaIcon(FontAwesomeIcons.ellipsisV,size: 20,color: Colors.black),
+    icon: FaIcon(FontAwesomeIcons.ellipsisV,size: 20,color: ColorsUtils.isDarkModeColor()),
     offset: Offset(0, 45),
     onSelected: (value) {
       if(value == 0) {

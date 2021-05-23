@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sale_management/screens/category/category_screen.dart';
-import 'package:sale_management/shares/constants/fonts.dart';
+import 'package:sale_management/shares/constants/text_style.dart';
 import 'package:sale_management/shares/model/key/category_key.dart';
 import 'package:sale_management/shares/statics/size_config.dart';
 import 'package:sale_management/shares/widgets/default_button/default_button.dart';
@@ -12,13 +12,6 @@ class CategorySuccessBody extends StatelessWidget {
   final Map vData;
   CategorySuccessBody({Key? key,this.isEditScreen, this.isAddScreen, required this.vData}): super(key: key);
 
-  final headingStyle = TextStyle(
-      fontSize: getProportionateScreenWidth(28),
-      fontWeight: FontWeight.bold,
-      color: Colors.black,
-      height: 1.5,
-      fontFamily: fontDefault
-  );
   GlobalKey<NavigatorState> _key = GlobalKey();
 
   @override
@@ -26,11 +19,9 @@ class CategorySuccessBody extends StatelessWidget {
     return WillPopScope(
       onWillPop:  () async {
         if (_key.currentState!.canPop()) {
-          print('data');
           _key.currentState!.pop();
           return false;
         }
-        print('data1');
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => CategoryScreen()),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sale_management/shares/utils/input_decoration.dart';
 import 'package:sale_management/shares/widgets/custom_suffix_icon/custom_suffix_icon.dart';
 
 class SearchWidget extends StatelessWidget {
@@ -15,7 +16,7 @@ class SearchWidget extends StatelessWidget {
         decoration: InputDecoration(
             labelStyle: TextStyle(color: Colors.white, fontSize: 20),
             hintText: hintText,
-            hintStyle: TextStyle(color: Colors.white54),
+            hintStyle: InputDecorationUtils.inputDecorationHintStyle(),
             contentPadding: EdgeInsets.only(left: 15, bottom: 11, top: 11, right: 15),
             fillColor: Colors.white,
             focusedBorder: OutlineInputBorder(

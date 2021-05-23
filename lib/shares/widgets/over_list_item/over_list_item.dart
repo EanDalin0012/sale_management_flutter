@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sale_management/shares/constants/fonts.dart';
 import 'package:sale_management/shares/constants/text_style.dart';
+import 'package:sale_management/shares/statics/dark_mode_color.dart';
+import 'package:sale_management/shares/utils/colors_util.dart';
 
 class OverListItem extends StatelessWidget {
   final String text;
@@ -10,8 +12,12 @@ class OverListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var color = Color(0xffd9dbdb).withOpacity(0.4);
+    if(DarkMode.isDarkMode == true) {
+      color = Colors.white10;
+    }
     return Container(
-      color: Color(0xffd9dbdb).withOpacity(0.4),
+      color: color,
       width: MediaQuery.of(context).size.width,
       padding: EdgeInsets.only(
           left: 20,
@@ -26,7 +32,7 @@ class OverListItem extends StatelessWidget {
             text.toString(),
             style: containStyle,
           ),
-          Text(this.length.toString(), style: TextStyle(color: Colors.black, fontSize: 18, fontWeight: FontWeight.w700, fontFamily: fontDefault),)
+          Text(this.length.toString(), style: TextStyle(color: ColorsUtils.isDarkModeColor(), fontSize: 18, fontWeight: FontWeight.w700, fontFamily: fontDefault),)
         ],
       ),
     );

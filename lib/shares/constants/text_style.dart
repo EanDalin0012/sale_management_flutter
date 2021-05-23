@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:sale_management/shares/constants/color.dart';
 import 'package:sale_management/shares/constants/fonts.dart';
 import 'package:sale_management/shares/statics/size_config.dart';
+import 'package:sale_management/shares/utils/colors_util.dart';
 
 var borderColorsTextField = Colors.deepPurple;
 var labelStyle = TextStyle(fontSize: 20, color: Colors.deepPurple, fontFamily: fontDefault);
 var hintStyle = TextStyle(fontFamily: fontDefault);
-var containStyle = TextStyle(color: primaryColor, fontSize: 18, fontWeight: FontWeight.w500, fontFamily: fontDefault);
+var containStyle = TextStyle(color: ColorsUtils.isDarkModeColor(), fontSize: 18, fontWeight: FontWeight.w500, fontFamily: fontDefault);
 var appBarStyle = TextStyle(fontFamily: fontDefault, fontWeight: FontWeight.w700);
 var menuStyle = TextStyle( color: Colors.purple[900], fontWeight: FontWeight.w500, fontFamily: fontDefault);
 
@@ -25,7 +26,6 @@ const kAnimationDuration = Duration(milliseconds: 200);
 final headingStyle = TextStyle(
     fontSize: getProportionateScreenWidth(28),
     fontWeight: FontWeight.bold,
-    color: Colors.black,
-    height: 1.5,
-    fontFamily: fontDefault
+    color: ColorsUtils.isDarkModeColor(),
+    height: 1.5
 );

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:sale_management/shares/constants/color.dart';
 import 'package:sale_management/shares/constants/fonts.dart';
 import 'package:sale_management/shares/utils/colors_util.dart';
+import 'package:sale_management/shares/utils/input_decoration.dart';
 import 'package:sale_management/shares/utils/widgets_util.dart';
 
 class MainProvider extends ChangeNotifier{
@@ -26,6 +26,8 @@ class MainProvider extends ChangeNotifier{
       gapPadding: 10,
     );
     return InputDecorationTheme(
+      labelStyle: InputDecorationUtils.inputDecorationLabelStyle(),
+      hintStyle: InputDecorationUtils.inputDecorationHintStyle(),
       floatingLabelBehavior: FloatingLabelBehavior.always,
       contentPadding: EdgeInsets.symmetric(horizontal: 42, vertical: 20),
       enabledBorder: outlineInputBorder,
@@ -36,8 +38,9 @@ class MainProvider extends ChangeNotifier{
 
   TextTheme textTheme() {
     return TextTheme(
-      bodyText1: TextStyle(color: ColorsUtils.textTheme()),
-      bodyText2: TextStyle(color: ColorsUtils.textTheme()),
+      bodyText1: TextStyle(color: ColorsUtils.isDarkModeColor()),
+      bodyText2: TextStyle(color: ColorsUtils.isDarkModeColor()),
+
     );
   }
 

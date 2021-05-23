@@ -3,6 +3,8 @@ import 'package:sale_management/screens/category/category_success_screen.dart';
 import 'package:sale_management/shares/constants/text_style.dart';
 import 'package:sale_management/shares/model/key/category_key.dart';
 import 'package:sale_management/shares/statics/size_config.dart';
+import 'package:sale_management/shares/utils/colors_util.dart';
+import 'package:sale_management/shares/utils/input_decoration.dart';
 import 'package:sale_management/shares/utils/keyboard_util.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:sale_management/shares/widgets/custom_suffix_icon/custom_suffix_icon.dart';
@@ -18,10 +20,9 @@ class _AddBewCategoryBodyState extends State<AddBewCategoryBody> {
 
   final _formKey  = GlobalKey<FormState>();
   var isClickSave = false;
-
   var nameController    = new TextEditingController();
   var remarkController  = new TextEditingController();
-
+  var style = InputDecorationUtils.textFormFieldStyle();
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -37,8 +38,8 @@ class _AddBewCategoryBodyState extends State<AddBewCategoryBody> {
                 child: Container(
                   height: 45,
                   width: MediaQuery.of(context).size.width,
-                  color: Colors.redAccent,
-                  child: Center(child: Text('common.label.save'.tr(), style: TextStyle(fontWeight: FontWeight.w700, color: Colors.white, fontFamily: 'roboto', fontSize: 18))),
+                  color: ColorsUtils.buttonContainer(),
+                  child: Center(child: Text('common.label.save'.tr(), style: TextStyle(fontWeight: FontWeight.w700, color: ColorsUtils.buttonColorContainer(), fontSize: 18))),
                 ),
               )
             ]
@@ -79,6 +80,7 @@ class _AddBewCategoryBodyState extends State<AddBewCategoryBody> {
 
   TextFormField _buildNameField() {
     return TextFormField(
+      style: style,
       keyboardType: TextInputType.text,
       textInputAction: TextInputAction.next,
       controller: nameController,
@@ -100,6 +102,7 @@ class _AddBewCategoryBodyState extends State<AddBewCategoryBody> {
 
   TextFormField _buildRemarkField() {
     return TextFormField(
+      style: style,
       keyboardType: TextInputType.text,
       controller: remarkController,
       decoration: InputDecoration(

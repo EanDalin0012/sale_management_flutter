@@ -3,6 +3,8 @@ import 'package:sale_management/screens/category/category_success_screen.dart';
 import 'package:sale_management/shares/constants/text_style.dart';
 import 'package:sale_management/shares/model/key/category_key.dart';
 import 'package:sale_management/shares/statics/size_config.dart';
+import 'package:sale_management/shares/utils/colors_util.dart';
+import 'package:sale_management/shares/utils/input_decoration.dart';
 import 'package:sale_management/shares/utils/keyboard_util.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:sale_management/shares/widgets/custom_suffix_icon/custom_suffix_icon.dart';
@@ -23,7 +25,7 @@ class _EditCategoryBodyState extends State<EditCategoryBody> {
   var nameController    = new TextEditingController();
   var remarkController  = new TextEditingController();
 
-
+  var style = InputDecorationUtils.textFormFieldStyle();
   @override
   void initState() {
     super.initState();
@@ -45,8 +47,8 @@ class _EditCategoryBodyState extends State<EditCategoryBody> {
                 child: Container(
                   height: 45,
                   width: MediaQuery.of(context).size.width,
-                  color: Colors.redAccent,
-                  child: Center(child: Text('common.label.update'.tr(), style: TextStyle(fontWeight: FontWeight.w700, color: Colors.white, fontFamily: 'roboto', fontSize: 18))),
+                  color: ColorsUtils.buttonContainer(),
+                  child: Center(child: Text('common.label.update'.tr(), style: TextStyle(fontWeight: FontWeight.w700, color: ColorsUtils.buttonColorContainer(), fontFamily: 'roboto', fontSize: 18))),
                 ),
               )
             ]
@@ -87,6 +89,7 @@ class _EditCategoryBodyState extends State<EditCategoryBody> {
 
   TextFormField _buildNameField() {
     return TextFormField(
+      style: style,
       keyboardType: TextInputType.text,
       textInputAction: TextInputAction.next,
       controller: nameController,
@@ -108,6 +111,7 @@ class _EditCategoryBodyState extends State<EditCategoryBody> {
 
   TextFormField _buildRemarkField() {
     return TextFormField(
+      style: style,
       keyboardType: TextInputType.text,
       controller: remarkController,
       decoration: InputDecoration(

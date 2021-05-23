@@ -15,4 +15,11 @@ class InputDecorationUtils {
     }
     return TextStyle(color: Colors.black54);
   }
+
+  static TextStyle textFormFieldStyle () {
+    if(DarkMode.isDarkMode == true) {
+      return TextStyle(color: Colors.white);
+    }
+    return TextStyle(color: Colors.black);
+  }
 }

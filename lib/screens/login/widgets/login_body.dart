@@ -45,8 +45,6 @@ class _LoginBodyState extends State<LoginBody> {
                     children: <Widget>[
                       Checkbox(
                         value: remember,
-                        // activeColor: kPrimaryColor,
-
                         onChanged: (value) {
                           setState(() {
                             remember = value!;
@@ -97,6 +95,7 @@ class _LoginBodyState extends State<LoginBody> {
 
   TextFormField buildEmailFormField() {
     return TextFormField(
+      style: InputDecorationUtils.textFormFieldStyle(),
       keyboardType: TextInputType.emailAddress,
       onSaved: (newValue) => email = newValue!,
       onChanged: (value) {
@@ -108,9 +107,7 @@ class _LoginBodyState extends State<LoginBody> {
       },
       decoration: InputDecoration(
         labelText: 'login.label.email'.tr(),
-        labelStyle: InputDecorationUtils.inputDecorationLabelStyle(),
         hintText: 'login.holder.enterYourEmail'.tr(),
-        hintStyle: InputDecorationUtils.inputDecorationHintStyle(),
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: CustomSuffixIcon(svgIcon: "assets/icons/Mail.svg"),
       ),
@@ -119,6 +116,7 @@ class _LoginBodyState extends State<LoginBody> {
 
   TextFormField buildPasswordFormField() {
     return TextFormField(
+      style: InputDecorationUtils.textFormFieldStyle(),
       obscureText: true,
       onSaved: (newValue) => password = newValue!,
       validator: (value) {
@@ -126,9 +124,7 @@ class _LoginBodyState extends State<LoginBody> {
       },
       decoration: InputDecoration(
         labelText: 'login.label.password'.tr(),
-        labelStyle: InputDecorationUtils.inputDecorationLabelStyle(),
         hintText: 'login.holder.enterYourPassword'.tr(),
-        hintStyle: InputDecorationUtils.inputDecorationHintStyle(),
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: CustomSuffixIcon(
             svgIcon: "assets/icons/Lock.svg"
