@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sale_management/screens/home/home_screen.dart';
 import 'package:sale_management/screens/product/add_new_product_screen.dart';
+import 'package:sale_management/screens/product/edit_product.dart';
 import 'package:sale_management/shares/constants/color.dart';
 import 'package:sale_management/shares/constants/fonts.dart';
 import 'package:sale_management/shares/constants/text_style.dart';
@@ -184,10 +185,10 @@ class _ProductScreenState extends State<ProductScreen> {
     offset: Offset(0, 45),
     onSelected: (value) {
       if(value == 0) {
-        // Navigator.push(
-        //   context,
-        //   MaterialPageRoute(builder: (context) => EditCategoryScreen(vData: item)),
-        // );
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => EditProductScreen(vData: item)),
+        );
       } else if (value == 1) {
         _showDialog(item);
       }

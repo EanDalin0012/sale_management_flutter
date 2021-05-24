@@ -204,12 +204,12 @@ class _SettingBodyState extends State<SettingBody> {
 
             ListTile(
               leading: Icon(Icons.touch_app, size: 30,color: ColorsUtils.iConColor(),),
-              title: Text('changePIN', style: TextStyle(color: ColorsUtils.isDarkModeColor()),),
+              title: Text('setting.label.changePIN'.tr(), style: TextStyle(color: ColorsUtils.isDarkModeColor()),),
             ),
 
             ListTile(
               leading: Icon(Icons.fingerprint_rounded, size: 30,color: ColorsUtils.iConColor(),),
-              title: Text('useFingerprintForLogin',style: TextStyle(color: ColorsUtils.isDarkModeColor()),),
+              title: Text('setting.label.useFingerprintForLogin'.tr(),style: TextStyle(color: ColorsUtils.isDarkModeColor()),),
               trailing: Container(
                 width: 50,
                 child: FlutterSwitch(
@@ -228,8 +228,8 @@ class _SettingBodyState extends State<SettingBody> {
             ),
             SizedBox(height: 5),
             ListTile(
-              leading: Icon(Icons.dark_mode, size: 30,color: ColorsUtils.iConColor(),),
-              title: Text('Dark Mode',style: TextStyle(color: ColorsUtils.isDarkModeColor()),),
+              leading: Icon(darkMode ? Icons.dark_mode : Icons.light, size: 30,color: ColorsUtils.iConColor(),),
+              title: Text('setting.label.darkMode'.tr(),style: TextStyle(color: ColorsUtils.isDarkModeColor()),),
               trailing: Container(
                 width: 50,
                 child: FlutterSwitch(

@@ -5,11 +5,7 @@ import 'package:sale_management/shares/statics/dark_mode_color.dart';
 
 class ColorsUtils {
     static Color scaffoldBackgroundColor() {
-      var color = Colors.white;
-      if(DarkMode.isDarkMode == true) {
-        color = Colors.black;
-      }
-      return color;
+      return DarkMode.isDarkMode == true ? Colors.black: Colors.white;
     }
 
     static Color textTheme() {
@@ -70,9 +66,6 @@ class ColorsUtils {
     }
 
     static Color? appBarBackGround() {
-      if(DarkMode.isDarkMode == true) {
-        return Colors.black;
-      }
-      return Colors.purple[900];
+      return DarkMode.isDarkMode == true ?  Colors.black : Colors.purple[900];
     }
 }

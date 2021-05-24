@@ -25,7 +25,8 @@
       "security": "សន្តិសុខ",
       "changePIN": "ប្តូរលេខសម្ងាត់",
       "useFingerprintForLogin": "ប្រើស្នាមម្រាមដៃសម្រាប់ចូល",
-      "changedLanguage": "ប្តូរភាសាទៅ{}"
+      "changedLanguage": "ប្តូរភាសាទៅ{}",
+      "darkMode": "របៀបងងឹត"
     }
   },
   "login": {

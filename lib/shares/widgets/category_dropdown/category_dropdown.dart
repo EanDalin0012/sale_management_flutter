@@ -43,6 +43,7 @@ class _CategoryDropdownPageState extends State<CategoryDropdownPage> {
     size = MediaQuery.of(context).size;
     styleInput = TextStyle(color: ColorsUtils.isDarkModeColor(), fontSize: 17, fontWeight: FontWeight.w500, fontFamily: fontDefault);
     return Scaffold(
+        backgroundColor: ColorsUtils.scaffoldBackgroundColor(),
         appBar: _buildAppBar(),
         body: Column(
           children: <Widget>[
@@ -57,7 +58,7 @@ class _CategoryDropdownPageState extends State<CategoryDropdownPage> {
     final label = 'categoryDropdown.label.chooseCategory'.tr();
 
     return AppBar(
-      backgroundColor: Colors.purple[900],
+      backgroundColor: ColorsUtils.appBarBackGround(),
       title: Text('$label'),
       actions: [
         IconButton(
@@ -103,11 +104,8 @@ class _CategoryDropdownPageState extends State<CategoryDropdownPage> {
 
   Widget _buildBody () {
     return Expanded(
-        child:  ListView.separated(
+        child:  ListView.builder(
           itemCount: vDataLength,
-          separatorBuilder: (context, index) => Divider(
-            color: ColorsUtils.isDarkModeColor(),
-          ),
           itemBuilder: (context, index) {
             return _buildListTile(
                 dataItem: this.vData[index]

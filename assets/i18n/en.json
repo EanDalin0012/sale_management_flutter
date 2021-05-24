@@ -25,7 +25,8 @@
       "security": "Security",
       "changePIN": "Change PIN",
       "useFingerprintForLogin": "Use Fingerprint For Login",
-      "changedLanguage": "Change Language to {}"
+      "changedLanguage": "Change Language to {}",
+      "darkMode": "Dark Mode"
     }
   },
   "login": {

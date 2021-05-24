@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:sale_management/screens/product/widgets/add_new_product_body.dart';
+import 'package:sale_management/screens/product/widgets/edit_product_body.dart';
 import 'package:sale_management/shares/utils/colors_util.dart';
 
-class AddNewProductScreen extends StatefulWidget {
-  const AddNewProductScreen({Key? key}) : super(key: key);
+class EditProductScreen extends StatefulWidget {
+  final Map vData;
+  const EditProductScreen({Key? key, required this.vData}) : super(key: key);
 
   @override
-  _AddNewProductScreenState createState() => _AddNewProductScreenState();
+  _EditProductScreenState createState() => _EditProductScreenState();
 }
 
-class _AddNewProductScreenState extends State<AddNewProductScreen> {
+class _EditProductScreenState extends State<EditProductScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,9 +19,9 @@ class _AddNewProductScreenState extends State<AddNewProductScreen> {
       appBar: AppBar(
         backgroundColor: ColorsUtils.appBarBackGround(),
         title: Text('product.label.product'.tr()),
-    ),
+      ),
       body: SafeArea(
-        child: AddNewProductBody(),
+        child: EditProductBody(vData: widget.vData),
       ),
     );
   }
