@@ -21,11 +21,10 @@ class ColorsUtils {
     }
 
     static Color borderSideColor() {
-      var color = kTextColor;
       if(DarkMode.isDarkMode == true) {
-        color = Colors.white;
+        return Colors.white;
       }
-      return color;
+      return kTextColor;
     }
 
     static Color? svgPictureSufFixIconColor() {
@@ -68,5 +67,12 @@ class ColorsUtils {
         return Colors.black;
       }
       return Colors.white;
+    }
+
+    static Color? appBarBackGround() {
+      if(DarkMode.isDarkMode == true) {
+        return Colors.black;
+      }
+      return Colors.purple[900];
     }
 }

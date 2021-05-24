@@ -1,3 +1,3 @@
 class DarkMode {
-  static bool isDarkMode = true;
+  static bool isDarkMode = false;
 }

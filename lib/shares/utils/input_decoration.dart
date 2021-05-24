@@ -22,4 +22,20 @@ class InputDecorationUtils {
     }
     return TextStyle(color: Colors.black);
   }
+  static OutlineInputBorder outlineInputBorder() {
+    return OutlineInputBorder(
+      borderRadius: BorderRadius.circular(28),
+      borderSide: BorderSide(color: DarkMode.isDarkMode ? Colors.white : Colors.black),
+      gapPadding: 10,
+    );
+  }
+  static OutlineInputBorder enabledBorder() {
+    return OutlineInputBorder(
+      borderRadius: BorderRadius.circular(25.0),
+      borderSide: BorderSide(
+        color: DarkMode.isDarkMode ? Colors.white : Colors.black87,
+        width: 1.0,
+      ),
+    );
+  }
 }

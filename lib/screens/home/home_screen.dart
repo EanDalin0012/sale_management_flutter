@@ -5,6 +5,7 @@ import 'package:sale_management/screens/home/widgets/my_drawer.dart';
 import 'package:sale_management/screens/home/widgets/sheet_container.dart';
 import 'package:sale_management/shares/constants/color.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:sale_management/shares/utils/colors_util.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -26,6 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: ColorsUtils.scaffoldBackgroundColor(),
       appBar: isShowAppBar ? _appBar(): null,
       drawer: MyDrawer(),
       bottomNavigationBar: _bottomNavigationBar(),
@@ -36,6 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
   AppBar _appBar() {
     return AppBar(
       title: Text(_titleBar),
+      backgroundColor: ColorsUtils.appBarBackGround(),
       elevation: 0,
       leading: Builder(builder: (context) {
         return IconButton(

@@ -7,13 +7,15 @@ import 'package:sale_management/shares/utils/colors_util.dart';
 class MyDrawer extends StatelessWidget {
   MyDrawer({Key? key}) : super(key: key);
   var size ;
-  var style = TextStyle(fontFamily: fontDefault, fontWeight: FontWeight.w500);
+  var style;
 
   @override
   Widget build(BuildContext context) {
     size = MediaQuery.of(context).size;
+    style = TextStyle(fontFamily: fontDefault, fontWeight: FontWeight.w500, color: ColorsUtils.isDarkModeColor());
     return Drawer(
         child: Scaffold(
+          backgroundColor: ColorsUtils.scaffoldBackgroundColor(),
           body: Stack(
               children: <Widget>[
                 SingleChildScrollView(

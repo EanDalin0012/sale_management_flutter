@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:sale_management/shares/utils/colors_util.dart';
 
 class ProfileHeader extends StatefulWidget {
   final String coverImage;
@@ -55,13 +56,13 @@ class _ProfileHeaderState extends State<ProfileHeader> {
               ),
               Text(
                 widget.title!,
-                style: Theme.of(context).textTheme.title,
+                style: TextStyle(color: ColorsUtils.isDarkModeColor()),
               ),
               if (widget.subtitle != null) ...[
                 const SizedBox(height: 5.0),
                 Text(
                   widget.subtitle!,
-                  style: Theme.of(context).textTheme.subtitle,
+                  style: TextStyle(color: ColorsUtils.isDarkModeColor()),
                 ),
               ]
             ],

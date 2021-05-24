@@ -3,7 +3,10 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:flutter_switch/flutter_switch.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
+import 'package:sale_management/main.dart';
 import 'package:sale_management/screens/setting/widgets/language_choice.dart';
 import 'package:sale_management/screens/setting/widgets/profile_header.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -12,38 +15,48 @@ import 'package:sale_management/shares/constants/fonts.dart';
 import 'package:sale_management/shares/model/key/language_key.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:sale_management/shares/model/key/m_key.dart';
+import 'package:sale_management/shares/provider/main_provider.dart';
+import 'package:sale_management/shares/statics/dark_mode_color.dart';
+import 'package:sale_management/shares/utils/colors_util.dart';
 
 class SettingBody extends StatefulWidget {
-  const SettingBody({Key? key}) : super(key: key);
+  final ValueChanged<bool> onChanged;
+  const SettingBody({Key? key, required this.onChanged}) : super(key: key);
 
   @override
   _SettingBodyState createState() => _SettingBodyState();
 }
 
 class _SettingBodyState extends State<SettingBody> {
-  var style = TextStyle(fontFamily: fontDefault, fontWeight: FontWeight.w500);
+  MainProvider mainProvider = new MainProvider();
+  var style;
   var language = 'English';
   var languageCode = 'en';
   late FToast fToast;
   List<dynamic> vDataStock = [];
   Map vStock = {};
-
+  bool status4 = true;
+  bool darkMode = false;
   @override
   void initState() {
     super.initState();
+    this.darkMode = DarkMode.isDarkMode;
     fToast = FToast();
     fToast.init(context);
     this._fetchItemsStock();
   }
 
+
   @override
   Widget build(BuildContext context) {
+    style = TextStyle(fontFamily: fontDefault, fontWeight: FontWeight.w500, color: ColorsUtils.isDarkModeColor());
     this.languageCode = context.locale.toString();
     if(this.languageCode == 'km') {
       this.language = 'ខ្មែរ';
     } else if (this.languageCode == 'zn') {
       this.language = '中文';
     }
+    print('${DarkMode.isDarkMode}');
     return SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -74,7 +87,7 @@ class _SettingBodyState extends State<SettingBody> {
                     child: Text(
                       'setting.label.userInformation'.tr(),
                       style: TextStyle(
-                        color: Colors.black87,
+                        color: ColorsUtils.isDarkModeColor(),
                         fontWeight: FontWeight.w500,
                         fontSize: 16,
                       ),
@@ -180,7 +193,7 @@ class _SettingBodyState extends State<SettingBody> {
                 padding: EdgeInsets.only(left: 10,top: 10,bottom: 10),
                 child: Row(
                   children: <Widget>[
-                    FaIcon(FontAwesomeIcons.database,),
+                    FaIcon(FontAwesomeIcons.database, color: ColorsUtils.iConColor(),),
                     Padding(
                         padding: EdgeInsets.only(left: 15),
                         child: Text('${this.vStock[StockKey.name]}', style: style,))
@@ -188,6 +201,51 @@ class _SettingBodyState extends State<SettingBody> {
                 ),
               ),
             ) : Container(),
+
+            ListTile(
+              leading: Icon(Icons.touch_app, size: 30,color: ColorsUtils.iConColor(),),
+              title: Text('changePIN', style: TextStyle(color: ColorsUtils.isDarkModeColor()),),
+            ),
+
+            ListTile(
+              leading: Icon(Icons.fingerprint_rounded, size: 30,color: ColorsUtils.iConColor(),),
+              title: Text('useFingerprintForLogin',style: TextStyle(color: ColorsUtils.isDarkModeColor()),),
+              trailing: Container(
+                width: 50,
+                child: FlutterSwitch(
+                  width: 55.0,
+                  height: 25.0,
+                  valueFontSize: 12.0,
+                  toggleSize: 18.0,
+                  value: status4,
+                  onToggle: (val) {
+                    setState(() {
+                      status4 = val;
+                    });
+                  },
+                ),
+              ),
+            ),
+            SizedBox(height: 5),
+            ListTile(
+              leading: Icon(Icons.dark_mode, size: 30,color: ColorsUtils.iConColor(),),
+              title: Text('Dark Mode',style: TextStyle(color: ColorsUtils.isDarkModeColor()),),
+              trailing: Container(
+                width: 50,
+                child: FlutterSwitch(
+                  width: 55.0,
+                  height: 25.0,
+                  valueFontSize: 12.0,
+                  toggleSize: 18.0,
+                  value: darkMode,
+                  onToggle: (val) {
+                    this.darkMode = val;
+                    widget.onChanged(val);
+                  },
+                ),
+              ),
+            ),
+            SizedBox(height: 30)
 
           ],
         ),
@@ -215,7 +273,6 @@ class _SettingBodyState extends State<SettingBody> {
 
   Padding _listTileLeading({
     required String svgIcon,
-    Color? color,
     double? width,
     double? height,
   }) {
@@ -225,7 +282,7 @@ class _SettingBodyState extends State<SettingBody> {
         svgIcon,
         width: width,
         height: height,
-        color: color,
+        color: ColorsUtils.isDarkModeColor(),
       ),
     );
   }

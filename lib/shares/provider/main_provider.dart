@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:sale_management/shares/constants/fonts.dart';
+import 'package:sale_management/shares/statics/dark_mode_color.dart';
 import 'package:sale_management/shares/utils/colors_util.dart';
 import 'package:sale_management/shares/utils/input_decoration.dart';
 import 'package:sale_management/shares/utils/widgets_util.dart';
 
 class MainProvider extends ChangeNotifier{
   ThemeData themeData = ThemeData.light();
+  bool _darkTheme = false;
+  bool get darkTheme => DarkMode.isDarkMode;
+  set darkTheme(bool value) {
+    _darkTheme = value;
+    notifyListeners();
+  }
 
   ThemeData theme() {
     return ThemeData(

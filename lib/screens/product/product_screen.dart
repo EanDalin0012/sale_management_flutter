@@ -9,6 +9,7 @@ import 'package:sale_management/shares/constants/color.dart';
 import 'package:sale_management/shares/constants/fonts.dart';
 import 'package:sale_management/shares/constants/text_style.dart';
 import 'package:sale_management/shares/model/key/product_key.dart';
+import 'package:sale_management/shares/utils/colors_util.dart';
 import 'package:sale_management/shares/utils/show_dialog_util.dart';
 import 'package:sale_management/shares/widgets/circular_progress_indicator/circular_progress_indicator.dart';
 import 'package:sale_management/shares/widgets/list_tile_leading/list_tile_leading.dart';
@@ -133,7 +134,7 @@ class _ProductScreenState extends State<ProductScreen> {
   }) {
     return ListTile(
       title: Text( dataItem[ProductKey.name],
-        style: TextStyle( color: Colors.black87, fontSize: 20, fontWeight: FontWeight.w700,fontFamily: fontDefault),
+        style: TextStyle( color: ColorsUtils.isDarkModeColor(), fontSize: 20, fontWeight: FontWeight.w700,fontFamily: fontDefault),
       ),
       leading: ListTileLeadingWidget(netWorkURL: dataItem[ProductKey.url],),
       subtitle: Text(
@@ -177,7 +178,7 @@ class _ProductScreenState extends State<ProductScreen> {
           )
       ),
     ],
-    icon: FaIcon(FontAwesomeIcons.ellipsisV,size: 20,color: Colors.black),
+    icon: FaIcon(FontAwesomeIcons.ellipsisV,size: 20,color: ColorsUtils.iConColor()),
     offset: Offset(0, 45),
     onSelected: (value) {
       if(value == 0) {

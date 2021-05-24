@@ -10,6 +10,7 @@ class HomeContainer extends StatefulWidget {
 class _HomeContainerState extends State<HomeContainer> {
   @override
   Widget build(BuildContext context) {
+    print('dd');
     return Container(
       child: Text('Home Container'),
     );

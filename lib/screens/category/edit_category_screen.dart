@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:sale_management/screens/category/widgets/edit_category_body.dart';
+import 'package:sale_management/shares/utils/colors_util.dart';
 
 class EditCategoryScreen extends StatefulWidget {
   final Map vData;
@@ -14,9 +15,9 @@ class _EditCategoryScreenState extends State<EditCategoryScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: ColorsUtils.scaffoldBackgroundColor(),
       appBar: AppBar(
-        backgroundColor: Colors.purple[900],
-        foregroundColor: Colors.purple[900],
+        backgroundColor: ColorsUtils.appBarBackGround(),
         title: Text('category.label.category'.tr()),
       ),
       body: SafeArea(

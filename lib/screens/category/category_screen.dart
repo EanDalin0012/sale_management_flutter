@@ -6,7 +6,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sale_management/screens/category/add_new_category_screen.dart';
 import 'package:sale_management/screens/category/edit_category_screen.dart';
 import 'package:sale_management/screens/home/home_screen.dart';
-import 'package:sale_management/shares/constants/color.dart';
 import 'package:sale_management/shares/constants/fonts.dart';
 import 'package:sale_management/shares/constants/text_style.dart';
 import 'package:sale_management/shares/model/key/category_key.dart';
@@ -39,6 +38,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
   Widget build(BuildContext context) {
     size = MediaQuery.of(context).size;
     return Scaffold(
+      backgroundColor: ColorsUtils.scaffoldBackgroundColor(),
       appBar: _buildAppBar(),
       body: SafeArea(
         child: Column(
@@ -57,6 +57,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
 
   AppBar _buildAppBar() {
     return AppBar(
+      backgroundColor: ColorsUtils.appBarBackGround(),
       title: Text('category.label.category'.tr()),
       leading: IconButton(
         icon: Icon(Icons.arrow_back),

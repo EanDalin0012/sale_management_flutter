@@ -12,7 +12,7 @@ class OverListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var color = Color(0xffd9dbdb).withOpacity(0.4);
+    var color = Color(0xFF222B45).withOpacity(0.3);
     if(DarkMode.isDarkMode == true) {
       color = Colors.white10;
     }

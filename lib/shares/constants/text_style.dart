@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:sale_management/shares/constants/color.dart';
 import 'package:sale_management/shares/constants/fonts.dart';
 import 'package:sale_management/shares/statics/size_config.dart';
 import 'package:sale_management/shares/utils/colors_util.dart';
