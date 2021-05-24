@@ -9,60 +9,35 @@ class ColorsUtils {
     }
 
     static Color textTheme() {
-      var color = Color(0xFF222B45);
-      if(DarkMode.isDarkMode == true) {
-        color = Colors.white;
-      }
-      return color;
+      return DarkMode.isDarkMode == true ?  Colors.white : Color(0xFF222B45);
     }
 
     static Color borderSideColor() {
-      if(DarkMode.isDarkMode == true) {
-        return Colors.white;
-      }
-      return kTextColor;
+      return DarkMode.isDarkMode == true ? Colors.white: kTextColor;
     }
 
     static Color? svgPictureSufFixIconColor() {
-      if(DarkMode.isDarkMode == true) {
-        return Colors.white;
-      }
-      return null;
+      return DarkMode.isDarkMode == true ? Colors.white : null;
     }
 
     static Color iConColor() {
-      if(DarkMode.isDarkMode == true) {
-        return Colors.white;
-      }
-      return Colors.black45;
+      return DarkMode.isDarkMode == true ? Colors.white : Colors.black45;
     }
 
     static Color isDarkModeColor() {
-      if(DarkMode.isDarkMode == true) {
-        return Colors.white;
-      }
-      return Colors.black;
+      return DarkMode.isDarkMode == true ? Colors.white : Colors.black;
     }
 
     static Color unselectedWidgetColor() {
-      if(DarkMode.isDarkMode == true) {
-        return Colors.white.withOpacity(0.8);
-      }
-      return Colors.black45;
+      return DarkMode.isDarkMode == true ? Colors.white.withOpacity(0.8) : Colors.black45;
     }
 
     static Color buttonContainer() {
-      if(DarkMode.isDarkMode == true) {
-        return Colors.white;
-      }
-      return Colors.red;
+      return DarkMode.isDarkMode == true ? Colors.white : Colors.red;
     }
 
     static Color buttonColorContainer() {
-      if(DarkMode.isDarkMode == true) {
-        return Colors.black;
-      }
-      return Colors.white;
+      return DarkMode.isDarkMode == true ? Colors.black:  Colors.white;
     }
 
     static Color? appBarBackGround() {

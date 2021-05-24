@@ -14,7 +14,7 @@ class OverListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     var color = Color(0xFF222B45).withOpacity(0.3);
     if(DarkMode.isDarkMode == true) {
-      color = Colors.white10;
+      color = Color(0xFF222B45);
     }
     return Container(
       color: color,
@@ -30,7 +30,7 @@ class OverListItem extends StatelessWidget {
         children: <Widget>[
           Text(
             text.toString(),
-            style: containStyle,
+            style: TextStyle(color: DarkMode.isDarkMode ? Colors.white : Color(0xFF222B45), fontSize: 18, fontWeight: FontWeight.w500, fontFamily: fontDefault),
           ),
           Text(this.length.toString(), style: TextStyle(color: ColorsUtils.isDarkModeColor(), fontSize: 18, fontWeight: FontWeight.w700, fontFamily: fontDefault),)
         ],

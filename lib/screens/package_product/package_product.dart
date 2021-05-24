@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sale_management/screens/home/home_screen.dart';
+import 'package:sale_management/screens/package_product/add_new_package_product_screen.dart';
 import 'package:sale_management/shares/constants/color.dart';
 import 'package:sale_management/shares/constants/fonts.dart';
+import 'package:sale_management/shares/constants/text_style.dart';
 import 'package:sale_management/shares/model/key/package_product_key.dart';
 import 'package:sale_management/shares/model/key/product_key.dart';
 import 'package:sale_management/shares/utils/colors_util.dart';
@@ -155,7 +157,7 @@ class _PackageProductScreenState extends State<PackageProductScreen> {
             ),
             Column(
               children: <Widget>[
-                // _offsetPopup(dataItem),
+                _offsetPopup(dataItem),
               ],
             ),
 
@@ -190,7 +192,7 @@ class _PackageProductScreenState extends State<PackageProductScreen> {
       height: 40,
       margin: EdgeInsets.only(top: 12),
       child: IconButton(
-        icon: FaIcon(FontAwesomeIcons.filter,size: 25 , color: ColorsUtils.iConColor(),),
+        icon: FaIcon(FontAwesomeIcons.filter,size: 25 , color: Colors.white),
         tooltip: 'Increase volume by 10',
         onPressed: () async {
           final product = await Navigator.push(
@@ -204,7 +206,6 @@ class _PackageProductScreenState extends State<PackageProductScreen> {
           setState(() {
             this.product = product;
             this.vData = this._doFilterByProduct(this.product);
-            print('this.vData'+ this.vData.toString());
           });
         },
       ),
@@ -215,16 +216,59 @@ class _PackageProductScreenState extends State<PackageProductScreen> {
     return FloatingActionButton(
       backgroundColor: Colors.purple[900],
       onPressed: (){
-        // Navigator.push(
-        //   context,
-        //   MaterialPageRoute(builder: (context) => AddNewCategoryScreen()),
-        // );
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => AddNewPackageProductScreen()),
+        );
       },
-      tooltip: 'category.label.addNewCategory'.tr(),
+      tooltip: 'packageProduct.label.addNewProductPackage'.tr(),
       elevation: 5,
       child: Icon(Icons.add_circle, size: 50,),
     );
   }
+
+  Widget _offsetPopup(Map item) => PopupMenuButton<int>(
+    itemBuilder: (context) => [
+      PopupMenuItem(
+          value: 0,
+          child: Row(
+            children: <Widget>[
+              FaIcon(FontAwesomeIcons.edit,size: 20,color: Colors.purple[900]),
+              SizedBox(width: 10,),
+              Text('Edit',
+                style: menuStyle,
+              ),
+            ],
+          )
+      ),
+      PopupMenuItem(
+          value: 1,
+          child: Row(
+            children: <Widget>[
+              FaIcon(FontAwesomeIcons.trash,size: 20,color: Colors.purple[900]),
+              SizedBox(width: 10,),
+              Text('Delete',
+                style: menuStyle,
+              ),
+            ],
+          )
+      ),
+    ],
+    icon: FaIcon(FontAwesomeIcons.ellipsisV,size: 20,color: ColorsUtils.iConColor()),
+    offset: Offset(0, 45),
+    onSelected: (value) {
+      if(value == 0) {
+        // Navigator.push(
+        //   context,
+        //   MaterialPageRoute(builder: (context) =>
+        //       PackageProductEdit(packageProduct: item)
+        //   ),
+        // );
+      } else if (value == 1) {
+        // _showDialog(item);
+      }
+    },
+  );
 
   String _searchProductById(int productId) {
     if(this.productItems.length > 0) {
@@ -238,7 +282,6 @@ class _PackageProductScreenState extends State<PackageProductScreen> {
   }
 
   _doFilterByProduct(Map product) {
-    print('_doFilterByProduct'+product.toString());
     var dataItems = vDataTmp.where((e) => (e[ProductKey.id]).toString().contains(product[ProductKey.id].toString())
     ).toList();
     return dataItems;

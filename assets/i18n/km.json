@@ -10,7 +10,8 @@
       "completeYourDetails": "បំពេញព័ត៌មានលម្អិតរបស់អ្នក",
       "remark": "ការកត់សម្គាល់",
       "success": "ជោគជ័យ",
-      "back": "ថយក្រោយ"
+      "back": "ថយក្រោយ",
+      "isCompleted": "{} ត្រូវបានបញ្ចប់"
     },
     "holder": {
       "enterRemark": "បញ្ចូលការកត់សម្គាល់"
@@ -152,6 +153,30 @@
   "categoryDropdown": {
     "label": {
       "chooseCategory": "ជ្រើសរើសប្រភេទ"
+    }
+  },
+  "packageProduct": {
+    "label": {
+      "packageProduct": "កញ្ចប់តំណាង",
+      "packageProductList": "បញ្ជីកញ្ចប់តំណាង",
+      "product": "ផលិតផល",
+      "addNewProductPackage": "បន្ថែមកញ្ចប់តំណាងថ្មី",
+      "registerPackageProduct": "ចុះឈ្មោះកញ្ចប់តំណាង",
+      "updatePackageProduct": "ធ្វើបច្ចុប្បន្នភាពកញ្ចប់តំណាង",
+      "name": "ឈ្មោះ",
+      "quantity": "ចំនួន",
+      "price": "តម្លៃ"
+    },
+    "holder": {
+      "enterPackageProductName": "បញ្ចូលឈ្មោះកញ្ចប់តំណាង",
+      "enterQuantity": "បញ្ចូលចំនួន",
+      "enterPrice": "បញ្ចូលតម្លៃ"
+    },
+    "message": {
+      "pleaseEnterPackageProduct": "សូមបញ្ចូលឈ្មោះកញ្ចប់តំណាង",
+      "pleaseEnterQuantity": "សូមបញ្ចូលចំនួន",
+      "pleaseEnterPrice": "សូមបញ្ចូលតម្លៃ",
+      "pleaseSelectProduct": "សូមជ្រើសរើសផលិតផល"
     }
   },
   "search": {

@@ -10,7 +10,8 @@
       "completeYourDetails": "Complete your details",
       "remark": "Remark",
       "success": "Success",
-      "back": "Back"
+      "back": "Back",
+      "isCompleted": "{} is completed"
     },
     "holder": {
       "enterRemark": "Enter remark"
@@ -158,7 +159,24 @@
     "label": {
       "packageProduct": "Package Product",
       "packageProductList": "Package Product List",
-      "product": "Product"
+      "product": "Product",
+      "addNewProductPackage": "Add New Package Product",
+      "registerPackageProduct": "Register Package Product",
+      "updatePackageProduct": "Update Package Product",
+      "name": "Name",
+      "quantity": "Quantity",
+      "price": "Price"
+    },
+    "holder": {
+      "enterPackageProductName": "Enter package product name",
+      "enterQuantity": "Enter quantity",
+      "enterPrice": "Enter price"
+    },
+    "message": {
+      "pleaseEnterPackageProduct": "Please enter package product name.",
+      "pleaseEnterQuantity": "Please enter quantity.",
+      "pleaseEnterPrice": "Please enter price.",
+      "pleaseSelectProduct": "Please select product."
     }
   },
   "search": {
