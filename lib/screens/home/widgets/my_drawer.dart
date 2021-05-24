@@ -58,7 +58,7 @@ class MyDrawer extends StatelessWidget {
                               MaterialPageRoute(builder: (context) => SettingScreen()),
                             );
                           },
-                          title: Text('drawer.label.settings'.tr(),style: style), leading: Icon(Icons.settings,color: ColorsUtils.iConColor()),
+                          title: Text('drawer.label.settings'.tr(), style: TextStyle(color: ColorsUtils.isDarkModeColor()),), leading: Icon(Icons.settings,color: ColorsUtils.iConColor()),
                         ),
                         Column(
                           children: <Widget>[
@@ -66,7 +66,7 @@ class MyDrawer extends StatelessWidget {
                               title: new Text(
                                 'drawer.label.logout'.tr(),
                                 style: new TextStyle(
-                                  // fontFamily: AppTheme.fontName,
+                                  color: ColorsUtils.isDarkModeColor(),
                                   fontWeight: FontWeight.w600,
                                   fontSize: 16,
                                 ),
