@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:sale_management/screens/category/category_success_screen.dart';
-import 'package:sale_management/shares/constants/text_style.dart';
 import 'package:sale_management/shares/model/key/category_key.dart';
 import 'package:sale_management/shares/statics/size_config.dart';
 import 'package:sale_management/shares/utils/colors_util.dart';

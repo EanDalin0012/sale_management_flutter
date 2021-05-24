@@ -39,6 +39,7 @@ class _ProductScreenState extends State<ProductScreen> {
   Widget build(BuildContext context) {
     size = MediaQuery.of(context).size;
     return Scaffold(
+      backgroundColor: ColorsUtils.scaffoldBackgroundColor(),
       appBar: _buildAppBar(),
       body: SafeArea(
         child: Column(
@@ -57,6 +58,7 @@ class _ProductScreenState extends State<ProductScreen> {
 
   AppBar _buildAppBar() {
     return AppBar(
+      backgroundColor: ColorsUtils.appBarBackGround(),
       title: Text('product.label.product'.tr()),
       leading: IconButton(
         icon: Icon(Icons.arrow_back),

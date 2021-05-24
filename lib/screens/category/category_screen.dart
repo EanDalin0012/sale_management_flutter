@@ -47,7 +47,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
               text: 'category.label.categoryList'.tr(),
               length: this.vData.length,
             ),
-            if (this.vData.length > 0 ) _buildBody() else CircularProgressLoading()
+            this.vData.length > 0 ? _buildBody() : CircularProgressLoading()
           ],
         ),
       ),
@@ -102,7 +102,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
 
   Expanded _buildBody () {
     return Expanded(
-        child: ListView.separated(
+        child: this.vData.length> 0 ? ListView.separated(
           itemCount: this.vData.length,
           separatorBuilder: (context, index) => Divider(
             color: ColorsUtils.isDarkModeColor()
@@ -111,7 +111,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
             return _buildListTile(
                 dataItem: this.vData[index]
             );},
-        )
+        ): Container()
     );
   }
 

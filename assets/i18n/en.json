@@ -129,10 +129,27 @@
     "label": {
       "product": "Product",
       "productList": "Product List",
-      "addNewProduct": "Add New Product"
+      "addNewProduct": "Add New Product",
+      "registerProduct": "Register Product",
+      "updateProduct": "Update Product",
+      "name": "Name",
+      "category": "Category",
+      "browse": "Browse"
     },
     "message": {
-      "doYouWantToDeleteProduct": "Do you want to delete product {}"
+      "doYouWantToDeleteProduct": "Do you want to delete product {}",
+      "pleaseEnterName": "Please enter product name.",
+      "pleaseChooseCategory": "Please choose category."
+    },
+    "holder": {
+      "enterProductName": "Enter product name",
+      "selectCategory": "Select Category",
+      "browseToImage": "Brows to image"
+    }
+  },
+  "categoryDropdown": {
+    "label": {
+      "chooseCategory": "Choose Category"
     }
   },
   "search": {

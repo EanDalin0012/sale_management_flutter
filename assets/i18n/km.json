@@ -125,6 +125,33 @@
       "enterCategoryName": "បញ្ចូលឈ្មោះប្រភេទ."
     }
   },
+  "product": {
+    "label": {
+      "product": "ផលិតផល",
+      "productList": "បញ្ជីផលិតផល",
+      "addNewProduct": "បន្ថែមផលិតផលថ្មី",
+      "registerProduct": "ចុះឈ្មោះផលិតផល",
+      "updateProduct": "ធ្វើបច្ចុប្បន្នភាពផលិតផល",
+      "name": "ឈ្មោះ",
+      "category": "ប្រភេទ",
+      "browse": "រុករក"
+    },
+    "message": {
+      "doYouWantToDeleteProduct": "តើអ្នកចង់លុបផលិតផលទេ {} ?",
+      "pleaseEnterName": "សូមបញ្ចូលឈ្មោះផលិតផល",
+      "pleaseChooseCategory": "សូមជ្រើសរើសប្រភេទ"
+    },
+    "holder": {
+      "enterProductName": "បញ្ចូលឈ្មោះផលិតផល",
+      "selectCategory": "ជ្រើសរើសប្រភេទ",
+      "browseToImage": "រុករករូបភាព"
+    }
+  },
+  "categoryDropdown": {
+    "label": {
+      "chooseCategory": "ជ្រើសរើសប្រភេទ"
+    }
+  },
   "search": {
     "label": {
       "searchName": "ស្វែងរកដោយឈ្មោះ",
