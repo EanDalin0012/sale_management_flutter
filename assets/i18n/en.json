@@ -134,6 +134,7 @@
       "registerProduct": "Register Product",
       "updateProduct": "Update Product",
       "name": "Name",
+      "selectProduct": "Select Product",
       "category": "Category",
       "browse": "Browse"
     },
@@ -151,6 +152,13 @@
   "categoryDropdown": {
     "label": {
       "chooseCategory": "Choose Category"
+    }
+  },
+  "packageProduct": {
+    "label": {
+      "packageProduct": "Package Product",
+      "packageProductList": "Package Product List",
+      "product": "Product"
     }
   },
   "search": {

@@ -103,7 +103,7 @@
       "stock": "ស្តុក",
       "vendor": "អ្នកផ្គត់ផ្គង",
       "product": "ផលិតផល",
-      "package": "តំណាង",
+      "package": "កញ្ចប់តំណាង",
       "member": "សមាជិក",
       "imports": "ការនាំចូល"
     }
@@ -134,6 +134,7 @@
       "registerProduct": "ចុះឈ្មោះផលិតផល",
       "updateProduct": "ធ្វើបច្ចុប្បន្នភាពផលិតផល",
       "name": "ឈ្មោះ",
+      "selectProduct": "ជ្រើសរើសផលិតផល",
       "category": "ប្រភេទ",
       "browse": "រុករក"
     },
