@@ -179,6 +179,25 @@
       "pleaseSelectProduct": "សូមជ្រើសរើសផលិតផល"
     }
   },
+  "member":{
+    "label": {
+      "member": "Member",
+      "memberList": "Member List",
+      "registerMember": "Register Member",
+      "updateMember": "Update Member",
+      "name":"Name",
+      "phone": "Phone"
+    },
+    "message": {
+      "doYouWantToDeleteMember": "Do you want to delete member {} ?",
+      "pleaseEnterMemberName": "please enter member name.",
+      "pleaseEnterPhoneNumber": "please enter phone number."
+    },
+    "holder": {
+      "enterMemberName": "Enter member name",
+      "enterPhoneNumber": "Enter phone number"
+    }
+  },
   "search": {
     "label": {
       "searchName": "ស្វែងរកដោយឈ្មោះ",
