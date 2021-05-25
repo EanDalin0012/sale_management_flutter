@@ -179,6 +179,15 @@
       "pleaseSelectProduct": "Please select product."
     }
   },
+  "member":{
+    "label": {
+      "member": "Member",
+      "memberList": "Member List"
+    },
+    "message": {
+      "doYouWantToDeleteMember": "Do you want to delete member {}"
+    }
+  },
   "search": {
     "label": {
       "searchName": "Search name",

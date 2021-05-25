@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:sale_management/shares/statics/default.dart';
 
-class PrefixProduct extends StatelessWidget {
+class PrefixPerson extends StatelessWidget {
   final String  url;
-  const PrefixProduct({Key? key, required this.url}) : super(key: key);
+  const PrefixPerson({Key? key, required this.url}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    String uri = DefaultStatic.url;
+    String uri = DefaultStatic.personUrl;
     if(this.url.toString() != 'null') {
       uri = this.url;
     }
@@ -18,6 +18,7 @@ class PrefixProduct extends StatelessWidget {
           borderRadius: BorderRadius.all(Radius.circular(60)),
           border: Border.all(color: Color(0xFFe4e6eb), width: 5),
         ),
+        // padding: const EdgeInsets.all(7.0),
         child: CircleAvatar(
           radius: 30.0,
           backgroundImage:NetworkImage(uri),

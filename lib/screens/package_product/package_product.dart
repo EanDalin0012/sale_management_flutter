@@ -16,6 +16,7 @@ import 'package:sale_management/shares/utils/colors_util.dart';
 import 'package:sale_management/shares/utils/number_format.dart';
 import 'package:sale_management/shares/widgets/circular_progress_indicator/circular_progress_indicator.dart';
 import 'package:sale_management/shares/widgets/over_list_item/over_list_item.dart';
+import 'package:sale_management/shares/widgets/prefix_product/prefix_product.dart';
 import 'package:sale_management/shares/widgets/product_dropdown/product_dropdown.dart';
 import 'package:sale_management/shares/widgets/search_widget/search_widget.dart';
 
@@ -175,19 +176,7 @@ class _PackageProductScreenState extends State<PackageProductScreen> {
 
   Widget _buildLeading(int productId) {
     var url = _searchProductById(productId);
-    return Container(
-      width: 50,
-      height: 50,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(60)),
-        border: Border.all(color: Color(0xFFe4e6eb), width: 5),
-      ),
-      child: CircleAvatar(
-        radius: 30.0,
-        backgroundImage:NetworkImage(url),
-        backgroundColor: Colors.transparent,
-      ),
-    );
+    return PrefixProduct(url: url);
   }
 
   Widget _buildFilterByProduct() {
