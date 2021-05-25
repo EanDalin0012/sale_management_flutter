@@ -5,11 +5,13 @@ import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sale_management/screens/home/home_screen.dart';
 import 'package:sale_management/screens/package_product/add_new_package_product_screen.dart';
+import 'package:sale_management/screens/package_product/edit_package_product_screen.dart';
 import 'package:sale_management/shares/constants/color.dart';
 import 'package:sale_management/shares/constants/fonts.dart';
 import 'package:sale_management/shares/constants/text_style.dart';
 import 'package:sale_management/shares/model/key/package_product_key.dart';
 import 'package:sale_management/shares/model/key/product_key.dart';
+import 'package:sale_management/shares/statics/default.dart';
 import 'package:sale_management/shares/utils/colors_util.dart';
 import 'package:sale_management/shares/utils/number_format.dart';
 import 'package:sale_management/shares/widgets/circular_progress_indicator/circular_progress_indicator.dart';
@@ -53,7 +55,11 @@ class _PackageProductScreenState extends State<PackageProductScreen> {
                 text: 'packageProduct.label.packageProductList'.tr(),
                 length: this.vData.length,
               ),
-              this.vData.length > 0 ? _buildBody() : CircularProgressLoading()
+              this.vData.length > 0 ? _buildBody() : CircularProgressLoading(),
+              Container(
+                color: Colors.transparent,
+                height: 60,
+              )
             ],
           ),
         ),
@@ -169,15 +175,12 @@ class _PackageProductScreenState extends State<PackageProductScreen> {
 
   Widget _buildLeading(int productId) {
     var url = _searchProductById(productId);
-    if(url == null) {
-      url = 'https://icons-for-free.com/iconfiles/png/512/part+1+p-1320568343314317876.png';
-    }
     return Container(
       width: 50,
       height: 50,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(60)),
-        border: Border.all(color: Colors.grey, width: 2),
+        border: Border.all(color: Color(0xFFe4e6eb), width: 5),
       ),
       child: CircleAvatar(
         radius: 30.0,
@@ -235,7 +238,7 @@ class _PackageProductScreenState extends State<PackageProductScreen> {
             children: <Widget>[
               FaIcon(FontAwesomeIcons.edit,size: 20,color: Colors.purple[900]),
               SizedBox(width: 10,),
-              Text('Edit',
+              Text('common.label.edit'.tr(),
                 style: menuStyle,
               ),
             ],
@@ -247,7 +250,7 @@ class _PackageProductScreenState extends State<PackageProductScreen> {
             children: <Widget>[
               FaIcon(FontAwesomeIcons.trash,size: 20,color: Colors.purple[900]),
               SizedBox(width: 10,),
-              Text('Delete',
+              Text('common.label.delete'.tr(),
                 style: menuStyle,
               ),
             ],
@@ -258,12 +261,12 @@ class _PackageProductScreenState extends State<PackageProductScreen> {
     offset: Offset(0, 45),
     onSelected: (value) {
       if(value == 0) {
-        // Navigator.push(
-        //   context,
-        //   MaterialPageRoute(builder: (context) =>
-        //       PackageProductEdit(packageProduct: item)
-        //   ),
-        // );
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) =>
+              EditPackageProductScreen(vData: item)
+          ),
+        );
       } else if (value == 1) {
         // _showDialog(item);
       }
@@ -278,7 +281,7 @@ class _PackageProductScreenState extends State<PackageProductScreen> {
         }
       }
     }
-    return "";
+    return DefaultStatic.url;
   }
 
   _doFilterByProduct(Map product) {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:sale_management/screens/package_product/package_product_success_screen.dart';
 import 'package:sale_management/shares/model/key/package_product_key.dart';
 import 'package:sale_management/shares/model/key/product_key.dart';
@@ -21,7 +22,6 @@ class AddNewPackageProductBody extends StatefulWidget {
 
 class _AddNewPackageProductBodyState extends State<AddNewPackageProductBody> {
   final _formKey  = GlobalKey<FormState>();
-
   var productNameController = new TextEditingController();
   var productController = new TextEditingController();
   var nameController = new TextEditingController();
@@ -109,6 +109,7 @@ class _AddNewPackageProductBodyState extends State<AddNewPackageProductBody> {
 
   TextFormField _buildPackageNameField() {
     return TextFormField(
+      style: this.style,
       keyboardType: TextInputType.text,
       textInputAction: TextInputAction.next,
       controller: nameController,
@@ -143,12 +144,13 @@ class _AddNewPackageProductBodyState extends State<AddNewPackageProductBody> {
         }
         setState(() {
           this.product = product;
-          productNameController.text = this.product[ProductKey.name];
+          this.productNameController.text = this.product[ProductKey.name];
           checkFormValid();
         });
       },
+      style: this.style,
       readOnly: true,
-      controller: productNameController,
+      controller: this.productNameController,
       keyboardType: TextInputType.text,
       onChanged: (value) => checkFormValid(),
       validator: (value) {
@@ -172,6 +174,7 @@ class _AddNewPackageProductBodyState extends State<AddNewPackageProductBody> {
 
   TextFormField _buildQuantityField() {
     return TextFormField(
+      style: this.style,
       keyboardType: TextInputType.number,
       textInputAction: TextInputAction.next,
       onChanged: (value) => checkFormValid(),
@@ -195,6 +198,7 @@ class _AddNewPackageProductBodyState extends State<AddNewPackageProductBody> {
 
   TextFormField _buildPriceField() {
     return TextFormField(
+      style: this.style,
       keyboardType: TextInputType.number,
       textInputAction: TextInputAction.next,
       controller: priceController,
@@ -258,4 +262,6 @@ class _AddNewPackageProductBodyState extends State<AddNewPackageProductBody> {
       _formKey.currentState!.validate();
     }
   }
+
+
 }
