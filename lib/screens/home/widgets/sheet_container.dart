@@ -20,7 +20,7 @@ class _SheetContainerState extends State<SheetContainer> {
   double _iconSize = 25;
   double wContainer = 60;
   double hContainer = 50;
-  BoxBorder border = Border.all(color: Colors.blueGrey[100]!.withOpacity(0.2), width: 4);
+  var border;
   var textStyle = TextStyle(color: dropColor,fontSize: 15,fontWeight: FontWeight.w700, fontFamily: fontDefault);
 
 
@@ -29,7 +29,7 @@ class _SheetContainerState extends State<SheetContainer> {
     Size size = MediaQuery.of(context).size;
     double w = (size.width / 3) - 25;
     double h = w - 20;
-
+    border = Border.all(color: Color(0xFFe4e6eb), width: 8);
     return Container(
       color: Color(0xFF737373),
       child: Container(
@@ -210,7 +210,7 @@ class _SheetContainerState extends State<SheetContainer> {
                   decoration: BoxDecoration(
                       color: colorContain,
                       borderRadius: BorderRadius.circular(50),
-                      border: border
+                      border: Border.all(color: Color(0xFFe4e6eb), width: 6),
                   ),
                   child: Center(child: FaIcon(FontAwesomeIcons.cuttlefish,size: _iconSize , color: _iconColor,)),
                 ),
@@ -241,7 +241,7 @@ class _SheetContainerState extends State<SheetContainer> {
                   decoration: BoxDecoration(
                       color: colorContain,
                       borderRadius: BorderRadius.circular(50),
-                      border: border
+                      border: Border.all(color: Color(0xFFe4e6eb), width: 6),
                   ),
                   child: Center(child: FaIcon(FontAwesomeIcons.productHunt,size: _iconSize,color: _iconColor)),
                 ),
