@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sale_management/shares/statics/dark_mode_color.dart';
 import 'package:sale_management/shares/statics/default.dart';
 
 class PrefixProduct extends StatelessWidget {
@@ -8,6 +9,7 @@ class PrefixProduct extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String uri = DefaultStatic.url;
+    var colorBorder = DarkMode.isDarkMode ? Colors.blueGrey.withOpacity(0.4) :Color(0xFFe4e6eb);
     if(this.url.toString() != 'null') {
       uri = this.url;
     }
@@ -16,7 +18,7 @@ class PrefixProduct extends StatelessWidget {
         height: 50,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(60)),
-          border: Border.all(color: Color(0xFFe4e6eb), width: 5),
+          border: Border.all(color: colorBorder, width: 5),
         ),
         child: CircleAvatar(
           radius: 30.0,

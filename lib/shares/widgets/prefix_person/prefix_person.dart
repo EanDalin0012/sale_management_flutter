@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sale_management/shares/statics/dark_mode_color.dart';
 import 'package:sale_management/shares/statics/default.dart';
 
 class PrefixPerson extends StatelessWidget {
@@ -7,6 +8,7 @@ class PrefixPerson extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var colorBorder = DarkMode.isDarkMode ? Colors.blueGrey.withOpacity(0.4) :Color(0xFFe4e6eb);
     String uri = DefaultStatic.personUrl;
     if(this.url.toString() != 'null') {
       uri = this.url;
@@ -16,7 +18,7 @@ class PrefixPerson extends StatelessWidget {
         height: 50,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(60)),
-          border: Border.all(color: Color(0xFFe4e6eb), width: 5),
+          border: Border.all(color: colorBorder, width: 5),
         ),
         // padding: const EdgeInsets.all(7.0),
         child: CircleAvatar(

@@ -140,7 +140,6 @@ class _MemberScreenState extends State<MemberScreen> {
   Widget _buildListTile( {
     required Map dataItem
   }) {
-    print(dataItem.toString());
     return ListTile(
       title: Text( dataItem[MemberKey.name],
         style: TextStyle( color: ColorsUtils.isDarkModeColor(), fontSize: 20, fontWeight: FontWeight.w700,fontFamily: fontDefault),
