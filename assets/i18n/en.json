@@ -201,6 +201,27 @@
       "enterPhoneNumber": "Enter phone number"
     }
   },
+  "vendor": {
+    "label": {
+      "vendor": "vendor",
+      "vendorList": "Vendor List",
+      "registerVendor": "Register Vendor",
+      "updateVendor": "Update Vendor",
+      "name": "Name",
+      "phone": "Phone",
+      "email": "Email"
+    },
+    "message": {
+      "pleaseEnterVendorName": "please enter vendor name.",
+      "pleaseEnterPhoneNumber": "please enter phone number.",
+      "pleaseEnterEmail": "please enter email."
+    },
+    "holder": {
+      "enterVendorName": "Enter vendor name",
+      "enterPhoneNumber": "Enter phone number",
+      "enterEmail": "Enter email"
+    }
+  },
   "search": {
     "label": {
       "searchName": "Search name",

@@ -4,6 +4,7 @@ import 'package:sale_management/screens/category/category_screen.dart';
 import 'package:sale_management/screens/member/member_screen.dart';
 import 'package:sale_management/screens/package_product/package_product.dart';
 import 'package:sale_management/screens/product/product_screen.dart';
+import 'package:sale_management/screens/vendor/vendor_screen.dart';
 import 'package:sale_management/shares/constants/color.dart';
 import 'package:sale_management/shares/constants/fonts.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -327,10 +328,10 @@ class _SheetContainerState extends State<SheetContainer> {
         InkWell(
           onTap: () {
             pop();
-            // Navigator.push(
-            //   context,
-            //   MaterialPageRoute(builder: (context) => VendorScreen()),
-            // );
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => VendorScreen()),
+            );
 
           },
           child: Container(

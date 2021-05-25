@@ -188,7 +188,7 @@
       "registerMember": "ចុះឈ្មោះសមាជិក",
       "updateMember": "ធ្វើបច្ចុប្បន្នភាពសមាជិក",
       "name":"ឈ្មោះ",
-      "phone": "ទូរស័ព្ទ"
+      "phone": "លេខទូរស័ព្ទ"
     },
     "message": {
       "doYouWantToDeleteMember": "តើអ្នកចង់លុបសមាជិក{}ទេ?",
@@ -198,6 +198,27 @@
     "holder": {
       "enterMemberName": "បញ្ចូលឈ្មោះសមាជិក",
       "enterPhoneNumber": "បញ្ចូលលេខទូរស័ព្ទ"
+    }
+  },
+  "vendor": {
+    "label": {
+      "vendor": "អ្នកផ្គត់ផ្គង",
+      "vendorList": "បញ្ជីអ្នកផ្គត់ផ្គង",
+      "registerVendor": "ចុះឈ្មោះអ្នកផ្គត់ផ្គង",
+      "updateVendor": "ធ្វើបច្ចុប្បន្នអ្នកផ្គត់ផ្គង",
+      "name": "ឈ្មោះ",
+      "phone": "លេខទូរស័ព្ទ",
+      "email": "អ៊ីមែល"
+    },
+    "message": {
+      "pleaseEnterVendorName": "សូមបញ្ចូលឈ្មឈ្មោះអ្នកផ្គត់ផ្គង",
+      "pleaseEnterPhoneNumber": "សូមបញ្ចូលលេខទូរស័ព្ទ",
+      "pleaseEnterEmail": "សូមបញ្ចូលអ៊ីមែល"
+    },
+    "holder": {
+      "enterVendorName": "បញ្ចូលឈ្មឈ្មោះអ្នកផ្គត់ផ្គង",
+      "enterPhoneNumber": "បញ្ចូលលេខទូរស័ព្ទ",
+      "enterEmail": "បញ្ចូលអ៊ីមែល"
     }
   },
   "search": {

@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:sale_management/screens/category/category_screen.dart';
-import 'package:sale_management/screens/home/home_screen.dart';
-import 'package:sale_management/shares/model/key/category_key.dart';
+import 'package:sale_management/screens/vendor/vendor_screen.dart';
+import 'package:sale_management/shares/model/key/vendor_key.dart';
 import 'package:sale_management/shares/statics/size_config.dart';
 import 'package:sale_management/shares/utils/text_style_util.dart';
 import 'package:sale_management/shares/widgets/default_button/default_button.dart';
 import 'package:easy_localization/easy_localization.dart';
 
-class CategorySuccessBody extends StatelessWidget {
+class SuccessVendorBody extends StatelessWidget {
   final bool? isAddScreen;
   final bool? isEditScreen;
   final Map vData;
+  const SuccessVendorBody({Key? key, this.isAddScreen, this.isEditScreen, required this.vData}) : super(key: key);
 
-  CategorySuccessBody({Key? key,this.isEditScreen, this.isAddScreen, required this.vData}): super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -33,11 +32,11 @@ class CategorySuccessBody extends StatelessWidget {
               children: <Widget>[
                 SizedBox(height: SizeConfig.screenHeight * 0.04), // 4%
                 if (this.isAddScreen == true)
-                  Text('category.label.registerCategory'.tr(), style: TextStyleUtils.headingStyle()),
+                  Text('vendor.label.registerVendor'.tr(), style: TextStyleUtils.headingStyle()),
                 if(this.isEditScreen == true)
-                  Text('category.label.updateCategory'.tr(), style: TextStyleUtils.headingStyle()),
+                  Text('vendor.label.updateVendor'.tr(), style: TextStyleUtils.headingStyle()),
 
-                Text('category.message.isCompleted'.tr(args: [this.vData[CategoryKey.name]]),textAlign: TextAlign.center,),
+                Text('common.label.isCompleted'.tr(args: [this.vData[VendorKey.name]]),textAlign: TextAlign.center,),
               ],
             ),
           ),
@@ -62,7 +61,7 @@ class CategorySuccessBody extends StatelessWidget {
               press: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => CategoryScreen()),
+                  MaterialPageRoute(builder: (context) => VendorScreen()),
                 );
 
               },
@@ -77,7 +76,7 @@ class CategorySuccessBody extends StatelessWidget {
   Future<bool> onBackPress(BuildContext context) {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => HomeScreen()),
+      MaterialPageRoute(builder: (context) => VendorScreen()),
     );
     return Future<bool>.value(true);
   }
