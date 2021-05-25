@@ -21,10 +21,3 @@ const kSecondaryColor = Color(0xFF979797);
 const kTextColor = Color(0xFF757575);
 
 const kAnimationDuration = Duration(milliseconds: 200);
-
-final headingStyle = TextStyle(
-    fontSize: getProportionateScreenWidth(28),
-    fontWeight: FontWeight.bold,
-    color: ColorsUtils.isDarkModeColor(),
-    height: 1.5
-);

@@ -3,7 +3,9 @@ import 'package:sale_management/screens/category/category_screen.dart';
 import 'package:sale_management/screens/member/member_screen.dart';
 import 'package:sale_management/shares/constants/text_style.dart';
 import 'package:sale_management/shares/model/key/category_key.dart';
+import 'package:sale_management/shares/model/key/member_key.dart';
 import 'package:sale_management/shares/statics/size_config.dart';
+import 'package:sale_management/shares/utils/text_style_util.dart';
 import 'package:sale_management/shares/widgets/default_button/default_button.dart';
 import 'package:easy_localization/easy_localization.dart';
 
@@ -18,18 +20,7 @@ class MemberSuccessBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop:  () async {
-        if (_key.currentState!.canPop()) {
-          _key.currentState!.pop();
-          return false;
-        }
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => CategoryScreen()),
-        );
-        return true;
-
-      },
+      onWillPop:  () => onBackPress(context),
       child: Column(
         children: <Widget>[
           SizedBox(height: SizeConfig.screenHeight * 0.07),
@@ -45,11 +36,11 @@ class MemberSuccessBody extends StatelessWidget {
               children: <Widget>[
                 SizedBox(height: SizeConfig.screenHeight * 0.04), // 4%
                 if (this.isAddScreen == true)
-                  Text('member.label.registerMember'.tr(), style: headingStyle),
+                  Text('member.label.registerMember'.tr(), style: TextStyleUtils.headingStyle()),
                 if(this.isEditScreen == true)
-                  Text('member.label.updateMember'.tr(), style: headingStyle),
+                  Text('member.label.updateMember'.tr(), style: TextStyleUtils.headingStyle()),
 
-                Text('common.message.isCompleted'.tr(args: [this.vData[CategoryKey.name]]),textAlign: TextAlign.center,),
+                Text('common.label.isCompleted'.tr(args: [this.vData[MemberKey.name]]),textAlign: TextAlign.center,),
               ],
             ),
           ),
@@ -84,5 +75,13 @@ class MemberSuccessBody extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  Future<bool> onBackPress(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => MemberScreen()),
+    );
+    return Future<bool>.value(true);
   }
 }

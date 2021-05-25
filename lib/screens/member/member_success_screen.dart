@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sale_management/screens/category/widgets/category_success_body.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:sale_management/screens/member/widgets/member_success_body.dart';
 import 'package:sale_management/shares/utils/colors_util.dart';
 
 class MemberSuccessScreen extends StatelessWidget {
@@ -24,7 +25,7 @@ class MemberSuccessScreen extends StatelessWidget {
         leading: SizedBox(),
         title: Text('common.label.success'.tr()),
       ),
-      body: CategorySuccessBody(vData: this.vData,isAddScreen: this.isAddScreen,isEditScreen: this.isEditScreen,),
+      body: MemberSuccessBody(vData: this.vData,isAddScreen: this.isAddScreen,isEditScreen: this.isEditScreen,),
     );
   }
 }

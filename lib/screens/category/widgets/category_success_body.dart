@@ -4,6 +4,7 @@ import 'package:sale_management/screens/home/home_screen.dart';
 import 'package:sale_management/shares/constants/text_style.dart';
 import 'package:sale_management/shares/model/key/category_key.dart';
 import 'package:sale_management/shares/statics/size_config.dart';
+import 'package:sale_management/shares/utils/text_style_util.dart';
 import 'package:sale_management/shares/widgets/default_button/default_button.dart';
 import 'package:easy_localization/easy_localization.dart';
 
@@ -35,9 +36,9 @@ class CategorySuccessBody extends StatelessWidget {
               children: <Widget>[
                 SizedBox(height: SizeConfig.screenHeight * 0.04), // 4%
                 if (this.isAddScreen == true)
-                  Text('category.label.registerCategory'.tr(), style: headingStyle),
+                  Text('category.label.registerCategory'.tr(), style: TextStyleUtils.headingStyle()),
                 if(this.isEditScreen == true)
-                  Text('category.label.updateCategory'.tr(), style: headingStyle),
+                  Text('category.label.updateCategory'.tr(), style: TextStyleUtils.headingStyle()),
 
                 Text('category.message.isCompleted'.tr(args: [this.vData[CategoryKey.name]]),textAlign: TextAlign.center,),
               ],

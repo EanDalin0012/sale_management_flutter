@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:sale_management/screens/package_product/package_product_success_screen.dart';
 import 'package:sale_management/shares/model/key/package_product_key.dart';
 import 'package:sale_management/shares/model/key/product_key.dart';
+import 'package:sale_management/shares/statics/default.dart';
 import 'package:sale_management/shares/statics/size_config.dart';
 import 'package:sale_management/shares/utils/colors_util.dart';
 import 'package:sale_management/shares/utils/input_decoration.dart';
@@ -12,6 +13,7 @@ import 'package:sale_management/shares/utils/text_style_util.dart';
 import 'package:sale_management/shares/widgets/custom_suffix_icon/custom_suffix_icon.dart';
 import 'package:sale_management/shares/widgets/prefix_product/prefix_product.dart';
 import 'package:sale_management/shares/widgets/product_dropdown/product_dropdown.dart';
+import 'package:sale_management/shares/widgets/text_form_field_prefix_icon/text_form_field_prefix_icon.dart';
 
 class AddNewPackageProductBody extends StatefulWidget {
   const AddNewPackageProductBody({Key? key}) : super(key: key);
@@ -35,13 +37,16 @@ class _AddNewPackageProductBodyState extends State<AddNewPackageProductBody> {
   var labelStyle;
   var hintStyle;
   var enabledBorder;
-
+  var url = DefaultStatic.url;
   @override
   Widget build(BuildContext context) {
     style       = InputDecorationUtils.textFormFieldStyle();
     labelStyle  = InputDecorationUtils.inputDecorationLabelStyle();
     hintStyle   = InputDecorationUtils.inputDecorationHintStyle();
     enabledBorder = InputDecorationUtils.enabledBorder();
+    if(this.product[ProductKey.url].toString() != 'null') {
+      this.url = this.product[ProductKey.url].toString();
+    }
     return Form(
       key: _formKey,
       child: Column(
@@ -166,7 +171,7 @@ class _AddNewPackageProductBodyState extends State<AddNewPackageProductBody> {
         hintStyle: this.hintStyle,
         enabledBorder: this.enabledBorder,
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        prefixIcon: this.product != {} ? PrefixProduct(url: this.product[ProductKey.url].toString()) : null,
+        prefixIcon: this.product != {} ? TextFormFieldPrefixIcon(url: this.url) : null,
         suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/expand_more_black_24dp.svg"),
       ),
     );

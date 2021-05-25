@@ -11,10 +11,12 @@
       "remark": "ការកត់សម្គាល់",
       "success": "ជោគជ័យ",
       "back": "ថយក្រោយ",
-      "isCompleted": "{} ត្រូវបានបញ្ចប់"
+      "isCompleted": "{} ត្រូវបានបញ្ចប់",
+      "browse": "រុករក"
     },
     "holder": {
-      "enterRemark": "បញ្ចូលការកត់សម្គាល់"
+      "enterRemark": "បញ្ចូលការកត់សម្គាល់",
+      "browseToImage": "រកមើលរូបភាព"
     }
   },
   "setting": {

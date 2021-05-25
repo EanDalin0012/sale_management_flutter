@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sale_management/screens/home/home_screen.dart';
 import 'package:sale_management/screens/member/add_new_member_screen.dart';
+import 'package:sale_management/screens/member/edit_member_screen.dart';
 import 'package:sale_management/shares/constants/color.dart';
 import 'package:sale_management/shares/constants/fonts.dart';
 import 'package:sale_management/shares/constants/text_style.dart';
@@ -76,8 +77,6 @@ class _MemberScreenState extends State<MemberScreen> {
           icon: Icon(isNative ? Icons.close : Icons.search),
           onPressed: () => setState(() {
             this.isNative = !isNative;
-            // this.isItemChanged = false;
-            // this.isFilterByProduct = false;
           }),
         ),
         const SizedBox(width: 8),
@@ -191,10 +190,10 @@ class _MemberScreenState extends State<MemberScreen> {
     offset: Offset(0, 45),
     onSelected: (value) {
       if(value == 0) {
-        // Navigator.push(
-        //   context,
-        //   MaterialPageRoute(builder: (context) => EditCategoryScreen(vData: item)),
-        // );
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => EditMemberScreen(vData: item)),
+        );
       } else if (value == 1) {
         _showDialog(item);
       }
