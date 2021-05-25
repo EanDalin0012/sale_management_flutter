@@ -93,7 +93,7 @@ class _EditPackageProductBodyState extends State<EditPackageProductBody> {
                 child: Column(
                   children: <Widget>[
                     SizedBox(height: SizeConfig.screenHeight * 0.04), // 4%
-                    Text('packageProduct.label.registerPackageProduct'.tr(), style: TextStyleUtils.headingStyle()),
+                    Text('packageProduct.label.updatePackageProduct'.tr(), style: TextStyleUtils.headingStyle()),
                     Text(
                       'common.label.completeYourDetails'.tr(),
                       textAlign: TextAlign.center,
@@ -284,13 +284,11 @@ class _EditPackageProductBodyState extends State<EditPackageProductBody> {
       this.vDataProduct = mapItems['products'];
       this.product = _searchProductById();
       this.productNameController.text = product[ProductKey.name].toString();
-      print(this.productNameController.text);
     });
     return this.vDataProduct;
   }
 
   Map _searchProductById() {
-    print(widget.vData[PackageProductKey.productId]);
     Map data = {};
     this.vDataProduct.map((e) {
       if(e[ProductKey.id] == widget.vData[PackageProductKey.productId]) {
