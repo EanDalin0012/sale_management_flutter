@@ -1,25 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:sale_management/screens/category/category_screen.dart';
-import 'package:sale_management/screens/home/home_screen.dart';
+import 'package:sale_management/screens/member/member_screen.dart';
 import 'package:sale_management/shares/constants/text_style.dart';
 import 'package:sale_management/shares/model/key/category_key.dart';
 import 'package:sale_management/shares/statics/size_config.dart';
 import 'package:sale_management/shares/widgets/default_button/default_button.dart';
 import 'package:easy_localization/easy_localization.dart';
 
-class CategorySuccessBody extends StatelessWidget {
+class MemberSuccessBody extends StatelessWidget {
   final bool? isAddScreen;
   final bool? isEditScreen;
   final Map vData;
-
-  CategorySuccessBody({Key? key,this.isEditScreen, this.isAddScreen, required this.vData}): super(key: key);
+  MemberSuccessBody({Key? key,this.isEditScreen, this.isAddScreen, required this.vData}): super(key: key);
 
   GlobalKey<NavigatorState> _key = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop:  ()  =>onBackPress(context),
+      onWillPop:  () async {
+        if (_key.currentState!.canPop()) {
+          _key.currentState!.pop();
+          return false;
+        }
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => CategoryScreen()),
+        );
+        return true;
+
+      },
       child: Column(
         children: <Widget>[
           SizedBox(height: SizeConfig.screenHeight * 0.07),
@@ -35,11 +45,11 @@ class CategorySuccessBody extends StatelessWidget {
               children: <Widget>[
                 SizedBox(height: SizeConfig.screenHeight * 0.04), // 4%
                 if (this.isAddScreen == true)
-                  Text('category.label.registerCategory'.tr(), style: headingStyle),
+                  Text('member.label.registerMember'.tr(), style: headingStyle),
                 if(this.isEditScreen == true)
-                  Text('category.label.updateCategory'.tr(), style: headingStyle),
+                  Text('member.label.updateMember'.tr(), style: headingStyle),
 
-                Text('category.message.isCompleted'.tr(args: [this.vData[CategoryKey.name]]),textAlign: TextAlign.center,),
+                Text('common.message.isCompleted'.tr(args: [this.vData[CategoryKey.name]]),textAlign: TextAlign.center,),
               ],
             ),
           ),
@@ -64,7 +74,7 @@ class CategorySuccessBody extends StatelessWidget {
               press: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => CategoryScreen()),
+                  MaterialPageRoute(builder: (context) => MemberScreen()),
                 );
 
               },
@@ -75,13 +85,4 @@ class CategorySuccessBody extends StatelessWidget {
       ),
     );
   }
-
-  Future<bool> onBackPress(BuildContext context) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => HomeScreen()),
-    );
-    return Future<bool>.value(true);
-  }
-
 }

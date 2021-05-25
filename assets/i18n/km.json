@@ -181,21 +181,21 @@
   },
   "member":{
     "label": {
-      "member": "Member",
-      "memberList": "Member List",
-      "registerMember": "Register Member",
-      "updateMember": "Update Member",
-      "name":"Name",
-      "phone": "Phone"
+      "member": "សមាជិក",
+      "memberList": "បញ្ជីសមាជិក",
+      "registerMember": "ចុះឈ្មោះសមាជិក",
+      "updateMember": "ធ្វើបច្ចុប្បន្នភាពសមាជិក",
+      "name":"ឈ្មោះ",
+      "phone": "ទូរស័ព្ទ"
     },
     "message": {
-      "doYouWantToDeleteMember": "Do you want to delete member {} ?",
-      "pleaseEnterMemberName": "please enter member name.",
-      "pleaseEnterPhoneNumber": "please enter phone number."
+      "doYouWantToDeleteMember": "តើអ្នកចង់លុបសមាជិក{}ទេ?",
+      "pleaseEnterMemberName": "សូមបញ្ចូលឈ្មោះសមាជិក",
+      "pleaseEnterPhoneNumber": "សូមបញ្ចូលលេខទូរស័ព្ទ"
     },
     "holder": {
-      "enterMemberName": "Enter member name",
-      "enterPhoneNumber": "Enter phone number"
+      "enterMemberName": "បញ្ចូលឈ្មោះសមាជិក",
+      "enterPhoneNumber": "បញ្ចូលលេខទូរស័ព្ទ"
     }
   },
   "search": {

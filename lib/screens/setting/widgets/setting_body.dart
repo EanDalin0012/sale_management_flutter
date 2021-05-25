@@ -1,12 +1,9 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:provider/provider.dart';
-import 'package:sale_management/main.dart';
 import 'package:sale_management/screens/setting/widgets/language_choice.dart';
 import 'package:sale_management/screens/setting/widgets/profile_header.dart';
 import 'package:easy_localization/easy_localization.dart';
