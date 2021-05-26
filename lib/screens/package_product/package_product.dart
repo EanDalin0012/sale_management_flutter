@@ -46,25 +46,28 @@ class _PackageProductScreenState extends State<PackageProductScreen> {
   @override
   Widget build(BuildContext context) {
     size = MediaQuery.of(context).size;
-    return Scaffold(
-      backgroundColor: ColorsUtils.scaffoldBackgroundColor(),
-      appBar: _buildAppBar(),
-        body: SafeArea(
-          child: Column(
-            children: <Widget>[
-              OverListItem(
-                text: 'packageProduct.label.packageProductList'.tr(),
-                length: this.vData.length,
-              ),
-              this.vData.length > 0 ? _buildBody() : CircularProgressLoading(),
-              Container(
-                color: Colors.transparent,
-                height: 60,
-              )
-            ],
+    return WillPopScope(
+      onWillPop: () => onBackPress(),
+      child: Scaffold(
+        backgroundColor: ColorsUtils.scaffoldBackgroundColor(),
+        appBar: _buildAppBar(),
+          body: SafeArea(
+            child: Column(
+              children: <Widget>[
+                OverListItem(
+                  text: 'packageProduct.label.packageProductList'.tr(),
+                  length: this.vData.length,
+                ),
+                this.vData.length > 0 ? _buildBody() : CircularProgressLoading(),
+                Container(
+                  color: Colors.transparent,
+                  height: 60,
+                )
+              ],
+            ),
           ),
-        ),
-      floatingActionButton: _floatingActionButton()
+        floatingActionButton: _floatingActionButton()
+      ),
     );
   }
 
@@ -296,6 +299,14 @@ class _PackageProductScreenState extends State<PackageProductScreen> {
       this.vDataTmp = this.vData;
     });
     return this.vData;
+  }
+
+  Future<bool> onBackPress() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => HomeScreen()),
+    );
+    return Future<bool>.value(true);
   }
 
 }

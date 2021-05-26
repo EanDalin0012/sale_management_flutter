@@ -27,6 +27,14 @@ class _EditStockBodyState extends State<EditStockBody> {
   var nameController    = new TextEditingController();
   var remarkController  = new TextEditingController();
 
+
+  @override
+  void initState() {
+    nameController.text = widget.vData[StockKey.name].toString();
+    remarkController.text = widget.vData[StockKey.remark].toString();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     style       = InputDecorationUtils.textFormFieldStyle();
@@ -48,7 +56,7 @@ class _EditStockBodyState extends State<EditStockBody> {
                   height: 45,
                   width: MediaQuery.of(context).size.width,
                   color: ColorsUtils.buttonContainer(),
-                  child: Center(child: Text('common.label.save'.tr(), style: TextStyle(fontWeight: FontWeight.w700, color: ColorsUtils.buttonColorContainer(), fontSize: 18))),
+                  child: Center(child: Text('common.label.update'.tr(), style: TextStyle(fontWeight: FontWeight.w700, color: ColorsUtils.buttonColorContainer(), fontSize: 18))),
                 ),
               )
             ]

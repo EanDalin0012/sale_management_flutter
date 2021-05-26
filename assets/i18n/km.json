@@ -231,7 +231,8 @@
       "updateStock": "ធ្វើបច្ចុប្បន្នភាពស្តុក"
     },
     "message": {
-      "pleaseEnterStockName": "សូមបញ្ចូលឈ្មោះស្តុក"
+      "pleaseEnterStockName": "សូមបញ្ចូលឈ្មោះស្តុក",
+      "doYouWantToDeleteStock": "តើអ្នកចង់លុបស្តុក {} ទេ?"
     },
     "holder": {
       "enterStockName": "បញ្ចូលឈ្មោះស្តុក"

@@ -14,14 +14,14 @@ class _AddNewCategoryScreenState extends State<AddNewCategoryScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorsUtils.scaffoldBackgroundColor(),
-      appBar: AppBar(
-        backgroundColor: ColorsUtils.appBarBackGround(),
-        title: Text('category.label.category'.tr()),
-      ),
-      body: SafeArea(
-        child: AddBewCategoryBody(),
-      ),
-    );
+        backgroundColor: ColorsUtils.scaffoldBackgroundColor(),
+        appBar: AppBar(
+          backgroundColor: ColorsUtils.appBarBackGround(),
+          title: Text('category.label.category'.tr()),
+        ),
+        body: SafeArea(
+          child: AddBewCategoryBody(),
+        ),
+      );
   }
 }

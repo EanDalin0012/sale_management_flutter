@@ -232,7 +232,8 @@
       "updateStock": "Update Stock"
     },
     "message": {
-      "pleaseEnterStockName": "please enter Stock name."
+      "pleaseEnterStockName": "please enter Stock name.",
+      "doYouWantToDeleteStock": "Do you want to d delete stock {} ?"
     },
     "holder": {
       "enterStockName": "Enter Stock name"

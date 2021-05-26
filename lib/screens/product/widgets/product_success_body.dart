@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:sale_management/screens/product/product_screen.dart';
 import 'package:sale_management/shares/model/key/product_key.dart';
+import 'package:sale_management/shares/statics/default.dart';
 import 'package:sale_management/shares/statics/size_config.dart';
 import 'package:sale_management/shares/utils/colors_util.dart';
 import 'package:sale_management/shares/utils/text_style_util.dart';
 import 'package:sale_management/shares/widgets/default_button/default_button.dart';
 import 'package:easy_localization/easy_localization.dart';
 
-class ProductSuccessBody extends StatelessWidget {
+class ProductSuccessBody extends StatefulWidget {
   final bool? isAddScreen;
   final bool? isEditScreen;
   final Map vData;
@@ -17,17 +18,18 @@ class ProductSuccessBody extends StatelessWidget {
       : super(key: key);
 
   @override
+  _ProductSuccessBodyState createState() => _ProductSuccessBodyState();
+}
+
+class _ProductSuccessBodyState extends State<ProductSuccessBody> {
+  @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async {
-        return onBackPress(context);
-      },
-      child: Column(
+    return Column(
         children: <Widget>[
           SizedBox(height: SizeConfig.screenHeight * 0.07),
           Center(
             child: Image.asset(
-              "assets/icons/success-green-check-mark.png",
+              DefaultStatic.assetsSuccessPathImage,
               height: SizeConfig.screenHeight * 0.2, //40%
             ),
           ),
@@ -36,12 +38,12 @@ class ProductSuccessBody extends StatelessWidget {
             child: Column(
               children: <Widget>[
                 SizedBox(height: SizeConfig.screenHeight * 0.04), // 4%
-                if (this.isAddScreen == true)
+                if (widget.isAddScreen == true)
                   Text('product.label.registerProduct'.tr(), style: TextStyleUtils.headingStyle()),
-                if(this.isEditScreen == true)
+                if(widget.isEditScreen == true)
                   Text('product.label.updateProduct'.tr(), style: TextStyleUtils.headingStyle()),
 
-                Text('category.message.isCompleted'.tr(args: [this.vData[ProductKey.name]]),
+                Text('category.message.isCompleted'.tr(args: [widget.vData[ProductKey.name]]),
                   textAlign: TextAlign.center,
                   style: TextStyle(color: ColorsUtils.isDarkModeColor()),
                 ),
@@ -76,16 +78,6 @@ class ProductSuccessBody extends StatelessWidget {
           ),
           Spacer(),
         ],
-      ),
-    );
+      );
   }
-
-  Future<bool> onBackPress(BuildContext context) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => ProductScreen()),
-    );
-    return Future<bool>.value(true);
-  }
-
 }

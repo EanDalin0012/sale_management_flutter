@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:sale_management/screens/category/category_screen.dart';
 import 'package:sale_management/screens/member/member_screen.dart';
-import 'package:sale_management/shares/constants/text_style.dart';
-import 'package:sale_management/shares/model/key/category_key.dart';
 import 'package:sale_management/shares/model/key/member_key.dart';
+import 'package:sale_management/shares/statics/default.dart';
 import 'package:sale_management/shares/statics/size_config.dart';
 import 'package:sale_management/shares/utils/text_style_util.dart';
 import 'package:sale_management/shares/widgets/default_button/default_button.dart';
@@ -19,14 +17,12 @@ class MemberSuccessBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop:  () => onBackPress(context),
-      child: Column(
+    return Column(
         children: <Widget>[
           SizedBox(height: SizeConfig.screenHeight * 0.07),
           Center(
             child: Image.asset(
-              "assets/icons/success-green-check-mark.png",
+              DefaultStatic.assetsSuccessPathImage,
               height: SizeConfig.screenHeight * 0.2, //40%
             ),
           ),
@@ -73,15 +69,6 @@ class MemberSuccessBody extends StatelessWidget {
           ),
           Spacer(),
         ],
-      ),
-    );
-  }
-
-  Future<bool> onBackPress(BuildContext context) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => MemberScreen()),
-    );
-    return Future<bool>.value(true);
+      );
   }
 }

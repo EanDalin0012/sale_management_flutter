@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sale_management/screens/home/home_screen.dart';
 import 'package:sale_management/screens/stock/widgets/edit_stock_body.dart';
 import 'package:sale_management/shares/utils/colors_util.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class EditStockScreen extends StatefulWidget {
   final Map vData;
@@ -18,6 +19,10 @@ class _EditStockScreenState extends State<EditStockScreen> {
       onWillPop: ()=> onBackPress(),
       child: Scaffold(
         backgroundColor: ColorsUtils.scaffoldBackgroundColor(),
+        appBar: AppBar(
+          backgroundColor: ColorsUtils.appBarBackGround(),
+          title: Text('stock.label.stock'.tr()),
+        ),
         body: SafeArea(
           child: EditStockBody(vData: widget.vData),
         ),

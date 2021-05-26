@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:sale_management/shares/constants/reg_exp.dart';
-import 'package:sale_management/shares/constants/text_style.dart';
 import 'package:sale_management/shares/statics/size_config.dart';
 import 'package:sale_management/shares/utils/keyboard_util.dart';
 import 'package:sale_management/shares/utils/text_style_util.dart';
@@ -38,7 +37,7 @@ class _SignUpBodyState extends State<SignUpBody> {
       child: Column(
         children: <Widget>[
           _body(),
-          GestureDetector(
+          InkWell(
             onTap: () {
               KeyboardUtil.hideKeyboard(context);
               save();

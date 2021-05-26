@@ -36,24 +36,24 @@ class _VendorScreenState extends State<VendorScreen> {
   @override
   Widget build(BuildContext context) {
     size = MediaQuery.of(context).size;
-    return Scaffold(
-      backgroundColor: ColorsUtils.scaffoldBackgroundColor(),
-      appBar: _buildAppBar(),
-      body: SafeArea(
-        child: WillPopScope(
-          onWillPop: () =>onBackPress(),
+    return WillPopScope(
+      onWillPop: () =>onBackPress(),
+      child: Scaffold(
+        backgroundColor: ColorsUtils.scaffoldBackgroundColor(),
+        appBar: _buildAppBar(),
+        body: SafeArea(
           child: Column(
-            children: <Widget>[
-              OverListItem(
-                text: 'vendor.label.vendorList'.tr(),
-                length: this.vData.length,
-              ),
-              this.vData.length > 0 ? _buildBody() : CircularProgressLoading()
-            ],
-          ),
-        )
+              children: <Widget>[
+                OverListItem(
+                  text: 'vendor.label.vendorList'.tr(),
+                  length: this.vData.length,
+                ),
+                this.vData.length > 0 ? _buildBody() : CircularProgressLoading()
+              ],
+            ),
+        ),
+        floatingActionButton: _floatingActionButton()
       ),
-      floatingActionButton: _floatingActionButton()
     );
   }
 

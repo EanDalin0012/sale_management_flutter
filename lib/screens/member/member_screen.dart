@@ -41,30 +41,30 @@ class _MemberScreenState extends State<MemberScreen> {
   @override
   Widget build(BuildContext context) {
     size = MediaQuery.of(context).size;
-    return Scaffold(
-      backgroundColor: ColorsUtils.scaffoldBackgroundColor(),
-      appBar: _buildAppBar(),
-      body: SafeArea(
-        child: WillPopScope(
-          onWillPop:  () => onBackPress(),
-          child: GestureDetector(
-            onTap: () {
-              KeyboardUtil.hideKeyboard(context);
-            },
-            child: Column(
-              children: <Widget>[
-                OverListItem(
-                  text: 'member.label.memberList'.tr(),
-                  length: this.vData.length,
-                ),
-                this.vData.length > 0 ? _buildBody() : CircularProgressLoading()
-              ],
+    return WillPopScope(
+      onWillPop:  () => onBackPress(),
+      child: Scaffold(
+        backgroundColor: ColorsUtils.scaffoldBackgroundColor(),
+        appBar: _buildAppBar(),
+        body: SafeArea(
+          child: InkWell(
+              onTap: () {
+                KeyboardUtil.hideKeyboard(context);
+              },
+              child: Column(
+                children: <Widget>[
+                  OverListItem(
+                    text: 'member.label.memberList'.tr(),
+                    length: this.vData.length,
+                  ),
+                  this.vData.length > 0 ? _buildBody() : CircularProgressLoading()
+                ],
+              ),
             ),
-          ),
         ),
-      ),
-      floatingActionButton: _floatingActionButton()
+        floatingActionButton: _floatingActionButton()
 
+      ),
     );
   }
 

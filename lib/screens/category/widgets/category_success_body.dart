@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:sale_management/screens/category/category_screen.dart';
-import 'package:sale_management/screens/home/home_screen.dart';
 import 'package:sale_management/shares/model/key/category_key.dart';
 import 'package:sale_management/shares/statics/default.dart';
 import 'package:sale_management/shares/statics/size_config.dart';
@@ -17,9 +16,7 @@ class CategorySuccessBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop:  ()  =>onBackPress(context),
-      child: Column(
+    return Column(
         children: <Widget>[
           SizedBox(height: SizeConfig.screenHeight * 0.07),
           Center(
@@ -71,16 +68,7 @@ class CategorySuccessBody extends StatelessWidget {
           ),
           Spacer(),
         ],
-      ),
-    );
-  }
-
-  Future<bool> onBackPress(BuildContext context) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => HomeScreen()),
-    );
-    return Future<bool>.value(true);
+      );
   }
 
 }

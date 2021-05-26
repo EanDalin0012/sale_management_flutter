@@ -37,21 +37,24 @@ class _CategoryScreenState extends State<CategoryScreen> {
   @override
   Widget build(BuildContext context) {
     size = MediaQuery.of(context).size;
-    return Scaffold(
-      backgroundColor: ColorsUtils.scaffoldBackgroundColor(),
-      appBar: _buildAppBar(),
-      body: SafeArea(
-        child: Column(
-          children: <Widget>[
-            OverListItem(
-              text: 'category.label.categoryList'.tr(),
-              length: this.vData.length,
-            ),
-            this.vData.length > 0 ? _buildBody() : CircularProgressLoading()
-          ],
+    return WillPopScope(
+      onWillPop: () => onBackPress(),
+      child: Scaffold(
+        backgroundColor: ColorsUtils.scaffoldBackgroundColor(),
+        appBar: _buildAppBar(),
+        body: SafeArea(
+          child: Column(
+            children: <Widget>[
+              OverListItem(
+                text: 'category.label.categoryList'.tr(),
+                length: this.vData.length,
+              ),
+              this.vData.length > 0 ? _buildBody() : CircularProgressLoading()
+            ],
+          ),
         ),
+        floatingActionButton: _floatingActionButton()
       ),
-      floatingActionButton: _floatingActionButton()
     );
   }
 
@@ -213,6 +216,14 @@ class _CategoryScreenState extends State<CategoryScreen> {
       this.vData = mapItems['categoryList'];
     });
     return this.vData;
+  }
+
+  Future<bool> onBackPress() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => HomeScreen()),
+    );
+    return Future<bool>.value(true);
   }
 
 }
