@@ -222,6 +222,22 @@
       "enterEmail": "Enter email"
     }
   },
+  "stock": {
+    "label": {
+      "stock": "Stock",
+      "stockList": "Stock List",
+      "addNewStock": "Add New Stock",
+      "name": "Name",
+      "registerStock": "Register Stock",
+      "updateStock": "Update Stock"
+    },
+    "message": {
+      "pleaseEnterStockName": "please enter Stock name."
+    },
+    "holder": {
+      "enterStockName": "Enter Stock name"
+    }
+  },
   "search": {
     "label": {
       "searchName": "Search name",

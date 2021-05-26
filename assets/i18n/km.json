@@ -221,6 +221,22 @@
       "enterEmail": "បញ្ចូលអ៊ីមែល"
     }
   },
+  "stock": {
+    "label": {
+      "stock": "ស្តុក",
+      "stockList": "បញ្ជីស្តុក",
+      "addNewStock": "បន្ថែមស្តុកថ្មី",
+      "name": "ឈ្មោះ",
+      "registerStock": "ចុះឈ្មោះស្តុក",
+      "updateStock": "ធ្វើបច្ចុប្បន្នភាពស្តុក"
+    },
+    "message": {
+      "pleaseEnterStockName": "សូមបញ្ចូលឈ្មោះស្តុក"
+    },
+    "holder": {
+      "enterStockName": "បញ្ចូលឈ្មោះស្តុក"
+    }
+  },
   "search": {
     "label": {
       "searchName": "ស្វែងរកដោយឈ្មោះ",

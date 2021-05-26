@@ -1,25 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:sale_management/screens/category/category_screen.dart';
-import 'package:sale_management/screens/home/home_screen.dart';
-import 'package:sale_management/shares/model/key/category_key.dart';
+import 'package:sale_management/screens/stock/stock_screen.dart';
+import 'package:sale_management/shares/model/key/m_key.dart';
 import 'package:sale_management/shares/statics/default.dart';
 import 'package:sale_management/shares/statics/size_config.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:sale_management/shares/utils/text_style_util.dart';
 import 'package:sale_management/shares/widgets/default_button/default_button.dart';
-import 'package:easy_localization/easy_localization.dart';
 
-class CategorySuccessBody extends StatelessWidget {
+class SuccessStockBody extends StatefulWidget {
   final bool? isAddScreen;
   final bool? isEditScreen;
   final Map vData;
 
-  CategorySuccessBody({Key? key,this.isEditScreen, this.isAddScreen, required this.vData}): super(key: key);
+  const SuccessStockBody({Key? key, this.isAddScreen, this.isEditScreen, required this.vData}) : super(key: key);
 
   @override
+  _SuccessStockBodyState createState() => _SuccessStockBodyState();
+}
+
+class _SuccessStockBodyState extends State<SuccessStockBody> {
+  @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop:  ()  =>onBackPress(context),
-      child: Column(
+    return Column(
         children: <Widget>[
           SizedBox(height: SizeConfig.screenHeight * 0.07),
           Center(
@@ -33,12 +35,12 @@ class CategorySuccessBody extends StatelessWidget {
             child: Column(
               children: <Widget>[
                 SizedBox(height: SizeConfig.screenHeight * 0.04), // 4%
-                if (this.isAddScreen == true)
-                  Text('category.label.registerCategory'.tr(), style: TextStyleUtils.headingStyle()),
-                if(this.isEditScreen == true)
-                  Text('category.label.updateCategory'.tr(), style: TextStyleUtils.headingStyle()),
+                if (widget.isAddScreen == true)
+                  Text('stock.label.registerStock'.tr(), style: TextStyleUtils.headingStyle()),
+                if(widget.isEditScreen == true)
+                  Text('stock.label.updateStock'.tr(), style: TextStyleUtils.headingStyle()),
 
-                Text('category.message.isCompleted'.tr(args: [this.vData[CategoryKey.name]]),textAlign: TextAlign.center,),
+                Text('common.label.isCompleted'.tr(args: [widget.vData[StockKey.name]]),textAlign: TextAlign.center),
               ],
             ),
           ),
@@ -63,24 +65,14 @@ class CategorySuccessBody extends StatelessWidget {
               press: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => CategoryScreen()),
+                  MaterialPageRoute(builder: (context) => StockScreen()),
                 );
 
               },
             ),
           ),
           Spacer(),
-        ],
-      ),
+        ]
     );
   }
-
-  Future<bool> onBackPress(BuildContext context) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => HomeScreen()),
-    );
-    return Future<bool>.value(true);
-  }
-
 }
