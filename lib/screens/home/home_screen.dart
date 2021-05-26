@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:sale_management/screens/home/widgets/home_container.dart';
 import 'package:sale_management/screens/home/widgets/my_drawer.dart';
@@ -6,6 +7,7 @@ import 'package:sale_management/screens/home/widgets/sheet_container.dart';
 import 'package:sale_management/shares/constants/color.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:sale_management/shares/utils/colors_util.dart';
+import 'package:sale_management/shares/utils/show_dialog_util.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -26,12 +28,15 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: ColorsUtils.scaffoldBackgroundColor(),
-      appBar: isShowAppBar ? _appBar(): null,
-      drawer: MyDrawer(),
-      bottomNavigationBar: _bottomNavigationBar(),
-      body: _widgetOptions.elementAt(_selectedIndex),
+    return WillPopScope(
+      onWillPop:  () => onBackPress(),
+      child: Scaffold(
+        backgroundColor: ColorsUtils.scaffoldBackgroundColor(),
+        appBar: isShowAppBar ? _appBar(): null,
+        drawer: MyDrawer(),
+        bottomNavigationBar: _bottomNavigationBar(),
+        body: _widgetOptions.elementAt(_selectedIndex),
+      ),
     );
   }
 
@@ -163,18 +168,48 @@ class _HomeScreenState extends State<HomeScreen> {
         });
   }
 
-  // Future<bool> _onBackPressed() {
-  //   return showDialog(
-  //     context: context,
-  //     builder: (BuildContext context) {
-  //       return AlertDialog(
-  //         title: Text('Are you sure?'),
-  //         content: Text('You are going to exit the application!!'),
-  //         actions: [],
-  //       );
-  //     }
-  //   );
-  // }
+  Future<bool> onBackPress() {
+    showDialog(
+      context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+              elevation: 2,
+              title: Center(child: Text('common.label.exitApp'.tr())),
+              content: Text('common.label.doYouWantToExitApp'.tr()),
+              actions: <Widget>[
+                RaisedButton.icon(
+                  onPressed: (){
+                    Navigator.of(context).pop(false);
+                  },
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(50))),
+                  label: Text('common.label.no'.tr(),
+                    style: TextStyle(color: Colors.black),),
+                  icon: Icon(Icons.cancel_rounded, color:Colors.white,),
+                  textColor: Colors.white,
+                  splashColor: Colors.red,
+                  color: Colors.red,
+                ),
+                RaisedButton.icon(
+                  onPressed: (){
+                    SystemNavigator.pop();
+                  },
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(50))),
+                  label: Text('common.label.yes'.tr(),
+                    style: TextStyle(color: Colors.black),),
+                  icon: Icon(Icons.check_circle_outline_outlined, color:Colors.white,),
+                  textColor: Colors.white,
+                  splashColor: Colors.red,
+                  color: Colors.green,
+                ),
+
+              ]
+          );
+        }
+    );
+        return Future<bool>.value(false);
+  }
 
 
 }

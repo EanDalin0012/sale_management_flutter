@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:sale_management/screens/home/home_screen.dart';
+import 'package:sale_management/screens/member/member_screen.dart';
 import 'package:sale_management/screens/member/widgets/member_success_body.dart';
 import 'package:sale_management/shares/utils/colors_util.dart';
 
@@ -40,7 +41,7 @@ class _MemberSuccessScreenState extends State<MemberSuccessScreen> {
   Future<bool> onBackPress() {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => HomeScreen()),
+      MaterialPageRoute(builder: (context) => MemberScreen()),
     );
     return Future<bool>.value(true);
   }

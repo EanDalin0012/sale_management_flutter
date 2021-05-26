@@ -17,14 +17,17 @@ class CategorySuccessScreen extends StatefulWidget {
 class _CategorySuccessScreenState extends State<CategorySuccessScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: ColorsUtils.scaffoldBackgroundColor(),
-      appBar: AppBar(
-        backgroundColor: ColorsUtils.appBarBackGround(),
-        leading: SizedBox(),
-        title: Text('common.label.success'.tr()),
+    return WillPopScope(
+      onWillPop: () => onBackPress(),
+      child: Scaffold(
+        backgroundColor: ColorsUtils.scaffoldBackgroundColor(),
+        appBar: AppBar(
+          backgroundColor: ColorsUtils.appBarBackGround(),
+          leading: SizedBox(),
+          title: Text('common.label.success'.tr()),
+        ),
+        body: CategorySuccessBody(vData: widget.vData,isAddScreen: widget.isAddScreen,isEditScreen: widget.isEditScreen,),
       ),
-      body: CategorySuccessBody(vData: widget.vData,isAddScreen: widget.isAddScreen,isEditScreen: widget.isEditScreen,),
     );
   }
 

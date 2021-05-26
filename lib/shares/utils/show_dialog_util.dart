@@ -20,11 +20,11 @@ class ShowDialogUtil {
                 RaisedButton.icon(
                   onPressed: (){
                     Navigator.of(context).pop(false);
-                    onPressedYes();
+                    onPressedNo();
                   },
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(Radius.circular(50))),
-                  label: Text('common.label.yes'.tr(),
+                  label: Text('common.label.no'.tr(),
                     style: TextStyle(color: Colors.black),),
                   icon: Icon(Icons.cancel_rounded, color:Colors.white,),
                   textColor: Colors.white,
@@ -34,11 +34,11 @@ class ShowDialogUtil {
                 RaisedButton.icon(
                   onPressed: (){
                     Navigator.of(context).pop(false);
-                    onPressedNo();
+                     onPressedYes();
                   },
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(Radius.circular(50))),
-                  label: Text('common.label.no'.tr(),
+                  label: Text('common.label.yes'.tr(),
                     style: TextStyle(color: Colors.black),),
                   icon: Icon(Icons.check_circle_outline_outlined, color:Colors.white,),
                   textColor: Colors.white,

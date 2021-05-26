@@ -12,7 +12,9 @@
       "success": "ជោគជ័យ",
       "back": "ថយក្រោយ",
       "isCompleted": "{} ត្រូវបានបញ្ចប់",
-      "browse": "រុករក"
+      "browse": "រុករក",
+      "exitApp": "ចាកចេញពីកម្មវិធី",
+      "doYouWantToExitApp": "តើអ្នកចង់ចាកចេញពីកម្មវិធីទេ?"
     },
     "holder": {
       "enterRemark": "បញ្ចូលការកត់សម្គាល់",

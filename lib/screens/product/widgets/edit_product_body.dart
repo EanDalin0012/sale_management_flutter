@@ -38,7 +38,6 @@ class _EditProductBodyState extends State<EditProductBody> {
   @override
   void initState() {
     super.initState();
-    print(widget.vData.toString());
     this.nameController.text = widget.vData[ProductKey.name].toString();
     this.remarkController.text = widget.vData[ProductKey.remark].toString();
     this.browController.text   = widget.vData[ProductKey.browse].toString();

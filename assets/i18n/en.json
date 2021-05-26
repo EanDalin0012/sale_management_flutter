@@ -12,8 +12,9 @@
       "success": "Success",
       "back": "Back",
       "isCompleted": "{} is completed",
-      "browse": "Browse"
-
+      "browse": "Browse",
+      "exitApp": "Exit App",
+      "doYouWantToExitApp": "Do you want to exit app?"
     },
     "holder": {
       "enterRemark": "Enter remark",
@@ -237,6 +238,33 @@
     },
     "holder": {
       "enterStockName": "Enter Stock name"
+    }
+  },
+  "import": {
+    "label": {
+      "import": "Import",
+      "importList": "Import List",
+      "importNewProduct": "Import New Product",
+      "product": "Product",
+      "packageProduct": "Package Product",
+      "vendor": "Vendor",
+      "quantity": "Quantity",
+      "total": "Total"
+    },
+    "message": {
+      "pleaseEnterQuantity": "please enter quantity.",
+      "pleaseEnterTotal": "please enter total.",
+      "pleaseSelectProduct": "please select product.",
+      "pleaseSelectVendor": "please select Vendor.",
+      "doYouWantToDeleteStock": "Do you want to d delete import {} ?",
+      "pleaseSelectPackageProduct": "please select package product"
+    },
+    "holder": {
+      "selectProduct": "Select product",
+      "selectPackageProduct": "Select package product",
+      "selectVendor": "Select vendor",
+      "enterQuantity": "Enter quantity",
+      "enterTotal": "Enter total"
     }
   },
   "search": {

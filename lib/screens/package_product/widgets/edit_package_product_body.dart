@@ -126,6 +126,7 @@ class _EditPackageProductBodyState extends State<EditPackageProductBody> {
 
   TextFormField _buildPackageNameField() {
     return TextFormField(
+      style: this.style,
       keyboardType: TextInputType.text,
       textInputAction: TextInputAction.next,
       controller: nameController,
@@ -150,6 +151,7 @@ class _EditPackageProductBodyState extends State<EditPackageProductBody> {
 
   Widget _buildProductField() {
     return TextFormField(
+      style: this.style,
       onTap: () async {
         final product = await Navigator.push(
           context,
@@ -189,6 +191,7 @@ class _EditPackageProductBodyState extends State<EditPackageProductBody> {
 
   TextFormField _buildQuantityField() {
     return TextFormField(
+      style: this.style,
       keyboardType: TextInputType.number,
       textInputAction: TextInputAction.next,
       onChanged: (value) => checkFormValid(),
@@ -212,6 +215,7 @@ class _EditPackageProductBodyState extends State<EditPackageProductBody> {
 
   TextFormField _buildPriceField() {
     return TextFormField(
+      style: this.style,
       keyboardType: TextInputType.number,
       textInputAction: TextInputAction.next,
       controller: priceController,
@@ -236,7 +240,7 @@ class _EditPackageProductBodyState extends State<EditPackageProductBody> {
 
   TextFormField _buildRemarkField() {
     return TextFormField(
-      style: style,
+      style: this.style,
       keyboardType: TextInputType.text,
       controller: remarkController,
       decoration: InputDecoration(
