@@ -17,7 +17,8 @@ import 'package:sale_management/shares/widgets/text_form_field_prefix_icon/text_
 import 'package:sale_management/shares/widgets/vendor_dropdown/vendor_dropdown.dart';
 
 class AddNewImportBody extends StatefulWidget {
-  const AddNewImportBody({Key? key}) : super(key: key);
+  final ValueChanged<List<dynamic>> onAddChanged;
+  const AddNewImportBody({Key? key, required this.onAddChanged}) : super(key: key);
 
   @override
   _AddNewImportBodyState createState() => _AddNewImportBodyState();
