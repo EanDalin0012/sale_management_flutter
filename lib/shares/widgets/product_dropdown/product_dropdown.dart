@@ -86,11 +86,8 @@ class _ProductDropdownPageState extends State<ProductDropdownPage> {
 
   Widget _buildBody () {
     return Expanded(
-      child: ListView.separated(
+      child: ListView.builder(
         itemCount: this.vData.length,
-        separatorBuilder: (context, index) => Divider(
-          color: Colors.purple[900]!.withOpacity(0.5),
-        ),
         itemBuilder: (context, index) {
           return _buildListTile(
               dataItem: this.vData[index]

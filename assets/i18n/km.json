@@ -162,6 +162,7 @@
   "packageProduct": {
     "label": {
       "packageProduct": "កញ្ចប់តំណាង",
+      "packageSelectProduct": "ជ្រើសរើសកញ្ចប់តំណាង",
       "packageProductList": "បញ្ជីកញ្ចប់តំណាង",
       "product": "ផលិតផល",
       "addNewProductPackage": "បន្ថែមកញ្ចប់តំណាងថ្មី",
@@ -210,7 +211,8 @@
       "updateVendor": "ធ្វើបច្ចុប្បន្នអ្នកផ្គត់ផ្គង",
       "name": "ឈ្មោះ",
       "phone": "លេខទូរស័ព្ទ",
-      "email": "អ៊ីមែល"
+      "email": "អ៊ីមែល",
+      "selectVendors": "ជ្រើសរើសអ្នកផ្គត់ផ្គង"
     },
     "message": {
       "pleaseEnterVendorName": "សូមបញ្ចូលឈ្មឈ្មោះអ្នកផ្គត់ផ្គង",
@@ -238,6 +240,35 @@
     },
     "holder": {
       "enterStockName": "បញ្ចូលឈ្មោះស្តុក"
+    }
+  },
+  "import": {
+    "label": {
+      "import": "នាំចូល",
+      "importList": "បញ្ជីនាំចូល",
+      "importNewProduct": "នាំចូលផលិតផលថ្មី",
+      "product": "ផលិតផល",
+      "packageProduct": "កញ្ចប់តំណាង",
+      "vendor": "អ្នកផ្គត់ផ្គង",
+      "quantity": "ចំនួន",
+      "total": "សរុប",
+      "price": "តម្លៃ"
+    },
+    "message": {
+      "pleaseEnterQuantity": "សូមបញ្ចូលចំនួន",
+      "pleaseEnterTotal": "សូមបញ្ចូលសរុប",
+      "pleaseSelectProduct": "សូមជ្រើសរើសផលិតផល",
+      "pleaseSelectVendor": "សូមជ្រើសរើសអ្នកផ្គត់ផ្គង",
+      "doYouWantToDeleteStock": "តើអ្នកចង់លុបការនាំចូល {} ទេ?",
+      "pleaseSelectPackageProduct": "សូមជ្រើសរើសកញ្ចប់តំណាង",
+      "pleaseSelectProductFirst.": "សូមជ្រើសរើសផលិតផលជាមុនសិន"
+    },
+    "holder": {
+      "selectProduct": "ជ្រើសរើសផលិតផល",
+      "selectPackageProduct": "សូ្រើសរើសអ្នកផ្គត់ផ្គង",
+      "selectVendor": "រើសរើសអ្នកផ្គត់ផ្គង",
+      "enterQuantity": "សូមបញ្ចូលចំនួន",
+      "enterTotal": "បញ្ចូលសរុប"
     }
   },
   "search": {

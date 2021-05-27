@@ -162,6 +162,7 @@
   "packageProduct": {
     "label": {
       "packageProduct": "Package Product",
+      "packageSelectProduct": "Select Package Product",
       "packageProductList": "Package Product List",
       "product": "Product",
       "addNewProductPackage": "Add New Package Product",
@@ -210,7 +211,8 @@
       "updateVendor": "Update Vendor",
       "name": "Name",
       "phone": "Phone",
-      "email": "Email"
+      "email": "Email",
+      "selectVendors": "Select Vendors"
     },
     "message": {
       "pleaseEnterVendorName": "please enter vendor name.",
@@ -249,7 +251,8 @@
       "packageProduct": "Package Product",
       "vendor": "Vendor",
       "quantity": "Quantity",
-      "total": "Total"
+      "total": "Total",
+      "price": "Price"
     },
     "message": {
       "pleaseEnterQuantity": "please enter quantity.",
@@ -257,7 +260,8 @@
       "pleaseSelectProduct": "please select product.",
       "pleaseSelectVendor": "please select Vendor.",
       "doYouWantToDeleteStock": "Do you want to d delete import {} ?",
-      "pleaseSelectPackageProduct": "please select package product"
+      "pleaseSelectPackageProduct": "please select package product",
+      "pleaseSelectProductFirst.": "Please select product first."
     },
     "holder": {
       "selectProduct": "Select product",

@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:sale_management/shares/constants/color.dart';
+import 'package:sale_management/shares/model/key/package_product_key.dart';
 import 'package:sale_management/shares/model/key/product_key.dart';
+import 'package:sale_management/shares/model/key/vendor_key.dart';
 import 'package:sale_management/shares/statics/default.dart';
 import 'package:sale_management/shares/statics/size_config.dart';
 import 'package:sale_management/shares/utils/colors_util.dart';
 import 'package:sale_management/shares/utils/input_decoration.dart';
 import 'package:sale_management/shares/utils/keyboard_util.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:sale_management/shares/utils/number_format.dart';
 import 'package:sale_management/shares/utils/text_style_util.dart';
 import 'package:sale_management/shares/widgets/custom_suffix_icon/custom_suffix_icon.dart';
+import 'package:sale_management/shares/widgets/package_product_dropdown/package_product_dropdown.dart';
 import 'package:sale_management/shares/widgets/product_dropdown/product_dropdown.dart';
 import 'package:sale_management/shares/widgets/text_form_field_prefix_icon/text_form_field_prefix_icon.dart';
+import 'package:sale_management/shares/widgets/vendor_dropdown/vendor_dropdown.dart';
 
 class AddNewImportBody extends StatefulWidget {
   const AddNewImportBody({Key? key}) : super(key: key);
@@ -34,7 +38,9 @@ class _AddNewImportBodyState extends State<AddNewImportBody> {
   var totalController = new TextEditingController();
   var remarkController = new TextEditingController();
   late Map product = {};
-  var helperText = 'Please select product first.';
+  late Map packageProduct = {};
+  late Map vendor = {};
+  var helperText = '';
   var url = DefaultStatic.url;
   var isSelectPackageProduct = false;
 
@@ -52,6 +58,7 @@ class _AddNewImportBodyState extends State<AddNewImportBody> {
       key: _formKey,
         child: Column(
           children: <Widget>[
+            _buildBody(),
             InkWell(
               onTap: () {
                 KeyboardUtil.hideKeyboard(context);
@@ -139,9 +146,9 @@ class _AddNewImportBodyState extends State<AddNewImportBody> {
         return null;
       },
       decoration: InputDecoration(
-        labelText: 'import.holder.product'.tr(),
+        labelText: 'import.label.product'.tr(),
         labelStyle: this.labelStyle,
-        hintText: 'import.label.selectProduct'.tr(),
+        hintText: 'import.holder.selectProduct'.tr(),
         hintStyle: this.hintStyle,
         enabledBorder: this.enabledBorder,
         floatingLabelBehavior: FloatingLabelBehavior.always,
@@ -155,42 +162,42 @@ class _AddNewImportBodyState extends State<AddNewImportBody> {
     return TextFormField(
       style: this.style,
       onTap: () async {
-        // if(this.product != null) {
-        //   final packageProduct = await Navigator.push(
-        //     context,
-        //     MaterialPageRoute(builder: (context) => PackageProductPage(
-        //       product: this.product,
-        //       packageProduct: this.packageProduct,
-        //     )),
-        //   );
-        //   if(packageProduct == null) {
-        //     return;
-        //   }
-        //   setState(() {
-        //     this.packageProduct = packageProduct;
-        //     packageProductController.text = this.packageProduct[PackageProductKey.name];
-        //     quantityController.text = this.packageProduct[PackageProductKey.quantity].toString();
-        //     var calTotal = (double.parse(quantityController.text) * double.parse(this.packageProduct[PackageProductKey.price].toString())).toString();
-        //     totalController.text = FormatNumber.usdFormat2Digit(calTotal.toString()).toString();
-        //
-        //     this.helperText = 'Price : '+FormatNumber.usdFormat2Digit(this.packageProduct[PackageProductKey.price].toString()).toString() + ' USD';
-        //     this.isSelectPackageProduct = false;
-        //     checkFormValid();
-        //   });
-        // } else {
-        //   setState(() {
-        //     this.isSelectPackageProduct = true;
-        //   });
-        // }
+        if(this.product.toString() == '{}') {
+          setState(() {
+            this.helperText = 'import.message.pleaseSelectProductFirst'.tr();
+          });
+          return;
+        }
+        final packageProduct = await Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => PackageProductDropdownPage(
+            product: this.product,
+            packageProduct: this.packageProduct,
+          )),
+        );
+        if(packageProduct == null) {
+          return;
+        }
+        setState(() {
+          this.packageProduct = packageProduct;
+          packageProductController.text = this.packageProduct[PackageProductKey.name];
+          quantityController.text = this.packageProduct[PackageProductKey.quantity].toString();
+          var calTotal = (double.parse(quantityController.text) * double.parse(this.packageProduct[PackageProductKey.price].toString())).toString();
+          totalController.text = FormatNumber.usdFormat2Digit(calTotal.toString()).toString();
+
+          this.helperText = 'import.label.price'.tr() + ' : '+FormatNumber.usdFormat2Digit(this.packageProduct[PackageProductKey.price].toString()).toString() + ' USD';
+          this.isSelectPackageProduct = true;
+          checkFormValid();
+        });
 
       },
       keyboardType: TextInputType.text,
       controller: packageProductController,
       onChanged: (value) => checkFormValid(),
       validator: (value) {
-        if(this.product == null) {
+        if(this.product.toString() == 'null') {
           return 'import.message.pleaseSelectProduct'.tr();
-        } else if (this.product != null && value!.isEmpty) {
+        } else if (this.product.toString() == 'null' && value!.isEmpty) {
           return 'import.message.pleaseSelectPackageProduct'.tr();
         }
         return null;
@@ -203,7 +210,7 @@ class _AddNewImportBodyState extends State<AddNewImportBody> {
         hintStyle: this.hintStyle,
         enabledBorder: this.enabledBorder,
         helperText: helperText,
-        helperStyle: TextStyle(color: isSelectPackageProduct ? Colors.redAccent : dropColor),
+        helperStyle: TextStyle(color: isSelectPackageProduct ? Colors.indigo : Colors.red),
         floatingLabelBehavior: FloatingLabelBehavior.always,
         prefixIcon: TextFormFieldPrefixIcon(url: this.url),
         suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/expand_more_black_24dp.svg"),
@@ -215,20 +222,20 @@ class _AddNewImportBodyState extends State<AddNewImportBody> {
     return TextFormField(
       style: this.style,
       onTap: () async {
-        // final vendor = await Navigator.push(
-        //   context,
-        //   MaterialPageRoute(builder: (context) => VendorDropDownPage(
-        //       vVendor: this.vendor
-        //   )),
-        // );
-        // if(vendor == null) {
-        //   return;
-        // }
-        // setState(() {
-        //   this.vendor = vendor;
-        //   vendorController.text = this.vendor[VendorKey.name];
-        //   checkFormValid();
-        // });
+        final vendor = await Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => VendorDropdownPage(
+              vVendor: this.vendor
+          )),
+        );
+        if(vendor == null) {
+          return;
+        }
+        setState(() {
+          this.vendor = vendor;
+          vendorController.text = this.vendor[VendorKey.name];
+          checkFormValid();
+        });
       },
       keyboardType: TextInputType.text,
       controller: vendorController,
