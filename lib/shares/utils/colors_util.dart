@@ -37,11 +37,11 @@ class ColorsUtils {
     }
 
     static Color buttonContainer() {
-      return DarkMode.isDarkMode == true ? Colors.white : Colors.red;
+      return DarkMode.isDarkMode == true ? Color(0xff242527) : Colors.red;
     }
 
     static Color buttonColorContainer() {
-      return DarkMode.isDarkMode == true ? Colors.black:  Colors.white;
+      return DarkMode.isDarkMode == true ? Colors.white:  Colors.white;
     }
 
     static Color? appBarBackGround() {

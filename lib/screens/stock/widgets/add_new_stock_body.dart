@@ -7,6 +7,7 @@ import 'package:sale_management/shares/utils/input_decoration.dart';
 import 'package:sale_management/shares/utils/keyboard_util.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:sale_management/shares/utils/text_style_util.dart';
+import 'package:sale_management/shares/utils/widgets_util.dart';
 import 'package:sale_management/shares/widgets/custom_suffix_icon/custom_suffix_icon.dart';
 
 class AddNewStockBody extends StatefulWidget {
@@ -25,14 +26,14 @@ class _AddNewStockBodyState extends State<AddNewStockBody> {
   var enabledBorder;
   var nameController    = new TextEditingController();
   var remarkController  = new TextEditingController();
-
+  late Size size;
   @override
   Widget build(BuildContext context) {
     style       = InputDecorationUtils.textFormFieldStyle();
     labelStyle  = InputDecorationUtils.inputDecorationLabelStyle();
     hintStyle   = InputDecorationUtils.inputDecorationHintStyle();
     enabledBorder = InputDecorationUtils.enabledBorder();
-
+    size = MediaQuery.of(context).size;
     return Form(
       key: _formKey,
       child: Column(
@@ -43,13 +44,29 @@ class _AddNewStockBodyState extends State<AddNewStockBody> {
               KeyboardUtil.hideKeyboard(context);
               save();
             },
-            child: Container(
-              height: 45,
-              width: MediaQuery.of(context).size.width,
-              color: ColorsUtils.buttonContainer(),
-              child: Center(child: Text('common.label.save'.tr(), style: TextStyle(fontWeight: FontWeight.w700, color: ColorsUtils.buttonColorContainer(), fontSize: 18))),
-            ),
+            child: WidgetsUtil.overlayKeyBardContainer(size: size, text: 'common.label.save'.tr()),
           )
+
+          // InkWell(
+          //   onTap: () {
+          //     KeyboardUtil.hideKeyboard(context);
+          //     save();
+          //   },
+          //   child: Container(
+          //     height: 45,
+          //     width: MediaQuery.of(context).size.width,
+          //     decoration: BoxDecoration(
+          //       color: ColorsUtils.buttonContainer(),
+          //       border: Border(
+          //         top: BorderSide( //                    <--- top side
+          //           color: Colors.white,
+          //           width: 0.7,
+          //         ),
+          //       ),
+          //     ),
+          //     child: Center(child: Text('common.label.save'.tr(), style: TextStyle(fontWeight: FontWeight.w700, color: ColorsUtils.buttonColorContainer(), fontSize: 18))),
+          //   ),
+          // )
         ]
       )
     );

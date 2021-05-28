@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sale_management/shares/constants/color.dart';
 import 'package:sale_management/shares/statics/dark_mode_color.dart';
+import 'package:sale_management/shares/utils/colors_util.dart';
 
 class WidgetsUtil {
 
@@ -47,6 +47,23 @@ class WidgetsUtil {
       enabledBorder: outlineInputBorder,
       focusedBorder: outlineInputBorder,
       border: outlineInputBorder,
+    );
+  }
+
+  static Widget overlayKeyBardContainer({required Size size, required String text}) {
+    return Container(
+      height: 45,
+      width: size.width,
+      decoration: BoxDecoration(
+        color: ColorsUtils.buttonContainer(),
+        border: Border(
+          top: BorderSide( //                    <--- top side
+            color: Colors.white,
+            width: 0.6,
+          ),
+        ),
+      ),
+      child: Center(child: Text(text, style: TextStyle(fontWeight: FontWeight.w700, color: ColorsUtils.buttonColorContainer(), fontSize: 18))),
     );
   }
 
