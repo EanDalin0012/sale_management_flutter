@@ -50,16 +50,15 @@ class WidgetsUtil {
     );
   }
 
-  static Widget overlayKeyBardContainer({required Size size, required String text}) {
+  static Widget overlayKeyBardContainer({required String text}) {
     return Container(
       height: 45,
-      width: size.width,
       decoration: BoxDecoration(
         color: ColorsUtils.buttonContainer(),
         border: Border(
           top: BorderSide( //                    <--- top side
             color: Colors.white,
-            width: 0.6,
+            width: 0.5,
           ),
         ),
       ),

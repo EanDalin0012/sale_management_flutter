@@ -3,6 +3,7 @@ import 'package:sale_management/shares/constants/reg_exp.dart';
 import 'package:sale_management/shares/statics/size_config.dart';
 import 'package:sale_management/shares/utils/keyboard_util.dart';
 import 'package:sale_management/shares/utils/text_style_util.dart';
+import 'package:sale_management/shares/utils/widgets_util.dart';
 import 'package:sale_management/shares/widgets/custom_suffix_icon/custom_suffix_icon.dart';
 import 'package:sale_management/shares/widgets/gender_option/gender_optional.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -42,12 +43,7 @@ class _SignUpBodyState extends State<SignUpBody> {
               KeyboardUtil.hideKeyboard(context);
               save();
             },
-            child: Container(
-              height: 45,
-              width: MediaQuery.of(context).size.width,
-              color: Colors.redAccent,
-              child: Center(child: Text('signUp.label.save'.tr(), style: TextStyle(fontWeight: FontWeight.w700, color: Colors.white, fontFamily: 'roboto', fontSize: 18))),
-            ),
+            child: WidgetsUtil.overlayKeyBardContainer(text: 'common.label.save'.tr())
           )
         ],
       ),

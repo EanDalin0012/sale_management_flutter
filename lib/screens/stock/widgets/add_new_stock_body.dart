@@ -44,7 +44,7 @@ class _AddNewStockBodyState extends State<AddNewStockBody> {
               KeyboardUtil.hideKeyboard(context);
               save();
             },
-            child: WidgetsUtil.overlayKeyBardContainer(size: size, text: 'common.label.save'.tr()),
+            child: WidgetsUtil.overlayKeyBardContainer(text: 'common.label.save'.tr()),
           )
 
           // InkWell(

@@ -11,6 +11,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:sale_management/shares/utils/keyboard_util.dart';
 import 'package:sale_management/shares/utils/number_format.dart';
 import 'package:sale_management/shares/utils/text_style_util.dart';
+import 'package:sale_management/shares/utils/widgets_util.dart';
 import 'package:sale_management/shares/widgets/custom_suffix_icon/custom_suffix_icon.dart';
 import 'package:sale_management/shares/widgets/prefix_product/prefix_product.dart';
 import 'package:sale_management/shares/widgets/product_dropdown/product_dropdown.dart';
@@ -68,12 +69,7 @@ class _EditPackageProductBodyState extends State<EditPackageProductBody> {
                   KeyboardUtil.hideKeyboard(context);
                   save();
                 },
-                child: Container(
-                  height: 45,
-                  width: MediaQuery.of(context).size.width,
-                  color: ColorsUtils.buttonContainer(),
-                  child: Center(child: Text('common.label.update'.tr(), style: TextStyle(fontWeight: FontWeight.w700, color: ColorsUtils.buttonColorContainer(), fontSize: 18))),
-                ),
+                child: WidgetsUtil.overlayKeyBardContainer(text: 'common.label.update'.tr())
               )
             ]
         )

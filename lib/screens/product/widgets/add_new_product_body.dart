@@ -8,6 +8,7 @@ import 'package:sale_management/shares/utils/input_decoration.dart';
 import 'package:sale_management/shares/utils/keyboard_util.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:sale_management/shares/utils/text_style_util.dart';
+import 'package:sale_management/shares/utils/widgets_util.dart';
 import 'package:sale_management/shares/widgets/category_dropdown/category_dropdown.dart';
 import 'package:sale_management/shares/widgets/custom_suffix_icon/custom_suffix_icon.dart';
 
@@ -49,12 +50,7 @@ class _AddNewProductBodyState extends State<AddNewProductBody> {
               KeyboardUtil.hideKeyboard(context);
               mySave();
             },
-            child: Container(
-              height: 45,
-              width: MediaQuery.of(context).size.width,
-              color: ColorsUtils.buttonContainer(),
-              child: Center(child: Text('common.label.save'.tr(), style: TextStyle(fontWeight: FontWeight.w700, color: ColorsUtils.buttonColorContainer(), fontSize: 18))),
-            ),
+            child: WidgetsUtil.overlayKeyBardContainer(text: 'common.label.save'.tr())
           )
         ],
       ),
