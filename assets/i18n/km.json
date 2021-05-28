@@ -269,7 +269,7 @@
       "pleaseSelectVendor": "សូមជ្រើសរើសអ្នកផ្គត់ផ្គង",
       "doYouWantToDeleteStock": "តើអ្នកចង់លុបការនាំចូល {} ទេ?",
       "pleaseSelectPackageProduct": "សូមជ្រើសរើសកញ្ចប់តំណាង",
-      "pleaseSelectProductFirst.": "សូមជ្រើសរើសផលិតផលជាមុនសិន"
+      "pleaseSelectProductFirst": "សូមជ្រើសរើសផលិតផលជាមុនសិន"
     },
     "holder": {
       "selectProduct": "ជ្រើសរើសផលិតផល",

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:sale_management/screens/import/confirm_import_screen.dart';
 import 'package:sale_management/shares/constants/fonts.dart';
 import 'package:sale_management/shares/model/key/import_add_key.dart';
 import 'package:sale_management/shares/model/key/package_product_key.dart';
@@ -205,7 +206,7 @@ class _AddNewImportBodyState extends State<AddNewImportBody> {
       validator: (value) {
         if(this.product.toString() == 'null') {
           return 'import.message.pleaseSelectProduct'.tr();
-        } else if (this.product.toString() == 'null' && value!.isEmpty) {
+        } else if (value!.isEmpty) {
           return 'import.message.pleaseSelectPackageProduct'.tr();
         }
         return null;
@@ -319,15 +320,15 @@ class _AddNewImportBodyState extends State<AddNewImportBody> {
 
   TextFormField _buildRemarkField() {
     return TextFormField(
-      style: style,
+      style: this.style,
       keyboardType: TextInputType.text,
-      controller: remarkController,
+      controller: this.remarkController,
       decoration: InputDecoration(
         labelText: 'common.label.remark'.tr(),
-        labelStyle: labelStyle,
+        labelStyle: this.labelStyle,
         hintText: 'common.holder.enterRemark'.tr(),
-        hintStyle: hintStyle,
-        enabledBorder: enabledBorder,
+        hintStyle: this.hintStyle,
+        enabledBorder: this.enabledBorder,
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/border_color_black_24dp.svg"),
       ),
@@ -389,19 +390,22 @@ class _AddNewImportBodyState extends State<AddNewImportBody> {
   }
 
 
-  void save() {
+  void save() async{
     this.isClickSave = true;
-    if( _formKey.currentState!.validate()) {
-      // Navigator.push(
-      //   context,
-      //   MaterialPageRoute(builder: (context) => CategorySuccessScreen(
-      //     isAddScreen: true,
-      //     vData: {
-      //       CategoryKey.name: nameController.text,
-      //       CategoryKey.remark: remarkController.text
-      //     },
-      //   )),
-      // );
+    if(this.vData.length > 0) {
+      final confirmBack = await Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => ConfirmImportScreen(
+          vData: this.vData,
+        )),
+      );
+      if(confirmBack == null) {
+        return;
+      }
+      setState(() {
+        this.vData = confirmBack;
+        widget.onAddChanged(this.vData);
+      });
     }
   }
 

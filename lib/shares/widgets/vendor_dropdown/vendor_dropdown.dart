@@ -32,6 +32,7 @@ class _VendorDropdownPageState extends State<VendorDropdownPage> {
 
   @override
   Widget build(BuildContext context) {
+    size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: ColorsUtils.scaffoldBackgroundColor(),
       appBar: _buildAppBar(),
@@ -47,7 +48,7 @@ class _VendorDropdownPageState extends State<VendorDropdownPage> {
 
   AppBar _buildAppBar() {
     return AppBar(
-      backgroundColor: Colors.purple[900],
+      backgroundColor: ColorsUtils.appBarBackGround(),
       title: Text('vendor.label.selectVendors'.tr()),
       actions: [
         IconButton(
