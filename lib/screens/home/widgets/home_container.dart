@@ -34,8 +34,13 @@ class _HomeContainerState extends State<HomeContainer> {
           splashColor: Colors.blueAccent,
           onPressed: () async {
             print('dfa');
-            Directory documentsDirectory = await getApplicationDocumentsDirectory();
-            ToastUtils.showToast(context: documentsDirectory.path, fToast: fToast);
+            try {
+              Directory documentsDirectory = await getApplicationDocumentsDirectory();
+              ToastUtils.showToast(context: documentsDirectory.path, fToast: fToast);
+            }catch(e) {
+              ToastUtils.showToast(context: 'error =>'+e.toString(), fToast: fToast);
+            }
+
           },
           child: Text("Test Get Path",style: TextStyle(fontSize: 20.0),),
         ),
