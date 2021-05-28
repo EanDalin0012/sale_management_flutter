@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:sale_management/screens/product/widgets/edit_product_body.dart';
+import 'package:sale_management/shares/statics/default.dart';
 import 'package:sale_management/shares/utils/colors_util.dart';
 
 class EditProductScreen extends StatefulWidget {
@@ -18,6 +19,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
       backgroundColor: ColorsUtils.scaffoldBackgroundColor(),
       appBar: AppBar(
         backgroundColor: ColorsUtils.appBarBackGround(),
+        elevation: DefaultStatic.elevationAppBar,
         title: Text('product.label.product'.tr()),
       ),
       body: SafeArea(

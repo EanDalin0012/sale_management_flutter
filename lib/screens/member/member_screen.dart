@@ -10,6 +10,7 @@ import 'package:sale_management/shares/constants/color.dart';
 import 'package:sale_management/shares/constants/fonts.dart';
 import 'package:sale_management/shares/constants/text_style.dart';
 import 'package:sale_management/shares/model/key/member_key.dart';
+import 'package:sale_management/shares/statics/default.dart';
 import 'package:sale_management/shares/utils/colors_util.dart';
 import 'package:sale_management/shares/utils/keyboard_util.dart';
 import 'package:sale_management/shares/utils/show_dialog_util.dart';
@@ -71,6 +72,7 @@ class _MemberScreenState extends State<MemberScreen> {
   AppBar _buildAppBar() {
     return AppBar(
       backgroundColor: ColorsUtils.appBarBackGround(),
+      elevation: DefaultStatic.elevationAppBar,
       title: Text('member.label.member'.tr()),
       actions: [
         IconButton(

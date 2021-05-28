@@ -5,11 +5,15 @@ import 'package:sale_management/shares/statics/dark_mode_color.dart';
 
 class ColorsUtils {
     static Color scaffoldBackgroundColor() {
-      return DarkMode.isDarkMode == true ? Colors.black: Colors.white;
+      return DarkMode.isDarkMode == true ? Color(0xff333436): Colors.white;
     }
 
     static Color textTheme() {
       return DarkMode.isDarkMode == true ?  Colors.white : Color(0xFF222B45);
+    }
+
+    static Color toastBackgroundContainer() {
+      return DarkMode.isDarkMode == true ?  Color(0xff242527) : Colors.greenAccent;
     }
 
     static Color borderSideColor() {
@@ -41,6 +45,6 @@ class ColorsUtils {
     }
 
     static Color? appBarBackGround() {
-      return DarkMode.isDarkMode == true ?  Colors.black : Colors.purple[900];
+      return DarkMode.isDarkMode == true ?  Color(0xff242527) : Colors.purple[900];
     }
 }

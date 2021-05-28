@@ -9,6 +9,7 @@ import 'package:sale_management/shares/constants/color.dart';
 import 'package:sale_management/shares/constants/fonts.dart';
 import 'package:sale_management/shares/constants/text_style.dart';
 import 'package:sale_management/shares/model/key/vendor_key.dart';
+import 'package:sale_management/shares/statics/default.dart';
 import 'package:sale_management/shares/utils/colors_util.dart';
 import 'package:sale_management/shares/widgets/circular_progress_indicator/circular_progress_indicator.dart';
 import 'package:sale_management/shares/widgets/over_list_item/over_list_item.dart';
@@ -60,6 +61,7 @@ class _VendorScreenState extends State<VendorScreen> {
   AppBar _buildAppBar() {
     return AppBar(
       backgroundColor: ColorsUtils.appBarBackGround(),
+      elevation: DefaultStatic.elevationAppBar,
       title: Text('vendor.label.vendor'.tr()),
       actions: [
         IconButton(

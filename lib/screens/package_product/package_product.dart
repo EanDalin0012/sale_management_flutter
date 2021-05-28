@@ -74,6 +74,7 @@ class _PackageProductScreenState extends State<PackageProductScreen> {
   AppBar _buildAppBar() {
     return AppBar(
       backgroundColor: ColorsUtils.appBarBackGround(),
+      elevation: DefaultStatic.elevationAppBar,
       title: Text('packageProduct.label.packageProduct'.tr()),
       leading: IconButton(
         icon: Icon(Icons.arrow_back),

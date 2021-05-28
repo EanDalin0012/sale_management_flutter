@@ -8,6 +8,7 @@ import 'package:sale_management/shares/constants/color.dart';
 import 'package:sale_management/shares/constants/fonts.dart';
 import 'package:sale_management/shares/constants/text_style.dart';
 import 'package:sale_management/shares/model/key/m_key.dart';
+import 'package:sale_management/shares/statics/default.dart';
 import 'package:sale_management/shares/utils/colors_util.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:sale_management/shares/utils/show_dialog_util.dart';
@@ -62,6 +63,7 @@ class _StockScreenState extends State<StockScreen> {
   AppBar _buildAppBar() {
     return AppBar(
       backgroundColor: ColorsUtils.appBarBackGround(),
+      elevation: DefaultStatic.elevationAppBar,
       title: Text('stock.label.stock'.tr()),
       leading: IconButton(
         icon: Icon(Icons.arrow_back),

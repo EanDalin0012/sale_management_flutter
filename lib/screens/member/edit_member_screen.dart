@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sale_management/screens/member/widgets/edit_member_body.dart';
+import 'package:sale_management/shares/statics/default.dart';
 import 'package:sale_management/shares/utils/colors_util.dart';
 import 'package:easy_localization/easy_localization.dart';
 
@@ -18,6 +19,7 @@ class _EditMemberScreenState extends State<EditMemberScreen> {
       backgroundColor: ColorsUtils.scaffoldBackgroundColor(),
       appBar: AppBar(
         backgroundColor: ColorsUtils.appBarBackGround(),
+        elevation: DefaultStatic.elevationAppBar,
         title: Text('member.label.member'.tr()),
       ),
       body: SafeArea(

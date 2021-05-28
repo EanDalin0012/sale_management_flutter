@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:sale_management/screens/package_product/package_product.dart';
 import 'package:sale_management/screens/package_product/widgets/package_product_success_body.dart';
+import 'package:sale_management/shares/statics/default.dart';
 import 'package:sale_management/shares/utils/colors_util.dart';
 
 class PackageProductSuccessScreen extends StatefulWidget {
@@ -27,8 +28,10 @@ class _PackageProductSuccessScreenState extends State<PackageProductSuccessScree
       onWillPop: () => onBackPress(),
       child: Scaffold(
         backgroundColor: ColorsUtils.scaffoldBackgroundColor(),
+
         appBar: AppBar(
           backgroundColor: ColorsUtils.appBarBackGround(),
+          elevation: DefaultStatic.elevationAppBar,
           leading: SizedBox(),
           title: Text('common.label.success'.tr()),
         ),

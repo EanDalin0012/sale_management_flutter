@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sale_management/screens/import/widgets/add_new_import_body.dart';
 import 'package:sale_management/screens/import/widgets/view_import_item.dart';
 import 'package:sale_management/shares/constants/fonts.dart';
+import 'package:sale_management/shares/statics/default.dart';
 import 'package:sale_management/shares/utils/colors_util.dart';
 import 'package:easy_localization/easy_localization.dart';
 
@@ -35,6 +36,7 @@ class _AddNewImportScreenState extends State<AddNewImportScreen> {
     return AppBar(
         title: Text('import.label.import'.tr(), style: TextStyle(fontFamily: fontDefault, fontWeight: FontWeight.w700, color: ColorsUtils.isDarkModeColor())),
         backgroundColor: ColorsUtils.appBarBackGround(),
+        elevation: DefaultStatic.elevationAppBar,
         actions: <Widget>[
           GestureDetector(
             onTap: () => _showModelSheet(),

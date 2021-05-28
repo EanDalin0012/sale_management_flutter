@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:sale_management/screens/login/login_screen.dart';
 import 'package:sale_management/screens/sign_up/widgets/sign_up_body.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:sale_management/shares/statics/default.dart';
+import 'package:sale_management/shares/utils/colors_util.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
@@ -17,8 +19,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
       onWillPop: () => onBackPress(),
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.purple[900],
-          foregroundColor: Colors.purple[900],
+          backgroundColor: ColorsUtils.appBarBackGround(),
+          elevation: DefaultStatic.elevationAppBar,
           title: Text('signUp.label.signUp'.tr()),
         ),
         body: SignUpBody(),

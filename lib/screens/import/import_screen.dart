@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sale_management/screens/home/home_screen.dart';
+import 'package:sale_management/shares/statics/default.dart';
 import 'package:sale_management/shares/utils/colors_util.dart';
 import 'package:sale_management/shares/utils/keyboard_util.dart';
 import 'package:sale_management/shares/widgets/over_list_item/over_list_item.dart';
@@ -54,6 +55,7 @@ class _ImportScreenState extends State<ImportScreen> {
   AppBar _buildAppBar() {
     return AppBar(
       backgroundColor: ColorsUtils.appBarBackGround(),
+      elevation: DefaultStatic.elevationAppBar,
       title: Text('import.label.import'.tr()),
       actions: [
         IconButton(

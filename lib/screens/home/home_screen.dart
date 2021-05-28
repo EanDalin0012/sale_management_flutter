@@ -6,6 +6,7 @@ import 'package:sale_management/screens/home/widgets/my_drawer.dart';
 import 'package:sale_management/screens/home/widgets/sheet_container.dart';
 import 'package:sale_management/shares/constants/color.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:sale_management/shares/statics/default.dart';
 import 'package:sale_management/shares/utils/colors_util.dart';
 import 'package:sale_management/shares/utils/show_dialog_util.dart';
 
@@ -44,7 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return AppBar(
       title: Text(_titleBar),
       backgroundColor: ColorsUtils.appBarBackGround(),
-      elevation: 0,
+      elevation: DefaultStatic.elevationAppBar,
       leading: Builder(builder: (context) {
         return IconButton(
             icon: Icon(Icons.sort_rounded),
@@ -81,6 +82,10 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
         ),
+        Divider(
+          height: 5,
+          color: Colors.white,
+        )
       ],
     );
   }
