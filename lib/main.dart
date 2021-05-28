@@ -3,7 +3,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:provider/provider.dart';
 import 'package:sale_management/screens/login/login_screen.dart';
 import 'package:sale_management/shares/provider/main_provider.dart';
-import 'package:sale_management/shares/utils/colors_util.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
