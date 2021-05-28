@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:sale_management/screens/import/success_import_screen.dart';
 import 'package:sale_management/screens/import/widgets/build_data_table.dart';
+import 'package:sale_management/shares/model/key/m_key.dart';
 import 'package:sale_management/shares/statics/size_config.dart';
 import 'package:sale_management/shares/utils/colors_util.dart';
 import 'package:sale_management/shares/utils/input_decoration.dart';
@@ -91,16 +93,16 @@ class _ConfirmImportBodyState extends State<ConfirmImportBody> {
       children: <Widget>[
         InkWell(
           onTap: () {
-            // Navigator.push(
-            //   context,
-            //   MaterialPageRoute(builder: (context) => ImportSuccessScreen(
-            //     isAddScreen: true,
-            //     vData: {
-            //       ImportKey.transactionId: 'BAE20210939',
-            //       ImportKey.total: this.total
-            //     },
-            //   )),
-            // );
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => SuccessImportScreen(
+                isAddScreen: true,
+                vData: {
+                  ImportKey.transactionId: 'BAE20210939',
+                  ImportKey.total: this.vPay
+                },
+              )),
+            );
           },
           child: WidgetsUtil.overlayKeyBardContainer(text: 'common.label.confirm'.tr()),
         ),

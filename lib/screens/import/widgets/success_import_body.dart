@@ -43,9 +43,9 @@ class _SuccessImportBodyState extends State<SuccessImportBody> {
             children: <Widget>[
               SizedBox(height: SizeConfig.screenHeight * 0.04), // 4%
               if (widget.isAddScreen == true)
-                Text('category.label.registerCategory'.tr(), style: TextStyleUtils.headingStyle()),
+                Text('import.label.importNewProduct'.tr(), style: TextStyleUtils.headingStyle()),
               if(widget.isEditScreen == true)
-                Text('category.label.updateCategory'.tr(), style: TextStyleUtils.headingStyle()),
+                Text('import.label.importNewProduct'.tr(), style: TextStyleUtils.headingStyle()),
 
               //Text('category.message.isCompleted'.tr(args: [widget.vData[ImportKey.name]]),textAlign: TextAlign.center,),
             ],
