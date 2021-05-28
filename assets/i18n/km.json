@@ -249,6 +249,7 @@
   "import": {
     "label": {
       "import": "នាំចូល",
+      "importItems": "នាំចូលទំនិញ",
       "importList": "បញ្ជីនាំចូល",
       "importNewProduct": "នាំចូលផលិតផលថ្មី",
       "product": "ផលិតផល",
