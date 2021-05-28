@@ -7,6 +7,7 @@ import 'package:sale_management/shares/model/key/product_key.dart';
 import 'package:sale_management/shares/utils/colors_util.dart';
 import 'package:sale_management/shares/utils/number_format.dart';
 import 'package:sale_management/shares/widgets/prefix_product/prefix_product.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class ViwImportItems extends StatefulWidget {
   final List<dynamic> vData;
@@ -34,14 +35,14 @@ class _ViwImportItemsState extends State<ViwImportItems> {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-        color: Colors.white,
+        color: ColorsUtils.scaffoldBackgroundColor(),
       ),
       child: Column(
         children: <Widget>[
           _widgetStack(context),
           drawerHandler(),
           Text(
-            'Total : '+FormatNumber.usdFormat2Digit(total.toString() + ' USD'),
+            'import.label.totalParam'.tr(args: [FormatNumber.usdFormat2Digit(total.toString() + ' USD').toString()]),
             style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500, fontFamily: fontDefault, color: ColorsUtils.isDarkModeColor()),
           ),
           if (widget.vData.length > 0 )
@@ -78,8 +79,8 @@ class _ViwImportItemsState extends State<ViwImportItems> {
             width: double.infinity,
             height: 35.0,
             child: Center(
-                child: Text("Import Items",
-                    style: TextStyle(fontFamily: fontDefault, fontWeight: FontWeight.w700, fontSize: 20, color: _iconColor)
+                child: Text('import.label.importItems'.tr(),
+                    style: TextStyle(fontFamily: fontDefault, fontWeight: FontWeight.w700, fontSize: 20, color: ColorsUtils.isDarkModeColor())
                 ) // Your desired title
             ),
           ),
@@ -87,7 +88,7 @@ class _ViwImportItemsState extends State<ViwImportItems> {
               left: 0.0,
               top: 0.0,
               child: IconButton(
-                  icon: FaIcon(FontAwesomeIcons.arrowLeft,size: 20 , color: _iconColor,), // Your desired icon
+                  icon: FaIcon(FontAwesomeIcons.arrowLeft,size: 20 , color: ColorsUtils.isDarkModeColor()), // Your desired icon
                   onPressed: (){
                     Navigator.of(context).pop();
                   }
@@ -114,22 +115,22 @@ class _ViwImportItemsState extends State<ViwImportItems> {
     return DataTable(
         columns: <DataColumn>[
           DataColumn(
-            label: Text('No', style: textStyle),
+            label: Text('import.label.no'.tr(), style: textStyle),
           ),
           DataColumn(
-            label: Text('Product',style: textStyle),
+            label: Text('import.label.product'.tr(),style: textStyle),
           ),
           DataColumn(
-            label: Text('Package',style: textStyle),
+            label: Text('import.label.packageProduct'.tr(),style: textStyle),
           ),
           DataColumn(
-            label: Text('Quantity', style: textStyle),
+            label: Text('import.label.quantity'.tr(), style: textStyle),
           ),
           DataColumn(
-            label: Text('Total', style: textStyle),
+            label: Text('import.label.total'.tr(), style: textStyle),
           ),
           DataColumn(
-            label: Text('Action', style: textStyle),
+            label: Text('import.label.action'.tr(), style: textStyle),
           ),
         ],
         rows: widget.vData.map((e) {
@@ -173,8 +174,8 @@ class _ViwImportItemsState extends State<ViwImportItems> {
               widget.onChanged(widget.vData);
             });
           },
-          icon: FaIcon(FontAwesomeIcons.minusCircle,size: 20 , color: ColorsUtils.iConColor()),
-          label: Text('Remove',style: TextStyle(fontFamily: fontDefault, fontWeight: FontWeight.w700, fontSize: 15, color: ColorsUtils.isDarkModeColor()))
+          icon: FaIcon(FontAwesomeIcons.minusCircle,size: 20 , color: Colors.white),
+          label: Text('common.label.remove'.tr(),style: TextStyle(fontFamily: fontDefault, fontWeight: FontWeight.w700, fontSize: 15, color: Colors.white))
       ),
     );
   }

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:sale_management/shares/constants/fonts.dart';
+import 'package:sale_management/shares/model/key/import_add_key.dart';
 import 'package:sale_management/shares/model/key/package_product_key.dart';
 import 'package:sale_management/shares/model/key/product_key.dart';
 import 'package:sale_management/shares/model/key/vendor_key.dart';
@@ -44,6 +47,7 @@ class _AddNewImportBodyState extends State<AddNewImportBody> {
   var helperText = '';
   var url = DefaultStatic.url;
   var isSelectPackageProduct = false;
+  List<dynamic> vData = [];
 
   @override
   Widget build(BuildContext context) {
@@ -69,7 +73,7 @@ class _AddNewImportBodyState extends State<AddNewImportBody> {
                 height: 45,
                 width: MediaQuery.of(context).size.width,
                 color: ColorsUtils.buttonContainer(),
-                child: Center(child: Text('common.label.save'.tr(), style: TextStyle(fontWeight: FontWeight.w700, color: ColorsUtils.buttonColorContainer(), fontSize: 18))),
+                child: Center(child: Text('common.label.next'.tr(), style: TextStyle(fontWeight: FontWeight.w700, color: ColorsUtils.buttonColorContainer(), fontSize: 18))),
               ),
             )
           ]
@@ -111,6 +115,13 @@ class _AddNewImportBodyState extends State<AddNewImportBody> {
               SizedBox(height: SizeConfig.screenHeight * 0.02),
               _buildRemarkField(),
               SizedBox(height: SizeConfig.screenHeight * 0.02),
+              Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: <Widget>[
+                    _buildAddButton()
+                  ]
+              ),
+              SizedBox(height: SizeConfig.screenHeight * 0.04),
             ],
           ),
         ),
@@ -323,6 +334,60 @@ class _AddNewImportBodyState extends State<AddNewImportBody> {
         enabledBorder: enabledBorder,
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/border_color_black_24dp.svg"),
+      ),
+    );
+  }
+
+  Widget _buildAddButton() {
+    return  Container(
+      height: 50,
+      width: 110,
+      margin: EdgeInsets.only(right: 10),
+      child: RaisedButton(
+        color: Colors.red,
+        textColor: Colors.white,
+        elevation: 0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(50.0),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            FaIcon(FontAwesomeIcons.plusCircle,size: 25 , color: Colors.white),
+            Center(child: Text('common.label.add'.tr(), style: TextStyle(fontFamily: fontDefault, fontWeight: FontWeight.w700, fontSize: 20, color: Colors.white),)),
+          ],
+        ),
+        onPressed: () {
+          this.isClickSave = true;
+          KeyboardUtil.hideKeyboard(context);
+          if( _formKey.currentState!.validate()) {
+            setState(() {
+              Map data = {
+                ImportAddKey.product: this.product,
+                ImportAddKey.packageProduct: this.packageProduct,
+                ImportAddKey.vendor: this.vendor,
+                ImportAddKey.quantity: this.quantityController.text,
+                ImportAddKey.price: this.packageProduct[PackageProductKey.price],
+                ImportAddKey.total: this.totalController.text,
+                ImportAddKey.remark: this.remarkController.text
+              };
+              this.vData.add(data);
+              widget.onAddChanged(this.vData);
+              this.productController.clear();
+              this.packageProductController.clear();
+              this.isSelectPackageProduct = false;
+              this.vendorController.clear();
+              this.quantityController.clear();
+              this.totalController.clear();
+              this.remarkController.clear();
+              this.product = {};
+              this.packageProduct = {};
+              this.vendor = {};
+              this.isClickSave = false;
+              this.helperText = '';
+            });
+          }
+        },
       ),
     );
   }

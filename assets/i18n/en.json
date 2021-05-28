@@ -5,6 +5,10 @@
       "delete": "Delete",
       "yes": "Yes",
       "no": "No",
+      "next": "Next",
+      "confirm": "Confirm",
+      "remove": "Remove",
+      "add": "Add",
       "save": "Save",
       "update": "Update",
       "completeYourDetails": "Complete your details",
@@ -245,6 +249,7 @@
   "import": {
     "label": {
       "import": "Import",
+      "importItems": "Import Items",
       "importList": "Import List",
       "importNewProduct": "Import New Product",
       "product": "Product",
@@ -252,7 +257,10 @@
       "vendor": "Vendor",
       "quantity": "Quantity",
       "total": "Total",
-      "price": "Price"
+      "totalParam": "Total {}",
+      "price": "Price",
+      "no": "No",
+      "action": "Action"
     },
     "message": {
       "pleaseEnterQuantity": "please enter quantity.",

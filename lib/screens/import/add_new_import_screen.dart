@@ -34,7 +34,7 @@ class _AddNewImportScreenState extends State<AddNewImportScreen> {
   AppBar _buildAppBar() {
     return AppBar(
         title: Text('import.label.import'.tr(), style: TextStyle(fontFamily: fontDefault, fontWeight: FontWeight.w700, color: ColorsUtils.isDarkModeColor())),
-        backgroundColor: Colors.purple[900],
+        backgroundColor: ColorsUtils.appBarBackGround(),
         actions: <Widget>[
           GestureDetector(
             onTap: () => _showModelSheet(),
