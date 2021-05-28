@@ -35,7 +35,9 @@
       "changePIN": "Change PIN",
       "useFingerprintForLogin": "Use Fingerprint For Login",
       "changedLanguage": "Change Language to {}",
-      "darkMode": "Dark Mode"
+      "darkMode": "Dark Mode",
+      "darkModeEnable": "Dark Mode enable",
+      "darkModeDisable": "Dark Mode disable"
     }
   },
   "login": {

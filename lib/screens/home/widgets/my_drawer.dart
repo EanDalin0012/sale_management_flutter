@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sale_management/screens/login/login_screen.dart';
 import 'package:sale_management/screens/setting/setting.dart';
 import 'package:sale_management/shares/constants/fonts.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -61,34 +62,34 @@ class MyDrawer extends StatelessWidget {
                           title: Text('drawer.label.settings'.tr(), style: TextStyle(color: ColorsUtils.isDarkModeColor()),), leading: Icon(Icons.settings,color: ColorsUtils.iConColor()),
                         ),
                         Column(
-                          children: <Widget>[
-                            ListTile(
-                              title: new Text(
-                                'drawer.label.logout'.tr(),
-                                style: new TextStyle(
-                                  color: ColorsUtils.isDarkModeColor(),
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 16,
+                            children: <Widget>[
+                              ListTile(
+                                title: new Text(
+                                  'drawer.label.logout'.tr(),
+                                  style: new TextStyle(
+                                    color: ColorsUtils.isDarkModeColor(),
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 16,
+                                  ),
+                                  textAlign: TextAlign.left,
                                 ),
-                                textAlign: TextAlign.left,
+                                trailing: new Icon(
+                                  Icons.power_settings_new,
+                                  color: Colors.red,
+                                ),
+                                onTap: () {
+                                  Navigator.pop(context);
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(builder: (context) => LogInScreen()),
+                                  );
+                                },
                               ),
-                              trailing: new Icon(
-                                Icons.power_settings_new,
-                                color: Colors.red,
-                              ),
-                              onTap: () {
-                                // Navigator.pop(context);
-                                // Navigator.push(
-                                //   context,
-                                //   MaterialPageRoute(builder: (context) => SignInScreen()),
-                                // );
-                              },
-                            ),
-                            SizedBox(
-                              height: MediaQuery.of(context).padding.bottom,
-                            )
-                          ],
-                        ),
+                              SizedBox(
+                                height: MediaQuery.of(context).padding.bottom,
+                              )
+                            ],
+                          ),
                       ],
                     ),
                   ),

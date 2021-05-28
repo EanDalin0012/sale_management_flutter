@@ -9,12 +9,15 @@ import 'package:sale_management/screens/setting/widgets/profile_header.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:sale_management/screens/setting/widgets/stock_choice.dart';
 import 'package:sale_management/shares/constants/fonts.dart';
+import 'package:sale_management/shares/database_sqflite/database/data_base_dark_mode.dart';
+import 'package:sale_management/shares/model/key/dark_mode_key.dart';
 import 'package:sale_management/shares/model/key/language_key.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:sale_management/shares/model/key/m_key.dart';
 import 'package:sale_management/shares/provider/main_provider.dart';
 import 'package:sale_management/shares/statics/dark_mode_color.dart';
 import 'package:sale_management/shares/utils/colors_util.dart';
+import 'package:sale_management/shares/utils/toast_util.dart';
 
 class SettingBody extends StatefulWidget {
   final ValueChanged<bool> onChanged;
@@ -141,7 +144,7 @@ class _SettingBodyState extends State<SettingBody> {
                               } else if (data[LanguageKey.code] == 'km') {
                                 await context.setLocale(context.supportedLocales[1]);
                               }
-                              _showToast();
+                              ToastUtils.showToast(context: 'setting.label.changedLanguage'.tr(args: [this.language]), fToast: fToast);
                             },
                           )
                       );
@@ -236,8 +239,19 @@ class _SettingBodyState extends State<SettingBody> {
                   toggleSize: 18.0,
                   value: darkMode,
                   onToggle: (val) {
-                    this.darkMode = val;
-                    widget.onChanged(val);
+                    Map json = {
+                      DarkModeKey.id: 1,
+                      DarkModeKey.code: val ? '1': '0'
+                    };
+                    DataBaseDarkModeUtils.update(json).then((value) {
+                      if(value > 0) {
+                        this.darkMode = val;
+                        widget.onChanged(val);
+                        var context = val ? 'setting.label.darkModeEnable'.tr() : 'setting.label.darkModeDisable'.tr();
+                        ToastUtils.showToast(context: context, fToast: fToast);
+                      }
+                    });
+
                   },
                 ),
               ),
@@ -283,45 +297,45 @@ class _SettingBodyState extends State<SettingBody> {
       ),
     );
   }
-
-  _showToast() {
-    Widget toast = Container(
-      padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(25.0),
-        color: Colors.greenAccent,
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Icon(Icons.check),
-          SizedBox(
-            width: 12.0,
-          ),
-          Text('setting.label.changedLanguage'.tr(args: [this.language])),
-        ],
-      ),
-    );
-
-
-    fToast.showToast(
-      child: toast,
-      gravity: ToastGravity.BOTTOM,
-      toastDuration: Duration(seconds: 2),
-    );
-
-    // // Custom Toast Position
-    // fToast.showToast(
-    //     child: toast,
-    //     toastDuration: Duration(seconds: 2),
-    //     positionedToastBuilder: (context, child) {
-    //       return Positioned(
-    //         child: child,
-    //         top: 16.0,
-    //         left: 16.0,
-    //       );
-    //     });
-  }
+  //
+  // _showToast() {
+  //   Widget toast = Container(
+  //     padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
+  //     decoration: BoxDecoration(
+  //       borderRadius: BorderRadius.circular(25.0),
+  //       color: Colors.greenAccent,
+  //     ),
+  //     child: Row(
+  //       mainAxisSize: MainAxisSize.min,
+  //       children: [
+  //         Icon(Icons.check),
+  //         SizedBox(
+  //           width: 12.0,
+  //         ),
+  //         Text('setting.label.changedLanguage'.tr(args: [this.language])),
+  //       ],
+  //     ),
+  //   );
+  //
+  //
+  //   fToast.showToast(
+  //     child: toast,
+  //     gravity: ToastGravity.BOTTOM,
+  //     toastDuration: Duration(seconds: 2),
+  //   );
+  //
+  //   // // Custom Toast Position
+  //   // fToast.showToast(
+  //   //     child: toast,
+  //   //     toastDuration: Duration(seconds: 2),
+  //   //     positionedToastBuilder: (context, child) {
+  //   //       return Positioned(
+  //   //         child: child,
+  //   //         top: 16.0,
+  //   //         left: 16.0,
+  //   //       );
+  //   //     });
+  // }
 
   _fetchItemsStock() async {
     final data = await rootBundle.loadString('assets/json_data/stock_list.json');

@@ -35,7 +35,9 @@
       "changePIN": "ប្តូរលេខសម្ងាត់",
       "useFingerprintForLogin": "ប្រើស្នាមម្រាមដៃសម្រាប់ចូល",
       "changedLanguage": "ប្តូរភាសាទៅ{}",
-      "darkMode": "របៀបងងឹត"
+      "darkMode": "របៀបងងឹត",
+      "darkModeEnable": "របៀបងងឹតអាចប្រើបាន",
+      "darkModeDisable": "បិទរបៀបងងឹត"
     }
   },
   "login": {
