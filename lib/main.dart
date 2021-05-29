@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:provider/provider.dart';
+import 'package:sale_management/screens/choose_language/choose_language_screen.dart';
 import 'package:sale_management/screens/login/login_screen.dart';
+import 'package:sale_management/shares/database_sqflite/database/data_base_chose_language.dart';
 import 'package:sale_management/shares/database_sqflite/database/data_base_dark_mode.dart';
 import 'package:sale_management/shares/model/key/dark_mode_key.dart';
 import 'package:sale_management/shares/provider/main_provider.dart';
@@ -37,12 +39,11 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
 
-
+  late bool chose = false;
   @override
   void initState() {
     super.initState();
     DataBaseDarkModeUtils.getDarkModeById(1).then((value) {
-
       if(value.toString() == '{}') {
         Map json = {
           DarkModeKey.id: 1,
@@ -54,7 +55,6 @@ class _MyAppState extends State<MyApp> {
           }
         });
       } else {
-        print(value.toString());
         setState(() {
           Map data = value;
           if(data[DarkModeKey.code].toString() == '1') {
@@ -64,6 +64,15 @@ class _MyAppState extends State<MyApp> {
           }
         });
       }
+    });
+    DataBaseChoseLanguage.getChooseLanguageById(1).then((value) {
+      setState(() {
+        if(value.toString() == '{}') {
+          this.chose = false;
+        } else {
+          this.chose = true;
+        }
+      });
     });
   }
 
@@ -76,7 +85,7 @@ class _MyAppState extends State<MyApp> {
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,
       locale: context.locale,
-      home: LogInScreen(),
+      home: this.chose? LogInScreen() : ChooseLanguageScreen()//LogInScreen(),
     );
   }
 

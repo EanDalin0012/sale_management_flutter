@@ -54,7 +54,7 @@ class _SheetContainerState extends State<SheetContainer> {
                           height: 35.0,
                           child: Center(
                               child: Text('sheetContainer.label.menu'.tr(),
-                                  style: TextStyle(fontFamily: fontDefault, fontWeight: FontWeight.w700, fontSize: 20)
+                                  style: TextStyle(fontFamily: fontDefault, fontWeight: FontWeight.w700, fontSize: 20, color: Color(0xFF3f496d))
                               ) // Your desired title
                           ),
                         ),

@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sale_management/shares/constants/fonts.dart';
-import 'package:sale_management/shares/constants/text_style.dart';
 import 'package:sale_management/shares/statics/dark_mode_color.dart';
 import 'package:sale_management/shares/utils/colors_util.dart';
 

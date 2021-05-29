@@ -1,23 +1,20 @@
-import 'dart:async';
-import 'package:sale_management/shares/database_sqflite/field/dark_mode_field.dart';
-import 'package:sale_management/shares/model/key/dark_mode_key.dart';
+import 'package:sale_management/shares/database_sqflite/field/chose_language_field.dart';
+import 'package:sale_management/shares/model/key/chose_language_key.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path_provider/path_provider.dart';
 import 'dart:io';
 
-class DataBaseDarkModeUtils {
-
-  static final DataBaseDarkModeUtils instance = DataBaseDarkModeUtils._init();
+class DataBaseChoseLanguage {
+  static final DataBaseChoseLanguage instance = DataBaseChoseLanguage._init();
   static Database? _dataBase;
-  static String dataBaseName = DarModeParam.data_base;
-  DataBaseDarkModeUtils._init();
+  static String dataBaseName = ChoseLanguageField.data_base;
+  DataBaseChoseLanguage._init();
 
   Future<Database> get database async {
     if (_dataBase != null) return _dataBase!;
-    _dataBase = await _initDB(DarModeParam.base_file);
+    _dataBase = await _initDB(ChoseLanguageField.base_file);
     return _dataBase!;
   }
-
 
   Future<Database> _initDB(String filePath) async {
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
@@ -34,8 +31,8 @@ class DataBaseDarkModeUtils {
 
     await db.execute('''
       CREATE TABLE $dataBaseName ( 
-        ${DarModeParam.id} $integerType, 
-        ${DarModeParam.code} $textType
+        ${ChoseLanguageField.id} $integerType, 
+        ${ChoseLanguageField.choose} $textType
         )
       ''');
   }
@@ -43,30 +40,18 @@ class DataBaseDarkModeUtils {
   static Future<int> create(Map json) async {
     final db = await instance.database;
     var data = await db.rawInsert(
-        'INSERT INTO $dataBaseName(${DarModeParam.id}, ${DarModeParam.code}) VALUES(?, ?)',
+        'INSERT INTO $dataBaseName(${ChoseLanguageField.id}, ${ChoseLanguageField.choose}) VALUES(?, ?)',
         [
-          json[DarkModeKey.id],json[DarkModeKey.code]
+          json[ChoseLanguageKey.id],json[ChoseLanguageKey.choose]
         ]
     );
-    print('create: ${data}');
     return data;
   }
 
-  static Future<int> update(Map json) async {
-    final db = await instance.database;
-    int count = await db.rawUpdate(
-        'UPDATE  $dataBaseName SET ${DarModeParam.code} = ? WHERE ${DarkModeKey.id} = ?',
-        [
-          json[DarkModeKey.code], json[DarkModeKey.id]
-        ]);
-    print('updated: $count');
-    return count;
-  }
-
-  static Future<Map> getDarkModeById(int id) async {
+  static Future<Map> getChooseLanguageById(int id) async {
     try {
       final db = await instance.database;
-      List<dynamic> vData = await db.rawQuery('SELECT * FROM $dataBaseName WHERE id = ?', [id]);
+      List<dynamic> vData = await db.rawQuery('SELECT * FROM $dataBaseName WHERE ${ChoseLanguageField.id} = ?', [id]);
       if(vData.length > 0) {
         return vData[0];
       }

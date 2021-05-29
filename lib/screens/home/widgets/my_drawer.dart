@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:sale_management/screens/login/login_screen.dart';
 import 'package:sale_management/screens/setting/setting.dart';
 import 'package:sale_management/shares/constants/fonts.dart';
@@ -46,7 +47,9 @@ class MyDrawer extends StatelessWidget {
                               ],
                             )
                         ),
-                        ListTile(title: Text('drawer.label.contactUs'.tr(), style: style,), leading: Icon(Icons.phone, color: ColorsUtils.iConColor()),),
+                        ListTile(
+                          onTap: () => _callNumber(),
+                          title: Text('drawer.label.contactUs'.tr(),style: style,), leading: Icon(Icons.phone, color: ColorsUtils.iConColor()),),
                         ListTile(title: Text('drawer.label.termsCondition'.tr(), style: style), leading: Icon(Icons.card_giftcard, color: ColorsUtils.iConColor()),),
                         Divider(
                           color: ColorsUtils.isDarkModeColor(),
@@ -109,4 +112,10 @@ class MyDrawer extends StatelessWidget {
         )
     );
   }
+
+  _callNumber() async{
+    const number = '0966555879'; //set the number here
+    bool? res = await FlutterPhoneDirectCaller.callNumber(number);
+  }
+
 }
