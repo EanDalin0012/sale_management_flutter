@@ -141,7 +141,7 @@ class _PackageProductScreenState extends State<PackageProductScreen> {
       ),
       leading: _buildLeading(dataItem[PackageProductKey.productId]),
       subtitle: Text(
-        FormatNumber.usdFormat2Digit(dataItem[PackageProductKey.price].toString()).toString()+' \$,'+dataItem[PackageProductKey.remark].toString(),
+        FormatNumberUtils.usdFormat2Digit(dataItem[PackageProductKey.price].toString()).toString()+' \$,'+dataItem[PackageProductKey.remark].toString(),
         style: TextStyle(fontSize: 12,fontWeight: FontWeight.w700, fontFamily: fontDefault, color: primaryColor),
       ),
       trailing: Container(

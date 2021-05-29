@@ -140,7 +140,7 @@ class _PackageProductDropdownPageState extends State<PackageProductDropdownPage>
       ),
       leading: PrefixProduct(url: this.url),
       subtitle: Text(
-        FormatNumber.usdFormat2Digit(dataItem[PackageProductKey.price].toString()).toString()+' \$,'+dataItem[PackageProductKey.remark],
+        FormatNumberUtils.usdFormat2Digit(dataItem[PackageProductKey.price].toString()).toString()+' \$,'+dataItem[PackageProductKey.remark],
         style: TextStyle(fontSize: 12,fontWeight: FontWeight.w700, fontFamily: fontDefault, color: primaryColor),
       ),
       trailing: Container(

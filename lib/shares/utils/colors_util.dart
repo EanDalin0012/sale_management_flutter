@@ -47,4 +47,9 @@ class ColorsUtils {
     static Color? appBarBackGround() {
       return DarkMode.isDarkMode == true ?  Color(0xff242527) : Colors.purple[900];
     }
+
+    static Color? twoTabContainer() {
+      //return DarkMode.isDarkMode ?  Color(0xff2f3953) : Color(0xff2f3953);
+      return Color(0xff2f3953);
+    }
 }

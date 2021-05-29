@@ -35,7 +35,7 @@ class _BuildDataTableState extends State<BuildDataTable> {
     return Column(
         children: <Widget>[
           Text(
-            'import.label.totalParam'.tr(args: [FormatNumber.usdFormat2Digit(total.toString() + ' USD').toString()]),
+            'import.label.totalParam'.tr(args: [FormatNumberUtils.usdFormat2Digit(total.toString() + ' USD').toString()]),
             style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500, fontFamily: fontDefault, color: ColorsUtils.isDarkModeColor()),
           ),
           SingleChildScrollView(

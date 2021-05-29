@@ -47,7 +47,7 @@ class _EditPackageProductBodyState extends State<EditPackageProductBody> {
   void initState() {
     this._fetchItems();
     this.nameController.text = widget.vData[PackageProductKey.name];
-    this.qtyController.text  = FormatNumber.usdFormat2Digit(widget.vData[PackageProductKey.quantity].toString());
+    this.qtyController.text  = FormatNumberUtils.usdFormat2Digit(widget.vData[PackageProductKey.quantity].toString());
     this.priceController.text = widget.vData[PackageProductKey.price].toString();
     this.remarkController.text = widget.vData[PackageProductKey.remark].toString();
     super.initState();

@@ -192,9 +192,9 @@ class _AddNewImportBodyState extends State<AddNewImportBody> {
           packageProductController.text = this.packageProduct[PackageProductKey.name];
           quantityController.text = this.packageProduct[PackageProductKey.quantity].toString();
           var calTotal = (double.parse(quantityController.text) * double.parse(this.packageProduct[PackageProductKey.price].toString())).toString();
-          totalController.text = FormatNumber.usdFormat2Digit(calTotal.toString()).toString();
+          totalController.text = FormatNumberUtils.usdFormat2Digit(calTotal.toString()).toString();
 
-          this.helperText = 'import.label.price'.tr() + ' : '+FormatNumber.usdFormat2Digit(this.packageProduct[PackageProductKey.price].toString()).toString() + ' USD';
+          this.helperText = 'import.label.price'.tr() + ' : '+FormatNumberUtils.usdFormat2Digit(this.packageProduct[PackageProductKey.price].toString()).toString() + ' USD';
           this.isSelectPackageProduct = true;
           checkFormValid();
         });

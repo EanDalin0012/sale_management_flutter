@@ -1,4 +1,4 @@
-class FormatNumber {
+class FormatNumberUtils {
   static usdFormat2Digit(String vNumber) {
     var pData = (vNumber.toString()).split('.');
     var pData0 = pData[0];

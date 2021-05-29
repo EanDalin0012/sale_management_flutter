@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:sale_management/screens/home/home_screen.dart';
+import 'package:sale_management/screens/import/widgets/import_body.dart';
 import 'package:sale_management/shares/statics/default.dart';
+import 'package:sale_management/shares/statics/size_config.dart';
 import 'package:sale_management/shares/utils/colors_util.dart';
 import 'package:sale_management/shares/utils/keyboard_util.dart';
+import 'package:sale_management/shares/utils/text_style_util.dart';
 import 'package:sale_management/shares/widgets/over_list_item/over_list_item.dart';
 import 'package:sale_management/shares/widgets/search_widget/search_widget.dart';
 import 'package:easy_localization/easy_localization.dart';
-
+import 'package:sale_management/shares/widgets/two_tab/two_tab.dart';
 import 'add_new_import_screen.dart';
 
 class ImportScreen extends StatefulWidget {
@@ -22,9 +25,11 @@ class _ImportScreenState extends State<ImportScreen> {
   late Size size ;
   List<dynamic> vData = [];
   var vDataLength = 0;
+  var selectedProduct = true;
 
   @override
   Widget build(BuildContext context) {
+    size = MediaQuery.of(context).size;
     return WillPopScope(
       onWillPop:  () => onBackPress(),
       child: Scaffold(
@@ -37,10 +42,46 @@ class _ImportScreenState extends State<ImportScreen> {
             },
             child: Column(
               children: <Widget>[
-              OverListItem(
-                  text: 'import.label.importList'.tr(),
-                  length: this.vData.length,
-              ),
+                SizedBox(height: SizeConfig.screenHeight * 0.02),
+                Center(
+                  child: Column(
+                    children: <Widget>[// 4%
+                      Text("Import Product", style: TextStyleUtils.headingStyle()),
+                      this.selectedProduct ? Center(
+                        child: Text(
+                          "All Product Import.",
+                          textAlign: TextAlign.center,
+                        ),
+                      ) :
+                      Center(
+                        child: Text(
+                          "All Transaction Import.",
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                TwoTabs(
+                  textTab0: 'Product',
+                  textTab1: "Transaction",
+                  onChanged: (tabIndex) {
+                    setState(() {
+                      if(tabIndex == 0) {
+                        this.selectedProduct = true;
+                      }else if (tabIndex == 1) {
+                        this.selectedProduct = false;
+                      }
+                    });
+                  },
+                ),
+                Expanded(
+                  child: ImportBody(filterByProduct: this.selectedProduct),
+                ),
+              // OverListItem(
+              //     text: 'import.label.importList'.tr(),
+              //     length: this.vData.length,
+              // ),
               //this.vData.length > 0 ? _buildBody() : CircularProgressLoading()
             ],
           ),
