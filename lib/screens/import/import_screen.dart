@@ -6,7 +6,6 @@ import 'package:sale_management/shares/statics/size_config.dart';
 import 'package:sale_management/shares/utils/colors_util.dart';
 import 'package:sale_management/shares/utils/keyboard_util.dart';
 import 'package:sale_management/shares/utils/text_style_util.dart';
-import 'package:sale_management/shares/widgets/over_list_item/over_list_item.dart';
 import 'package:sale_management/shares/widgets/search_widget/search_widget.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:sale_management/shares/widgets/two_tab/two_tab.dart';

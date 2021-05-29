@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:sale_management/screens/home/widgets/_build_stat_card.dart';
 import 'package:sale_management/shares/utils/toast_util.dart';
 
 class HomeContainer extends StatefulWidget {
@@ -26,26 +27,8 @@ class _HomeContainerState extends State<HomeContainer> {
     print('dd');
     return Column(
       children: <Widget>[
-        FlatButton(
-          color: Colors.blue,
-          textColor: Colors.white,
-          padding: EdgeInsets.all(8.0),
-          splashColor: Colors.blueAccent,
-          onPressed: () async {
-            print('dfa');
-            try {
-              Directory documentsDirectory = await getApplicationDocumentsDirectory();
-              ToastUtils.showToast(context: documentsDirectory.path, fToast: fToast);
-            }catch(e) {
-              ToastUtils.showToast(context: 'error =>'+e.toString(), fToast: fToast);
-            }
-
-          },
-          child: Text("Test Get Path",style: TextStyle(fontSize: 20.0),),
-        ),
+        BuildStatCard()
       ],
     );
   }
-
-
 }
