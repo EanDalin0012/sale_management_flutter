@@ -66,7 +66,6 @@ class _LoginBodyState extends State<LoginBody> {
                   DefaultButton(
                     text: 'login.label.continue'.tr(),
                     press: () {
-                      print('login');
                       // if (_formKey.currentState!.validate()) {
                       //   _formKey.currentState!.save();
                       //   // if all are valid then go to success screen
