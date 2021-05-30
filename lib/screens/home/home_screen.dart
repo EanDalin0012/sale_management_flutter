@@ -6,8 +6,6 @@ import 'package:sale_management/screens/home/widgets/my_drawer.dart';
 import 'package:sale_management/screens/home/widgets/sheet_container.dart';
 import 'package:sale_management/shares/constants/color.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:sale_management/shares/database_sqflite/database/data_base_dark_mode.dart';
-import 'package:sale_management/shares/model/key/dark_mode_key.dart';
 import 'package:sale_management/shares/statics/default.dart';
 import 'package:sale_management/shares/utils/colors_util.dart';
 
