@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 import 'package:sale_management/screens/choose_language/choose_language_screen.dart';
 import 'package:sale_management/screens/login/login_screen.dart';
@@ -8,6 +9,8 @@ import 'package:sale_management/shares/database_sqflite/database/data_base_dark_
 import 'package:sale_management/shares/model/key/dark_mode_key.dart';
 import 'package:sale_management/shares/provider/main_provider.dart';
 import 'package:sale_management/shares/statics/dark_mode_color.dart';
+import 'package:sale_management/shares/utils/device_info.dart';
+import 'package:sale_management/shares/utils/toast_util.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -40,9 +43,14 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
 
   late bool chose = false;
+  late FToast fToast;
+  var initPlatformState = '';
   @override
   void initState() {
     super.initState();
+    fToast = FToast();
+    fToast.init(context);
+
     DataBaseDarkModeUtils.getDarkModeById(1).then((value) {
       if(value.toString() == '{}') {
         Map json = {
@@ -74,10 +82,17 @@ class _MyAppState extends State<MyApp> {
         }
       });
     });
+
+    DeviceInfoUtils.initPlatformState().then((value) {
+      print(value.toString());
+      this.initPlatformState = value.toString();
+    });
+
   }
 
   @override
   Widget build(BuildContext context) {
+    // ToastUtils.showToast(context: 'initPlatformState:'+initPlatformState.toString(), fToast: fToast);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
