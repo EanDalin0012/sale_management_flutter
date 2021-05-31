@@ -4,6 +4,7 @@ import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:sale_management/screens/home/widgets/home_container.dart';
 import 'package:sale_management/screens/home/widgets/my_drawer.dart';
 import 'package:sale_management/screens/home/widgets/sheet_container.dart';
+import 'package:sale_management/screens/sale/sale_screen.dart';
 import 'package:sale_management/shares/constants/color.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:sale_management/shares/statics/default.dart';
@@ -23,6 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
   var isShowAppBar = true;
   List<Widget> _widgetOptions = <Widget>[
     HomeContainer(),
+    SaleScreen()
   ];
 
   @override
@@ -140,6 +142,7 @@ class _HomeScreenState extends State<HomeScreen> {
           } else if (index == 1) {
             _titleBar = 'Sale';
             isShowAppBar = false;
+
           }
           if(index >= 2) {
             _showModelSheet();

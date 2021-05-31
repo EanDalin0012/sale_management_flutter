@@ -281,6 +281,13 @@
       "enterTotal": "Enter total"
     }
   },
+  "sale": {
+    "label": {
+      "sale": "Sale"
+    },
+    "message": {},
+    "holder": {}
+  },
   "search": {
     "label": {
       "searchName": "Search name",
