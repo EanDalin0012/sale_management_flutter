@@ -32,7 +32,7 @@ class _HomeContainerState extends State<HomeContainer> {
         RaisedButton.icon(
           onPressed: (){
             DeviceInfoUtils.initPlatformState().then((value) {
-              ToastUtils.showToast(context: value['device'] +'###'+ value.toString(), fToast: fToast);
+              ToastUtils.showToast(context: value['model'] +'###'+ value.toString(), fToast: fToast);
             });
           },
           shape: RoundedRectangleBorder(

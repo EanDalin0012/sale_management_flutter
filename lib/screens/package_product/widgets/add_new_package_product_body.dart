@@ -12,7 +12,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:sale_management/shares/utils/text_style_util.dart';
 import 'package:sale_management/shares/utils/widgets_util.dart';
 import 'package:sale_management/shares/widgets/custom_suffix_icon/custom_suffix_icon.dart';
-import 'package:sale_management/shares/widgets/prefix_product/prefix_product.dart';
 import 'package:sale_management/shares/widgets/product_dropdown/product_dropdown.dart';
 import 'package:sale_management/shares/widgets/text_form_field_prefix_icon/text_form_field_prefix_icon.dart';
 

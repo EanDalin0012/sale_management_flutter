@@ -18,6 +18,8 @@ import 'package:sale_management/shares/widgets/circular_progress_indicator/circu
 import 'package:sale_management/shares/widgets/over_list_item/over_list_item.dart';
 import 'package:sale_management/shares/widgets/search_widget/search_widget.dart';
 
+import 'add_new_sale_screen.dart';
+
 class SaleScreen extends StatefulWidget {
   const SaleScreen({Key? key}) : super(key: key);
 
@@ -136,10 +138,10 @@ class _SaleScreenState extends State<SaleScreen> {
     return FloatingActionButton(
       backgroundColor: Colors.purple[900],
       onPressed: (){
-        // Navigator.push(
-        //   context,
-        //   MaterialPageRoute(builder: (context) => AddNewImportScreen()),
-        // );
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => AddNewSaleScreen()),
+        );
       },
       tooltip: 'product.label.addNewProduct'.tr(),
       elevation: 5,
@@ -218,6 +220,20 @@ class _SaleScreenState extends State<SaleScreen> {
               Text(
                 // 'common.label.edit'.tr(),
                 'Details',
+                style: menuStyle,
+              ),
+            ],
+          )
+      ),
+      PopupMenuItem(
+          value: 0,
+          child: Row(
+            children: <Widget>[
+              FaIcon(FontAwesomeIcons.edit,size: 20,color: Colors.purple[900]),
+              SizedBox(width: 10,),
+              Text(
+                // 'common.label.edit'.tr(),
+                'Cancel Transaction',
                 style: menuStyle,
               ),
             ],
