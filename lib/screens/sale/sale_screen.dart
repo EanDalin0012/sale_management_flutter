@@ -8,6 +8,7 @@ import 'package:sale_management/shares/constants/color.dart';
 import 'package:sale_management/shares/constants/fonts.dart';
 import 'package:sale_management/shares/constants/text_style.dart';
 import 'package:sale_management/shares/model/key/sale_key.dart';
+import 'package:sale_management/shares/statics/dark_mode_color.dart';
 import 'package:sale_management/shares/statics/default.dart';
 import 'package:sale_management/shares/utils/colors_util.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -98,6 +99,7 @@ class _SaleScreenState extends State<SaleScreen> {
       backgroundColor: ColorsUtils.appBarBackGround(),
       elevation: DefaultStatic.elevationAppBar,
       title: Text('sale.label.sale'.tr()),
+      leading: SizedBox(),
       actions: [
         IconButton(
           icon: Icon(isNative ? Icons.close : Icons.search),
@@ -182,18 +184,17 @@ class _SaleScreenState extends State<SaleScreen> {
   }
 
   Widget _buildLeading() {
+    var colorBorder = DarkMode.isDarkMode ? Colors.blueGrey.withOpacity(0.4) :Color(0xFFe4e6eb);
     return Container(
       width: 40,
       height: 40,
+      padding: EdgeInsets.all(1.5),
       decoration: BoxDecoration(
+        color: Colors.white,
         borderRadius: BorderRadius.all(Radius.circular(60)),
-        border: Border.all(color: Colors.deepPurpleAccent.withOpacity(0.7), width: 2),
+        border: Border.all(color: colorBorder, width: 5),
       ),
-      child: CircleAvatar(
-        radius: 30.0,
-        backgroundColor: Colors.transparent,
-        child: FaIcon(FontAwesomeIcons.receipt,size: 20 , color: Colors.deepPurple),
-      ),
+      child: Image.asset('assets/icons/sale.png'),
     );
   }
 
