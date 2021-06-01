@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -14,6 +13,7 @@ import 'package:sale_management/shares/utils/colors_util.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:sale_management/shares/utils/format_date.dart';
 import 'package:sale_management/shares/utils/number_format.dart';
+import 'package:sale_management/shares/widgets/circular_progress_indicator/circular_progress_indicator.dart';
 import 'package:sale_management/shares/widgets/over_list_item/over_list_item.dart';
 import 'package:sale_management/shares/widgets/search_widget/search_widget.dart';
 
@@ -46,50 +46,53 @@ class _SaleScreenState extends State<SaleScreen> {
         appBar: _buildAppBar(),
         floatingActionButton: _floatingActionButton(),
         body: SafeArea(
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: this.vData.map((e) {
-                List<dynamic> mData = e['transactionInfo'];
-                var mDataLength = mData.length;
-                var i = 0;
-                return Container(
-                  width: size.width,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        OverListItem(
-                          text: FormatDateUtils.dateFormat(yyyyMMdd: e[SaleKey.transactionDate].toString()),
-                          length: mData.length,
-                        ),
-                        Column(
-                          children: mData.map((item) {
-                            i += 1;
-                            return Container(
-                              decoration: mDataLength != i ? BoxDecoration(
-                                  border: Border(bottom: BorderSide(color: Color(0xCD939BA9).withOpacity(0.2), width: 1.5),)
-                              ) : null,
-                              child: _buildListTile(
-                                  transactionDate: e[SaleKey.transactionDate].toString(),
-                                  time: item[SaleKey.time].toString(),
-                                  dataItems: item
-                              ),
-                            );
-                          }).toList(),
-                        )
-                      ]
-                    ),
-                );
-              }).toList()
-            ),
-          ),
+          child: this.vData.length > 0 ? _buildBody() : CircularProgressLoading()
         ),
       ),
     );
   }
 
+  Widget _buildBody() {
+    return SingleChildScrollView(
+      child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: this.vData.map((e) {
+            List<dynamic> mData = e['transactionInfo'];
+            var mDataLength = mData.length;
+            var i = 0;
+            return Container(
+              width: size.width,
+              child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    OverListItem(
+                      text: FormatDateUtils.dateFormat(yyyyMMdd: e[SaleKey.transactionDate].toString()),
+                      length: mData.length,
+                    ),
+                    Column(
+                      children: mData.map((item) {
+                        i += 1;
+                        return Container(
+                          decoration: mDataLength != i ? BoxDecoration(
+                              border: Border(bottom: BorderSide(color: Color(0xCD939BA9).withOpacity(0.2), width: 1.5),)
+                          ) : null,
+                          child: _buildListTile(
+                              transactionDate: e[SaleKey.transactionDate].toString(),
+                              time: item[SaleKey.time].toString(),
+                              dataItems: item
+                          ),
+                        );
+                      }).toList(),
+                    )
+                  ]
+              ),
+            );
+          }).toList()
+      ),
+    );
+  }
   AppBar _buildAppBar() {
     return AppBar(
       backgroundColor: ColorsUtils.appBarBackGround(),
@@ -275,6 +278,7 @@ class _SaleScreenState extends State<SaleScreen> {
 
 
   _fetchItems() async {
+    await Future.delayed(Duration(seconds: 1));
     final data = await rootBundle.loadString('assets/json_data/sale_transaction_list.json');
     Map mapItems = jsonDecode(data);
     setState(() {

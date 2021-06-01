@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -46,15 +45,15 @@ class _StockScreenState extends State<StockScreen> {
         appBar: _buildAppBar(),
         floatingActionButton: _floatingActionButton(),
         body: SafeArea(
-          child: Column(
+          child: this.vData.length> 0 ? Column(
             children: <Widget>[
               OverListItem(
                 text: 'stock.label.stockList'.tr(),
                 length: this.vData.length,
               ),
-              this.vData.length > 0 ? _buildBody() : CircularProgressLoading()
+              _buildBody()
             ]
-          ),
+          ) : CircularProgressLoading(),
         )
       ),
     );
@@ -214,6 +213,7 @@ class _StockScreenState extends State<StockScreen> {
   }
 
   _fetchItems() async {
+    await Future.delayed(Duration(seconds: 1));
     final data = await rootBundle.loadString('assets/json_data/stock_list.json');
     Map mapItems = jsonDecode(data);
     setState(() {

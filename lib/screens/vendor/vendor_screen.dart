@@ -43,15 +43,15 @@ class _VendorScreenState extends State<VendorScreen> {
         backgroundColor: ColorsUtils.scaffoldBackgroundColor(),
         appBar: _buildAppBar(),
         body: SafeArea(
-          child: Column(
+          child: this.vData.length > 0 ? Column(
               children: <Widget>[
                 OverListItem(
                   text: 'vendor.label.vendorList'.tr(),
                   length: this.vData.length,
                 ),
-                this.vData.length > 0 ? _buildBody() : CircularProgressLoading()
+                _buildBody()
               ],
-            ),
+            ) : CircularProgressLoading(),
         ),
         floatingActionButton: _floatingActionButton()
       ),
@@ -190,6 +190,7 @@ class _VendorScreenState extends State<VendorScreen> {
   );
 
   _fetchItems() async {
+    await Future.delayed(Duration(seconds: 1));
     final data = await rootBundle.loadString('assets/json_data/vendor_list.json');
     Map mapItems = jsonDecode(data);
     setState(() {

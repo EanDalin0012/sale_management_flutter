@@ -227,6 +227,7 @@ class _ImportBodyState extends State<ImportBody> {
   }
 
   _fetchItems() async {
+    await Future.delayed(Duration(seconds: 1));
     final data = await rootBundle.loadString('assets/json_data/product_imports.json');
     Map mapItems = jsonDecode(data);
     setState(() {
@@ -236,6 +237,7 @@ class _ImportBodyState extends State<ImportBody> {
   }
 
   _fetchAllItems() async {
+    await Future.delayed(Duration(seconds: 1));
     final data = await rootBundle.loadString('assets/json_data/import_transactions.json');
     Map mapItems = jsonDecode(data);
     setState(() {

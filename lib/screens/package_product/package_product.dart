@@ -52,19 +52,19 @@ class _PackageProductScreenState extends State<PackageProductScreen> {
         backgroundColor: ColorsUtils.scaffoldBackgroundColor(),
         appBar: _buildAppBar(),
           body: SafeArea(
-            child: Column(
+            child: this.vData.length > 0 ? Column(
               children: <Widget>[
                 OverListItem(
                   text: 'packageProduct.label.packageProductList'.tr(),
                   length: this.vData.length,
                 ),
-                this.vData.length > 0 ? _buildBody() : CircularProgressLoading(),
+                _buildBody(),
                 Container(
                   color: Colors.transparent,
                   height: 60,
                 )
               ],
-            ),
+            ) : CircularProgressLoading(),
           ),
         floatingActionButton: _floatingActionButton()
       ),
@@ -293,6 +293,7 @@ class _PackageProductScreenState extends State<PackageProductScreen> {
   }
 
   _fetchItems() async {
+    await Future.delayed(Duration(seconds: 1));
     final data = await rootBundle.loadString('assets/json_data/package_of_product_list.json');
     Map mapItems = jsonDecode(data);
     setState(() {

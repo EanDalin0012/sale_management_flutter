@@ -44,15 +44,15 @@ class _CategoryScreenState extends State<CategoryScreen> {
         backgroundColor: ColorsUtils.scaffoldBackgroundColor(),
         appBar: _buildAppBar(),
         body: SafeArea(
-          child: Column(
+          child: this.vData.length > 0 ? Column(
             children: <Widget>[
               OverListItem(
                 text: 'category.label.categoryList'.tr(),
                 length: this.vData.length,
               ),
-              this.vData.length > 0 ? _buildBody() : CircularProgressLoading()
+              _buildBody()
             ],
-          ),
+          ) : CircularProgressLoading(),
         ),
         floatingActionButton: _floatingActionButton()
       ),
@@ -212,6 +212,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
   }
 
   _fetchItems() async {
+    await Future.delayed(Duration(seconds: 1));
     final data = await rootBundle.loadString('assets/json_data/category_list.json');
     Map mapItems = jsonDecode(data);
     setState(() {

@@ -48,7 +48,7 @@ class _MemberScreenState extends State<MemberScreen> {
         backgroundColor: ColorsUtils.scaffoldBackgroundColor(),
         appBar: _buildAppBar(),
         body: SafeArea(
-          child: InkWell(
+          child: this.vData.length > 0 ? InkWell(
               onTap: () {
                 KeyboardUtil.hideKeyboard(context);
               },
@@ -58,10 +58,10 @@ class _MemberScreenState extends State<MemberScreen> {
                     text: 'member.label.memberList'.tr(),
                     length: this.vData.length,
                   ),
-                  this.vData.length > 0 ? _buildBody() : CircularProgressLoading()
+                  _buildBody()
                 ],
               ),
-            ),
+            ) : CircularProgressLoading(),
         ),
         floatingActionButton: _floatingActionButton()
 
@@ -225,6 +225,7 @@ class _MemberScreenState extends State<MemberScreen> {
   }
 
   _fetchItems() async {
+    await Future.delayed(Duration(seconds: 1));
     final data = await rootBundle.loadString('assets/json_data/member_list.json');
     Map mapItems = jsonDecode(data);
     setState(() {
