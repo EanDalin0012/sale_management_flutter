@@ -1,6 +1,19 @@
+import 'dart:convert';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:sale_management/shares/constants/fonts.dart';
+import 'package:sale_management/shares/model/key/import_add_key.dart';
+import 'package:sale_management/shares/model/key/package_product_key.dart';
+import 'package:sale_management/shares/model/key/product_key.dart';
+import 'package:sale_management/shares/model/key/sale_details_key.dart';
 import 'package:sale_management/shares/utils/colors_util.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:sale_management/shares/utils/number_format.dart';
+import 'package:sale_management/shares/widgets/circular_progress_indicator/circular_progress_indicator.dart';
+import 'package:sale_management/shares/widgets/prefix_product/prefix_product.dart';
 
 class SaleDetails extends StatefulWidget {
   final Map vData;
@@ -11,6 +24,17 @@ class SaleDetails extends StatefulWidget {
 }
 
 class _SaleDetailsState extends State<SaleDetails> {
+  List<dynamic> vData = [];
+  var i = 0;
+  var total = 0.0;
+
+
+  @override
+  void initState() {
+    super.initState();
+    this._fetchItems();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -22,6 +46,11 @@ class _SaleDetailsState extends State<SaleDetails> {
         children: <Widget>[
           _widgetStack(context),
           drawerHandler(),
+          this.vData.length> 0 ? Text(
+            'import.label.totalParam'.tr(args: [FormatNumberUtils.usdFormat2Digit(widget.vData[SaleDetailsKey.total].toString()) + ' USD'.toString()]),
+            style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500, fontFamily: fontDefault, color: ColorsUtils.isDarkModeColor()),
+          ) : Container(),
+          this.vData.length> 0 ? _buildBody() : CircularProgressLoading()
         ],
       ),
     );
@@ -64,5 +93,77 @@ class _SaleDetailsState extends State<SaleDetails> {
       ),
     );
   }
+
+  Widget _buildBody() {
+    return SingleChildScrollView(
+      scrollDirection: Axis.vertical,
+      child: Container(
+        child: SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Column(
+              children: <Widget>[
+                _buildDataTable(),
+              ]
+          ),
+        ),
+      ),
+    );
+  }
+  Widget _buildDataTable() {
+    var textStyle = TextStyle(color: ColorsUtils.isDarkModeColor());
+    return DataTable(
+        columns: <DataColumn>[
+          DataColumn(
+            label: Text('import.label.no'.tr(), style: textStyle),
+          ),
+          DataColumn(
+            label: Text('import.label.product'.tr(),style: textStyle),
+          ),
+          DataColumn(
+            label: Text('import.label.quantity'.tr(), style: textStyle),
+          ),
+          DataColumn(
+            label: Text('import.label.total'.tr(), style: textStyle),
+          ),
+        ],
+        rows: this.vData.map((e) {
+          i += 1;
+          return DataRow(
+              cells: <DataCell>[
+                DataCell(Text(i.toString(), style: textStyle)),
+                DataCell(
+                    Row(
+                        children: <Widget>[
+                          Container(
+                              width: 40,
+                              height: 40,
+                              margin: EdgeInsets.only(top: 2.0, bottom: 2.0),
+                              child: PrefixProduct(url:  e[SaleDetailsKey.url].toString())),
+                          SizedBox(width: 10),
+                          Text(e[SaleDetailsKey.name].toString(), style: textStyle)
+                        ]
+                    )
+                ),
+                DataCell(Text(e[SaleDetailsKey.quantity].toString(), style: textStyle)),
+                DataCell(Text(e[SaleDetailsKey.total].toString() + ' \$', style: textStyle))
+              ]
+          );
+        }
+
+        ).toList()
+    );
+  }
+
+  _fetchItems() async {
+    await Future.delayed(Duration(seconds: 1));
+    final data = await rootBundle.loadString('assets/json_data/sale_details_of_transaction.json');
+    Map mapItems = jsonDecode(data);
+    print(mapItems.toString());
+    setState(() {
+      this.vData = mapItems['saleDetails'];
+    });
+    return this.vData;
+  }
+
 
 }
