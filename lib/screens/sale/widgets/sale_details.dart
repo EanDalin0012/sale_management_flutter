@@ -1,13 +1,9 @@
 import 'dart:convert';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sale_management/shares/constants/fonts.dart';
-import 'package:sale_management/shares/model/key/import_add_key.dart';
-import 'package:sale_management/shares/model/key/package_product_key.dart';
-import 'package:sale_management/shares/model/key/product_key.dart';
 import 'package:sale_management/shares/model/key/sale_details_key.dart';
 import 'package:sale_management/shares/utils/colors_util.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -63,7 +59,7 @@ class _SaleDetailsState extends State<SaleDetails> {
             width: double.infinity,
             height: 35.0,
             child: Center(
-                child: Text('View',
+                child: Text('sale.label.viewItems'.tr(),
                     style: TextStyle(fontWeight: FontWeight.w700, fontSize: 20, color: ColorsUtils.isDarkModeColor())
                 ) // Your desired title
             ),

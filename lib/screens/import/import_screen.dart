@@ -61,18 +61,21 @@ class _ImportScreenState extends State<ImportScreen> {
                     ],
                   ),
                 ),
-                TwoTabs(
-                  textTab0: 'Product',
-                  textTab1: "Transaction",
-                  onChanged: (tabIndex) {
-                    setState(() {
-                      if(tabIndex == 0) {
-                        this.selectedProduct = true;
-                      }else if (tabIndex == 1) {
-                        this.selectedProduct = false;
-                      }
-                    });
-                  },
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
+                  child: TwoTabs(
+                    textTab0: 'Product',
+                    textTab1: "Transaction",
+                    onChanged: (tabIndex) {
+                      setState(() {
+                        if(tabIndex == 0) {
+                          this.selectedProduct = true;
+                        }else if (tabIndex == 1) {
+                          this.selectedProduct = false;
+                        }
+                      });
+                    },
+                  ),
                 ),
                 Expanded(
                   child: ImportBody(filterByProduct: this.selectedProduct),

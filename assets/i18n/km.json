@@ -281,6 +281,31 @@
       "enterTotal": "បញ្ចូលសរុប"
     }
   },
+  "sale": {
+    "label": {
+      "sale": "លក់",
+      "saleItem": "លក់ផលិតផល",
+      "saleItemSelect": "ផលិតផលបានជ្រើសរើស",
+      "completeYourDetails": "បំពេញព័ត៌មានលម្អិតរបស់អ្នក \n សូមពិនិត្យមើលផលិតផលរបស់អ្នករួចចុចបញ្ជាក់.",
+      "customer": "អតិថិជន",
+      "member": "សមាជិក",
+      "phone": "លេខទូរសព្",
+      "viewItems": "ពិនិត្រផលិតផល",
+      "customerName": "ឈ្មោះអតិថិជន",
+      "transactionID": "លេខសម្គាល់ប្រតិបត្ដិការ",
+      "total": "សរុប"
+    },
+    "message": {
+      "pleaseEnterCustomerName": "សូមបញ្ចូលឈ្មោះអតិថិជន",
+      "pleaseEnterPhoneNumber": "សូមបញ្ចូលលេខទូរស័ព្ទ",
+      "pleaseChooseMember.": "សូមជ្រើសរើសសមាជិក"
+    },
+    "holder": {
+      "enterCustomerName": "បញ្ចូលឈ្មោះអតិថិជន",
+      "enterPhoneNumber": "បញ្ចូលលេខទូរស័ព្ទ",
+      "selectMember": "ជ្រើសរើសសមាជិក"
+    }
+  },
   "search": {
     "label": {
       "searchName": "ស្វែងរកដោយឈ្មោះ",

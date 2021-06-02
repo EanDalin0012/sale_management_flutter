@@ -28,14 +28,14 @@ class _ConfirmSaleScreenState extends State<ConfirmSaleScreen> {
       backgroundColor: ColorsUtils.scaffoldBackgroundColor(),
       appBar: _buildAppBar(),
       body: SafeArea(
-          child: ConfirmSaleBody(
-              vData: widget.vData,
-              onChanged: (items) {
-                setState(() {
-                  this.vData = items;
-                });
-              }
-          )
+              child: ConfirmSaleBody(
+                  vData: widget.vData,
+                  onChanged: (items) {
+                    setState(() {
+                      this.vData = items;
+                    });
+                  }
+              ),
       ),
     );
   }

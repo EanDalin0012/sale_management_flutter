@@ -285,10 +285,26 @@
     "label": {
       "sale": "Sale",
       "saleItem": "Sale Items",
-      "saleItemSelect": "Selected Items"
+      "saleItemSelect": "Selected Items",
+      "completeYourDetails": "Complete your details. \\n Please check your items ready then click confirm.",
+      "customer": "Customer",
+      "member": "Member",
+      "phone": "Phone",
+      "viewItems": "View Items",
+      "customerName": "Customer Name",
+      "transactionID": "Transaction ID",
+      "total": "Total"
     },
-    "message": {},
-    "holder": {}
+    "message": {
+      "pleaseEnterCustomerName": "Please enter customer name.",
+      "pleaseEnterPhoneNumber": "Please enter phone number.",
+      "pleaseChooseMember.": "Please choose member."
+    },
+    "holder": {
+      "enterCustomerName": "Enter customer name",
+      "enterPhoneNumber": "Enter phone number",
+      "selectMember": "Select member"
+    }
   },
   "search": {
     "label": {

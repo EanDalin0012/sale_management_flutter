@@ -24,8 +24,8 @@ class _TwoTabsState extends State<TwoTabs> {
 
     return Container(
         height: 50.0,
-        width: MediaQuery.of(context).size.width,
-        margin: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+        //width: MediaQuery.of(context).size.width,
+        // margin: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
         padding: EdgeInsets.symmetric(horizontal: 5.0),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(30.0),
@@ -51,6 +51,7 @@ class _TwoTabsState extends State<TwoTabs> {
                       child: SingleChildScrollView(
                         scrollDirection: Axis.horizontal,
                         child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             Text(
                               widget.textTab0,
