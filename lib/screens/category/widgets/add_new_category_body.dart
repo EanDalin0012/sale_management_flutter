@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:loading_overlay/loading_overlay.dart';
 import 'package:sale_management/screens/category/category_success_screen.dart';
 import 'package:sale_management/shares/model/key/category_key.dart';
 import 'package:sale_management/shares/statics/size_config.dart';
@@ -27,26 +28,33 @@ class _AddBewCategoryBodyState extends State<AddBewCategoryBody> {
   var labelStyle;
   var hintStyle;
   var enabledBorder;
+  bool _isLoading = false;
+
   @override
   Widget build(BuildContext context) {
     style       = InputDecorationUtils.textFormFieldStyle();
     labelStyle  = InputDecorationUtils.inputDecorationLabelStyle();
     hintStyle   = InputDecorationUtils.inputDecorationHintStyle();
     enabledBorder = InputDecorationUtils.enabledBorder();
-    return Form(
-      key: _formKey,
-        child: Column(
-            children: <Widget>[
-              _buildBody(),
-              InkWell(
-                onTap: () {
-                  KeyboardUtil.hideKeyboard(context);
-                  save();
-                },
-                child: WidgetsUtil.overlayKeyBardContainer(text: 'common.label.save'.tr())
-              )
-            ]
-        )
+    return LoadingOverlay(
+      child: Form(
+        key: _formKey,
+          child: Column(
+              children: <Widget>[
+                _buildBody(),
+                InkWell(
+                  onTap: () {
+                    KeyboardUtil.hideKeyboard(context);
+                    save();
+                  },
+                  child: WidgetsUtil.overlayKeyBardContainer(text: 'common.label.save'.tr())
+                )
+              ]
+          )
+      ),
+      isLoading: _isLoading,
+      opacity: 0.5,
+      progressIndicator: CircularProgressIndicator(),
     );
   }
 
@@ -128,17 +136,8 @@ class _AddBewCategoryBodyState extends State<AddBewCategoryBody> {
   void save() {
     this.isClickSave = true;
     if( _formKey.currentState!.validate()) {
-      print('validate');
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => CategorySuccessScreen(
-          isAddScreen: true,
-          vData: {
-            CategoryKey.name: nameController.text,
-            CategoryKey.remark: remarkController.text
-          },
-        )),
-      );
+      showOverlay();
+
     }
   }
 
@@ -146,6 +145,25 @@ class _AddBewCategoryBodyState extends State<AddBewCategoryBody> {
     if(isClickSave) {
       _formKey.currentState!.validate();
     }
+  }
+
+  Future<void> showOverlay() async {
+    setState(() {
+      _isLoading = true;
+    });
+
+    await Future.delayed(Duration(seconds: 5));
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => CategorySuccessScreen(
+        isAddScreen: true,
+        vData: {
+          CategoryKey.name: nameController.text,
+          CategoryKey.remark: remarkController.text
+        },
+      )),
+    );
   }
 
 }

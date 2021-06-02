@@ -43,6 +43,7 @@ dependencies:
   flutter_phone_direct_caller: ^2.0.0
   date_format: ^2.0.2
   device_info: ^2.0.2
+  loading_overlay: ^0.3.0
 
 dev_dependencies:
   flutter_test:
