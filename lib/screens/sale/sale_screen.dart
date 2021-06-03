@@ -300,6 +300,7 @@ class _SaleScreenState extends State<SaleScreen> {
     Map mapItems = jsonDecode(data);
     setState(() {
       this.vData = mapItems['transactionList'];
+      this.vData = [...vData, ...vData];
     });
     return this.vData;
   }

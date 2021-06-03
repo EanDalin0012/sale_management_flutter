@@ -11,7 +11,8 @@ import 'package:sale_management/shares/utils/widgets_util.dart';
 import 'package:sale_management/shares/widgets/custom_suffix_icon/custom_suffix_icon.dart';
 
 class AddNewStockBody extends StatefulWidget {
-  const AddNewStockBody({Key? key}) : super(key: key);
+  final ValueChanged<bool> onChanged;
+  const AddNewStockBody({Key? key, required this.onChanged}) : super(key: key);
 
   @override
   _AddNewStockBodyState createState() => _AddNewStockBodyState();
@@ -46,27 +47,6 @@ class _AddNewStockBodyState extends State<AddNewStockBody> {
             },
             child: WidgetsUtil.overlayKeyBardContainer(text: 'common.label.save'.tr()),
           )
-
-          // InkWell(
-          //   onTap: () {
-          //     KeyboardUtil.hideKeyboard(context);
-          //     save();
-          //   },
-          //   child: Container(
-          //     height: 45,
-          //     width: MediaQuery.of(context).size.width,
-          //     decoration: BoxDecoration(
-          //       color: ColorsUtils.buttonContainer(),
-          //       border: Border(
-          //         top: BorderSide( //                    <--- top side
-          //           color: Colors.white,
-          //           width: 0.7,
-          //         ),
-          //       ),
-          //     ),
-          //     child: Center(child: Text('common.label.save'.tr(), style: TextStyle(fontWeight: FontWeight.w700, color: ColorsUtils.buttonColorContainer(), fontSize: 18))),
-          //   ),
-          // )
         ]
       )
     );
@@ -146,8 +126,10 @@ class _AddNewStockBodyState extends State<AddNewStockBody> {
     );
   }
 
-  void save() {
+  Future<void> save() async {
+    widget.onChanged(true);
     this.isClickSave = true;
+    await Future.delayed(Duration(seconds: 10));
     if( _formKey.currentState!.validate()) {
       Navigator.push(
         context,

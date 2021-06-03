@@ -4,6 +4,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sale_management/screens/home/widgets/_build_stat_card.dart';
 import 'package:sale_management/shares/utils/device_info.dart';
+import 'package:sale_management/shares/utils/show_dialog_util.dart';
 import 'package:sale_management/shares/utils/toast_util.dart';
 
 class HomeContainer extends StatefulWidget {
@@ -28,11 +29,10 @@ class _HomeContainerState extends State<HomeContainer> {
     print('dd');
     return Column(
       children: <Widget>[
-
         RaisedButton.icon(
           onPressed: (){
             DeviceInfoUtils.initPlatformState().then((value) {
-              ToastUtils.showToast(context: value['model'] +'###'+ value.toString(), fToast: fToast);
+              ToastUtils.showToast(context: value['model'] + '%'+ value['product']+'###'+ value.toString(), fToast: fToast);
             });
           },
           shape: RoundedRectangleBorder(
@@ -42,7 +42,28 @@ class _HomeContainerState extends State<HomeContainer> {
           icon: Icon(Icons.android, color:Colors.white,),
           textColor: Colors.white,
           splashColor: Colors.red,
-          color: Colors.green,),
+          color: Colors.green
+        ),
+
+        RaisedButton.icon(
+            onPressed: (){
+              DeviceInfoUtils.initPlatformState().then((value) {
+                ShowDialogUtil.dialog(
+                    title: Text('Alert'),
+                    buildContext: context,
+                    content: Text(value.toString())
+                );
+              });
+            },
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(10.0))),
+            label: Text('Alert',
+              style: TextStyle(color: Colors.white),),
+            icon: Icon(Icons.android, color:Colors.white,),
+            textColor: Colors.white,
+            splashColor: Colors.red,
+            color: Colors.green
+        ),
 
         BuildStatCard()
       ],

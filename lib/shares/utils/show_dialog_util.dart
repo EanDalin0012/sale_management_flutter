@@ -51,6 +51,40 @@ class ShowDialogUtil {
     });
   }
 
+  static void dialog({
+    required BuildContext buildContext,
+    Widget? title,
+    required Widget content,
+    double? elevation,
+  }) {
+    showDialog(
+      context: buildContext,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          elevation:elevation,
+          title: Center(child: title),
+          content: SingleChildScrollView(
+              child: content
+          ),
+          actions: <Widget>[
+            RaisedButton.icon(
+              onPressed: (){
+                Navigator.of(context).pop(false);
+              },
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(50))),
+              label: Text('common.label.ok'.tr(),
+                style: TextStyle(color: Colors.black),),
+              icon: Icon(Icons.check_circle_outline_outlined, color:Colors.white,),
+              textColor: Colors.white,
+              splashColor: Colors.red,
+              color: Colors.green,
+            ),
+            ]
+        );
+      });
+  }
+
   static Widget _buildIconCheck() {
     return Container(
       width: 30,

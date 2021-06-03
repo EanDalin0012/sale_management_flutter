@@ -54,7 +54,14 @@ class _AddBewCategoryBodyState extends State<AddBewCategoryBody> {
       ),
       isLoading: _isLoading,
       opacity: 0.5,
-      progressIndicator: CircularProgressIndicator(),
+      progressIndicator: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          CircularProgressIndicator(),
+          SizedBox(height: SizeConfig.screenHeight * 0.02),
+          Text('Loading'),
+        ],
+      ),
     );
   }
 
@@ -152,7 +159,7 @@ class _AddBewCategoryBodyState extends State<AddBewCategoryBody> {
       _isLoading = true;
     });
 
-    await Future.delayed(Duration(seconds: 5));
+    await Future.delayed(Duration(seconds: 10));
 
     Navigator.push(
       context,
