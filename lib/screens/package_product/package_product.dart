@@ -35,12 +35,30 @@ class _PackageProductScreenState extends State<PackageProductScreen> {
   List<dynamic> vDataTmp = [];
   List<dynamic> productItems = [];
   late Map product = {};
-
+  ScrollController _scrollController = new ScrollController();
+  int vScrollInt = 0;
   @override
   void initState() {
     super.initState();
     this._fetchProductItems();
     this._fetchItems();
+      _scrollController.addListener(() {
+        print('data scroll');
+      if (_scrollController.position.pixels == _scrollController.position.maxScrollExtent) {
+        if(this.vData.length > vScrollInt) {
+          this.vScrollInt = 0;
+        } else {
+          this.vScrollInt += 1;
+        }
+        vScroll();
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
   }
 
   @override
@@ -120,14 +138,20 @@ class _PackageProductScreenState extends State<PackageProductScreen> {
   Widget _buildBody () {
     return Expanded(
         child: ListView.separated(
+          controller: this._scrollController,
           itemCount: this.vData.length,
           separatorBuilder: (context, index) => Divider(
             color: Colors.purple[900]!.withOpacity(0.5),
           ),
           itemBuilder: (context, index) {
-            return _buildListTile(
-                dataItem: this.vData[index]
-            );},
+            if (index == vData.length) {
+              return CircularProgressIndicator();
+            } else {
+              return _buildListTile(
+                  dataItem: this.vData[index]
+              );}
+            }
+
         )
     );
   }
@@ -301,6 +325,10 @@ class _PackageProductScreenState extends State<PackageProductScreen> {
       this.vDataTmp = this.vData;
     });
     return this.vData;
+  }
+
+  void vScroll() {
+    this.vData = [...vData, vData[this.vScrollInt]];
   }
 
   Future<bool> onBackPress() {
