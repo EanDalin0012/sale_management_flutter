@@ -47,6 +47,90 @@
           "total": 100.20,
           "time": "0430",
           "remark": "remark"
+        },{
+          "id": 1,
+          "transactionId": "AGA202106130430",
+          "total": 100.20,
+          "time": "0430",
+          "remark": "remark"
+        },{
+          "id": 1,
+          "transactionId": "AGA202106130430",
+          "total": 100.20,
+          "time": "0430",
+          "remark": "remark"
+        }
+      ]
+    },{
+      "transactionDate": "20210613",
+      "remark": "remark",
+      "transactionInfo": [
+        {
+          "id": 1,
+          "transactionId": "AGA202106130430",
+          "total": 100.20,
+          "time": "0430",
+          "remark": "remark"
+        },{
+          "id": 1,
+          "transactionId": "AGA202106130430",
+          "total": 100.20,
+          "time": "0430",
+          "remark": "remark"
+        },{
+          "id": 1,
+          "transactionId": "AGA202106130430",
+          "total": 100.20,
+          "time": "0430",
+          "remark": "remark"
+        }
+      ]
+    },{
+      "transactionDate": "20210613",
+      "remark": "remark",
+      "transactionInfo": [
+        {
+          "id": 1,
+          "transactionId": "AGA202106130430",
+          "total": 100.20,
+          "time": "0430",
+          "remark": "remark"
+        },{
+          "id": 1,
+          "transactionId": "AGA202106130430",
+          "total": 100.20,
+          "time": "0430",
+          "remark": "remark"
+        },{
+          "id": 1,
+          "transactionId": "AGA202106130430",
+          "total": 100.20,
+          "time": "0430",
+          "remark": "remark"
+        }
+      ]
+    },{
+      "transactionDate": "20210613",
+      "remark": "remark",
+      "transactionInfo": [
+        {
+          "id": 1,
+          "transactionId": "AGA202106130430",
+          "total": 100.20,
+          "time": "0430",
+          "remark": "remark"
+        },{
+          "id": 1,
+          "transactionId": "AGA202106130430",
+          "total": 100.20,
+          "time": "0430",
+          "remark": "remark"
+        },{
+          "id": 1,
+          "transactionId": "AGA202106130430",
+          "total": 100.20,
+          "time": "0430",
+          "remark": "remark"
         }
       ]
     }

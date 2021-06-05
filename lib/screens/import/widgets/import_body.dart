@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sale_management/shares/constants/color.dart';
 import 'package:sale_management/shares/constants/fonts.dart';
@@ -9,6 +10,8 @@ import 'package:sale_management/shares/model/key/product_import_key.dart';
 import 'package:sale_management/shares/utils/colors_util.dart';
 import 'package:sale_management/shares/utils/format_date.dart';
 import 'package:sale_management/shares/utils/number_format.dart';
+import 'package:sale_management/shares/utils/toast_util.dart';
+import 'package:sale_management/shares/widgets/infinite_scroll_loading/infinite_scroll_loading.dart';
 import 'package:sale_management/shares/widgets/over_list_item/over_list_item.dart';
 
 class ImportBody extends StatefulWidget {
@@ -24,24 +27,65 @@ class _ImportBodyState extends State<ImportBody> {
   List<dynamic> vDataProduct = [];
   List<dynamic> vDataAll = [];
   late Size size;
+  var isLoading = false;
   var color = Color.fromRGBO(58, 66, 86, 1.0);
+  ScrollController _scrollController = new ScrollController();
+  late FToast fToast;
+  var filterByProduct = false;
+  var isInitState = false;
 
   @override
   void initState() {
+    widget.filterByProduct ? _fetchItems() : _fetchAllItems();
     super.initState();
-    // widget.filterByProduct? _fetchItems() : _fetchAllItems();
+    fToast = FToast();
+    fToast.init(context);
+
+    print('filterByProduct:'+widget.filterByProduct.toString());
+    _scrollController.addListener(() {
+      double maxScroll = _scrollController.position.maxScrollExtent;
+      double currentScroll = _scrollController.position.pixels;
+      double delta = MediaQuery.of(context).size.height * 0.25;
+      if(maxScroll - currentScroll <= delta) {
+        print('filterByProduct:'+widget.filterByProduct.toString());
+        setState(() {
+          this.isLoading = true;
+        });
+        ToastUtils.showToast(context: this.vDataAll.length.toString(), fToast: fToast);
+        _fetchAllItemsByPageSize().then((value) {
+          if(value.length > 0) {
+            setState(() {
+              this.vDataAll = [...vDataAll, ...value];
+              this.isLoading = false;
+              ToastUtils.showToast(context: '_fetchAllItemsByPageSize:'+this.vDataAll.length.toString(), fToast: fToast);
+            });
+          }
+
+        });
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     size = MediaQuery.of(context).size;
-    widget.filterByProduct? _fetchItems() : _fetchAllItems();
     return SingleChildScrollView(
+      controller: _scrollController,
       // padding: EdgeInsets.only(left: 10),
       physics: ClampingScrollPhysics(),
       child: Column(
         children: <Widget>[
-          widget.filterByProduct? _buildFilterByProduct(): _buildAllTransaction()
+          widget.filterByProduct ? _buildFilterByProduct(): _buildAllTransaction(),
+          this.isLoading ==true && widget.filterByProduct == false ? InfiniteScrollLoading(): Container(
+            color: Colors.transparent,
+            height: 60,
+          )
         ],
       ),
     );
@@ -141,16 +185,6 @@ class _ImportBodyState extends State<ImportBody> {
                 text: FormatDateUtils.dateFormat(yyyyMMdd: e[ImportKey.transactionDate].toString()),
                 length: mData.length,
               ),
-
-              // Container(
-              //   color: Color(0xCD939BA9).withOpacity(0.5),
-              //   width: size.width,
-              //   padding: EdgeInsets.all(10),
-              //   child: Text(
-              //     FormatDateUtils.dateFormat(yyyyMMdd: e[ImportKey.transactionDate].toString()),
-              //     style: TextStyle(fontFamily: fontDefault, fontWeight: FontWeight.w500, fontSize: 17, color: ColorsUtils.isDarkModeColor()),
-              //   ),
-              // ),
               Column(
                 children: mData.map((item){
                   i += 1;
@@ -237,6 +271,7 @@ class _ImportBodyState extends State<ImportBody> {
   }
 
   _fetchAllItems() async {
+    print('testing');
     await Future.delayed(Duration(seconds: 1));
     final data = await rootBundle.loadString('assets/json_data/import_transactions.json');
     Map mapItems = jsonDecode(data);
@@ -244,6 +279,14 @@ class _ImportBodyState extends State<ImportBody> {
       this.vDataAll = mapItems['imports'];
     });
     return this.vDataAll;
+  }
+
+  Future<List<dynamic>> _fetchAllItemsByPageSize() async {
+    await Future.delayed(Duration(seconds: 5));
+    final data = await rootBundle.loadString('assets/json_data/import_transactions.json');
+    Map mapItems = jsonDecode(data);
+    List<dynamic> mData = mapItems['imports'];
+    return Future.value(mData);
   }
 
 }

@@ -15,6 +15,7 @@ import 'package:sale_management/shares/statics/default.dart';
 import 'package:sale_management/shares/utils/colors_util.dart';
 import 'package:sale_management/shares/utils/number_format.dart';
 import 'package:sale_management/shares/widgets/circular_progress_indicator/circular_progress_indicator.dart';
+import 'package:sale_management/shares/widgets/infinite_scroll_loading/infinite_scroll_loading.dart';
 import 'package:sale_management/shares/widgets/over_list_item/over_list_item.dart';
 import 'package:sale_management/shares/widgets/prefix_product/prefix_product.dart';
 import 'package:sale_management/shares/widgets/product_dropdown/product_dropdown.dart';
@@ -30,6 +31,8 @@ class PackageProductScreen extends StatefulWidget {
 class _PackageProductScreenState extends State<PackageProductScreen> {
   var isNative = false;
   bool isSearch = false;
+  var isLoading = false;
+  var _pageSize = 20;
   late Size size ;
   List<dynamic> vData = [];
   List<dynamic> vDataTmp = [];
@@ -43,15 +46,21 @@ class _PackageProductScreenState extends State<PackageProductScreen> {
     this._fetchProductItems();
     this._fetchItems();
       _scrollController.addListener(() {
-        print('data scroll');
-      if (_scrollController.position.pixels == _scrollController.position.maxScrollExtent) {
-        if(this.vData.length > vScrollInt) {
-          this.vScrollInt = 0;
-        } else {
-          this.vScrollInt += 1;
+        double maxScroll = _scrollController.position.maxScrollExtent;
+        double currentScroll = _scrollController.position.pixels;
+        double delta = MediaQuery.of(context).size.height * 0.25;
+        if(maxScroll - currentScroll <= delta) {
+          this._pageSize += 1;
+          setState(() {
+            this.isLoading = true;
+          });
+          this._fetchItemsByPageSize().then((value) {
+            setState(() {
+              this.vData = [...vData, ...value];
+              this.isLoading = false;
+            });
+          });
         }
-        vScroll();
-      }
     });
   }
 
@@ -77,7 +86,7 @@ class _PackageProductScreenState extends State<PackageProductScreen> {
                   length: this.vData.length,
                 ),
                 _buildBody(),
-                Container(
+                this.isLoading ==true ? InfiniteScrollLoading(): Container(
                   color: Colors.transparent,
                   height: 60,
                 )
@@ -317,7 +326,6 @@ class _PackageProductScreenState extends State<PackageProductScreen> {
   }
 
   _fetchItems() async {
-    await Future.delayed(Duration(seconds: 1));
     final data = await rootBundle.loadString('assets/json_data/package_of_product_list.json');
     Map mapItems = jsonDecode(data);
     setState(() {
@@ -325,6 +333,14 @@ class _PackageProductScreenState extends State<PackageProductScreen> {
       this.vDataTmp = this.vData;
     });
     return this.vData;
+  }
+
+  Future<List<dynamic>> _fetchItemsByPageSize() async {
+    await Future.delayed(Duration(seconds: 5));
+    final data = await rootBundle.loadString('assets/json_data/package_of_product_list.json');
+    Map mapItems = jsonDecode(data);
+    List<dynamic> _vData = mapItems['packageProducts'];
+    return Future.value(_vData);
   }
 
   void vScroll() {

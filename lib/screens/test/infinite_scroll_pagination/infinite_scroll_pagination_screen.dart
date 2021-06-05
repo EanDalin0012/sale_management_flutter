@@ -8,6 +8,7 @@ import 'package:sale_management/shares/statics/default.dart';
 import 'package:sale_management/shares/utils/colors_util.dart';
 import 'package:sale_management/shares/utils/number_format.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:sale_management/shares/widgets/infinite_scroll_loading/infinite_scroll_loading.dart';
 
 class CharacterListViewScreen extends StatefulWidget {
   const CharacterListViewScreen({Key? key}) : super(key: key);
@@ -73,7 +74,7 @@ class _CharacterListViewScreenState extends State<CharacterListViewScreen> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             _body(),
-            this.isLoading ==true ? CircularProgressIndicator() : Container(),
+            this.isLoading ==true ? InfiniteScrollLoading(): Container(),
           ],
         ),
 
@@ -128,6 +129,12 @@ class _CharacterListViewScreenState extends State<CharacterListViewScreen> {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    this._scrollController.dispose();
+    super.dispose();
   }
 
   Future<List<dynamic>> _fetchItems1() async {
