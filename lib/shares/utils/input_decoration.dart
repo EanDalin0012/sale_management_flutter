@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sale_management/shares/statics/dark_mode_color.dart';
 
 class InputDecorationUtils {
+
   static TextStyle inputDecorationLabelStyle() {
     if(DarkMode.isDarkMode == true) {
       return TextStyle(color: Colors.white);
@@ -37,5 +38,16 @@ class InputDecorationUtils {
         width: 1.0,
       ),
     );
+  }
+
+  static OutlineInputBorder focusedBorder() {
+    return OutlineInputBorder(
+      borderSide: const BorderSide(color: Colors.indigo, width: 2.0),
+      borderRadius: BorderRadius.circular(25.0),
+    );
+    // if(DarkMode.isDarkMode == true) {
+    //   return TextStyle(color: Colors.white);
+    // }
+    // return TextStyle(color: Colors.black.withOpacity(0.8));
   }
 }

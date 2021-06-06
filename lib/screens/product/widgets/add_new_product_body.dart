@@ -33,13 +33,14 @@ class _AddNewProductBodyState extends State<AddNewProductBody> {
   var labelStyle;
   var hintStyle;
   var enabledBorder;
-
+  var focusedBorder;
   @override
   Widget build(BuildContext context) {
     style       = InputDecorationUtils.textFormFieldStyle();
     labelStyle  = InputDecorationUtils.inputDecorationLabelStyle();
     hintStyle   = InputDecorationUtils.inputDecorationHintStyle();
     enabledBorder = InputDecorationUtils.enabledBorder();
+    focusedBorder = InputDecorationUtils.focusedBorder();
     return Form(
       key: _formKey,
       child: Column(
@@ -113,6 +114,7 @@ class _AddNewProductBodyState extends State<AddNewProductBody> {
         hintText: 'product.holder.enterProductName'.tr(),
         hintStyle: this.hintStyle,
         enabledBorder: this.enabledBorder,
+        focusedBorder: this.focusedBorder,
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/help_outline_black_24dp.svg"),
       ),
@@ -152,6 +154,7 @@ class _AddNewProductBodyState extends State<AddNewProductBody> {
         hintText: 'product.holder.selectCategory'.tr(),
         hintStyle: this.hintStyle ,
         enabledBorder: this.enabledBorder,
+        focusedBorder: this.focusedBorder,
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/expand_more_black_24dp.svg"),
       ),
@@ -170,6 +173,7 @@ class _AddNewProductBodyState extends State<AddNewProductBody> {
         hintText: 'product.holder.browseToImage'.tr(),
         hintStyle: this.hintStyle,
         enabledBorder: this.enabledBorder,
+        focusedBorder: this.focusedBorder,
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/attachment_black_24dp.svg"),
       ),
@@ -187,6 +191,7 @@ class _AddNewProductBodyState extends State<AddNewProductBody> {
         hintText: 'common.holder.enterRemark'.tr(),
         hintStyle: hintStyle,
         enabledBorder: enabledBorder,
+        focusedBorder: this.focusedBorder,
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/border_color_black_24dp.svg"),
       ),

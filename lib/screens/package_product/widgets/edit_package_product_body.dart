@@ -41,7 +41,7 @@ class _EditPackageProductBodyState extends State<EditPackageProductBody> {
   var labelStyle;
   var hintStyle;
   var enabledBorder;
-
+  var focusedBorder;
 
   @override
   void initState() {
@@ -59,6 +59,7 @@ class _EditPackageProductBodyState extends State<EditPackageProductBody> {
     labelStyle  = InputDecorationUtils.inputDecorationLabelStyle();
     hintStyle   = InputDecorationUtils.inputDecorationHintStyle();
     enabledBorder = InputDecorationUtils.enabledBorder();
+    focusedBorder = InputDecorationUtils.focusedBorder();
     return Form(
         key: _formKey,
         child: Column(
@@ -139,6 +140,7 @@ class _EditPackageProductBodyState extends State<EditPackageProductBody> {
         hintText: 'packageProduct.holder.enterPackageProductName'.tr(),
         hintStyle: this.hintStyle,
         enabledBorder: this.enabledBorder,
+        focusedBorder: this.focusedBorder,
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/help_outline_black_24dp.svg"),
       ),
@@ -178,6 +180,7 @@ class _EditPackageProductBodyState extends State<EditPackageProductBody> {
         hintText: 'product.label.selectProduct'.tr(),
         hintStyle: this.hintStyle,
         enabledBorder: this.enabledBorder,
+        focusedBorder: this.focusedBorder,
         floatingLabelBehavior: FloatingLabelBehavior.always,
         prefixIcon: this.product != {} ? PrefixProduct(url: this.product[ProductKey.url].toString()) : null,
         suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/expand_more_black_24dp.svg"),
@@ -203,6 +206,7 @@ class _EditPackageProductBodyState extends State<EditPackageProductBody> {
         hintText: 'packageProduct.holder.enterQuantity'.tr(),
         hintStyle: this.hintStyle,
         enabledBorder: this.enabledBorder,
+        focusedBorder: this.focusedBorder,
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/help_outline_black_24dp.svg"),
       ),
@@ -228,6 +232,7 @@ class _EditPackageProductBodyState extends State<EditPackageProductBody> {
         hintText: 'packageProduct.holder.enterPrice'.tr(),
         hintStyle: this.hintStyle,
         enabledBorder: this.enabledBorder,
+        focusedBorder: this.focusedBorder,
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/help_outline_black_24dp.svg"),
       ),
@@ -245,6 +250,7 @@ class _EditPackageProductBodyState extends State<EditPackageProductBody> {
         hintText: 'common.holder.enterRemark'.tr(),
         hintStyle: hintStyle,
         enabledBorder: enabledBorder,
+        focusedBorder: this.focusedBorder,
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/border_color_black_24dp.svg"),
       ),

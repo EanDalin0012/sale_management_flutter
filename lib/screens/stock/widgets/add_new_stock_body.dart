@@ -25,6 +25,7 @@ class _AddNewStockBodyState extends State<AddNewStockBody> {
   var labelStyle;
   var hintStyle;
   var enabledBorder;
+  var focusedBorder;
   var nameController    = new TextEditingController();
   var remarkController  = new TextEditingController();
   late Size size;
@@ -34,6 +35,7 @@ class _AddNewStockBodyState extends State<AddNewStockBody> {
     labelStyle  = InputDecorationUtils.inputDecorationLabelStyle();
     hintStyle   = InputDecorationUtils.inputDecorationHintStyle();
     enabledBorder = InputDecorationUtils.enabledBorder();
+    focusedBorder = InputDecorationUtils.focusedBorder();
     size = MediaQuery.of(context).size;
     return Form(
       key: _formKey,
@@ -104,6 +106,7 @@ class _AddNewStockBodyState extends State<AddNewStockBody> {
         hintText: 'stock.holder.enterStockName'.tr(),
         hintStyle: this.hintStyle,
         enabledBorder: this.enabledBorder,
+        focusedBorder: this.focusedBorder,
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/help_outline_black_24dp.svg"),
       ),
@@ -120,6 +123,7 @@ class _AddNewStockBodyState extends State<AddNewStockBody> {
         hintText: 'common.holder.enterRemark'.tr(),
         hintStyle: hintStyle,
         enabledBorder: enabledBorder,
+        focusedBorder: this.focusedBorder,
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/border_color_black_24dp.svg"),
       ),

@@ -32,6 +32,7 @@ class _ConfirmSaleBodyState extends State<ConfirmSaleBody> {
   var labelStyle;
   var hintStyle;
   var enabledBorder;
+  var focusedBorder;
   var remarkController = new TextEditingController();
   var customerController = new TextEditingController();
   var phoneController  =new TextEditingController();
@@ -51,7 +52,7 @@ class _ConfirmSaleBodyState extends State<ConfirmSaleBody> {
     labelStyle  = InputDecorationUtils.inputDecorationLabelStyle();
     hintStyle   = InputDecorationUtils.inputDecorationHintStyle();
     enabledBorder = InputDecorationUtils.enabledBorder();
-
+    focusedBorder = InputDecorationUtils.focusedBorder();
     if(this.member.toString() != '{}') {
       this.url = this.member[MemberKey.url].toString();
     }
@@ -156,6 +157,7 @@ class _ConfirmSaleBodyState extends State<ConfirmSaleBody> {
         hintText: 'common.holder.enterRemark'.tr(),
         hintStyle: this.hintStyle,
         enabledBorder: this.enabledBorder,
+        focusedBorder: this.focusedBorder,
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/border_color_black_24dp.svg"),
       ),
@@ -209,6 +211,7 @@ class _ConfirmSaleBodyState extends State<ConfirmSaleBody> {
         hintText: 'sale.holder.enterCustomerName'.tr(),
         hintStyle: this.hintStyle,
         enabledBorder: this.enabledBorder,
+        focusedBorder: this.focusedBorder,
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/help_outline_black_24dp.svg"),
       ),
@@ -234,6 +237,7 @@ class _ConfirmSaleBodyState extends State<ConfirmSaleBody> {
         hintText: 'sale.holder.enterPhoneNumber'.tr(),
         hintStyle: this.hintStyle,
         enabledBorder: this.enabledBorder,
+        focusedBorder: this.focusedBorder,
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/help_outline_black_24dp.svg"),
       ),
@@ -272,6 +276,7 @@ class _ConfirmSaleBodyState extends State<ConfirmSaleBody> {
         hintText: 'sale.holder.selectMember'.tr(),
         hintStyle: this.hintStyle,
         enabledBorder: this.enabledBorder,
+        focusedBorder: this.focusedBorder,
         floatingLabelBehavior: FloatingLabelBehavior.always,
         prefixIcon: TextFormFieldPrefixIcon(url: this.url),
         suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/expand_more_black_24dp.svg"),

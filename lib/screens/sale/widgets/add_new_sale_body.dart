@@ -41,6 +41,7 @@ class _AddNewSaleBodyState extends State<AddNewSaleBody> {
   var labelStyle;
   var hintStyle;
   var enabledBorder;
+  var focusedBorder;
   var packageProductController = new TextEditingController();
   var productController = new TextEditingController();
   var quantityController = new TextEditingController();
@@ -52,6 +53,7 @@ class _AddNewSaleBodyState extends State<AddNewSaleBody> {
     this.labelStyle  = InputDecorationUtils.inputDecorationLabelStyle();
     this.hintStyle   = InputDecorationUtils.inputDecorationHintStyle();
     this.enabledBorder = InputDecorationUtils.enabledBorder();
+    this.focusedBorder = InputDecorationUtils.focusedBorder();
     this.url = DefaultStatic.url;
     if(this.product.toString() != '{}') {
       this.url = this.product[ProductKey.url].toString();
@@ -154,6 +156,7 @@ class _AddNewSaleBodyState extends State<AddNewSaleBody> {
         hintText: 'product.label.selectProduct'.tr(),
         hintStyle: this.hintStyle,
         enabledBorder: this.enabledBorder,
+        focusedBorder: this.focusedBorder,
         floatingLabelBehavior: FloatingLabelBehavior.always,
         prefixIcon: this.product != {} ? TextFormFieldPrefixIcon(url: this.url) : null,
         suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/expand_more_black_24dp.svg"),
@@ -214,6 +217,7 @@ class _AddNewSaleBodyState extends State<AddNewSaleBody> {
         hintText: 'import.holder.selectPackageProduct'.tr(),
         hintStyle: this.hintStyle,
         enabledBorder: this.enabledBorder,
+        focusedBorder: this.focusedBorder,
         helperText: helperText,
         helperStyle: TextStyle(color: isSelectPackageProduct ? Colors.indigo : Colors.red),
         floatingLabelBehavior: FloatingLabelBehavior.always,
@@ -242,6 +246,7 @@ class _AddNewSaleBodyState extends State<AddNewSaleBody> {
         hintText: 'import.holder.enterQuantity'.tr(),
         hintStyle: this.hintStyle,
         enabledBorder: this.enabledBorder,
+        focusedBorder: this.focusedBorder,
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/help_outline_black_24dp.svg"),
       ),
@@ -267,6 +272,7 @@ class _AddNewSaleBodyState extends State<AddNewSaleBody> {
         hintText: 'import.holder.enterTotal'.tr(),
         hintStyle: this.hintStyle,
         enabledBorder: this.enabledBorder,
+        focusedBorder: this.focusedBorder,
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/help_outline_black_24dp.svg"),
       ),

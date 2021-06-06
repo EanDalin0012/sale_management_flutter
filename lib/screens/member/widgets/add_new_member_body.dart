@@ -31,6 +31,7 @@ class _AddNewMemberBodyState extends State<AddNewMemberBody> {
   var labelStyle;
   var hintStyle;
   var enabledBorder;
+  var focusedBorder;
   var url = DefaultStatic.personUrl;
   var returnUrl;
   @override
@@ -39,6 +40,7 @@ class _AddNewMemberBodyState extends State<AddNewMemberBody> {
     labelStyle  = InputDecorationUtils.inputDecorationLabelStyle();
     hintStyle   = InputDecorationUtils.inputDecorationHintStyle();
     enabledBorder = InputDecorationUtils.enabledBorder();
+    focusedBorder = InputDecorationUtils.focusedBorder();
     if(this.returnUrl != null) {
       this.url = this.returnUrl;
     }
@@ -115,6 +117,7 @@ class _AddNewMemberBodyState extends State<AddNewMemberBody> {
         hintText: 'member.holder.enterMemberName'.tr(),
         hintStyle: this.hintStyle,
         enabledBorder: this.enabledBorder,
+        focusedBorder: this.focusedBorder,
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/help_outline_black_24dp.svg"),
       ),
@@ -140,6 +143,7 @@ class _AddNewMemberBodyState extends State<AddNewMemberBody> {
         hintText: 'member.holder.enterPhoneNumber'.tr(),
         hintStyle: this.hintStyle,
         enabledBorder: this.enabledBorder,
+        focusedBorder: this.focusedBorder,
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/help_outline_black_24dp.svg"),
       ),
@@ -158,6 +162,7 @@ class _AddNewMemberBodyState extends State<AddNewMemberBody> {
         hintText: 'common.holder.browseToImage'.tr(),
         hintStyle: this.hintStyle,
         enabledBorder: this.enabledBorder,
+        focusedBorder: this.focusedBorder,
         floatingLabelBehavior: FloatingLabelBehavior.always,
         prefixIcon: TextFormFieldPrefixIcon(url: this.url),
         suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/attachment_black_24dp.svg"),
@@ -177,6 +182,7 @@ class _AddNewMemberBodyState extends State<AddNewMemberBody> {
         hintText: 'common.holder.enterRemark'.tr(),
         hintStyle: hintStyle,
         enabledBorder: enabledBorder,
+        focusedBorder: this.focusedBorder,
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/border_color_black_24dp.svg"),
       ),

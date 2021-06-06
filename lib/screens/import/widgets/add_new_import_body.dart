@@ -36,7 +36,7 @@ class _AddNewImportBodyState extends State<AddNewImportBody> {
   var labelStyle;
   var hintStyle;
   var enabledBorder;
-
+  var focusedBorder;
   var productController = new TextEditingController();
   var packageProductController = new TextEditingController();
   var vendorController = new TextEditingController();
@@ -57,6 +57,8 @@ class _AddNewImportBodyState extends State<AddNewImportBody> {
     labelStyle  = InputDecorationUtils.inputDecorationLabelStyle();
     hintStyle   = InputDecorationUtils.inputDecorationHintStyle();
     enabledBorder = InputDecorationUtils.enabledBorder();
+    focusedBorder = InputDecorationUtils.focusedBorder();
+
     if(this.product[ProductKey.url].toString() != 'null') {
       this.url = this.product[ProductKey.url].toString();
     }
@@ -160,6 +162,7 @@ class _AddNewImportBodyState extends State<AddNewImportBody> {
         hintText: 'import.holder.selectProduct'.tr(),
         hintStyle: this.hintStyle,
         enabledBorder: this.enabledBorder,
+        focusedBorder: this.focusedBorder,
         floatingLabelBehavior: FloatingLabelBehavior.always,
         prefixIcon: TextFormFieldPrefixIcon(url: this.url),
         suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/expand_more_black_24dp.svg"),
@@ -218,6 +221,7 @@ class _AddNewImportBodyState extends State<AddNewImportBody> {
         hintText: 'import.holder.selectPackageProduct'.tr(),
         hintStyle: this.hintStyle,
         enabledBorder: this.enabledBorder,
+        focusedBorder: this.focusedBorder,
         helperText: helperText,
         helperStyle: TextStyle(color: isSelectPackageProduct ? Colors.indigo : Colors.red),
         floatingLabelBehavior: FloatingLabelBehavior.always,
@@ -262,6 +266,7 @@ class _AddNewImportBodyState extends State<AddNewImportBody> {
         hintText: 'import.holder.selectVendor'.tr(),
         hintStyle: this.hintStyle,
         enabledBorder: this.enabledBorder,
+        focusedBorder: this.focusedBorder,
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/expand_more_black_24dp.svg"),
       ),
@@ -287,6 +292,7 @@ class _AddNewImportBodyState extends State<AddNewImportBody> {
         hintText: 'import.holder.enterQuantity'.tr(),
         hintStyle: this.hintStyle,
         enabledBorder: this.enabledBorder,
+        focusedBorder: this.focusedBorder,
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/help_outline_black_24dp.svg"),
       ),
@@ -312,6 +318,7 @@ class _AddNewImportBodyState extends State<AddNewImportBody> {
         hintText: 'import.holder.enterTotal'.tr(),
         hintStyle: this.hintStyle,
         enabledBorder: this.enabledBorder,
+        focusedBorder: this.focusedBorder,
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/help_outline_black_24dp.svg"),
       ),
@@ -329,6 +336,7 @@ class _AddNewImportBodyState extends State<AddNewImportBody> {
         hintText: 'common.holder.enterRemark'.tr(),
         hintStyle: this.hintStyle,
         enabledBorder: this.enabledBorder,
+        focusedBorder: this.focusedBorder,
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/border_color_black_24dp.svg"),
       ),

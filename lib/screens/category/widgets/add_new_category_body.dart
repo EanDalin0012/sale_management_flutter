@@ -28,6 +28,7 @@ class _AddBewCategoryBodyState extends State<AddBewCategoryBody> {
   var labelStyle;
   var hintStyle;
   var enabledBorder;
+  var focusedBorder;
   bool _isLoading = false;
 
   @override
@@ -36,6 +37,7 @@ class _AddBewCategoryBodyState extends State<AddBewCategoryBody> {
     labelStyle  = InputDecorationUtils.inputDecorationLabelStyle();
     hintStyle   = InputDecorationUtils.inputDecorationHintStyle();
     enabledBorder = InputDecorationUtils.enabledBorder();
+    focusedBorder = InputDecorationUtils.focusedBorder();
     return LoadingOverlay(
       child: Form(
         key: _formKey,
@@ -116,6 +118,7 @@ class _AddBewCategoryBodyState extends State<AddBewCategoryBody> {
         hintText: 'category.holder.enterCategoryName'.tr(),
         hintStyle: hintStyle,
         enabledBorder: enabledBorder,
+        focusedBorder: this.focusedBorder,
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/help_outline_black_24dp.svg"),
       ),
@@ -133,6 +136,7 @@ class _AddBewCategoryBodyState extends State<AddBewCategoryBody> {
         hintText: 'common.holder.enterRemark'.tr(),
         hintStyle: hintStyle,
         enabledBorder: enabledBorder,
+        focusedBorder: this.focusedBorder,
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/border_color_black_24dp.svg"),
       ),

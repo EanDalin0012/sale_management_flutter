@@ -37,6 +37,7 @@ class _AddNewPackageProductBodyState extends State<AddNewPackageProductBody> {
   var labelStyle;
   var hintStyle;
   var enabledBorder;
+  var focusedBorder;
   var url = DefaultStatic.url;
   @override
   Widget build(BuildContext context) {
@@ -44,6 +45,7 @@ class _AddNewPackageProductBodyState extends State<AddNewPackageProductBody> {
     labelStyle  = InputDecorationUtils.inputDecorationLabelStyle();
     hintStyle   = InputDecorationUtils.inputDecorationHintStyle();
     enabledBorder = InputDecorationUtils.enabledBorder();
+    focusedBorder = InputDecorationUtils.focusedBorder();
     if(this.product[ProductKey.url].toString() != 'null') {
       this.url = this.product[ProductKey.url].toString();
     }
@@ -126,6 +128,7 @@ class _AddNewPackageProductBodyState extends State<AddNewPackageProductBody> {
         hintText: 'packageProduct.holder.enterPackageProductName'.tr(),
         hintStyle: this.hintStyle,
         enabledBorder: this.enabledBorder,
+        focusedBorder: this.focusedBorder,
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/help_outline_black_24dp.svg"),
       ),
@@ -165,6 +168,7 @@ class _AddNewPackageProductBodyState extends State<AddNewPackageProductBody> {
         hintText: 'product.label.selectProduct'.tr(),
         hintStyle: this.hintStyle,
         enabledBorder: this.enabledBorder,
+        focusedBorder: this.focusedBorder,
         floatingLabelBehavior: FloatingLabelBehavior.always,
         prefixIcon: this.product != {} ? TextFormFieldPrefixIcon(url: this.url) : null,
         suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/expand_more_black_24dp.svg"),
@@ -190,6 +194,7 @@ class _AddNewPackageProductBodyState extends State<AddNewPackageProductBody> {
         hintText: 'packageProduct.holder.enterQuantity'.tr(),
         hintStyle: this.hintStyle,
         enabledBorder: this.enabledBorder,
+        focusedBorder: this.focusedBorder,
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/help_outline_black_24dp.svg"),
       ),
@@ -215,6 +220,7 @@ class _AddNewPackageProductBodyState extends State<AddNewPackageProductBody> {
         hintText: 'packageProduct.holder.enterPrice'.tr(),
         hintStyle: this.hintStyle,
         enabledBorder: this.enabledBorder,
+        focusedBorder: this.focusedBorder,
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/help_outline_black_24dp.svg"),
       ),
@@ -232,6 +238,7 @@ class _AddNewPackageProductBodyState extends State<AddNewPackageProductBody> {
         hintText: 'common.holder.enterRemark'.tr(),
         hintStyle: hintStyle,
         enabledBorder: enabledBorder,
+        focusedBorder: this.focusedBorder,
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/border_color_black_24dp.svg"),
       ),

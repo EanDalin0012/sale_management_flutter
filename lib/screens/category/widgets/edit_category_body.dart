@@ -31,7 +31,7 @@ class _EditCategoryBodyState extends State<EditCategoryBody> {
   var labelStyle;
   var hintStyle;
   var enabledBorder;
-
+  var focusedBorder;
   @override
   void initState() {
     super.initState();
@@ -44,6 +44,7 @@ class _EditCategoryBodyState extends State<EditCategoryBody> {
     labelStyle    = InputDecorationUtils.inputDecorationLabelStyle();
     hintStyle     = InputDecorationUtils.inputDecorationHintStyle();
     enabledBorder = InputDecorationUtils.enabledBorder();
+    focusedBorder = InputDecorationUtils.focusedBorder();
     return Form(
         key: _formKey,
         child: Column(
@@ -111,6 +112,7 @@ class _EditCategoryBodyState extends State<EditCategoryBody> {
         hintText: 'category.holder.enterCategoryName'.tr(),
         hintStyle: hintStyle,
         enabledBorder: enabledBorder,
+        focusedBorder: this.focusedBorder,
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/help_outline_black_24dp.svg"),
       ),
@@ -128,6 +130,7 @@ class _EditCategoryBodyState extends State<EditCategoryBody> {
         hintText: 'common.holder.enterRemark'.tr(),
         hintStyle: hintStyle,
         enabledBorder: enabledBorder,
+        focusedBorder: this.focusedBorder,
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/border_color_black_24dp.svg"),
       ),

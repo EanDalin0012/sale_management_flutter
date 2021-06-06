@@ -25,7 +25,7 @@ class _EditVendorBodyState extends State<EditVendorBody> {
   var labelStyle;
   var hintStyle;
   var enabledBorder;
-
+  var focusedBorder;
   var emailController = new TextEditingController();
   var nameController = new TextEditingController();
   var phoneController = new TextEditingController();
@@ -47,7 +47,7 @@ class _EditVendorBodyState extends State<EditVendorBody> {
     labelStyle  = InputDecorationUtils.inputDecorationLabelStyle();
     hintStyle   = InputDecorationUtils.inputDecorationHintStyle();
     enabledBorder = InputDecorationUtils.enabledBorder();
-
+    focusedBorder = InputDecorationUtils.focusedBorder();
     return Form(
         key: _formKey,
         child: Column(
@@ -121,6 +121,7 @@ class _EditVendorBodyState extends State<EditVendorBody> {
         hintText: 'vendor.holder.enterVendorName'.tr(),
         hintStyle: this.hintStyle,
         enabledBorder: this.enabledBorder,
+        focusedBorder: this.focusedBorder,
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/help_outline_black_24dp.svg"),
       ),
@@ -146,6 +147,7 @@ class _EditVendorBodyState extends State<EditVendorBody> {
         hintText: 'vendor.holder.enterPhoneNumber'.tr(),
         hintStyle: this.hintStyle,
         enabledBorder: this.enabledBorder,
+        focusedBorder: this.focusedBorder,
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/help_outline_black_24dp.svg"),
       ),
@@ -163,6 +165,8 @@ class _EditVendorBodyState extends State<EditVendorBody> {
         labelStyle: this.labelStyle,
         hintText: 'vendor.holder.enterEmail'.tr(),
         hintStyle: this.hintStyle,
+        enabledBorder: this.enabledBorder,
+        focusedBorder: this.focusedBorder,
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/mail_black_24dp.svg"),
       ),
@@ -180,6 +184,7 @@ class _EditVendorBodyState extends State<EditVendorBody> {
         hintText: 'common.holder.enterRemark'.tr(),
         hintStyle: hintStyle,
         enabledBorder: enabledBorder,
+        focusedBorder: this.focusedBorder,
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/border_color_black_24dp.svg"),
       ),

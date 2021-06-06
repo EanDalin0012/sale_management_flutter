@@ -27,6 +27,7 @@ class _ConfirmImportBodyState extends State<ConfirmImportBody> {
   var labelStyle;
   var hintStyle;
   var enabledBorder;
+  var focusedBorder;
   var remarkController = new TextEditingController();
 
   @override
@@ -35,7 +36,7 @@ class _ConfirmImportBodyState extends State<ConfirmImportBody> {
     labelStyle  = InputDecorationUtils.inputDecorationLabelStyle();
     hintStyle   = InputDecorationUtils.inputDecorationHintStyle();
     enabledBorder = InputDecorationUtils.enabledBorder();
-
+    focusedBorder = InputDecorationUtils.focusedBorder();
     return Column(
         children: <Widget>[
           Center(
@@ -79,6 +80,7 @@ class _ConfirmImportBodyState extends State<ConfirmImportBody> {
         hintText: 'common.holder.enterRemark'.tr(),
         hintStyle: this.hintStyle,
         enabledBorder: this.enabledBorder,
+        focusedBorder: this.focusedBorder,
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/border_color_black_24dp.svg"),
       ),

@@ -25,6 +25,7 @@ class _EditStockBodyState extends State<EditStockBody> {
   var labelStyle;
   var hintStyle;
   var enabledBorder;
+  var focusedBorder;
   var nameController    = new TextEditingController();
   var remarkController  = new TextEditingController();
 
@@ -42,7 +43,7 @@ class _EditStockBodyState extends State<EditStockBody> {
     labelStyle  = InputDecorationUtils.inputDecorationLabelStyle();
     hintStyle   = InputDecorationUtils.inputDecorationHintStyle();
     enabledBorder = InputDecorationUtils.enabledBorder();
-
+    focusedBorder = InputDecorationUtils.focusedBorder();
     return Form(
         key: _formKey,
         child: Column(
@@ -112,6 +113,7 @@ class _EditStockBodyState extends State<EditStockBody> {
         hintText: 'stock.holder.enterStockName'.tr(),
         hintStyle: this.hintStyle,
         enabledBorder: this.enabledBorder,
+        focusedBorder: this.focusedBorder,
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/help_outline_black_24dp.svg"),
       ),
@@ -128,6 +130,7 @@ class _EditStockBodyState extends State<EditStockBody> {
         hintText: 'common.holder.enterRemark'.tr(),
         hintStyle: hintStyle,
         enabledBorder: enabledBorder,
+        focusedBorder: this.focusedBorder,
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/border_color_black_24dp.svg"),
       ),
