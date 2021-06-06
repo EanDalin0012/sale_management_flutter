@@ -16,7 +16,7 @@ class ToastUtils {
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(Icons.check),
+            Icon(Icons.check, color: ColorsUtils.iConColor(),),
             SizedBox(
               width: 12.0,
             ),

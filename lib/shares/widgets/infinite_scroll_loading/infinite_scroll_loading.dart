@@ -16,7 +16,7 @@ class InfiniteScrollLoading extends StatelessWidget {
           ),
           Text('Loading'),
           SizedBox(
-            height: 5,
+            height: 15,
           )
         ]
     );

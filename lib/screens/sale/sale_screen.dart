@@ -15,6 +15,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:sale_management/shares/utils/format_date.dart';
 import 'package:sale_management/shares/utils/number_format.dart';
 import 'package:sale_management/shares/widgets/circular_progress_indicator/circular_progress_indicator.dart';
+import 'package:sale_management/shares/widgets/infinite_scroll_loading/infinite_scroll_loading.dart';
 import 'package:sale_management/shares/widgets/over_list_item/over_list_item.dart';
 import 'package:sale_management/shares/widgets/search_widget/search_widget.dart';
 
@@ -31,12 +32,29 @@ class _SaleScreenState extends State<SaleScreen> {
   var isNative = false;
   late Size size ;
   List<dynamic> vData = [];
-
+  ScrollController _scrollController = new ScrollController();
+  var isLoading = false;
 
   @override
   void initState() {
     super.initState();
     this._fetchItems();
+    this._scrollController.addListener(() {
+      double maxScroll = _scrollController.position.maxScrollExtent;
+      double currentScroll = _scrollController.position.pixels;
+      double delta = MediaQuery.of(context).size.height * 0.25;
+      if(maxScroll - currentScroll <= delta) {
+        setState(() {
+          this.isLoading = true;
+        });
+        this._fetchItemsByPageSize().then((value) {
+          setState(() {
+            this.vData = [...vData, ...value];
+            this.isLoading = false;
+          });
+        });
+      }
+    });
   }
 
   @override
@@ -49,7 +67,17 @@ class _SaleScreenState extends State<SaleScreen> {
         appBar: _buildAppBar(),
         floatingActionButton: _floatingActionButton(),
         body: SafeArea(
-          child: this.vData.length > 0 ? _buildBody() : CircularProgressLoading()
+          child: SingleChildScrollView(
+            controller: _scrollController,
+            child: Column(children: <Widget>[
+              this.vData.length > 0 ? _buildBody() : CircularProgressLoading(),
+              this.isLoading == true ? InfiniteScrollLoading(): Container(
+                color: Colors.transparent,
+                height: 60,
+              )
+            ]),
+          ),
+
         ),
       ),
     );
@@ -88,7 +116,7 @@ class _SaleScreenState extends State<SaleScreen> {
                           ),
                         );
                       }).toList(),
-                    )
+                    ),
                   ]
               ),
             );
@@ -303,6 +331,15 @@ class _SaleScreenState extends State<SaleScreen> {
       this.vData = [...vData, ...vData];
     });
     return this.vData;
+  }
+
+  Future<List<dynamic>> _fetchItemsByPageSize() async {
+    await Future.delayed(Duration(seconds: 5));
+    final data = await rootBundle.loadString('assets/json_data/sale_transaction_list.json');
+    Map mapItems = jsonDecode(data);
+
+    List<dynamic> _vData = mapItems['transactionList'];
+    return Future.value(_vData);
   }
 
 }
