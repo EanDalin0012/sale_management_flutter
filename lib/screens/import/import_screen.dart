@@ -14,7 +14,6 @@ import 'package:sale_management/shares/utils/format_date.dart';
 import 'package:sale_management/shares/utils/keyboard_util.dart';
 import 'package:sale_management/shares/utils/number_format.dart';
 import 'package:sale_management/shares/utils/text_style_util.dart';
-import 'package:sale_management/shares/utils/toast_util.dart';
 import 'package:sale_management/shares/widgets/circular_progress_indicator/circular_progress_indicator.dart';
 import 'package:sale_management/shares/widgets/infinite_scroll_loading/infinite_scroll_loading.dart';
 import 'package:sale_management/shares/widgets/over_list_item/over_list_item.dart';
@@ -87,16 +86,10 @@ class _ImportScreenState extends State<ImportScreen> {
                 Center(
                   child: Column(
                     children: <Widget>[// 4%
-                      Text("Import Product", style: TextStyleUtils.headingStyle()),
-                      this.selectedProduct ? Center(
-                        child: Text(
-                          "All Product Import.",
-                          textAlign: TextAlign.center,
-                        ),
-                      ) :
+                      Text('import.label.importProduct'.tr(), style: TextStyleUtils.headingStyle()),
                       Center(
                         child: Text(
-                          "All Transaction Import.",
+                          'import.label.allTransactionImport'.tr(),
                           textAlign: TextAlign.center,
                         ),
                       ),

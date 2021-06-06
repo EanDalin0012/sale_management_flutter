@@ -48,10 +48,12 @@ class _SaleScreenState extends State<SaleScreen> {
           this.isLoading = true;
         });
         this._fetchItemsByPageSize().then((value) {
-          setState(() {
-            this.vData = [...vData, ...value];
-            this.isLoading = false;
-          });
+          if(value.length > 0) {
+            setState(() {
+              this.vData = [...vData, ...value];
+              this.isLoading = false;
+            });
+          }
         });
       }
     });
@@ -110,8 +112,8 @@ class _SaleScreenState extends State<SaleScreen> {
                               border: Border(bottom: BorderSide(color: Color(0xCD939BA9).withOpacity(0.2), width: 1.5),)
                           ) : null,
                           child: _buildListTile(
-                              transactionDate: e[SaleKey.transactionDate].toString(),
-                              time: item[SaleKey.time].toString(),
+                              transactionDate: FormatDateUtils.dateFormat(yyyyMMdd: e[SaleKey.transactionDate].toString()),
+                              time: e[SaleKey.transactionDate].toString().substring(8, 12),
                               dataItems: item
                           ),
                         );
@@ -183,6 +185,14 @@ class _SaleScreenState extends State<SaleScreen> {
     required String time,
     required Map dataItems
   }) {
+    Map json = {
+      SaleKey.phoneNumber: dataItems[SaleKey.phoneNumber],
+      SaleKey.customerName: dataItems[SaleKey.customerName],
+      SaleKey.transactionId: dataItems[SaleKey.transactionId],
+      SaleKey.transactionDate: transactionDate + ' ' + FormatDateUtils.dateTime(hhnn: time),
+      SaleKey.time: time,
+      SaleKey.total: FormatNumberUtils.usdFormat2Digit(dataItems[SaleKey.total].toString()).toString()
+    };
     return ListTile(
       leading: _buildLeading(),
       title: Text(
@@ -190,7 +200,7 @@ class _SaleScreenState extends State<SaleScreen> {
         style: TextStyle(color: ColorsUtils.isDarkModeColor(), fontWeight: FontWeight.w500, fontFamily: fontDefault),
       ),
       subtitle: Text(
-        FormatDateUtils.dateTime(hhnn: time),
+        dataItems[SaleKey.remark] + ',' +FormatDateUtils.dateTime(hhnn: time),
         style: TextStyle(fontFamily: fontDefault, fontWeight: FontWeight.w500, fontSize: 15, color: primaryColor),
       ),
       trailing: Container(
@@ -205,7 +215,7 @@ class _SaleScreenState extends State<SaleScreen> {
               SizedBox(width: 10,),
               Container(
                 width: 10,
-                child: _offsetPopup(dataItems),
+                child: _offsetPopup(json),
               )
             ]
         ),

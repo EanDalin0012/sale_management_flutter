@@ -3,8 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:sale_management/shares/constants/fonts.dart';
 import 'package:sale_management/shares/model/key/sale_details_key.dart';
+import 'package:sale_management/shares/model/key/sale_key.dart';
 import 'package:sale_management/shares/utils/colors_util.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:sale_management/shares/utils/number_format.dart';
@@ -23,8 +23,8 @@ class _SaleDetailsState extends State<SaleDetails> {
   List<dynamic> vData = [];
   var i = 0;
   var total = 0.0;
-
-
+  var style;
+  double sizedBoxHeight = 10.0;
   @override
   void initState() {
     super.initState();
@@ -33,20 +33,103 @@ class _SaleDetailsState extends State<SaleDetails> {
 
   @override
   Widget build(BuildContext context) {
+    this.style = TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: ColorsUtils.isDarkModeColor());
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
         color: ColorsUtils.scaffoldBackgroundColor()
       ),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          _widgetStack(context),
-          drawerHandler(),
-          this.vData.length> 0 ? Text(
-            'import.label.totalParam'.tr(args: [FormatNumberUtils.usdFormat2Digit(widget.vData[SaleDetailsKey.total].toString()) + ' USD'.toString()]),
-            style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500, fontFamily: fontDefault, color: ColorsUtils.isDarkModeColor()),
-          ) : Container(),
-          this.vData.length> 0 ? _buildBody() : CircularProgressLoading()
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              _widgetStack(context),
+              drawerHandler(),
+            ],
+          ),
+          Padding(
+            padding: EdgeInsets.only(left: 15, right: 15),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                 children: <Widget>[
+                   Container(
+                     child: Text('sale.label.transactionID'.tr()+ ' :', style: style),
+                   ),
+                   Text(
+                     widget.vData[SaleKey.transactionId],
+                     style: style,
+                   ),
+                 ],
+                ),
+                SizedBox(height: this.sizedBoxHeight),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Container(
+                      child: Text('sale.label.total'.tr()+ ' :', style: style),
+                    ),
+                    Text(
+                      FormatNumberUtils.usdFormat2Digit(widget.vData[SaleDetailsKey.total].toString()) + ' USD'.toString(),
+                      style: style,
+                    ),
+                  ],
+                ),
+                SizedBox(height: this.sizedBoxHeight),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Container(
+                      child: Text('sale.label.customerName'.tr()+ ' :', style: style),
+                    ),
+                    Text(
+                      widget.vData[SaleKey.customerName].toString(),
+                      style: style,
+                    ),
+                  ],
+                ),
+                SizedBox(height: this.sizedBoxHeight),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Container(
+                      child: Text('sale.label.phone'.tr()+ ' :', style: style),
+                    ),
+                    Text(
+                      widget.vData[SaleKey.phoneNumber].toString(),
+                      style: style,
+                    ),
+                  ],
+                ),
+                SizedBox(height: this.sizedBoxHeight),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Container(
+                      child: Text('sale.label.transactionDate'.tr()+ ' :', style: style),
+                    ),
+                    Text(
+                      widget.vData[SaleKey.transactionDate],
+                      style: style,
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          SizedBox(height: 20),
+          Center(
+            child: Text('sale.label.sellProduct'.tr()+ ' :'),
+          ),
+          this.vData.length> 0 ? _buildBody() : CircularProgressLoading(),
+
         ],
       ),
     );
@@ -59,7 +142,7 @@ class _SaleDetailsState extends State<SaleDetails> {
             width: double.infinity,
             height: 35.0,
             child: Center(
-                child: Text('sale.label.viewItems'.tr(),
+                child: Text('sale.label.saleDetails'.tr(),
                     style: TextStyle(fontWeight: FontWeight.w700, fontSize: 20, color: ColorsUtils.isDarkModeColor())
                 ) // Your desired title
             ),
@@ -91,6 +174,7 @@ class _SaleDetailsState extends State<SaleDetails> {
   }
 
   Widget _buildBody() {
+    i = 0;
     return SingleChildScrollView(
       scrollDirection: Axis.vertical,
       child: Container(

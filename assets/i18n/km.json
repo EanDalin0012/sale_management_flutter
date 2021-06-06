@@ -262,7 +262,9 @@
       "totalParam": "តម្លៃ {}",
       "price": "តម្លៃ",
       "no": "លេខរៀង",
-      "action": "សកម្មភាព"
+      "action": "សកម្មភាព",
+      "importProduct": "នាំចូលផលិតផល",
+      "allTransactionImport": "រាល់ប្រតិបត្តិការនាំចូលទាំងអស់"
     },
     "message": {
       "pleaseEnterQuantity": "សូមបញ្ចូលចំនួន",
@@ -293,7 +295,10 @@
       "viewItems": "ពិនិត្រផលិតផល",
       "customerName": "ឈ្មោះអតិថិជន",
       "transactionID": "លេខសម្គាល់ប្រតិបត្ដិការ",
-      "total": "សរុប"
+      "total": "សរុប",
+      "saleDetails": "ព័ត៌មានលម្អិតការលក់",
+      "transactionDate": "ថ្ងៃធ្វើប្រតិបត្តិការ",
+      "sellProduct": "ផលិតផលដែលបានលក់"
     },
     "message": {
       "pleaseEnterCustomerName": "សូមបញ្ចូលឈ្មោះអតិថិជន",

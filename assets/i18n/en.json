@@ -263,7 +263,9 @@
       "totalParam": "Total {}",
       "price": "Price",
       "no": "No",
-      "action": "Action"
+      "action": "Action",
+      "importProduct": "Import Product",
+      "allTransactionImport": "All Transaction Import"
     },
     "message": {
       "pleaseEnterQuantity": "please enter quantity.",
@@ -290,11 +292,14 @@
       "completeYourDetails": "Complete your details. \\n Please check your items ready then click confirm.",
       "customer": "Customer",
       "member": "Member",
-      "phone": "Phone",
+      "phone": "Phone Number",
       "viewItems": "View Items",
       "customerName": "Customer Name",
       "transactionID": "Transaction ID",
-      "total": "Total"
+      "total": "Total",
+      "saleDetails": "Sale details",
+      "transactionDate": "Transaction Date",
+      "sellProduct": "Sell Product"
     },
     "message": {
       "pleaseEnterCustomerName": "Please enter customer name.",
@@ -312,14 +317,5 @@
       "searchName": "Search name",
       "search": "Search"
     }
-  },
-  "title": "test",
-  "day": {
-    "zero": "{} days",
-    "one": "{} day",
-    "two": "{} days",
-    "few": "{} few days",
-    "many": "{} many days",
-    "other": "{} other days"
   }
 }
