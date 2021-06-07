@@ -36,7 +36,7 @@ class _AddNewSaleScreenState extends State<AddNewSaleScreen> {
 
   AppBar _buildAppBar() {
     return AppBar(
-        title: Text('sale.label.sale'.tr(), style: TextStyle(fontFamily: fontDefault, fontWeight: FontWeight.w700, color: ColorsUtils.isDarkModeColor())),
+        title: Text('sale.label.sale'.tr()),
         backgroundColor: ColorsUtils.appBarBackGround(),
         elevation: DefaultStatic.elevationAppBar,
         actions: <Widget>[

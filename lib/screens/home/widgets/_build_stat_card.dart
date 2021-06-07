@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -15,7 +14,7 @@ class BuildStatCard extends StatefulWidget {
 
 class _BuildStatCardState extends State<BuildStatCard> {
   List<dynamic> vData = [];
-
+  int i = 0;
 
   @override
   void initState() {
@@ -23,18 +22,76 @@ class _BuildStatCardState extends State<BuildStatCard> {
     _fetchItems();
   }
 
+  List<Color> _colors = [
+    Colors.green,
+    Colors.lightBlue,
+    Colors.purple,
+    Colors.green,
+    Colors.red,
+    Colors.yellow,
+    Colors.blue,
+  ];
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: MediaQuery.of(context).size.height * 0.3,
-      width: MediaQuery.of(context).size.width,
+    var length = this.vData.length;
+    this.i = 0;
+    double h = MediaQuery.of(context).size.height * 0.22;
+    if(length > 2) {
+      h = MediaQuery.of(context).size.height * 0.44;
+    }
+
+    return this.vData.length > 0 ? Container(
       margin: EdgeInsets.all(10.0),
+      padding: EdgeInsets.all(5.0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15.0),
         border: Border.all(color: Color(0xFFe4e6eb), width: 6.0),
       ),
-      child:  this.vData.length > 0 ? _widget(): Container()
-    );
+      child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Text('Sell Product'),
+              Container(
+                height: h,
+                width: MediaQuery.of(context).size.width,
+                child: GridView.builder(
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                    ),
+                    itemCount: this.vData.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      this.i = index;
+                      print('ii:'+this._colors.length.toString());
+                      print('i:'+this.i.toString());
+                      if(this.i > this._colors.length - 1) {
+                        this.i = 0;
+                      }
+
+                      return Container(
+                        width: 200,
+                        height: 40,
+                        margin: EdgeInsets.all(10.0),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10.0),
+                          color: this._colors[i],
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: <Widget>[
+                            Text(this.vData[index][ProductKey.name].toString()),
+                            Text('100'),
+                            Text('1000 USD')
+                          ],
+                        ),
+                      );
+                    }
+                ),
+              ),
+            ]
+        ),
+    ): Container();
   }
 
   Widget _widget() {
@@ -61,7 +118,7 @@ class _BuildStatCardState extends State<BuildStatCard> {
     );
   }
 
-  Widget _buildBody() {
+  Widget _buildBody1() {
     return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[

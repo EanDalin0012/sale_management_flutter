@@ -1,12 +1,8 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:sale_management/screens/home/widgets/_build_stat_card.dart';
-import 'package:sale_management/screens/test/infinite_scroll_pagination/infinite_scroll_pagination_screen.dart';
 import 'package:sale_management/shares/utils/device_info.dart';
 import 'package:sale_management/shares/utils/show_dialog_util.dart';
-import 'package:sale_management/shares/utils/toast_util.dart';
 
 class HomeContainer extends StatefulWidget {
   const HomeContainer({Key ? key}) : super(key: key);
@@ -30,22 +26,7 @@ class _HomeContainerState extends State<HomeContainer> {
     print('dd');
     return Column(
       children: <Widget>[
-        RaisedButton.icon(
-          onPressed: (){
-            DeviceInfoUtils.initPlatformState().then((value) {
-              ToastUtils.showToast(context: value['model'] + '%'+ value['product']+'###'+ value.toString(), fToast: fToast);
-            });
-          },
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(10.0))),
-          label: Text('Button With Left Icon',
-            style: TextStyle(color: Colors.white),),
-          icon: Icon(Icons.android, color:Colors.white,),
-          textColor: Colors.white,
-          splashColor: Colors.red,
-          color: Colors.green
-        ),
-
+        BuildStatCard(),
         RaisedButton.icon(
             onPressed: (){
               DeviceInfoUtils.initPlatformState().then((value) {
@@ -66,25 +47,26 @@ class _HomeContainerState extends State<HomeContainer> {
             color: Colors.green
         ),
 
-        RaisedButton.icon(
-            onPressed: (){
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => CharacterListViewScreen()),
-              );
-            },
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(10.0))),
-            label: Text('CharacterListViewScreen',
-              style: TextStyle(color: Colors.white),),
-            icon: Icon(Icons.android, color:Colors.white,),
-            textColor: Colors.white,
-            splashColor: Colors.red,
-            color: Colors.green
-        ),
-
-        BuildStatCard()
       ],
+    );
+  }
+
+  Widget myWidget(BuildContext context) {
+    return MediaQuery.removePadding(
+      context: context,
+      removeTop: true,
+      child: GridView.builder(
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 3,
+          ),
+          itemCount: 300,
+          itemBuilder: (BuildContext context, int index) {
+            return Card(
+              color: Colors.amber,
+              child: Center(child: Text('$index')),
+            );
+          }
+      ),
     );
   }
 }

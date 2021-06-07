@@ -126,7 +126,12 @@ class _SaleDetailsState extends State<SaleDetails> {
           ),
           SizedBox(height: 20),
           Center(
-            child: Text('sale.label.sellProduct'.tr()),
+            child: Text(
+                'sale.label.sellProduct'.tr(),
+                style: TextStyle(
+                  decoration: TextDecoration.underline,
+                ),
+            ),
           ),
           this.vData.length> 0 ? _buildBody() : CircularProgressLoading(),
 
