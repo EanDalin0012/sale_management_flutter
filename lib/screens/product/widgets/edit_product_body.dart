@@ -14,6 +14,7 @@ import 'package:sale_management/shares/widgets/custom_suffix_icon/custom_suffix_
 
 class EditProductBody extends StatefulWidget {
   final Map vData;
+
   const EditProductBody({Key? key, required this.vData}) : super(key: key);
 
   @override
@@ -21,7 +22,7 @@ class EditProductBody extends StatefulWidget {
 }
 
 class _EditProductBodyState extends State<EditProductBody> {
-  final _formKey  = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>();
   var isClickSave = false;
 
   var nameController = new TextEditingController();
@@ -41,16 +42,16 @@ class _EditProductBodyState extends State<EditProductBody> {
     super.initState();
     this.nameController.text = widget.vData[ProductKey.name].toString();
     this.remarkController.text = widget.vData[ProductKey.remark].toString();
-    this.browController.text   = widget.vData[ProductKey.browse].toString();
+    this.browController.text = widget.vData[ProductKey.browse].toString();
     // this.categoryMap = widget.vData[ProductKey.category];
     this.categoryController.text = widget.vData[ProductKey.category].toString();
   }
 
   @override
   Widget build(BuildContext context) {
-    style       = InputDecorationUtils.textFormFieldStyle();
-    labelStyle  = InputDecorationUtils.inputDecorationLabelStyle();
-    hintStyle   = InputDecorationUtils.inputDecorationHintStyle();
+    style = InputDecorationUtils.textFormFieldStyle();
+    labelStyle = InputDecorationUtils.inputDecorationLabelStyle();
+    hintStyle = InputDecorationUtils.inputDecorationHintStyle();
     enabledBorder = InputDecorationUtils.enabledBorder();
     focusedBorder = InputDecorationUtils.focusedBorder();
     return Form(
@@ -59,11 +60,12 @@ class _EditProductBodyState extends State<EditProductBody> {
         children: <Widget>[
           _buildBody(),
           InkWell(
-            onTap: () {
-              KeyboardUtil.hideKeyboard(context);
-              mySave();
-            },
-            child: WidgetsUtil.overlayKeyBardContainer(text: 'common.label.update'.tr())
+              onTap: () {
+                KeyboardUtil.hideKeyboard(context);
+                mySave();
+              },
+              child: WidgetsUtil.overlayKeyBardContainer(
+                  text: 'common.label.update'.tr())
           )
         ],
       ),
@@ -73,7 +75,8 @@ class _EditProductBodyState extends State<EditProductBody> {
   Widget _buildBody() {
     return Expanded(
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
+        padding: EdgeInsets.symmetric(
+            horizontal: getProportionateScreenWidth(20)),
         child: SingleChildScrollView(
           physics: ClampingScrollPhysics(),
           child: Column(
@@ -82,7 +85,8 @@ class _EditProductBodyState extends State<EditProductBody> {
                 child: Column(
                   children: <Widget>[
                     SizedBox(height: SizeConfig.screenHeight * 0.04), // 4%
-                    Text('product.label.updateProduct'.tr(), style: TextStyleUtils.headingStyle()),
+                    Text('product.label.updateProduct'.tr(),
+                        style: TextStyleUtils.headingStyle()),
                     Text(
                       'common.label.completeYourDetails'.tr(),
                       textAlign: TextAlign.center,
@@ -128,7 +132,8 @@ class _EditProductBodyState extends State<EditProductBody> {
         enabledBorder: this.enabledBorder,
         focusedBorder: this.focusedBorder,
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/help_outline_black_24dp.svg"),
+        suffixIcon: CustomSuffixIcon(svgPaddingLeft: 15,
+            svgIcon: "assets/icons/help_outline_black_24dp.svg"),
       ),
     );
   }
@@ -138,9 +143,10 @@ class _EditProductBodyState extends State<EditProductBody> {
       onTap: () async {
         final category = await Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => CategoryDropdownPage(vCategory: this.categoryMap,)),
+          MaterialPageRoute(builder: (context) =>
+              CategoryDropdownPage(vCategory: this.categoryMap,)),
         );
-        if(category == null) {
+        if (category == null) {
           return;
         }
         setState(() {
@@ -164,11 +170,12 @@ class _EditProductBodyState extends State<EditProductBody> {
         labelText: 'product.label.category'.tr(),
         labelStyle: this.labelStyle,
         hintText: 'product.holder.selectCategory'.tr(),
-        hintStyle: this.hintStyle ,
+        hintStyle: this.hintStyle,
         enabledBorder: this.enabledBorder,
         focusedBorder: this.focusedBorder,
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/expand_more_black_24dp.svg"),
+        suffixIcon: CustomSuffixIcon(svgPaddingLeft: 15,
+            svgIcon: "assets/icons/expand_more_black_24dp.svg"),
       ),
     );
   }
@@ -187,7 +194,8 @@ class _EditProductBodyState extends State<EditProductBody> {
         enabledBorder: this.enabledBorder,
         focusedBorder: this.focusedBorder,
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/attachment_black_24dp.svg"),
+        suffixIcon: CustomSuffixIcon(svgPaddingLeft: 15,
+            svgIcon: "assets/icons/attachment_black_24dp.svg"),
       ),
     );
   }
@@ -205,30 +213,32 @@ class _EditProductBodyState extends State<EditProductBody> {
         enabledBorder: enabledBorder,
         focusedBorder: this.focusedBorder,
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/border_color_black_24dp.svg"),
+        suffixIcon: CustomSuffixIcon(svgPaddingLeft: 15,
+            svgIcon: "assets/icons/border_color_black_24dp.svg"),
       ),
     );
   }
 
   void mySave() {
     this.isClickSave = true;
-    if( _formKey.currentState!.validate()) {
+    if (_formKey.currentState!.validate()) {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => ProductSuccessScreen(
-          isAddScreen: true,
-          vData: {
-            ProductKey.name: this.nameController.text,
-            ProductKey.category: categoryController.text,
-            ProductKey.remark: this.remarkController.text,
-          },
-        )),
+        MaterialPageRoute(builder: (context) =>
+            ProductSuccessScreen(
+              isAddScreen: true,
+              vData: {
+                ProductKey.name: this.nameController.text,
+                ProductKey.category: categoryController.text,
+                ProductKey.remark: this.remarkController.text,
+              },
+            )),
       );
     }
   }
 
   void checkFormValid() {
-    if(isClickSave) {
+    if (isClickSave) {
       _formKey.currentState!.validate();
     }
   }

@@ -8,6 +8,7 @@ class DataBaseChoseLanguage {
   static final DataBaseChoseLanguage instance = DataBaseChoseLanguage._init();
   static Database? _dataBase;
   static String dataBaseName = ChoseLanguageField.data_base;
+
   DataBaseChoseLanguage._init();
 
   Future<Database> get database async {
@@ -19,7 +20,7 @@ class DataBaseChoseLanguage {
   Future<Database> _initDB(String filePath) async {
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
     final dbPath = documentsDirectory.path;
-    final path = dbPath+'/'+filePath;
+    final path = dbPath + '/' + filePath;
     return await openDatabase(path, version: 1, onCreate: _createDB);
   }
 
@@ -40,9 +41,10 @@ class DataBaseChoseLanguage {
   static Future<int> create(Map json) async {
     final db = await instance.database;
     var data = await db.rawInsert(
-        'INSERT INTO $dataBaseName(${ChoseLanguageField.id}, ${ChoseLanguageField.choose}) VALUES(?, ?)',
+        'INSERT INTO $dataBaseName(${ChoseLanguageField
+            .id}, ${ChoseLanguageField.choose}) VALUES(?, ?)',
         [
-          json[ChoseLanguageKey.id],json[ChoseLanguageKey.choose]
+          json[ChoseLanguageKey.id], json[ChoseLanguageKey.choose]
         ]
     );
     return data;
@@ -51,11 +53,13 @@ class DataBaseChoseLanguage {
   static Future<Map> getChooseLanguageById(int id) async {
     try {
       final db = await instance.database;
-      List<dynamic> vData = await db.rawQuery('SELECT * FROM $dataBaseName WHERE ${ChoseLanguageField.id} = ?', [id]);
-      if(vData.length > 0) {
+      List<dynamic> vData = await db.rawQuery(
+          'SELECT * FROM $dataBaseName WHERE ${ChoseLanguageField.id} = ?',
+          [id]);
+      if (vData.length > 0) {
         return vData[0];
       }
-    }catch(e) {
+    } catch (e) {
       print('e :${e}');
     }
     return {};

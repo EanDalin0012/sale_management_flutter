@@ -26,12 +26,15 @@ class _SignUpBodyState extends State<SignUpBody> {
   late String email;
   late String password;
   bool remember = false;
-  bool isClickSave  = false;
+  bool isClickSave = false;
   final _formKey = GlobalKey<FormState>();
   late Size size;
+
   @override
   Widget build(BuildContext context) {
-    size = MediaQuery.of(context).size;
+    size = MediaQuery
+        .of(context)
+        .size;
     SizeConfig.init(context);
     return Form(
       key: _formKey,
@@ -39,11 +42,12 @@ class _SignUpBodyState extends State<SignUpBody> {
         children: <Widget>[
           _body(),
           InkWell(
-            onTap: () {
-              KeyboardUtil.hideKeyboard(context);
-              save();
-            },
-            child: WidgetsUtil.overlayKeyBardContainer(text: 'common.label.save'.tr())
+              onTap: () {
+                KeyboardUtil.hideKeyboard(context);
+                save();
+              },
+              child: WidgetsUtil.overlayKeyBardContainer(
+                  text: 'common.label.save'.tr())
           )
         ],
       ),
@@ -53,7 +57,8 @@ class _SignUpBodyState extends State<SignUpBody> {
   Widget _body() {
     return Expanded(
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
+        padding: EdgeInsets.symmetric(
+            horizontal: getProportionateScreenWidth(20)),
         child: SingleChildScrollView(
           physics: ClampingScrollPhysics(),
           child: Column(
@@ -63,7 +68,8 @@ class _SignUpBodyState extends State<SignUpBody> {
                 child: Column(
                   children: <Widget>[
                     SizedBox(height: SizeConfig.screenHeight * 0.03), // 4%
-                    Text('signUp.label.createAccount'.tr(), style: TextStyleUtils.headingStyle()),
+                    Text('signUp.label.createAccount'.tr(),
+                        style: TextStyleUtils.headingStyle()),
                     Text(
                       'signUp.label.completeDetails'.tr(),
                       textAlign: TextAlign.center,
@@ -87,7 +93,7 @@ class _SignUpBodyState extends State<SignUpBody> {
                     });
                   },
                   validator: (value) {
-                    if(value == null) {
+                    if (value == null) {
                       return 'Please select gender!';
                     }
                     return null;
@@ -123,7 +129,8 @@ class _SignUpBodyState extends State<SignUpBody> {
         labelText: 'signUp.label.confirmPassword'.tr(),
         hintText: 'signUp.holder.enterConfirmPassword'.tr(),
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/help_outline_black_24dp.svg"),
+        suffixIcon: CustomSuffixIcon(svgPaddingLeft: 15,
+            svgIcon: "assets/icons/help_outline_black_24dp.svg"),
       ),
     );
   }
@@ -144,7 +151,8 @@ class _SignUpBodyState extends State<SignUpBody> {
         labelText: 'signUp.label.password'.tr(),
         hintText: 'signUp.holder.enterYourPassword'.tr(),
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/help_outline_black_24dp.svg"),
+        suffixIcon: CustomSuffixIcon(svgPaddingLeft: 15,
+            svgIcon: "assets/icons/help_outline_black_24dp.svg"),
       ),
     );
   }
@@ -165,7 +173,8 @@ class _SignUpBodyState extends State<SignUpBody> {
         labelText: 'signUp.label.firstName'.tr(),
         hintText: 'signUp.holder.enterYourFistName'.tr(),
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/help_outline_black_24dp.svg"),
+        suffixIcon: CustomSuffixIcon(svgPaddingLeft: 15,
+            svgIcon: "assets/icons/help_outline_black_24dp.svg"),
       ),
     );
   }
@@ -186,7 +195,8 @@ class _SignUpBodyState extends State<SignUpBody> {
         labelText: 'signUp.label.lastName'.tr(),
         hintText: 'signUp.holder.enterYourLastName'.tr(),
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/help_outline_black_24dp.svg"),
+        suffixIcon: CustomSuffixIcon(svgPaddingLeft: 15,
+            svgIcon: "assets/icons/help_outline_black_24dp.svg"),
       ),
     );
   }
@@ -207,14 +217,15 @@ class _SignUpBodyState extends State<SignUpBody> {
         labelText: 'signUp.label.email'.tr(),
         hintText: 'signUp.holder.enterYourEmail'.tr(),
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/mark_as_unread_black_24dp.svg"),
+        suffixIcon: CustomSuffixIcon(svgPaddingLeft: 15,
+            svgIcon: "assets/icons/mark_as_unread_black_24dp.svg"),
       ),
     );
   }
 
   void save() {
     this.isClickSave = true;
-    if( _formKey.currentState!.validate()) {
+    if (_formKey.currentState!.validate()) {
       // Navigator.push(
       //   context,
       //   MaterialPageRoute(builder: (context) => CategorySuccessScreen(
@@ -229,7 +240,7 @@ class _SignUpBodyState extends State<SignUpBody> {
   }
 
   void checkFormValid() {
-    if(isClickSave) {
+    if (isClickSave) {
       _formKey.currentState!.validate();
     }
   }

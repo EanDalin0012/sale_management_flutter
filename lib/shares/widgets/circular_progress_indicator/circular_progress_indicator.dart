@@ -12,9 +12,9 @@ class CircularProgressLoading extends StatelessWidget {
           Text(
             "Loading Data",
             style: TextStyle(
-              fontSize: 32,
-              fontWeight: FontWeight.bold,
-              color: ColorsUtils.isDarkModeColor()
+                fontSize: 32,
+                fontWeight: FontWeight.bold,
+                color: ColorsUtils.isDarkModeColor()
             ),
           ),
           SizedBox(height: 20),

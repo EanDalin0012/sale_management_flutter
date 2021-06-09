@@ -29,7 +29,8 @@ class MemberScreen extends StatefulWidget {
 class _MemberScreenState extends State<MemberScreen> {
 
   var isNative = false;
-  late Size size ;
+  late Size size;
+
   List<dynamic> vData = [];
   var vDataLength = 0;
 
@@ -41,14 +42,16 @@ class _MemberScreenState extends State<MemberScreen> {
 
   @override
   Widget build(BuildContext context) {
-    size = MediaQuery.of(context).size;
+    size = MediaQuery
+        .of(context)
+        .size;
     return WillPopScope(
-      onWillPop:  () => onBackPress(),
+      onWillPop: () => onBackPress(),
       child: Scaffold(
-        backgroundColor: ColorsUtils.scaffoldBackgroundColor(),
-        appBar: _buildAppBar(),
-        body: SafeArea(
-          child: this.vData.length > 0 ? InkWell(
+          backgroundColor: ColorsUtils.scaffoldBackgroundColor(),
+          appBar: _buildAppBar(),
+          body: SafeArea(
+            child: this.vData.length > 0 ? InkWell(
               onTap: () {
                 KeyboardUtil.hideKeyboard(context);
               },
@@ -62,8 +65,8 @@ class _MemberScreenState extends State<MemberScreen> {
                 ],
               ),
             ) : CircularProgressLoading(),
-        ),
-        floatingActionButton: _floatingActionButton()
+          ),
+          floatingActionButton: _floatingActionButton()
 
       ),
     );
@@ -77,14 +80,15 @@ class _MemberScreenState extends State<MemberScreen> {
       actions: [
         IconButton(
           icon: Icon(isNative ? Icons.close : Icons.search),
-          onPressed: () => setState(() {
-            this.isNative = !isNative;
-          }),
+          onPressed: () =>
+              setState(() {
+                this.isNative = !isNative;
+              }),
         ),
         const SizedBox(width: 8),
       ],
       bottom: this.isNative ? PreferredSize(preferredSize: Size.fromHeight(60),
-        child:  Row(
+        child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
@@ -96,22 +100,21 @@ class _MemberScreenState extends State<MemberScreen> {
               child: SearchWidget(
                 hintText: 'search.label.searchName'.tr(),
                 text: 'search.label.searchName'.tr(),
-                onChanged: (value) {
-                },
+                onChanged: (value) {},
               ),
             ),
             // _buildFilterByCategory()
             // _buildFilterByProduct()
           ],
         ),
-      ): null,
+      ) : null,
     );
   }
 
   FloatingActionButton _floatingActionButton() {
     return FloatingActionButton(
       backgroundColor: Colors.purple[900],
-      onPressed: (){
+      onPressed: () {
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => AddNewMemberScreen()),
@@ -123,32 +126,40 @@ class _MemberScreenState extends State<MemberScreen> {
     );
   }
 
-  Widget _buildBody () {
+  Widget _buildBody() {
     return Expanded(
         child: ListView.separated(
           itemCount: this.vData.length,
-          separatorBuilder: (context, index) => Divider(
-            color: ColorsUtils.isDarkModeColor(),
-          ),
+          separatorBuilder: (context, index) =>
+              Divider(
+                color: ColorsUtils.isDarkModeColor(),
+              ),
           itemBuilder: (context, index) {
             return _buildListTile(
                 dataItem: this.vData[index]
-            );},
+            );
+          },
         )
     );
   }
 
-  Widget _buildListTile( {
+  Widget _buildListTile({
     required Map dataItem
   }) {
     return ListTile(
-      title: Text( dataItem[MemberKey.name],
-        style: TextStyle( color: ColorsUtils.isDarkModeColor(), fontSize: 20, fontWeight: FontWeight.w700,fontFamily: fontDefault),
+      title: Text(dataItem[MemberKey.name],
+        style: TextStyle(color: ColorsUtils.isDarkModeColor(),
+            fontSize: 20,
+            fontWeight: FontWeight.w700,
+            fontFamily: fontDefault),
       ),
       leading: PrefixPerson(url: dataItem[MemberKey.url]),
       subtitle: Text(
         dataItem[MemberKey.phone],
-        style: TextStyle(fontSize: 12,fontWeight: FontWeight.w700, fontFamily: fontDefault, color: primaryColor),
+        style: TextStyle(fontSize: 12,
+            fontWeight: FontWeight.w700,
+            fontFamily: fontDefault,
+            color: primaryColor),
       ),
       trailing: Column(
         mainAxisAlignment: MainAxisAlignment.end,
@@ -159,54 +170,61 @@ class _MemberScreenState extends State<MemberScreen> {
     );
   }
 
-  Widget _offsetPopup(Map item) => PopupMenuButton<int>(
-    itemBuilder: (context) => [
-      PopupMenuItem(
-          value: 0,
-          child: Row(
-            children: <Widget>[
-              FaIcon(FontAwesomeIcons.edit,size: 20,color: Colors.purple[900]),
-              SizedBox(width: 10,),
-              Text(
-                'common.label.edit'.tr(),
-                style: menuStyle,
-              ),
-            ],
-          )
-      ),
-      PopupMenuItem(
-          value: 1,
-          child: Row(
-            children: <Widget>[
-              FaIcon(FontAwesomeIcons.trash,size: 20,color: Colors.purple[900]),
-              SizedBox(width: 10,),
-              Text(
-                'common.label.delete'.tr(),
-                style: menuStyle,
-              ),
-            ],
-          )
-      ),
-    ],
-    icon: FaIcon(FontAwesomeIcons.ellipsisV,size: 20,color: ColorsUtils.isDarkModeColor()),
-    offset: Offset(0, 45),
-    onSelected: (value) {
-      if(value == 0) {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => EditMemberScreen(vData: item)),
-        );
-      } else if (value == 1) {
-        _showDialog(item);
-      }
-    },
-  );
+  Widget _offsetPopup(Map item) =>
+      PopupMenuButton<int>(
+        itemBuilder: (context) =>
+        [
+          PopupMenuItem(
+              value: 0,
+              child: Row(
+                children: <Widget>[
+                  FaIcon(FontAwesomeIcons.edit, size: 20,
+                      color: Colors.purple[900]),
+                  SizedBox(width: 10,),
+                  Text(
+                    'common.label.edit'.tr(),
+                    style: menuStyle,
+                  ),
+                ],
+              )
+          ),
+          PopupMenuItem(
+              value: 1,
+              child: Row(
+                children: <Widget>[
+                  FaIcon(FontAwesomeIcons.trash, size: 20,
+                      color: Colors.purple[900]),
+                  SizedBox(width: 10,),
+                  Text(
+                    'common.label.delete'.tr(),
+                    style: menuStyle,
+                  ),
+                ],
+              )
+          ),
+        ],
+        icon: FaIcon(FontAwesomeIcons.ellipsisV, size: 20,
+            color: ColorsUtils.isDarkModeColor()),
+        offset: Offset(0, 45),
+        onSelected: (value) {
+          if (value == 0) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => EditMemberScreen(vData: item)),
+            );
+          } else if (value == 1) {
+            _showDialog(item);
+          }
+        },
+      );
 
   void _showDialog(Map item) {
     ShowDialogUtil.showDialogYesNo(
         buildContext: context,
         title: Text(item[MemberKey.name]),
-        content: Text('member.message.doYouWantToDeleteMember'.tr(args: [item[MemberKey.name]])),
+        content: Text('member.message.doYouWantToDeleteMember'.tr(
+            args: [item[MemberKey.name]])),
         onPressedYes: () {
           print('onPressedBntRight');
         },
@@ -226,7 +244,8 @@ class _MemberScreenState extends State<MemberScreen> {
 
   _fetchItems() async {
     await Future.delayed(Duration(seconds: 1));
-    final data = await rootBundle.loadString('assets/json_data/member_list.json');
+    final data = await rootBundle.loadString(
+        'assets/json_data/member_list.json');
     Map mapItems = jsonDecode(data);
     setState(() {
       this.vData = mapItems['members'];

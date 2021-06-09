@@ -18,7 +18,7 @@ void main() async {
 
   runApp(MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_)=>MainProvider())
+        ChangeNotifierProvider(create: (_) => MainProvider())
       ],
       child: EasyLocalization(
           child: MyApp(),
@@ -45,6 +45,7 @@ class _MyAppState extends State<MyApp> {
   late bool chose = false;
   late FToast fToast;
   var initPlatformState = '';
+
   @override
   void initState() {
     super.initState();
@@ -52,20 +53,20 @@ class _MyAppState extends State<MyApp> {
     fToast.init(context);
 
     DataBaseDarkModeUtils.getDarkModeById(1).then((value) {
-      if(value.toString() == '{}') {
+      if (value.toString() == '{}') {
         Map json = {
           DarkModeKey.id: 1,
           DarkModeKey.code: '1' // 1=> true, 0=> false
         };
         DataBaseDarkModeUtils.create(json).then((value) {
-          if(value > 0) {
+          if (value > 0) {
             DarkMode.isDarkMode = false;
           }
         });
       } else {
         setState(() {
           Map data = value;
-          if(data[DarkModeKey.code].toString() == '1') {
+          if (data[DarkModeKey.code].toString() == '1') {
             DarkMode.isDarkMode = true;
           } else {
             DarkMode.isDarkMode = false;
@@ -75,7 +76,7 @@ class _MyAppState extends State<MyApp> {
     });
     DataBaseChoseLanguage.getChooseLanguageById(1).then((value) {
       setState(() {
-        if(value.toString() == '{}') {
+        if (value.toString() == '{}') {
           this.chose = false;
         } else {
           this.chose = true;
@@ -87,20 +88,21 @@ class _MyAppState extends State<MyApp> {
       print(value.toString());
       this.initPlatformState = value.toString();
     });
-
   }
 
   @override
   Widget build(BuildContext context) {
     // ToastUtils.showToast(context: 'initPlatformState:'+initPlatformState.toString(), fToast: fToast);
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: context.watch<MainProvider>().theme(),
-      localizationsDelegates: context.localizationDelegates,
-      supportedLocales: context.supportedLocales,
-      locale: context.locale,
-      home: this.chose? LogInScreen() : ChooseLanguageScreen()//LogInScreen(),
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter Demo',
+        theme: context.watch<MainProvider>().theme(),
+        localizationsDelegates: context.localizationDelegates,
+        supportedLocales: context.supportedLocales,
+        locale: context.locale,
+        home: this.chose
+            ? LogInScreen()
+            : ChooseLanguageScreen() //LogInScreen(),
     );
   }
 

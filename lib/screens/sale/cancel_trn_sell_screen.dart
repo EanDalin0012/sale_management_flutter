@@ -4,10 +4,12 @@ class CanCelTransactionSellScreen extends StatefulWidget {
   const CanCelTransactionSellScreen({Key? key}) : super(key: key);
 
   @override
-  _CanCelTransactionSellScreenState createState() => _CanCelTransactionSellScreenState();
+  _CanCelTransactionSellScreenState createState() =>
+      _CanCelTransactionSellScreenState();
 }
 
-class _CanCelTransactionSellScreenState extends State<CanCelTransactionSellScreen> {
+class _CanCelTransactionSellScreenState
+    extends State<CanCelTransactionSellScreen> {
   @override
   Widget build(BuildContext context) {
     return Container();

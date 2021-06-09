@@ -18,7 +18,9 @@ import 'package:sale_management/shares/widgets/product_dropdown/product_dropdown
 
 class EditPackageProductBody extends StatefulWidget {
   final Map vData;
-  const EditPackageProductBody({Key? key, required this.vData}) : super(key: key);
+
+  const EditPackageProductBody({Key? key, required this.vData})
+      : super(key: key);
 
   @override
   _EditPackageProductBodyState createState() => _EditPackageProductBodyState();
@@ -26,7 +28,7 @@ class EditPackageProductBody extends StatefulWidget {
 
 class _EditPackageProductBodyState extends State<EditPackageProductBody> {
 
-  final _formKey  = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>();
 
   var productNameController = new TextEditingController();
   var productController = new TextEditingController();
@@ -47,17 +49,20 @@ class _EditPackageProductBodyState extends State<EditPackageProductBody> {
   void initState() {
     this._fetchItems();
     this.nameController.text = widget.vData[PackageProductKey.name];
-    this.qtyController.text  = FormatNumberUtils.usdFormat2Digit(widget.vData[PackageProductKey.quantity].toString());
-    this.priceController.text = widget.vData[PackageProductKey.price].toString();
-    this.remarkController.text = widget.vData[PackageProductKey.remark].toString();
+    this.qtyController.text = FormatNumberUtils.usdFormat2Digit(
+        widget.vData[PackageProductKey.quantity].toString());
+    this.priceController.text =
+        widget.vData[PackageProductKey.price].toString();
+    this.remarkController.text =
+        widget.vData[PackageProductKey.remark].toString();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    style       = InputDecorationUtils.textFormFieldStyle();
-    labelStyle  = InputDecorationUtils.inputDecorationLabelStyle();
-    hintStyle   = InputDecorationUtils.inputDecorationHintStyle();
+    style = InputDecorationUtils.textFormFieldStyle();
+    labelStyle = InputDecorationUtils.inputDecorationLabelStyle();
+    hintStyle = InputDecorationUtils.inputDecorationHintStyle();
     enabledBorder = InputDecorationUtils.enabledBorder();
     focusedBorder = InputDecorationUtils.focusedBorder();
     return Form(
@@ -66,11 +71,12 @@ class _EditPackageProductBodyState extends State<EditPackageProductBody> {
             children: <Widget>[
               _buildBody(),
               InkWell(
-                onTap: () {
-                  KeyboardUtil.hideKeyboard(context);
-                  save();
-                },
-                child: WidgetsUtil.overlayKeyBardContainer(text: 'common.label.update'.tr())
+                  onTap: () {
+                    KeyboardUtil.hideKeyboard(context);
+                    save();
+                  },
+                  child: WidgetsUtil.overlayKeyBardContainer(
+                      text: 'common.label.update'.tr())
               )
             ]
         )
@@ -81,7 +87,8 @@ class _EditPackageProductBodyState extends State<EditPackageProductBody> {
   Widget _buildBody() {
     return Expanded(
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
+        padding: EdgeInsets.symmetric(
+            horizontal: getProportionateScreenWidth(20)),
         child: SingleChildScrollView(
           physics: ClampingScrollPhysics(),
           child: Column(
@@ -90,7 +97,8 @@ class _EditPackageProductBodyState extends State<EditPackageProductBody> {
                 child: Column(
                   children: <Widget>[
                     SizedBox(height: SizeConfig.screenHeight * 0.04), // 4%
-                    Text('packageProduct.label.updatePackageProduct'.tr(), style: TextStyleUtils.headingStyle()),
+                    Text('packageProduct.label.updatePackageProduct'.tr(),
+                        style: TextStyleUtils.headingStyle()),
                     Text(
                       'common.label.completeYourDetails'.tr(),
                       textAlign: TextAlign.center,
@@ -142,7 +150,8 @@ class _EditPackageProductBodyState extends State<EditPackageProductBody> {
         enabledBorder: this.enabledBorder,
         focusedBorder: this.focusedBorder,
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/help_outline_black_24dp.svg"),
+        suffixIcon: CustomSuffixIcon(svgPaddingLeft: 15,
+            svgIcon: "assets/icons/help_outline_black_24dp.svg"),
       ),
     );
   }
@@ -153,9 +162,10 @@ class _EditPackageProductBodyState extends State<EditPackageProductBody> {
       onTap: () async {
         final product = await Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => ProductDropdownPage(vData: this.product,)),
+          MaterialPageRoute(
+              builder: (context) => ProductDropdownPage(vData: this.product,)),
         );
-        if(product == null) {
+        if (product == null) {
           return;
         }
         setState(() {
@@ -182,8 +192,10 @@ class _EditPackageProductBodyState extends State<EditPackageProductBody> {
         enabledBorder: this.enabledBorder,
         focusedBorder: this.focusedBorder,
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        prefixIcon: this.product != {} ? PrefixProduct(url: this.product[ProductKey.url].toString()) : null,
-        suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/expand_more_black_24dp.svg"),
+        prefixIcon: this.product != {} ? PrefixProduct(
+            url: this.product[ProductKey.url].toString()) : null,
+        suffixIcon: CustomSuffixIcon(svgPaddingLeft: 15,
+            svgIcon: "assets/icons/expand_more_black_24dp.svg"),
       ),
     );
   }
@@ -208,7 +220,8 @@ class _EditPackageProductBodyState extends State<EditPackageProductBody> {
         enabledBorder: this.enabledBorder,
         focusedBorder: this.focusedBorder,
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/help_outline_black_24dp.svg"),
+        suffixIcon: CustomSuffixIcon(svgPaddingLeft: 15,
+            svgIcon: "assets/icons/help_outline_black_24dp.svg"),
       ),
     );
   }
@@ -234,7 +247,8 @@ class _EditPackageProductBodyState extends State<EditPackageProductBody> {
         enabledBorder: this.enabledBorder,
         focusedBorder: this.focusedBorder,
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/help_outline_black_24dp.svg"),
+        suffixIcon: CustomSuffixIcon(svgPaddingLeft: 15,
+            svgIcon: "assets/icons/help_outline_black_24dp.svg"),
       ),
     );
   }
@@ -252,7 +266,8 @@ class _EditPackageProductBodyState extends State<EditPackageProductBody> {
         enabledBorder: enabledBorder,
         focusedBorder: this.focusedBorder,
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/border_color_black_24dp.svg"),
+        suffixIcon: CustomSuffixIcon(svgPaddingLeft: 15,
+            svgIcon: "assets/icons/border_color_black_24dp.svg"),
       ),
     );
   }
@@ -260,31 +275,33 @@ class _EditPackageProductBodyState extends State<EditPackageProductBody> {
 
   void save() {
     this.isClickSave = true;
-    if( _formKey.currentState!.validate()) {
+    if (_formKey.currentState!.validate()) {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => PackageProductSuccessScreen(
-          isEditScreen: true,
-          vData: {
-            PackageProductKey.name: this.nameController.text,
-            PackageProductKey.productId: this.product[ProductKey.id],
-            PackageProductKey.quantity: this.qtyController.text,
-            PackageProductKey.price: this.priceController.text,
-            PackageProductKey.remark: this.remarkController.text
-          },
-        )),
+        MaterialPageRoute(builder: (context) =>
+            PackageProductSuccessScreen(
+              isEditScreen: true,
+              vData: {
+                PackageProductKey.name: this.nameController.text,
+                PackageProductKey.productId: this.product[ProductKey.id],
+                PackageProductKey.quantity: this.qtyController.text,
+                PackageProductKey.price: this.priceController.text,
+                PackageProductKey.remark: this.remarkController.text
+              },
+            )),
       );
     }
   }
 
   void checkFormValid() {
-    if(isClickSave) {
+    if (isClickSave) {
       _formKey.currentState!.validate();
     }
   }
 
   _fetchItems() async {
-    final data = await rootBundle.loadString('assets/json_data/product_list.json');
+    final data = await rootBundle.loadString(
+        'assets/json_data/product_list.json');
     Map mapItems = jsonDecode(data);
     setState(() {
       this.vDataProduct = mapItems['products'];
@@ -297,8 +314,8 @@ class _EditPackageProductBodyState extends State<EditPackageProductBody> {
   Map _searchProductById() {
     Map data = {};
     this.vDataProduct.map((e) {
-      if(e[ProductKey.id] == widget.vData[PackageProductKey.productId]) {
-       data = e;
+      if (e[ProductKey.id] == widget.vData[PackageProductKey.productId]) {
+        data = e;
       }
     }).toList();
     return data;

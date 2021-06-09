@@ -30,10 +30,10 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop:  () => onBackPress(),
+      onWillPop: () => onBackPress(),
       child: Scaffold(
         backgroundColor: ColorsUtils.scaffoldBackgroundColor(),
-        appBar: isShowAppBar ? _appBar(): null,
+        appBar: isShowAppBar ? _appBar() : null,
         drawer: MyDrawer(),
         bottomNavigationBar: _bottomNavigationBar(),
         body: _widgetOptions.elementAt(_selectedIndex),
@@ -64,7 +64,7 @@ class _HomeScreenState extends State<HomeScreen> {
             width: 55,
             child: Stack(
               children: <Widget>[
-                Center(child:  Icon(Icons.notifications)),
+                Center(child: Icon(Icons.notifications)),
                 Container(
                   width: 20,
                   height: 20,
@@ -76,7 +76,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     color: Colors.purple.withOpacity(0.5),
                     borderRadius: BorderRadius.all(Radius.circular(10)),
                   ),
-                  child: Center(child: Text('2', style: TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.w800))),
+                  child: Center(child: Text('2', style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 15,
+                      fontWeight: FontWeight.w800))),
                 ),
               ],
             ),
@@ -136,15 +139,14 @@ class _HomeScreenState extends State<HomeScreen> {
       ],
       onTap: (index) {
         setState(() {
-          if(index == 0) {
+          if (index == 0) {
             isShowAppBar = true;
             _titleBar = 'Home';
           } else if (index == 1) {
             _titleBar = 'Sale';
             isShowAppBar = false;
-
           }
-          if(index >= 2) {
+          if (index >= 2) {
             _showModelSheet();
           } else {
             _selectedIndex = index;
@@ -155,11 +157,21 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void _showModelSheet() {
-    var orientation = MediaQuery.of(context).orientation;
-    double height = (MediaQuery.of(context).copyWith().size.height * 0.6);
+    var orientation = MediaQuery
+        .of(context)
+        .orientation;
+    double height = (MediaQuery
+        .of(context)
+        .copyWith()
+        .size
+        .height * 0.6);
     setState(() {
-      if(orientation != Orientation.portrait){
-        height = MediaQuery.of(context).copyWith().size.height * 0.5;
+      if (orientation != Orientation.portrait) {
+        height = MediaQuery
+            .of(context)
+            .copyWith()
+            .size
+            .height * 0.5;
       }
     });
     showModalBottomSheet(
@@ -168,7 +180,10 @@ class _HomeScreenState extends State<HomeScreen> {
         builder: (BuildContext builder) {
           return Container(
             height: height,
-            width: MediaQuery.of(context).size.width,
+            width: MediaQuery
+                .of(context)
+                .size
+                .width,
             child: SheetContainer(),
           );
         });
@@ -176,7 +191,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Future<bool> onBackPress() {
     showDialog(
-      context: context,
+        context: context,
         builder: (BuildContext context) {
           return AlertDialog(
               elevation: 2,
@@ -184,27 +199,28 @@ class _HomeScreenState extends State<HomeScreen> {
               content: Text('common.label.doYouWantToExitApp'.tr()),
               actions: <Widget>[
                 RaisedButton.icon(
-                  onPressed: (){
+                  onPressed: () {
                     Navigator.of(context).pop(false);
                   },
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(Radius.circular(50))),
                   label: Text('common.label.no'.tr(),
                     style: TextStyle(color: Colors.black),),
-                  icon: Icon(Icons.cancel_rounded, color:Colors.white,),
+                  icon: Icon(Icons.cancel_rounded, color: Colors.white,),
                   textColor: Colors.white,
                   splashColor: Colors.red,
                   color: Colors.red,
                 ),
                 RaisedButton.icon(
-                  onPressed: (){
+                  onPressed: () {
                     SystemNavigator.pop();
                   },
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(Radius.circular(50))),
                   label: Text('common.label.yes'.tr(),
                     style: TextStyle(color: Colors.black),),
-                  icon: Icon(Icons.check_circle_outline_outlined, color:Colors.white,),
+                  icon: Icon(
+                    Icons.check_circle_outline_outlined, color: Colors.white,),
                   textColor: Colors.white,
                   splashColor: Colors.red,
                   color: Colors.green,
@@ -214,7 +230,7 @@ class _HomeScreenState extends State<HomeScreen> {
           );
         }
     );
-        return Future<bool>.value(false);
+    return Future<bool>.value(false);
   }
 
 

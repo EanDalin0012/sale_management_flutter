@@ -21,36 +21,43 @@ class _ChooseLanguageScreenState extends State<ChooseLanguageScreen> {
     {
       LanguageKey.code: 'kh',
       LanguageKey.text: 'ខ្មែរ',
-      'url':'assets/countries/kh.svg'
+      'url': 'assets/countries/kh.svg'
     },
     {
       LanguageKey.code: 'en',
       LanguageKey.text: 'English',
-      'url':'assets/countries/gb.svg'
-    },{
+      'url': 'assets/countries/gb.svg'
+    }, {
       LanguageKey.code: 'zn',
       LanguageKey.text: '中文',
-      'url':'assets/countries/cn.svg'
+      'url': 'assets/countries/cn.svg'
     }
   ];
   late Size size;
-  double height =0.0;
+  double height = 0.0;
   var code = 'en';
   var color = Color(0xff32b8a1);
 
   @override
   Widget build(BuildContext context) {
-    size = MediaQuery.of(context).size;
+    size = MediaQuery
+        .of(context)
+        .size;
     SizeConfig.init(context);
-    height = (size.height - SizeConfig.screenHeight * 0.06 - SizeConfig.screenHeight * 0.06);
+    height = (size.height - SizeConfig.screenHeight * 0.06 -
+        SizeConfig.screenHeight * 0.06);
     return Scaffold(
-      backgroundColor: Color(0xFF3f496d),
-      body: Column(
+        backgroundColor: Color(0xFF3f496d),
+        body: Column(
             children: <Widget>[
               SizedBox(height: SizeConfig.screenHeight * 0.06),
               Container(
                 child: Center(
-                  child: Text('Choose the language', style: TextStyle(color: Colors.white, fontSize: 28, fontWeight: FontWeight.w700, fontFamily: fontDefault)),
+                  child: Text('Choose the language', style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 28,
+                      fontWeight: FontWeight.w700,
+                      fontFamily: fontDefault)),
                 ),
               ),
               SizedBox(height: SizeConfig.screenHeight * 0.06),
@@ -58,12 +65,12 @@ class _ChooseLanguageScreenState extends State<ChooseLanguageScreen> {
               Expanded(
                 child: Container(
                   decoration: BoxDecoration(
-                        border: Border(
-                          top: BorderSide( //                    <--- top side
-                            color: Colors.white,
-                            width: 0.6,
-                          ),
-                        ),
+                    border: Border(
+                      top: BorderSide( //                    <--- top side
+                        color: Colors.white,
+                        width: 0.6,
+                      ),
+                    ),
                   ),
                   child: Column(
                     children: vData.map((e) => _container(e)).toList(),
@@ -72,14 +79,14 @@ class _ChooseLanguageScreenState extends State<ChooseLanguageScreen> {
               ),
               InkWell(
                 onTap: () async {
-                  if(this.code == 'en') {
+                  if (this.code == 'en') {
                     await context.setLocale(context.supportedLocales[0]);
                   } else if (this.code == 'kh') {
                     await context.setLocale(context.supportedLocales[1]);
                   }
                   DataBaseChoseLanguage.getChooseLanguageById(1).then((value) {
                     print(value.toString());
-                    if(value.toString() == '{}') {
+                    if (value.toString() == '{}') {
                       Map json = {
                         ChoseLanguageKey.id: 1,
                         ChoseLanguageKey.choose: '1'
@@ -87,29 +94,33 @@ class _ChooseLanguageScreenState extends State<ChooseLanguageScreen> {
                       DataBaseChoseLanguage.create(json).then((value) {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => LogInScreen()),
+                          MaterialPageRoute(builder: (context) =>
+                              LogInScreen()),
                         );
                       });
                     }
                   });
-
                 },
                 child: Container(
                   width: size.width,
                   height: 45,
                   color: Colors.red,
-                  child: Center(child: Text('Next', style: TextStyle(fontWeight: FontWeight.w700, color: Colors.white, fontFamily: 'roboto', fontSize: 18))),
+                  child: Center(child: Text('Next', style: TextStyle(
+                      fontWeight: FontWeight.w700,
+                      color: Colors.white,
+                      fontFamily: 'roboto',
+                      fontSize: 18))),
                 ),
               ),
             ]
-          )
+        )
     );
   }
 
 
   Widget _container(Map map) {
     var isCheck = false;
-    if(map[LanguageKey.code] == code) {
+    if (map[LanguageKey.code] == code) {
       isCheck = true;
     }
     return InkWell(
@@ -123,7 +134,7 @@ class _ChooseLanguageScreenState extends State<ChooseLanguageScreen> {
           border: isCheck ? Border(
             top: BorderSide(width: 1, color: this.color),
             bottom: BorderSide(width: 1, color: this.color),
-          ): null,
+          ) : null,
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -143,7 +154,11 @@ class _ChooseLanguageScreenState extends State<ChooseLanguageScreen> {
                 width: 50.0,
                 height: 50.0,
                 padding: EdgeInsets.only(top: 10),
-                child: Text(map[LanguageKey.text],style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.w700, fontFamily: fontDefault)),
+                child: Text(map[LanguageKey.text], style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontWeight: FontWeight.w700,
+                    fontFamily: fontDefault)),
               ),
             ),
             isCheck ? IconCheck() : Container()

@@ -10,7 +10,10 @@ class SuccessImportBody extends StatefulWidget {
   final bool? isAddScreen;
   final bool? isEditScreen;
   final Map vData;
-  const SuccessImportBody({Key? key, this.isAddScreen, this.isEditScreen, required this.vData}) : super(key: key);
+
+  const SuccessImportBody(
+      {Key? key, this.isAddScreen, this.isEditScreen, required this.vData})
+      : super(key: key);
 
   @override
   _SuccessImportBodyState createState() => _SuccessImportBodyState();
@@ -41,11 +44,14 @@ class _SuccessImportBodyState extends State<SuccessImportBody> {
         Center(
           child: Column(
             children: <Widget>[
-              SizedBox(height: SizeConfig.screenHeight * 0.04), // 4%
+              SizedBox(height: SizeConfig.screenHeight * 0.04),
+              // 4%
               if (widget.isAddScreen == true)
-                Text('import.label.importNewProduct'.tr(), style: TextStyleUtils.headingStyle()),
+                Text('import.label.importNewProduct'.tr(),
+                    style: TextStyleUtils.headingStyle()),
               if(widget.isEditScreen == true)
-                Text('import.label.importNewProduct'.tr(), style: TextStyleUtils.headingStyle()),
+                Text('import.label.importNewProduct'.tr(),
+                    style: TextStyleUtils.headingStyle()),
 
               //Text('category.message.isCompleted'.tr(args: [widget.vData[ImportKey.name]]),textAlign: TextAlign.center,),
             ],
@@ -74,7 +80,6 @@ class _SuccessImportBodyState extends State<SuccessImportBody> {
                 context,
                 MaterialPageRoute(builder: (context) => ImportScreen()),
               );
-
             },
           ),
         ),

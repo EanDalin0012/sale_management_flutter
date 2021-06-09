@@ -12,7 +12,9 @@ class SuccessStockBody extends StatefulWidget {
   final bool? isEditScreen;
   final Map vData;
 
-  const SuccessStockBody({Key? key, this.isAddScreen, this.isEditScreen, required this.vData}) : super(key: key);
+  const SuccessStockBody(
+      {Key? key, this.isAddScreen, this.isEditScreen, required this.vData})
+      : super(key: key);
 
   @override
   _SuccessStockBodyState createState() => _SuccessStockBodyState();
@@ -36,11 +38,15 @@ class _SuccessStockBodyState extends State<SuccessStockBody> {
               children: <Widget>[
                 SizedBox(height: SizeConfig.screenHeight * 0.04), // 4%
                 if (widget.isAddScreen == true)
-                  Text('stock.label.registerStock'.tr(), style: TextStyleUtils.headingStyle()),
+                  Text('stock.label.registerStock'.tr(),
+                      style: TextStyleUtils.headingStyle()),
                 if(widget.isEditScreen == true)
-                  Text('stock.label.updateStock'.tr(), style: TextStyleUtils.headingStyle()),
+                  Text('stock.label.updateStock'.tr(),
+                      style: TextStyleUtils.headingStyle()),
 
-                Text('common.label.isCompleted'.tr(args: [widget.vData[StockKey.name]]),textAlign: TextAlign.center),
+                Text('common.label.isCompleted'.tr(
+                    args: [widget.vData[StockKey.name]]),
+                    textAlign: TextAlign.center),
               ],
             ),
           ),
@@ -67,7 +73,6 @@ class _SuccessStockBodyState extends State<SuccessStockBody> {
                   context,
                   MaterialPageRoute(builder: (context) => StockScreen()),
                 );
-
               },
             ),
           ),

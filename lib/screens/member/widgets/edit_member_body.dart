@@ -14,14 +14,15 @@ import 'package:sale_management/shares/widgets/text_form_field_prefix_icon/text_
 
 class EditMemberBody extends StatefulWidget {
   final Map vData;
-  const EditMemberBody({Key? key ,required this.vData}) : super(key: key);
+
+  const EditMemberBody({Key? key, required this.vData}) : super(key: key);
 
   @override
   _EditMemberBodyState createState() => _EditMemberBodyState();
 }
 
 class _EditMemberBodyState extends State<EditMemberBody> {
-  final _formKey  = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>();
   var browsController = new TextEditingController();
   var nameController = new TextEditingController();
   var phoneController = new TextEditingController();
@@ -40,17 +41,17 @@ class _EditMemberBodyState extends State<EditMemberBody> {
     super.initState();
     this.nameController.text = widget.vData[MemberKey.name].toString();
     this.phoneController.text = widget.vData[MemberKey.phone].toString();
-    this.remarkController.text  = widget.vData[MemberKey.remark];
+    this.remarkController.text = widget.vData[MemberKey.remark];
   }
 
   @override
   Widget build(BuildContext context) {
-    style       = InputDecorationUtils.textFormFieldStyle();
-    labelStyle  = InputDecorationUtils.inputDecorationLabelStyle();
-    hintStyle   = InputDecorationUtils.inputDecorationHintStyle();
+    style = InputDecorationUtils.textFormFieldStyle();
+    labelStyle = InputDecorationUtils.inputDecorationLabelStyle();
+    hintStyle = InputDecorationUtils.inputDecorationHintStyle();
     enabledBorder = InputDecorationUtils.enabledBorder();
     focusedBorder = InputDecorationUtils.focusedBorder();
-    if(widget.vData[MemberKey.url].toString() != 'null') {
+    if (widget.vData[MemberKey.url].toString() != 'null') {
       this.url = widget.vData[MemberKey.url].toString();
     }
     return Form(
@@ -59,11 +60,12 @@ class _EditMemberBodyState extends State<EditMemberBody> {
             children: <Widget>[
               _buildBody(),
               InkWell(
-                onTap: () {
-                  KeyboardUtil.hideKeyboard(context);
-                  save();
-                },
-                child: WidgetsUtil.overlayKeyBardContainer(text: 'common.label.update'.tr())
+                  onTap: () {
+                    KeyboardUtil.hideKeyboard(context);
+                    save();
+                  },
+                  child: WidgetsUtil.overlayKeyBardContainer(
+                      text: 'common.label.update'.tr())
               )
             ])
     );
@@ -72,7 +74,8 @@ class _EditMemberBodyState extends State<EditMemberBody> {
   Widget _buildBody() {
     return Expanded(
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
+        padding: EdgeInsets.symmetric(
+            horizontal: getProportionateScreenWidth(20)),
         child: SingleChildScrollView(
           physics: ClampingScrollPhysics(),
           child: Column(
@@ -81,7 +84,8 @@ class _EditMemberBodyState extends State<EditMemberBody> {
                 child: Column(
                   children: <Widget>[
                     SizedBox(height: SizeConfig.screenHeight * 0.04), // 4%
-                    Text('member.label.registerMember'.tr(), style: TextStyleUtils.headingStyle()),
+                    Text('member.label.registerMember'.tr(),
+                        style: TextStyleUtils.headingStyle()),
                     Text(
                       'common.label.completeYourDetails'.tr(),
                       textAlign: TextAlign.center,
@@ -127,7 +131,8 @@ class _EditMemberBodyState extends State<EditMemberBody> {
         enabledBorder: this.enabledBorder,
         focusedBorder: this.focusedBorder,
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/help_outline_black_24dp.svg"),
+        suffixIcon: CustomSuffixIcon(svgPaddingLeft: 15,
+            svgIcon: "assets/icons/help_outline_black_24dp.svg"),
       ),
     );
   }
@@ -153,7 +158,8 @@ class _EditMemberBodyState extends State<EditMemberBody> {
         enabledBorder: this.enabledBorder,
         focusedBorder: this.focusedBorder,
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/help_outline_black_24dp.svg"),
+        suffixIcon: CustomSuffixIcon(svgPaddingLeft: 15,
+            svgIcon: "assets/icons/help_outline_black_24dp.svg"),
       ),
     );
   }
@@ -173,7 +179,8 @@ class _EditMemberBodyState extends State<EditMemberBody> {
         focusedBorder: this.focusedBorder,
         floatingLabelBehavior: FloatingLabelBehavior.always,
         prefixIcon: TextFormFieldPrefixIcon(url: this.url),
-        suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/attachment_black_24dp.svg"),
+        suffixIcon: CustomSuffixIcon(svgPaddingLeft: 15,
+            svgIcon: "assets/icons/attachment_black_24dp.svg"),
       ),
     );
   }
@@ -192,31 +199,33 @@ class _EditMemberBodyState extends State<EditMemberBody> {
         enabledBorder: enabledBorder,
         focusedBorder: this.focusedBorder,
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/border_color_black_24dp.svg"),
+        suffixIcon: CustomSuffixIcon(svgPaddingLeft: 15,
+            svgIcon: "assets/icons/border_color_black_24dp.svg"),
       ),
     );
   }
 
   void save() {
     this.isClickSave = true;
-    if( _formKey.currentState!.validate()) {
+    if (_formKey.currentState!.validate()) {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => MemberSuccessScreen(
-          isEditScreen: true,
-          vData: {
-            MemberKey.name: nameController.text,
-            MemberKey.phone: phoneController.text,
-            MemberKey.url: browsController.text,
-            MemberKey.remark: remarkController.text
-          },
-        )),
+        MaterialPageRoute(builder: (context) =>
+            MemberSuccessScreen(
+              isEditScreen: true,
+              vData: {
+                MemberKey.name: nameController.text,
+                MemberKey.phone: phoneController.text,
+                MemberKey.url: browsController.text,
+                MemberKey.remark: remarkController.text
+              },
+            )),
       );
     }
   }
 
   void checkFormValid() {
-    if(isClickSave) {
+    if (isClickSave) {
       _formKey.currentState!.validate();
     }
   }

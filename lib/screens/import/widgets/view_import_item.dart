@@ -9,7 +9,9 @@ import 'package:easy_localization/easy_localization.dart';
 class ViwImportItems extends StatefulWidget {
   final List<dynamic> vData;
   final ValueChanged<List<dynamic>> onChanged;
-  const ViwImportItems({Key? key, required this.vData, required this.onChanged}) : super(key: key);
+
+  const ViwImportItems({Key? key, required this.vData, required this.onChanged})
+      : super(key: key);
 
   @override
   _ViwImportItemsState createState() => _ViwImportItemsState();
@@ -23,29 +25,29 @@ class _ViwImportItemsState extends State<ViwImportItems> {
 
   @override
   Widget build(BuildContext context) {
-
     i = 0;
     this.total = 0;
-    if(widget.vData.length > 0) {
-      widget.vData.map((e) => this.total += double.parse(e[ImportAddKey.total].toString())).toList();
+    if (widget.vData.length > 0) {
+      widget.vData.map((e) =>
+      this.total += double.parse(e[ImportAddKey.total].toString())).toList();
     }
     return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-        color: ColorsUtils.scaffoldBackgroundColor(),
-      ),
-      child: Column(
-        children: <Widget>[
-          _widgetStack(context),
-          drawerHandler(),
-          if (widget.vData.length > 0 )
-            BuildDataTable(vData: widget.vData, onChanged: widget.onChanged)
-          // Container(
-          //   height: 39,
-          //   color: Colors.red,
-          // )
-        ],
-      )
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+          color: ColorsUtils.scaffoldBackgroundColor(),
+        ),
+        child: Column(
+          children: <Widget>[
+            _widgetStack(context),
+            drawerHandler(),
+            if (widget.vData.length > 0 )
+              BuildDataTable(vData: widget.vData, onChanged: widget.onChanged)
+            // Container(
+            //   height: 39,
+            //   color: Colors.red,
+            // )
+          ],
+        )
     );
   }
 
@@ -57,7 +59,10 @@ class _ViwImportItemsState extends State<ViwImportItems> {
             height: 35.0,
             child: Center(
                 child: Text('import.label.importItems'.tr(),
-                    style: TextStyle(fontFamily: fontDefault, fontWeight: FontWeight.w700, fontSize: 20, color: ColorsUtils.isDarkModeColor())
+                    style: TextStyle(fontFamily: fontDefault,
+                        fontWeight: FontWeight.w700,
+                        fontSize: 20,
+                        color: ColorsUtils.isDarkModeColor())
                 ) // Your desired title
             ),
           ),
@@ -65,8 +70,10 @@ class _ViwImportItemsState extends State<ViwImportItems> {
               left: 0.0,
               top: 0.0,
               child: IconButton(
-                  icon: FaIcon(FontAwesomeIcons.arrowLeft,size: 20 , color: ColorsUtils.isDarkModeColor()), // Your desired icon
-                  onPressed: (){
+                  icon: FaIcon(FontAwesomeIcons.arrowLeft, size: 20,
+                      color: ColorsUtils.isDarkModeColor()),
+                  // Your desired icon
+                  onPressed: () {
                     Navigator.of(context).pop();
                   }
               )

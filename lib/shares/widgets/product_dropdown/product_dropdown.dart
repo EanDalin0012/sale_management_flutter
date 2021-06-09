@@ -12,6 +12,7 @@ import 'package:easy_localization/easy_localization.dart';
 
 class ProductDropdownPage extends StatefulWidget {
   final Map vData;
+
   const ProductDropdownPage({Key? key, required this.vData}) : super(key: key);
 
   @override
@@ -38,13 +39,17 @@ class _ProductDropdownPageState extends State<ProductDropdownPage> {
 
   @override
   Widget build(BuildContext context) {
-    styleInput = TextStyle(color: ColorsUtils.isDarkModeColor(), fontSize: 17, fontWeight: FontWeight.w500, fontFamily: fontDefault);
+    styleInput = TextStyle(color: ColorsUtils.isDarkModeColor(),
+        fontSize: 17,
+        fontWeight: FontWeight.w500,
+        fontFamily: fontDefault);
     return Scaffold(
       backgroundColor: ColorsUtils.scaffoldBackgroundColor(),
       appBar: _buildAppBar(),
       body: Column(
           children: <Widget>[
-            if (this.vData.length > 0 ) _buildBody() else CircularProgressLoading(),
+            if (this.vData.length > 0 ) _buildBody() else
+              CircularProgressLoading(),
           ]
       ),
     );
@@ -64,14 +69,14 @@ class _ProductDropdownPageState extends State<ProductDropdownPage> {
         const SizedBox(width: 8),
       ],
       bottom: this.isNative ? PreferredSize(preferredSize: Size.fromHeight(60),
-        child:  Container(
+        child: Container(
           margin: EdgeInsets.only(left: 15, right: 15),
           padding: EdgeInsets.only(bottom: 10, top: 10),
           child: SearchWidget(
             hintText: 'search.label.searchName'.tr(),
             text: 'search.label.searchName'.tr(),
-            onChanged:(value) {
-              if(value.isNotEmpty) {
+            onChanged: (value) {
+              if (value.isNotEmpty) {
                 setState(() {
                   this.vData = onItemChanged(value);
                   this.vDataLength = this.vData.length;
@@ -80,11 +85,11 @@ class _ProductDropdownPageState extends State<ProductDropdownPage> {
             },
           ),
         ),
-      ): null,
+      ) : null,
     );
   }
 
-  Widget _buildBody () {
+  Widget _buildBody() {
     return Expanded(
       child: ListView.builder(
         itemCount: this.vData.length,
@@ -98,24 +103,32 @@ class _ProductDropdownPageState extends State<ProductDropdownPage> {
   }
 
   Widget _buildListTile({
-     required Map dataItem
+    required Map dataItem
   }) {
     var productName = '';
     var obj = widget.vData;
-    if(obj != null) {
+    if (obj != null) {
       productName = obj[ProductKey.name].toString().toLowerCase();
     }
 
     return ListTile(
       onTap: () => selectProduct(dataItem),
       title: Text('${dataItem[ProductKey.name]}',
-        style: TextStyle( color: ColorsUtils.isDarkModeColor(), fontSize: 20, fontWeight: FontWeight.w700,fontFamily: fontDefault),
+        style: TextStyle(color: ColorsUtils.isDarkModeColor(),
+            fontSize: 20,
+            fontWeight: FontWeight.w700,
+            fontFamily: fontDefault),
       ),
       leading: _buildLeading(dataItem[ProductKey.url]),
       subtitle: Text('${dataItem[ProductKey.remark]}',
-        style: TextStyle(fontSize: 12,fontWeight: FontWeight.w700, fontFamily: fontDefault, color: primaryColor),
+        style: TextStyle(fontSize: 12,
+            fontWeight: FontWeight.w700,
+            fontFamily: fontDefault,
+            color: primaryColor),
       ),
-      trailing: (dataItem[ProductKey.name]).toLowerCase() == productName ? IconCheck() : null,
+      trailing: (dataItem[ProductKey.name]).toLowerCase() == productName
+          ? IconCheck()
+          : null,
     );
   }
 
@@ -129,14 +142,15 @@ class _ProductDropdownPageState extends State<ProductDropdownPage> {
       ),
       child: CircleAvatar(
         radius: 30.0,
-        backgroundImage:NetworkImage(url),
+        backgroundImage: NetworkImage(url),
         backgroundColor: Colors.transparent,
       ),
     );
   }
 
   _fetchListItems() async {
-    final data = await rootBundle.loadString('assets/json_data/product_list.json');
+    final data = await rootBundle.loadString(
+        'assets/json_data/product_list.json');
     Map valueMap = jsonDecode(data);
     var products = valueMap['products'];
     setState(() {
@@ -152,7 +166,9 @@ class _ProductDropdownPageState extends State<ProductDropdownPage> {
   }
 
   onItemChanged(String value) {
-    var dataItems = vDataTmp.where((e) => e[ProductKey.name].toLowerCase().contains(value.toLowerCase())).toList();
+    var dataItems = vDataTmp.where((e) =>
+        e[ProductKey.name].toLowerCase().contains(value.toLowerCase()))
+        .toList();
     return dataItems;
   }
 }

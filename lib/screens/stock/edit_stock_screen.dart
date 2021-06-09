@@ -7,6 +7,7 @@ import 'package:easy_localization/easy_localization.dart';
 
 class EditStockScreen extends StatefulWidget {
   final Map vData;
+
   const EditStockScreen({Key? key, required this.vData}) : super(key: key);
 
   @override
@@ -17,18 +18,18 @@ class _EditStockScreenState extends State<EditStockScreen> {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: ()=> onBackPress(),
-      child: Scaffold(
-        backgroundColor: ColorsUtils.scaffoldBackgroundColor(),
-        appBar: AppBar(
-          backgroundColor: ColorsUtils.appBarBackGround(),
-          elevation: DefaultStatic.elevationAppBar,
-          title: Text('stock.label.stock'.tr()),
-        ),
-        body: SafeArea(
-          child: EditStockBody(vData: widget.vData),
-        ),
-      )
+        onWillPop: () => onBackPress(),
+        child: Scaffold(
+          backgroundColor: ColorsUtils.scaffoldBackgroundColor(),
+          appBar: AppBar(
+            backgroundColor: ColorsUtils.appBarBackGround(),
+            elevation: DefaultStatic.elevationAppBar,
+            title: Text('stock.label.stock'.tr()),
+          ),
+          body: SafeArea(
+            child: EditStockBody(vData: widget.vData),
+          ),
+        )
     );
   }
 

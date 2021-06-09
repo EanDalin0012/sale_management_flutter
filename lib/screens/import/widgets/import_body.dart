@@ -16,6 +16,7 @@ import 'package:sale_management/shares/widgets/over_list_item/over_list_item.dar
 
 class ImportBody extends StatefulWidget {
   final filterByProduct;
+
   const ImportBody({Key? key, required this.filterByProduct}) : super(key: key);
 
   @override
@@ -41,26 +42,30 @@ class _ImportBodyState extends State<ImportBody> {
     fToast = FToast();
     fToast.init(context);
 
-    print('filterByProduct:'+widget.filterByProduct.toString());
+    print('filterByProduct:' + widget.filterByProduct.toString());
     _scrollController.addListener(() {
       double maxScroll = _scrollController.position.maxScrollExtent;
       double currentScroll = _scrollController.position.pixels;
-      double delta = MediaQuery.of(context).size.height * 0.25;
-      if(maxScroll - currentScroll <= delta) {
-        print('filterByProduct:'+widget.filterByProduct.toString());
+      double delta = MediaQuery
+          .of(context)
+          .size
+          .height * 0.25;
+      if (maxScroll - currentScroll <= delta) {
+        print('filterByProduct:' + widget.filterByProduct.toString());
         setState(() {
           this.isLoading = true;
         });
-        ToastUtils.showToast(context: this.vDataAll.length.toString(), fToast: fToast);
+        ToastUtils.showToast(
+            context: this.vDataAll.length.toString(), fToast: fToast);
         _fetchAllItemsByPageSize().then((value) {
-          if(value.length > 0) {
+          if (value.length > 0) {
             setState(() {
               this.vDataAll = [...vDataAll, ...value];
               this.isLoading = false;
-              ToastUtils.showToast(context: '_fetchAllItemsByPageSize:'+this.vDataAll.length.toString(), fToast: fToast);
+              ToastUtils.showToast(context: '_fetchAllItemsByPageSize:' +
+                  this.vDataAll.length.toString(), fToast: fToast);
             });
           }
-
         });
       }
     });
@@ -74,15 +79,21 @@ class _ImportBodyState extends State<ImportBody> {
 
   @override
   Widget build(BuildContext context) {
-    size = MediaQuery.of(context).size;
+    size = MediaQuery
+        .of(context)
+        .size;
     return SingleChildScrollView(
       controller: _scrollController,
       // padding: EdgeInsets.only(left: 10),
       physics: ClampingScrollPhysics(),
       child: Column(
         children: <Widget>[
-          widget.filterByProduct ? _buildFilterByProduct(): _buildAllTransaction(),
-          this.isLoading ==true && widget.filterByProduct == false ? InfiniteScrollLoading(): Container(
+          widget.filterByProduct
+              ? _buildFilterByProduct()
+              : _buildAllTransaction(),
+          this.isLoading == true && widget.filterByProduct == false
+              ? InfiniteScrollLoading()
+              : Container(
             color: Colors.transparent,
             height: 60,
           )
@@ -98,21 +109,28 @@ class _ImportBodyState extends State<ImportBody> {
       shrinkWrap: true,
       separatorBuilder: (context, index) => Divider(),
       itemCount: this.vDataProduct.length,
-      itemBuilder: (context, index) => _buildPListTile(dataItem: this.vDataProduct[index]),
+      itemBuilder: (context, index) =>
+          _buildPListTile(dataItem: this.vDataProduct[index]),
     );
   }
 
-  Widget _buildPListTile( {
+  Widget _buildPListTile({
     required Map dataItem
   }) {
     return ListTile(
-      title: Text( dataItem[ProductImportKey.name],
-        style: TextStyle( color: ColorsUtils.isDarkModeColor(), fontSize: 20, fontWeight: FontWeight.w700,fontFamily: fontDefault),
+      title: Text(dataItem[ProductImportKey.name],
+        style: TextStyle(color: ColorsUtils.isDarkModeColor(),
+            fontSize: 20,
+            fontWeight: FontWeight.w700,
+            fontFamily: fontDefault),
       ),
       leading: _buildPLeading(url: dataItem[ProductImportKey.url]),
       subtitle: Text(
         dataItem[ProductImportKey.remark],
-        style: TextStyle(fontSize: 12,fontWeight: FontWeight.w700, fontFamily: fontDefault, color: primaryColor),
+        style: TextStyle(fontSize: 12,
+            fontWeight: FontWeight.w700,
+            fontFamily: fontDefault,
+            color: primaryColor),
       ),
       trailing: Container(
         width: 130,
@@ -150,7 +168,7 @@ class _ImportBodyState extends State<ImportBody> {
 
 
   Widget _buildPLeading({
-    required  String url
+    required String url
   }) {
     return Container(
       width: 50,
@@ -161,7 +179,7 @@ class _ImportBodyState extends State<ImportBody> {
       ),
       child: CircleAvatar(
         radius: 30.0,
-        backgroundImage:NetworkImage(url),
+        backgroundImage: NetworkImage(url),
         backgroundColor: Colors.transparent,
       ),
     );
@@ -182,21 +200,25 @@ class _ImportBodyState extends State<ImportBody> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               OverListItem(
-                text: FormatDateUtils.dateFormat(yyyyMMdd: e[ImportKey.transactionDate].toString()),
+                text: FormatDateUtils.dateFormat(
+                    yyyyMMdd: e[ImportKey.transactionDate].toString()),
                 length: mData.length,
               ),
               Column(
-                children: mData.map((item){
+                children: mData.map((item) {
                   i += 1;
                   return Container(
                     decoration: mDataLength != i ? BoxDecoration(
                         border: Border(
-                          bottom: BorderSide(color: Color(0xCD939BA9).withOpacity(0.2), width: 1.5),
+                          bottom: BorderSide(
+                              color: Color(0xCD939BA9).withOpacity(0.2),
+                              width: 1.5),
                         )
                     ) : null,
                     child: _buildListTile(
                         transactionId: item[ImportKey.transactionId].toString(),
-                        transactionDate: e[ImportKey.transactionDate].toString(),
+                        transactionDate: e[ImportKey.transactionDate]
+                            .toString(),
                         time: item[ImportKey.time].toString(),
                         total: item[ImportKey.total].toString()
                     ),
@@ -221,11 +243,16 @@ class _ImportBodyState extends State<ImportBody> {
       leading: _buildLeading(),
       title: Text(
         transactionId,
-        style: TextStyle(color: ColorsUtils.isDarkModeColor(), fontWeight: FontWeight.w500, fontFamily: fontDefault),
+        style: TextStyle(color: ColorsUtils.isDarkModeColor(),
+            fontWeight: FontWeight.w500,
+            fontFamily: fontDefault),
       ),
       subtitle: Text(
         FormatDateUtils.dateTime(hhnn: time),
-        style: TextStyle(fontFamily: fontDefault, fontWeight: FontWeight.w500, fontSize: 15, color: primaryColor),
+        style: TextStyle(fontFamily: fontDefault,
+            fontWeight: FontWeight.w500,
+            fontSize: 15,
+            color: primaryColor),
       ),
       trailing: Container(
         width: 110,
@@ -234,10 +261,14 @@ class _ImportBodyState extends State<ImportBody> {
             children: <Widget>[
               Text(
                 FormatNumberUtils.usdFormat2Digit(total).toString() + ' \$',
-                style: TextStyle(fontFamily: fontDefault, fontSize: 20, fontWeight: FontWeight.w700, color: ColorsUtils.isDarkModeColor()),
+                style: TextStyle(fontFamily: fontDefault,
+                    fontSize: 20,
+                    fontWeight: FontWeight.w700,
+                    color: ColorsUtils.isDarkModeColor()),
               ),
               SizedBox(width: 10,),
-              FaIcon(FontAwesomeIcons.chevronRight,size: 20 , color: Colors.black54.withOpacity(0.5))
+              FaIcon(FontAwesomeIcons.chevronRight, size: 20,
+                  color: Colors.black54.withOpacity(0.5))
             ]
         ),
       ),
@@ -250,19 +281,22 @@ class _ImportBodyState extends State<ImportBody> {
       height: 40,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(60)),
-        border: Border.all(color: Colors.deepPurpleAccent.withOpacity(0.7), width: 2),
+        border: Border.all(
+            color: Colors.deepPurpleAccent.withOpacity(0.7), width: 2),
       ),
       child: CircleAvatar(
         radius: 30.0,
         backgroundColor: Colors.transparent,
-        child: FaIcon(FontAwesomeIcons.receipt,size: 20 , color: Colors.deepPurple),
+        child: FaIcon(
+            FontAwesomeIcons.receipt, size: 20, color: Colors.deepPurple),
       ),
     );
   }
 
   _fetchItems() async {
     await Future.delayed(Duration(seconds: 1));
-    final data = await rootBundle.loadString('assets/json_data/product_imports.json');
+    final data = await rootBundle.loadString(
+        'assets/json_data/product_imports.json');
     Map mapItems = jsonDecode(data);
     setState(() {
       this.vDataProduct = mapItems['imports'];
@@ -273,7 +307,8 @@ class _ImportBodyState extends State<ImportBody> {
   _fetchAllItems() async {
     print('testing');
     await Future.delayed(Duration(seconds: 1));
-    final data = await rootBundle.loadString('assets/json_data/import_transactions.json');
+    final data = await rootBundle.loadString(
+        'assets/json_data/import_transactions.json');
     Map mapItems = jsonDecode(data);
     setState(() {
       this.vDataAll = mapItems['imports'];
@@ -283,7 +318,8 @@ class _ImportBodyState extends State<ImportBody> {
 
   Future<List<dynamic>> _fetchAllItemsByPageSize() async {
     await Future.delayed(Duration(seconds: 5));
-    final data = await rootBundle.loadString('assets/json_data/import_transactions.json');
+    final data = await rootBundle.loadString(
+        'assets/json_data/import_transactions.json');
     Map mapItems = jsonDecode(data);
     List<dynamic> mData = mapItems['imports'];
     return Future.value(mData);

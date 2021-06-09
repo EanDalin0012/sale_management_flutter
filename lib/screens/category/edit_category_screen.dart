@@ -6,6 +6,7 @@ import 'package:sale_management/shares/utils/colors_util.dart';
 
 class EditCategoryScreen extends StatefulWidget {
   final Map vData;
+
   const EditCategoryScreen({Key? key, required this.vData}) : super(key: key);
 
   @override

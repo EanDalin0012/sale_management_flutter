@@ -8,7 +8,10 @@ class ProfileHeader extends StatefulWidget {
   final String? title;
   final String? subtitle;
   final List<Widget>? actions;
-  const ProfileHeader({Key? key, required this.coverImage, required this.avatar, this.title, this.subtitle, this.actions}) : super(key: key);
+
+  const ProfileHeader(
+      {Key? key, required this.coverImage, required this.avatar, this.title, this.subtitle, this.actions})
+      : super(key: key);
 
   @override
   _ProfileHeaderState createState() => _ProfileHeaderState();
@@ -22,7 +25,8 @@ class _ProfileHeaderState extends State<ProfileHeader> {
         Ink(
           height: 200,
           decoration: BoxDecoration(
-            image: DecorationImage(image: NetworkImage(widget.coverImage), fit: BoxFit.cover),
+            image: DecorationImage(
+                image: NetworkImage(widget.coverImage), fit: BoxFit.cover),
           ),
         ),
         Ink(
@@ -81,13 +85,12 @@ class Avatar extends StatelessWidget {
   final double? radius;
   final double? borderWidth;
 
-  const Avatar(
-      {Key? key,
-         required this.image,
-        this.borderColor = Colors.grey,
-        this.backgroundColor,
-        this.radius = 30,
-        this.borderWidth = 5})
+  const Avatar({Key? key,
+    required this.image,
+    this.borderColor = Colors.grey,
+    this.backgroundColor,
+    this.radius = 30,
+    this.borderWidth = 5})
       : super(key: key);
 
   @override
@@ -99,7 +102,9 @@ class Avatar extends StatelessWidget {
         radius: radius,
         backgroundColor: backgroundColor != null
             ? backgroundColor
-            : Theme.of(context).primaryColor,
+            : Theme
+            .of(context)
+            .primaryColor,
         child: CircleAvatar(
           radius: radius! - borderWidth!,
           backgroundImage: NetworkImage(image),

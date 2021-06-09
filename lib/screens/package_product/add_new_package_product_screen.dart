@@ -8,10 +8,12 @@ class AddNewPackageProductScreen extends StatefulWidget {
   const AddNewPackageProductScreen({Key? key}) : super(key: key);
 
   @override
-  _AddNewPackageProductScreenState createState() => _AddNewPackageProductScreenState();
+  _AddNewPackageProductScreenState createState() =>
+      _AddNewPackageProductScreenState();
 }
 
-class _AddNewPackageProductScreenState extends State<AddNewPackageProductScreen> {
+class _AddNewPackageProductScreenState
+    extends State<AddNewPackageProductScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

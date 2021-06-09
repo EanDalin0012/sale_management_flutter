@@ -14,6 +14,7 @@ import 'package:sale_management/shares/widgets/search_widget/search_widget.dart'
 
 class MemberDropdownPage extends StatefulWidget {
   final Map vMember;
+
   const MemberDropdownPage({Key? key, required this.vMember}) : super(key: key);
 
   @override
@@ -22,7 +23,8 @@ class MemberDropdownPage extends StatefulWidget {
 
 class _MemberDropdownState extends State<MemberDropdownPage> {
   var isNative = false;
-  late Size size ;
+  late Size size;
+
   List<dynamic> vData = [];
   var styleInput;
 
@@ -34,12 +36,17 @@ class _MemberDropdownState extends State<MemberDropdownPage> {
 
   @override
   Widget build(BuildContext context) {
-    size = MediaQuery.of(context).size;
-    styleInput = TextStyle(color: ColorsUtils.isDarkModeColor(), fontSize: 17, fontWeight: FontWeight.w500, fontFamily: fontDefault);
+    size = MediaQuery
+        .of(context)
+        .size;
+    styleInput = TextStyle(color: ColorsUtils.isDarkModeColor(),
+        fontSize: 17,
+        fontWeight: FontWeight.w500,
+        fontFamily: fontDefault);
     return Scaffold(
-      backgroundColor: ColorsUtils.scaffoldBackgroundColor(),
-      appBar: _buildAppBar(),
-      body: Column(
+        backgroundColor: ColorsUtils.scaffoldBackgroundColor(),
+        appBar: _buildAppBar(),
+        body: Column(
           children: <Widget>[
             this.vData.length > 0 ? _buildBody() : CircularProgressLoading(),
           ],
@@ -55,14 +62,15 @@ class _MemberDropdownState extends State<MemberDropdownPage> {
       actions: [
         IconButton(
           icon: Icon(isNative ? Icons.close : Icons.search),
-          onPressed: () => setState(() {
-            this.isNative = !isNative;
-          }),
+          onPressed: () =>
+              setState(() {
+                this.isNative = !isNative;
+              }),
         ),
         const SizedBox(width: 8),
       ],
       bottom: this.isNative ? PreferredSize(preferredSize: Size.fromHeight(60),
-        child:  Row(
+        child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
@@ -74,21 +82,20 @@ class _MemberDropdownState extends State<MemberDropdownPage> {
               child: SearchWidget(
                 hintText: 'search.label.searchName'.tr(),
                 text: 'search.label.searchName'.tr(),
-                onChanged: (value) {
-                },
+                onChanged: (value) {},
               ),
             ),
             // _buildFilterByCategory()
             // _buildFilterByProduct()
           ],
         ),
-      ): null,
+      ) : null,
     );
   }
 
-  Widget _buildBody () {
+  Widget _buildBody() {
     return Expanded(
-        child:  ListView.builder(
+        child: ListView.builder(
           itemCount: this.vData.length,
           itemBuilder: (context, index) {
             return _buildListTile(
@@ -103,25 +110,33 @@ class _MemberDropdownState extends State<MemberDropdownPage> {
     required Map dataItem
   }) {
     var isCheck = false;
-    if(widget.vMember.toString() != '{}' && widget.vMember[MemberKey.id] == dataItem[MemberKey.id] ) {
+    if (widget.vMember.toString() != '{}' &&
+        widget.vMember[MemberKey.id] == dataItem[MemberKey.id]) {
       isCheck = true;
     }
     return ListTile(
       onTap: () => onSelectedItem(dataItem),
-      title: Text( dataItem[MemberKey.name],
-        style: TextStyle( color: ColorsUtils.isDarkModeColor(), fontSize: 20, fontWeight: FontWeight.w700,fontFamily: fontDefault),
+      title: Text(dataItem[MemberKey.name],
+        style: TextStyle(color: ColorsUtils.isDarkModeColor(),
+            fontSize: 20,
+            fontWeight: FontWeight.w700,
+            fontFamily: fontDefault),
       ),
       leading: PrefixPerson(url: dataItem[MemberKey.url]),
       subtitle: Text(
         dataItem[MemberKey.remark],
-        style: TextStyle(fontSize: 12,fontWeight: FontWeight.w700, fontFamily: fontDefault, color: primaryColor),
+        style: TextStyle(fontSize: 12,
+            fontWeight: FontWeight.w700,
+            fontFamily: fontDefault,
+            color: primaryColor),
       ),
-      trailing:  isCheck ? IconCheck() : null,
+      trailing: isCheck ? IconCheck() : null,
     );
   }
 
   _fetchItems() async {
-    final data = await rootBundle.loadString('assets/json_data/member_list.json');
+    final data = await rootBundle.loadString(
+        'assets/json_data/member_list.json');
     Map mapItems = jsonDecode(data);
     setState(() {
       this.vData = mapItems['members'];

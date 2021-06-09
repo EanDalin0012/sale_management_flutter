@@ -4,7 +4,7 @@ import 'package:sale_management/shares/utils/colors_util.dart';
 
 
 class ToastUtils {
-  static showToast( { required String context, required FToast fToast}) {
+  static showToast({ required String context, required FToast fToast}) {
     Widget toast = Container(
       padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
       decoration: BoxDecoration(
@@ -20,7 +20,8 @@ class ToastUtils {
             SizedBox(
               width: 12.0,
             ),
-            Text(context, style: TextStyle(color: ColorsUtils.isDarkModeColor()),),
+            Text(
+              context, style: TextStyle(color: ColorsUtils.isDarkModeColor()),),
           ],
         ),
       ),

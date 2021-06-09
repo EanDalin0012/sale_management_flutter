@@ -33,34 +33,39 @@ class _PackageProductScreenState extends State<PackageProductScreen> {
   bool isSearch = false;
   var isLoading = false;
   var _pageSize = 20;
-  late Size size ;
+  late Size size;
+
   List<dynamic> vData = [];
   List<dynamic> vDataTmp = [];
   List<dynamic> productItems = [];
   late Map product = {};
   ScrollController _scrollController = new ScrollController();
   int vScrollInt = 0;
+
   @override
   void initState() {
     super.initState();
     this._fetchProductItems();
     this._fetchItems();
-      _scrollController.addListener(() {
-        double maxScroll = _scrollController.position.maxScrollExtent;
-        double currentScroll = _scrollController.position.pixels;
-        double delta = MediaQuery.of(context).size.height * 0.25;
-        if(maxScroll - currentScroll <= delta) {
-          this._pageSize += 1;
+    _scrollController.addListener(() {
+      double maxScroll = _scrollController.position.maxScrollExtent;
+      double currentScroll = _scrollController.position.pixels;
+      double delta = MediaQuery
+          .of(context)
+          .size
+          .height * 0.25;
+      if (maxScroll - currentScroll <= delta) {
+        this._pageSize += 1;
+        setState(() {
+          this.isLoading = true;
+        });
+        this._fetchItemsByPageSize().then((value) {
           setState(() {
-            this.isLoading = true;
+            this.vData = [...vData, ...value];
+            this.isLoading = false;
           });
-          this._fetchItemsByPageSize().then((value) {
-            setState(() {
-              this.vData = [...vData, ...value];
-              this.isLoading = false;
-            });
-          });
-        }
+        });
+      }
     });
   }
 
@@ -72,12 +77,14 @@ class _PackageProductScreenState extends State<PackageProductScreen> {
 
   @override
   Widget build(BuildContext context) {
-    size = MediaQuery.of(context).size;
+    size = MediaQuery
+        .of(context)
+        .size;
     return WillPopScope(
       onWillPop: () => onBackPress(),
       child: Scaffold(
-        backgroundColor: ColorsUtils.scaffoldBackgroundColor(),
-        appBar: _buildAppBar(),
+          backgroundColor: ColorsUtils.scaffoldBackgroundColor(),
+          appBar: _buildAppBar(),
           body: SafeArea(
             child: this.vData.length > 0 ? Column(
               children: <Widget>[
@@ -86,14 +93,14 @@ class _PackageProductScreenState extends State<PackageProductScreen> {
                   length: this.vData.length,
                 ),
                 _buildBody(),
-                this.isLoading ==true ? InfiniteScrollLoading(): Container(
+                this.isLoading == true ? InfiniteScrollLoading() : Container(
                   color: Colors.transparent,
                   height: 60,
                 )
               ],
             ) : CircularProgressLoading(),
           ),
-        floatingActionButton: _floatingActionButton()
+          floatingActionButton: _floatingActionButton()
       ),
     );
   }
@@ -115,14 +122,15 @@ class _PackageProductScreenState extends State<PackageProductScreen> {
       actions: [
         IconButton(
           icon: Icon(isNative ? Icons.close : Icons.search),
-          onPressed: () => setState(() {
-            this.isNative = !isNative;
-          }),
+          onPressed: () =>
+              setState(() {
+                this.isNative = !isNative;
+              }),
         ),
         const SizedBox(width: 8),
       ],
       bottom: this.isNative ? PreferredSize(preferredSize: Size.fromHeight(60),
-        child:  Row(
+        child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
@@ -134,48 +142,58 @@ class _PackageProductScreenState extends State<PackageProductScreen> {
               child: SearchWidget(
                 hintText: 'search.label.searchName'.tr(),
                 text: 'search.label.search'.tr(),
-                onChanged: (String value) {  },
+                onChanged: (String value) {},
               ),
             ),
             _buildFilterByProduct()
           ],
         ),
-      ): null,
+      ) : null,
     );
   }
 
-  Widget _buildBody () {
+  Widget _buildBody() {
     return Expanded(
         child: ListView.separated(
-          controller: this._scrollController,
-          itemCount: this.vData.length,
-          separatorBuilder: (context, index) => Divider(
-            color: Colors.purple[900]!.withOpacity(0.5),
-          ),
-          itemBuilder: (context, index) {
-            if (index == vData.length) {
-              return CircularProgressIndicator();
-            } else {
-              return _buildListTile(
-                  dataItem: this.vData[index]
-              );}
+            controller: this._scrollController,
+            itemCount: this.vData.length,
+            separatorBuilder: (context, index) =>
+                Divider(
+                  color: Colors.purple[900]!.withOpacity(0.5),
+                ),
+            itemBuilder: (context, index) {
+              if (index == vData.length) {
+                return CircularProgressIndicator();
+              } else {
+                return _buildListTile(
+                    dataItem: this.vData[index]
+                );
+              }
             }
 
         )
     );
   }
 
-  Widget _buildListTile( {
+  Widget _buildListTile({
     required Map dataItem
   }) {
     return ListTile(
-      title: Text( dataItem[PackageProductKey.name],
-        style: TextStyle( color: ColorsUtils.isDarkModeColor(), fontSize: 20, fontWeight: FontWeight.w700,fontFamily: fontDefault),
+      title: Text(dataItem[PackageProductKey.name],
+        style: TextStyle(color: ColorsUtils.isDarkModeColor(),
+            fontSize: 20,
+            fontWeight: FontWeight.w700,
+            fontFamily: fontDefault),
       ),
       leading: _buildLeading(dataItem[PackageProductKey.productId]),
       subtitle: Text(
-        FormatNumberUtils.usdFormat2Digit(dataItem[PackageProductKey.price].toString()).toString()+' \$,'+dataItem[PackageProductKey.remark].toString(),
-        style: TextStyle(fontSize: 12,fontWeight: FontWeight.w700, fontFamily: fontDefault, color: primaryColor),
+        FormatNumberUtils.usdFormat2Digit(
+            dataItem[PackageProductKey.price].toString()).toString() + ' \$,' +
+            dataItem[PackageProductKey.remark].toString(),
+        style: TextStyle(fontSize: 12,
+            fontWeight: FontWeight.w700,
+            fontFamily: fontDefault,
+            color: primaryColor),
       ),
       trailing: Container(
         width: 130,
@@ -221,14 +239,15 @@ class _PackageProductScreenState extends State<PackageProductScreen> {
       height: 40,
       margin: EdgeInsets.only(top: 12),
       child: IconButton(
-        icon: FaIcon(FontAwesomeIcons.filter,size: 25 , color: Colors.white),
+        icon: FaIcon(FontAwesomeIcons.filter, size: 25, color: Colors.white),
         tooltip: 'Increase volume by 10',
         onPressed: () async {
           final product = await Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => ProductDropdownPage(
-              vData: this.product,
-            )),
+            MaterialPageRoute(builder: (context) =>
+                ProductDropdownPage(
+                  vData: this.product,
+                )),
           );
 
           if (product == null) return;
@@ -244,7 +263,7 @@ class _PackageProductScreenState extends State<PackageProductScreen> {
   FloatingActionButton _floatingActionButton() {
     return FloatingActionButton(
       backgroundColor: Colors.purple[900],
-      onPressed: (){
+      onPressed: () {
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => AddNewPackageProductScreen()),
@@ -256,53 +275,58 @@ class _PackageProductScreenState extends State<PackageProductScreen> {
     );
   }
 
-  Widget _offsetPopup(Map item) => PopupMenuButton<int>(
-    itemBuilder: (context) => [
-      PopupMenuItem(
-          value: 0,
-          child: Row(
-            children: <Widget>[
-              FaIcon(FontAwesomeIcons.edit,size: 20,color: Colors.purple[900]),
-              SizedBox(width: 10,),
-              Text('common.label.edit'.tr(),
-                style: menuStyle,
-              ),
-            ],
-          )
-      ),
-      PopupMenuItem(
-          value: 1,
-          child: Row(
-            children: <Widget>[
-              FaIcon(FontAwesomeIcons.trash,size: 20,color: Colors.purple[900]),
-              SizedBox(width: 10,),
-              Text('common.label.delete'.tr(),
-                style: menuStyle,
-              ),
-            ],
-          )
-      ),
-    ],
-    icon: FaIcon(FontAwesomeIcons.ellipsisV,size: 20,color: ColorsUtils.iConColor()),
-    offset: Offset(0, 45),
-    onSelected: (value) {
-      if(value == 0) {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) =>
-              EditPackageProductScreen(vData: item)
+  Widget _offsetPopup(Map item) =>
+      PopupMenuButton<int>(
+        itemBuilder: (context) =>
+        [
+          PopupMenuItem(
+              value: 0,
+              child: Row(
+                children: <Widget>[
+                  FaIcon(FontAwesomeIcons.edit, size: 20,
+                      color: Colors.purple[900]),
+                  SizedBox(width: 10,),
+                  Text('common.label.edit'.tr(),
+                    style: menuStyle,
+                  ),
+                ],
+              )
           ),
-        );
-      } else if (value == 1) {
-        // _showDialog(item);
-      }
-    },
-  );
+          PopupMenuItem(
+              value: 1,
+              child: Row(
+                children: <Widget>[
+                  FaIcon(FontAwesomeIcons.trash, size: 20,
+                      color: Colors.purple[900]),
+                  SizedBox(width: 10,),
+                  Text('common.label.delete'.tr(),
+                    style: menuStyle,
+                  ),
+                ],
+              )
+          ),
+        ],
+        icon: FaIcon(FontAwesomeIcons.ellipsisV, size: 20,
+            color: ColorsUtils.iConColor()),
+        offset: Offset(0, 45),
+        onSelected: (value) {
+          if (value == 0) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) =>
+                  EditPackageProductScreen(vData: item)
+              ),
+            );
+          } else if (value == 1) {
+            // _showDialog(item);
+          }
+        },
+      );
 
   String _searchProductById(int productId) {
-    if(this.productItems.length > 0) {
-      for(Map p in productItems) {
-        if(int.parse(p[ProductKey.id].toString()) == productId) {
+    if (this.productItems.length > 0) {
+      for (Map p in productItems) {
+        if (int.parse(p[ProductKey.id].toString()) == productId) {
           return p[ProductKey.url];
         }
       }
@@ -311,13 +335,16 @@ class _PackageProductScreenState extends State<PackageProductScreen> {
   }
 
   _doFilterByProduct(Map product) {
-    var dataItems = vDataTmp.where((e) => (e[ProductKey.id]).toString().contains(product[ProductKey.id].toString())
+    var dataItems = vDataTmp.where((e) =>
+        (e[ProductKey.id]).toString().contains(
+            product[ProductKey.id].toString())
     ).toList();
     return dataItems;
   }
 
   _fetchProductItems() async {
-    final data = await rootBundle.loadString('assets/json_data/product_list.json');
+    final data = await rootBundle.loadString(
+        'assets/json_data/product_list.json');
     Map mapItems = jsonDecode(data);
     setState(() {
       this.productItems = mapItems['products'];
@@ -326,7 +353,8 @@ class _PackageProductScreenState extends State<PackageProductScreen> {
   }
 
   _fetchItems() async {
-    final data = await rootBundle.loadString('assets/json_data/package_of_product_list.json');
+    final data = await rootBundle.loadString(
+        'assets/json_data/package_of_product_list.json');
     Map mapItems = jsonDecode(data);
     setState(() {
       this.vData = mapItems['packageProducts'];
@@ -337,7 +365,8 @@ class _PackageProductScreenState extends State<PackageProductScreen> {
 
   Future<List<dynamic>> _fetchItemsByPageSize() async {
     await Future.delayed(Duration(seconds: 5));
-    final data = await rootBundle.loadString('assets/json_data/package_of_product_list.json');
+    final data = await rootBundle.loadString(
+        'assets/json_data/package_of_product_list.json');
     Map mapItems = jsonDecode(data);
     List<dynamic> _vData = mapItems['packageProducts'];
     return Future.value(_vData);

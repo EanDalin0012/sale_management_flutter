@@ -6,7 +6,9 @@ import 'package:sale_management/shares/utils/colors_util.dart';
 
 class EditPackageProductScreen extends StatefulWidget {
   final Map vData;
-  const EditPackageProductScreen({Key? key, required this.vData}) : super(key: key);
+
+  const EditPackageProductScreen({Key? key, required this.vData})
+      : super(key: key);
 
   @override
   _EditPackageProductState createState() => _EditPackageProductState();

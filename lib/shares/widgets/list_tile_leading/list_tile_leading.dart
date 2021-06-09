@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 
 class ListTileLeadingWidget extends StatelessWidget {
   final String netWorkURL;
-  const ListTileLeadingWidget({Key? key, required this.netWorkURL}) : super(key: key);
+
+  const ListTileLeadingWidget({Key? key, required this.netWorkURL})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +17,7 @@ class ListTileLeadingWidget extends StatelessWidget {
       ),
       child: CircleAvatar(
         radius: 30.0,
-        backgroundImage:NetworkImage(netWorkURL),
+        backgroundImage: NetworkImage(netWorkURL),
         backgroundColor: Colors.transparent,
       ),
     );

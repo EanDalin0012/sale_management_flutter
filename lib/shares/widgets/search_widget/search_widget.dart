@@ -6,7 +6,10 @@ class SearchWidget extends StatelessWidget {
   final String text;
   final String hintText;
   final ValueChanged<String> onChanged;
-  const SearchWidget({Key? key, required this.text, required this.hintText, required this.onChanged}) : super(key: key);
+
+  const SearchWidget(
+      {Key? key, required this.text, required this.hintText, required this.onChanged})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +20,8 @@ class SearchWidget extends StatelessWidget {
             labelStyle: TextStyle(color: Colors.white, fontSize: 20),
             hintText: hintText,
             hintStyle: InputDecorationUtils.inputDecorationHintStyle(),
-            contentPadding: EdgeInsets.only(left: 15, bottom: 11, top: 11, right: 15),
+            contentPadding: EdgeInsets.only(
+                left: 15, bottom: 11, top: 11, right: 15),
             fillColor: Colors.white,
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(25.0),
@@ -31,7 +35,8 @@ class SearchWidget extends StatelessWidget {
                 color: Colors.white54,
               ),
             ),
-            prefixIcon: CustomSuffixIcon(svgPaddingLeft: 15, svgIcon: "assets/icons/Search Icon.svg")
+            prefixIcon: CustomSuffixIcon(
+                svgPaddingLeft: 15, svgIcon: "assets/icons/Search Icon.svg")
         ),
         onChanged: (value) {
           this.onChanged(value);

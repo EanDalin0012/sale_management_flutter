@@ -9,7 +9,10 @@ class StockChoice extends StatefulWidget {
   final Map vStock;
   final List<dynamic> mList;
   final ValueChanged<Map> onChanged;
-  const StockChoice({Key ? key, required this.vStock, required this.onChanged, required this.mList}) : super(key: key);
+
+  const StockChoice(
+      {Key ? key, required this.vStock, required this.onChanged, required this.mList})
+      : super(key: key);
 
   @override
   _StockChoiceState createState() => _StockChoiceState();
@@ -29,12 +32,18 @@ class _StockChoiceState extends State<StockChoice> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: MediaQuery.of(context).size.height * 0.37,
+        height: MediaQuery
+            .of(context)
+            .size
+            .height * 0.37,
         child: Column(
             children: <Widget>[
               Container(
                 height: 60,
-                width: MediaQuery.of(context).size.width,
+                width: MediaQuery
+                    .of(context)
+                    .size
+                    .width,
                 color: Colors.deepPurple,
                 child: Center(child: Text('Choose Stock', style: TextStyle(
                     fontSize: 20,
@@ -59,7 +68,7 @@ class _StockChoiceState extends State<StockChoice> {
 
   Widget _container(Map map) {
     var isCheck = false;
-    if(map[StockKey.id] == widget.vStock[StockKey.id]) {
+    if (map[StockKey.id] == widget.vStock[StockKey.id]) {
       isCheck = true;
     }
 
@@ -73,7 +82,7 @@ class _StockChoiceState extends State<StockChoice> {
           border: isCheck ? Border(
             top: BorderSide(width: 2, color: color),
             bottom: BorderSide(width: 2, color: color),
-          ): null,
+          ) : null,
         ),
         child: Padding(
           padding: EdgeInsets.only(left: 15, right: 10),
@@ -83,7 +92,11 @@ class _StockChoiceState extends State<StockChoice> {
               Container(
                 height: 50.0,
                 padding: EdgeInsets.only(top: 10),
-                child: Text(map[StockKey.name].toString(),style: TextStyle(color: Colors.blueGrey, fontSize: 20, fontWeight: FontWeight.w700, fontFamily: fontDefault)),
+                child: Text(map[StockKey.name].toString(), style: TextStyle(
+                    color: Colors.blueGrey,
+                    fontSize: 20,
+                    fontWeight: FontWeight.w700,
+                    fontFamily: fontDefault)),
               ),
               isCheck ? IconCheck() : Container()
             ],
@@ -94,7 +107,8 @@ class _StockChoiceState extends State<StockChoice> {
   }
 
   _fetchItemsStock() async {
-    final data = await rootBundle.loadString('assets/json_data/stock_list.json');
+    final data = await rootBundle.loadString(
+        'assets/json_data/stock_list.json');
     Map mapItems = jsonDecode(data);
     setState(() {
       this.vData = mapItems['stocks'];

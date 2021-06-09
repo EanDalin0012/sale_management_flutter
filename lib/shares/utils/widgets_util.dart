@@ -4,7 +4,8 @@ import 'package:sale_management/shares/utils/colors_util.dart';
 
 class WidgetsUtil {
 
-  static AppBar appBar({required String title, Widget? leading, List<Widget>? actions, PreferredSizeWidget? bottom, double? elevation}) {
+  static AppBar appBar({required String title, Widget? leading, List<
+      Widget>? actions, PreferredSizeWidget? bottom, double? elevation}) {
     return AppBar(
       // backgroundColor: Colors.purple[900],
       title: Text(title),
@@ -19,7 +20,7 @@ class WidgetsUtil {
     var color = Colors.purple[900];
     var iconThemeColor = Colors.white;
     var textThemeColor = Colors.white;
-    if(DarkMode.isDarkMode == true) {
+    if (DarkMode.isDarkMode == true) {
       color = Colors.black;
       iconThemeColor = Colors.white;
       textThemeColor = Colors.white;
@@ -62,7 +63,10 @@ class WidgetsUtil {
           ),
         ),
       ),
-      child: Center(child: Text(text, style: TextStyle(fontWeight: FontWeight.w700, color: ColorsUtils.buttonColorContainer(), fontSize: 18))),
+      child: Center(child: Text(text, style: TextStyle(
+          fontWeight: FontWeight.w700,
+          color: ColorsUtils.buttonColorContainer(),
+          fontSize: 18))),
     );
   }
 

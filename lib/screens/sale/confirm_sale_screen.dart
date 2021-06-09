@@ -6,6 +6,7 @@ import 'package:easy_localization/easy_localization.dart';
 
 class ConfirmSaleScreen extends StatefulWidget {
   final List<dynamic> vData;
+
   const ConfirmSaleScreen({Key? key, required this.vData}) : super(key: key);
 
   @override
@@ -28,14 +29,14 @@ class _ConfirmSaleScreenState extends State<ConfirmSaleScreen> {
       backgroundColor: ColorsUtils.scaffoldBackgroundColor(),
       appBar: _buildAppBar(),
       body: SafeArea(
-              child: ConfirmSaleBody(
-                  vData: widget.vData,
-                  onChanged: (items) {
-                    setState(() {
-                      this.vData = items;
-                    });
-                  }
-              ),
+        child: ConfirmSaleBody(
+            vData: widget.vData,
+            onChanged: (items) {
+              setState(() {
+                this.vData = items;
+              });
+            }
+        ),
       ),
     );
   }
@@ -43,7 +44,8 @@ class _ConfirmSaleScreenState extends State<ConfirmSaleScreen> {
   AppBar _buildAppBar() {
     return AppBar(
       backgroundColor: ColorsUtils.appBarBackGround(),
-      title: Text('common.label.confirm'.tr(), style: TextStyle(fontFamily: fontDefault, fontWeight: FontWeight.w700)),
+      title: Text('common.label.confirm'.tr(), style: TextStyle(
+          fontFamily: fontDefault, fontWeight: FontWeight.w700)),
       leading: InkWell(
         onTap: () {
           Navigator.pop(context, this.vData);

@@ -6,6 +6,7 @@ import 'package:easy_localization/easy_localization.dart';
 
 class ConfirmImportScreen extends StatefulWidget {
   final List<dynamic> vData;
+
   const ConfirmImportScreen({Key? key, required this.vData}) : super(key: key);
 
   @override
@@ -35,7 +36,7 @@ class _ConfirmImportScreenState extends State<ConfirmImportScreen> {
                   this.vData = items;
                 });
               }
-              )
+          )
       ),
     );
   }
@@ -43,7 +44,8 @@ class _ConfirmImportScreenState extends State<ConfirmImportScreen> {
   AppBar _buildAppBar() {
     return AppBar(
       backgroundColor: ColorsUtils.appBarBackGround(),
-      title: Text('common.label.confirm'.tr(), style: TextStyle(fontFamily: fontDefault, fontWeight: FontWeight.w700)),
+      title: Text('common.label.confirm'.tr(), style: TextStyle(
+          fontFamily: fontDefault, fontWeight: FontWeight.w700)),
       leading: InkWell(
         onTap: () {
           Navigator.pop(context, this.vData);

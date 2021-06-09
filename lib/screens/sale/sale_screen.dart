@@ -30,7 +30,8 @@ class SaleScreen extends StatefulWidget {
 
 class _SaleScreenState extends State<SaleScreen> {
   var isNative = false;
-  late Size size ;
+  late Size size;
+
   List<dynamic> vData = [];
   ScrollController _scrollController = new ScrollController();
   var isLoading = false;
@@ -42,13 +43,16 @@ class _SaleScreenState extends State<SaleScreen> {
     this._scrollController.addListener(() {
       double maxScroll = _scrollController.position.maxScrollExtent;
       double currentScroll = _scrollController.position.pixels;
-      double delta = MediaQuery.of(context).size.height * 0.25;
-      if(maxScroll - currentScroll <= delta) {
+      double delta = MediaQuery
+          .of(context)
+          .size
+          .height * 0.25;
+      if (maxScroll - currentScroll <= delta) {
         setState(() {
           this.isLoading = true;
         });
         this._fetchItemsByPageSize().then((value) {
-          if(value.length > 0) {
+          if (value.length > 0) {
             setState(() {
               this.vData = [...vData, ...value];
               this.isLoading = false;
@@ -61,9 +65,11 @@ class _SaleScreenState extends State<SaleScreen> {
 
   @override
   Widget build(BuildContext context) {
-    size = MediaQuery.of(context).size;
+    size = MediaQuery
+        .of(context)
+        .size;
     return WillPopScope(
-      onWillPop:  () => onBackPress(),
+      onWillPop: () => onBackPress(),
       child: Scaffold(
         backgroundColor: ColorsUtils.scaffoldBackgroundColor(),
         appBar: _buildAppBar(),
@@ -73,7 +79,7 @@ class _SaleScreenState extends State<SaleScreen> {
             controller: _scrollController,
             child: Column(children: <Widget>[
               this.vData.length > 0 ? _buildBody() : CircularProgressLoading(),
-              this.isLoading == true ? InfiniteScrollLoading(): Container(
+              this.isLoading == true ? InfiniteScrollLoading() : Container(
                 color: Colors.transparent,
                 height: 60,
               )
@@ -101,7 +107,8 @@ class _SaleScreenState extends State<SaleScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     OverListItem(
-                      text: FormatDateUtils.dateFormat(yyyyMMdd: e[SaleKey.transactionDate].toString()),
+                      text: FormatDateUtils.dateFormat(
+                          yyyyMMdd: e[SaleKey.transactionDate].toString()),
                       length: mData.length,
                     ),
                     Column(
@@ -109,11 +116,17 @@ class _SaleScreenState extends State<SaleScreen> {
                         i += 1;
                         return Container(
                           decoration: mDataLength != i ? BoxDecoration(
-                              border: Border(bottom: BorderSide(color: Color(0xCD939BA9).withOpacity(0.2), width: 1.5),)
+                              border: Border(bottom: BorderSide(
+                                  color: Color(0xCD939BA9).withOpacity(0.2),
+                                  width: 1.5),)
                           ) : null,
                           child: _buildListTile(
-                              transactionDate: FormatDateUtils.dateFormat(yyyyMMdd: e[SaleKey.transactionDate].toString()),
-                              time: e[SaleKey.transactionDate].toString().substring(8, 12),
+                              transactionDate: FormatDateUtils.dateFormat(
+                                  yyyyMMdd: e[SaleKey.transactionDate]
+                                      .toString()),
+                              time: e[SaleKey.transactionDate]
+                                  .toString()
+                                  .substring(8, 12),
                               dataItems: item
                           ),
                         );
@@ -126,6 +139,7 @@ class _SaleScreenState extends State<SaleScreen> {
       ),
     );
   }
+
   AppBar _buildAppBar() {
     return AppBar(
       backgroundColor: ColorsUtils.appBarBackGround(),
@@ -135,14 +149,15 @@ class _SaleScreenState extends State<SaleScreen> {
       actions: [
         IconButton(
           icon: Icon(isNative ? Icons.close : Icons.search),
-          onPressed: () => setState(() {
-            this.isNative = !isNative;
-          }),
+          onPressed: () =>
+              setState(() {
+                this.isNative = !isNative;
+              }),
         ),
         const SizedBox(width: 8),
       ],
       bottom: this.isNative ? PreferredSize(preferredSize: Size.fromHeight(60),
-        child:  Row(
+        child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
@@ -154,20 +169,19 @@ class _SaleScreenState extends State<SaleScreen> {
               child: SearchWidget(
                 hintText: 'search.label.searchName'.tr(),
                 text: 'search.label.searchName'.tr(),
-                onChanged: (value) {
-                },
+                onChanged: (value) {},
               ),
             ),
           ],
         ),
-      ): null,
+      ) : null,
     );
   }
 
   FloatingActionButton _floatingActionButton() {
     return FloatingActionButton(
       backgroundColor: Colors.purple[900],
-      onPressed: (){
+      onPressed: () {
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => AddNewSaleScreen()),
@@ -189,19 +203,26 @@ class _SaleScreenState extends State<SaleScreen> {
       SaleKey.phoneNumber: dataItems[SaleKey.phoneNumber],
       SaleKey.customerName: dataItems[SaleKey.customerName],
       SaleKey.transactionId: dataItems[SaleKey.transactionId],
-      SaleKey.transactionDate: transactionDate + ' ' + FormatDateUtils.dateTime(hhnn: time),
+      SaleKey.transactionDate: transactionDate + ' ' +
+          FormatDateUtils.dateTime(hhnn: time),
       SaleKey.time: time,
-      SaleKey.total: FormatNumberUtils.usdFormat2Digit(dataItems[SaleKey.total].toString()).toString()
+      SaleKey.total: FormatNumberUtils.usdFormat2Digit(
+          dataItems[SaleKey.total].toString()).toString()
     };
     return ListTile(
       leading: _buildLeading(),
       title: Text(
         dataItems[SaleKey.transactionId].toString(),
-        style: TextStyle(color: ColorsUtils.isDarkModeColor(), fontWeight: FontWeight.w500, fontFamily: fontDefault),
+        style: TextStyle(color: ColorsUtils.isDarkModeColor(),
+            fontWeight: FontWeight.w500,
+            fontFamily: fontDefault),
       ),
       subtitle: Text(
-        dataItems[SaleKey.remark] + ',' +FormatDateUtils.dateTime(hhnn: time),
-        style: TextStyle(fontFamily: fontDefault, fontWeight: FontWeight.w500, fontSize: 15, color: primaryColor),
+        dataItems[SaleKey.remark] + ',' + FormatDateUtils.dateTime(hhnn: time),
+        style: TextStyle(fontFamily: fontDefault,
+            fontWeight: FontWeight.w500,
+            fontSize: 15,
+            color: primaryColor),
       ),
       trailing: Container(
         width: 110,
@@ -209,8 +230,12 @@ class _SaleScreenState extends State<SaleScreen> {
             mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
               Text(
-                FormatNumberUtils.usdFormat2Digit(dataItems[SaleKey.total].toString()).toString() + ' \$',
-                style: TextStyle(fontFamily: fontDefault, fontSize: 20, fontWeight: FontWeight.w700, color: ColorsUtils.isDarkModeColor()),
+                FormatNumberUtils.usdFormat2Digit(
+                    dataItems[SaleKey.total].toString()).toString() + ' \$',
+                style: TextStyle(fontFamily: fontDefault,
+                    fontSize: 20,
+                    fontWeight: FontWeight.w700,
+                    color: ColorsUtils.isDarkModeColor()),
               ),
               SizedBox(width: 10,),
               Container(
@@ -224,7 +249,9 @@ class _SaleScreenState extends State<SaleScreen> {
   }
 
   Widget _buildLeading() {
-    var colorBorder = DarkMode.isDarkMode ? Colors.blueGrey.withOpacity(0.4) :Color(0xFFe4e6eb);
+    var colorBorder = DarkMode.isDarkMode
+        ? Colors.blueGrey.withOpacity(0.4)
+        : Color(0xFFe4e6eb);
     return Container(
       width: 40,
       height: 40,
@@ -247,67 +274,83 @@ class _SaleScreenState extends State<SaleScreen> {
   }
 
 
-  Widget _offsetPopup(Map item) => PopupMenuButton<int>(
-    itemBuilder: (context) => [
-      PopupMenuItem(
-          value: 0,
-          child: Row(
-            children: <Widget>[
-              FaIcon(FontAwesomeIcons.edit,size: 20,color: Colors.purple[900]),
-              SizedBox(width: 10,),
-              Text(
-                // 'common.label.edit'.tr(),
-                'Details',
-                style: menuStyle,
-              ),
-            ],
-          )
-      ),
-      PopupMenuItem(
-          value: 0,
-          child: Row(
-            children: <Widget>[
-              FaIcon(FontAwesomeIcons.edit,size: 20,color: Colors.purple[900]),
-              SizedBox(width: 10,),
-              Text(
-                // 'common.label.edit'.tr(),
-                'Cancel Transaction',
-                style: menuStyle,
-              ),
-            ],
-          )
-      ),
-      PopupMenuItem(
-          value: 1,
-          child: Row(
-            children: <Widget>[
-              FaIcon(FontAwesomeIcons.trash,size: 20,color: Colors.purple[900]),
-              SizedBox(width: 10,),
-              Text(
-                'common.label.delete'.tr(),
-                style: menuStyle,
-              ),
-            ],
-          )
-      ),
-    ],
-    icon: FaIcon(FontAwesomeIcons.ellipsisV,size: 20,color: ColorsUtils.isDarkModeColor()),
-    offset: Offset(0, 45),
-    onSelected: (value) {
-      if(value == 0) {
-        _showModelSheet(item);
-      } else if (value == 1) {
-        // _showDialog(item);
-      }
-    },
-  );
+  Widget _offsetPopup(Map item) =>
+      PopupMenuButton<int>(
+        itemBuilder: (context) =>
+        [
+          PopupMenuItem(
+              value: 0,
+              child: Row(
+                children: <Widget>[
+                  FaIcon(FontAwesomeIcons.edit, size: 20,
+                      color: Colors.purple[900]),
+                  SizedBox(width: 10,),
+                  Text(
+                    // 'common.label.edit'.tr(),
+                    'Details',
+                    style: menuStyle,
+                  ),
+                ],
+              )
+          ),
+          PopupMenuItem(
+              value: 0,
+              child: Row(
+                children: <Widget>[
+                  FaIcon(FontAwesomeIcons.edit, size: 20,
+                      color: Colors.purple[900]),
+                  SizedBox(width: 10,),
+                  Text(
+                    // 'common.label.edit'.tr(),
+                    'Cancel Transaction',
+                    style: menuStyle,
+                  ),
+                ],
+              )
+          ),
+          PopupMenuItem(
+              value: 1,
+              child: Row(
+                children: <Widget>[
+                  FaIcon(FontAwesomeIcons.trash, size: 20,
+                      color: Colors.purple[900]),
+                  SizedBox(width: 10,),
+                  Text(
+                    'common.label.delete'.tr(),
+                    style: menuStyle,
+                  ),
+                ],
+              )
+          ),
+        ],
+        icon: FaIcon(FontAwesomeIcons.ellipsisV, size: 20,
+            color: ColorsUtils.isDarkModeColor()),
+        offset: Offset(0, 45),
+        onSelected: (value) {
+          if (value == 0) {
+            _showModelSheet(item);
+          } else if (value == 1) {
+            // _showDialog(item);
+          }
+        },
+      );
 
   _showModelSheet(Map item) {
-    var orientation = MediaQuery.of(context).orientation;
-    double height = (MediaQuery.of(context).copyWith().size.height * 0.9);
+    var orientation = MediaQuery
+        .of(context)
+        .orientation;
+    double height = (MediaQuery
+        .of(context)
+        .copyWith()
+        .size
+        .height * 0.9);
     setState(() {
-      if(orientation != Orientation.portrait){
-        height = MediaQuery.of(context).copyWith().size.height * 0.5;
+      if (orientation != Orientation.portrait) {
+        height = MediaQuery
+            .of(context)
+            .copyWith()
+            .size
+            .height * 0.5;
       }
     });
 
@@ -318,7 +361,10 @@ class _SaleScreenState extends State<SaleScreen> {
         builder: (BuildContext builder) {
           return Container(
             height: height,
-            width: MediaQuery.of(context).size.width,
+            width: MediaQuery
+                .of(context)
+                .size
+                .width,
             padding: EdgeInsets.only(top: 3),
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
@@ -334,7 +380,8 @@ class _SaleScreenState extends State<SaleScreen> {
 
   _fetchItems() async {
     await Future.delayed(Duration(seconds: 1));
-    final data = await rootBundle.loadString('assets/json_data/sale_transaction_list.json');
+    final data = await rootBundle.loadString(
+        'assets/json_data/sale_transaction_list.json');
     Map mapItems = jsonDecode(data);
     setState(() {
       this.vData = mapItems['transactionList'];
@@ -345,7 +392,8 @@ class _SaleScreenState extends State<SaleScreen> {
 
   Future<List<dynamic>> _fetchItemsByPageSize() async {
     await Future.delayed(Duration(seconds: 5));
-    final data = await rootBundle.loadString('assets/json_data/sale_transaction_list.json');
+    final data = await rootBundle.loadString(
+        'assets/json_data/sale_transaction_list.json');
     Map mapItems = jsonDecode(data);
 
     List<dynamic> _vData = mapItems['transactionList'];

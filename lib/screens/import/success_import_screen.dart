@@ -9,7 +9,10 @@ class SuccessImportScreen extends StatefulWidget {
   final bool? isAddScreen;
   final bool? isEditScreen;
   final Map vData;
-  const SuccessImportScreen({Key? key, this.isAddScreen, this.isEditScreen, required this.vData}) : super(key: key);
+
+  const SuccessImportScreen(
+      {Key? key, this.isAddScreen, this.isEditScreen, required this.vData})
+      : super(key: key);
 
   @override
   _SuccessImportScreenState createState() => _SuccessImportScreenState();
@@ -29,7 +32,9 @@ class _SuccessImportScreenState extends State<SuccessImportScreen> {
           title: Text('common.label.success'.tr()),
         ),
         body: SafeArea(
-          child: SuccessImportBody(vData: widget.vData,isEditScreen: widget.isEditScreen,isAddScreen: widget.isAddScreen),
+          child: SuccessImportBody(vData: widget.vData,
+              isEditScreen: widget.isEditScreen,
+              isAddScreen: widget.isAddScreen),
         ),
       ),
     );

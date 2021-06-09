@@ -32,7 +32,8 @@ class _LoginBodyState extends State<LoginBody> {
         child: Column(
           children: <Widget>[
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
+              padding: EdgeInsets.symmetric(
+                  horizontal: getProportionateScreenWidth(20)),
               child: Column(
                 children: <Widget>[
                   SizedBox(height: SizeConfig.screenHeight * 0.07),
@@ -57,7 +58,8 @@ class _LoginBodyState extends State<LoginBody> {
                         onTap: () => onTapForgotPassword(),
                         child: Text(
                           'login.label.forgotPassword'.tr(),
-                          style: TextStyle(decoration: TextDecoration.underline),
+                          style: TextStyle(decoration: TextDecoration
+                              .underline),
                         ),
                       )
                     ],
@@ -76,7 +78,6 @@ class _LoginBodyState extends State<LoginBody> {
                         context,
                         MaterialPageRoute(builder: (context) => HomeScreen()),
                       );
-
                     },
                   ),
                   SizedBox(height: SizeConfig.screenHeight * 0.04),
@@ -98,7 +99,6 @@ class _LoginBodyState extends State<LoginBody> {
       keyboardType: TextInputType.emailAddress,
       onSaved: (newValue) => email = newValue!,
       onChanged: (value) {
-
         return null;
       },
       validator: (value) {
@@ -153,7 +153,7 @@ class _LoginBodyState extends State<LoginBody> {
     );
   }
 
-  void onTabToSignUp (BuildContext context) {
+  void onTabToSignUp(BuildContext context) {
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => SignUpScreen()),

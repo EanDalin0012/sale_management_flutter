@@ -14,7 +14,8 @@ class CharacterListViewScreen extends StatefulWidget {
   const CharacterListViewScreen({Key? key}) : super(key: key);
 
   @override
-  _CharacterListViewScreenState createState() => _CharacterListViewScreenState();
+  _CharacterListViewScreenState createState() =>
+      _CharacterListViewScreenState();
 }
 
 class _CharacterListViewScreenState extends State<CharacterListViewScreen> {
@@ -23,29 +24,31 @@ class _CharacterListViewScreenState extends State<CharacterListViewScreen> {
 
   ScrollController _scrollController = ScrollController();
   List<dynamic> vData = [];
+
   @override
   void initState() {
     _fetchItems();
     _scrollController.addListener(() async {
       double maxScroll = _scrollController.position.maxScrollExtent;
       double currentScroll = _scrollController.position.pixels;
-      double delta = MediaQuery.of(context).size.height * 0.25;
-      if(maxScroll - currentScroll <= delta) {
+      double delta = MediaQuery
+          .of(context)
+          .size
+          .height * 0.25;
+      if (maxScroll - currentScroll <= delta) {
         this._pageSize += 1;
         setState(() {
           this.isLoading = true;
         });
 
         _fetchItems1().then((value) {
-          print('vData.length : '+this.vData.length.toString());
+          print('vData.length : ' + this.vData.length.toString());
 
           setState(() {
             this.vData = [...vData, ...value];
             this.isLoading = false;
-            print('vData + vData  : '+this.vData.length.toString());
+            print('vData + vData  : ' + this.vData.length.toString());
           });
-
-
         });
         print('page size : ' + this._pageSize.toString());
 
@@ -74,7 +77,7 @@ class _CharacterListViewScreenState extends State<CharacterListViewScreen> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             _body(),
-            this.isLoading ==true ? InfiniteScrollLoading(): Container(),
+            this.isLoading == true ? InfiniteScrollLoading() : Container(),
           ],
         ),
 
@@ -82,25 +85,36 @@ class _CharacterListViewScreenState extends State<CharacterListViewScreen> {
       ),
     );
   }
-  Widget _body() => Expanded(
-    child: ListView.builder(
-          itemCount: this.vData.length,
-          controller: _scrollController,
-          itemBuilder: (BuildContext context, int index) {
-            return _buildListTile(dataItem: this.vData[index]);
-          }),
-  );
-  Widget _buildListTile( {
+
+  Widget _body() =>
+      Expanded(
+        child: ListView.builder(
+            itemCount: this.vData.length,
+            controller: _scrollController,
+            itemBuilder: (BuildContext context, int index) {
+              return _buildListTile(dataItem: this.vData[index]);
+            }),
+      );
+
+  Widget _buildListTile({
     required Map dataItem
   }) {
     return ListTile(
-      title: Text( dataItem[PackageProductKey.name],
-        style: TextStyle( color: ColorsUtils.isDarkModeColor(), fontSize: 20, fontWeight: FontWeight.w700,fontFamily: fontDefault),
+      title: Text(dataItem[PackageProductKey.name],
+        style: TextStyle(color: ColorsUtils.isDarkModeColor(),
+            fontSize: 20,
+            fontWeight: FontWeight.w700,
+            fontFamily: fontDefault),
       ),
       // leading: _buildLeading(dataItem[PackageProductKey.productId]),
       subtitle: Text(
-        FormatNumberUtils.usdFormat2Digit(dataItem[PackageProductKey.price].toString()).toString()+' \$,'+dataItem[PackageProductKey.remark].toString(),
-        style: TextStyle(fontSize: 12,fontWeight: FontWeight.w700, fontFamily: fontDefault, color: primaryColor),
+        FormatNumberUtils.usdFormat2Digit(
+            dataItem[PackageProductKey.price].toString()).toString() + ' \$,' +
+            dataItem[PackageProductKey.remark].toString(),
+        style: TextStyle(fontSize: 12,
+            fontWeight: FontWeight.w700,
+            fontFamily: fontDefault,
+            color: primaryColor),
       ),
       trailing: Container(
         width: 130,
@@ -139,14 +153,16 @@ class _CharacterListViewScreenState extends State<CharacterListViewScreen> {
 
   Future<List<dynamic>> _fetchItems1() async {
     await Future.delayed(Duration(seconds: 5));
-    final data = await rootBundle.loadString('assets/json_data/package_of_product_list.json');
+    final data = await rootBundle.loadString(
+        'assets/json_data/package_of_product_list.json');
     Map mapItems = jsonDecode(data);
     List<dynamic> vData = mapItems['packageProducts'];
     return Future.value(vData);
   }
 
   _fetchItems() async {
-    final data = await rootBundle.loadString('assets/json_data/package_of_product_list.json');
+    final data = await rootBundle.loadString(
+        'assets/json_data/package_of_product_list.json');
     Map mapItems = jsonDecode(data);
     setState(() {
       this.vData = mapItems['packageProducts'];

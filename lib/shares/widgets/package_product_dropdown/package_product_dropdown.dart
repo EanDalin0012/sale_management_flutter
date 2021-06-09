@@ -19,6 +19,7 @@ import 'package:easy_localization/easy_localization.dart';
 class PackageProductDropdownPage extends StatefulWidget {
   final Map packageProduct;
   final Map product;
+
   const PackageProductDropdownPage({
     Key? key,
     required this.packageProduct,
@@ -26,10 +27,12 @@ class PackageProductDropdownPage extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _PackageProductDropdownPageState createState() => _PackageProductDropdownPageState();
+  _PackageProductDropdownPageState createState() =>
+      _PackageProductDropdownPageState();
 }
 
-class _PackageProductDropdownPageState extends State<PackageProductDropdownPage> {
+class _PackageProductDropdownPageState
+    extends State<PackageProductDropdownPage> {
 
   var controller = TextEditingController();
   var isItemChanged = false;
@@ -37,7 +40,8 @@ class _PackageProductDropdownPageState extends State<PackageProductDropdownPage>
   var isNative = false;
   var isSearch = false;
   var text = '';
-  late Size size ;
+  late Size size;
+
   var styleInput;
   var menuStyle;
   List<dynamic> items = [];
@@ -45,7 +49,8 @@ class _PackageProductDropdownPageState extends State<PackageProductDropdownPage>
   List<dynamic> productItems = [];
   List<dynamic> vProductData = [];
   List<dynamic> vProductDataTmp = [];
-  var url =  DefaultStatic.url;
+  var url = DefaultStatic.url;
+
   @override
   void initState() {
     this._fetchItems();
@@ -54,10 +59,17 @@ class _PackageProductDropdownPageState extends State<PackageProductDropdownPage>
 
   @override
   Widget build(BuildContext context) {
-    size = MediaQuery.of(context).size;
-    styleInput = TextStyle(color: ColorsUtils.isDarkModeColor(), fontSize: 17, fontWeight: FontWeight.w500, fontFamily: fontDefault);
-    menuStyle = TextStyle( color: Colors.purple[900], fontWeight: FontWeight.w500, fontFamily: fontDefault);
-    if(widget.product[ProductKey.url].toString() != 'null') {
+    size = MediaQuery
+        .of(context)
+        .size;
+    styleInput = TextStyle(color: ColorsUtils.isDarkModeColor(),
+        fontSize: 17,
+        fontWeight: FontWeight.w500,
+        fontFamily: fontDefault);
+    menuStyle = TextStyle(color: Colors.purple[900],
+        fontWeight: FontWeight.w500,
+        fontFamily: fontDefault);
+    if (widget.product[ProductKey.url].toString() != 'null') {
       this.url = widget.product[ProductKey.url].toString();
     }
 
@@ -70,7 +82,8 @@ class _PackageProductDropdownPageState extends State<PackageProductDropdownPage>
         },
         child: Column(
           children: <Widget>[
-            if (this.items.length > 0 ) _buildBody() else CircularProgressLoading(),
+            if (this.items.length > 0 ) _buildBody() else
+              CircularProgressLoading(),
             SizedBox(height: SizeConfig.screenHeight * 0.02),
           ],
         ),
@@ -85,14 +98,15 @@ class _PackageProductDropdownPageState extends State<PackageProductDropdownPage>
       actions: [
         IconButton(
           icon: Icon(this.isNative ? Icons.close : Icons.search),
-          onPressed: () => setState(() {
-            if(this.isNative == true) {
-              this.items = this.itemsTmp;
-            }
-            this.isNative = !isNative;
-            this.isItemChanged = false;
-            this.isFilterByProduct = false;
-          }),
+          onPressed: () =>
+              setState(() {
+                if (this.isNative == true) {
+                  this.items = this.itemsTmp;
+                }
+                this.isNative = !isNative;
+                this.isItemChanged = false;
+                this.isFilterByProduct = false;
+              }),
         ),
         const SizedBox(width: 8),
       ],
@@ -112,13 +126,13 @@ class _PackageProductDropdownPageState extends State<PackageProductDropdownPage>
             },
           ),
         ),
-      ): null,
+      ) : null,
     );
   }
 
-  Widget _buildBody () {
+  Widget _buildBody() {
     return Expanded(
-        child:  ListView.builder(
+        child: ListView.builder(
           itemCount: items.length,
           itemBuilder: (context, index) {
             return _buildListTile(
@@ -135,13 +149,21 @@ class _PackageProductDropdownPageState extends State<PackageProductDropdownPage>
   }) {
     return ListTile(
       onTap: () => selectPackageProduct(dataItem),
-      title: Text( '${dataItem[PackageProductKey.name]}',
-        style: TextStyle( color: ColorsUtils.isDarkModeColor(), fontSize: 20, fontWeight: FontWeight.w700,fontFamily: fontDefault),
+      title: Text('${dataItem[PackageProductKey.name]}',
+        style: TextStyle(color: ColorsUtils.isDarkModeColor(),
+            fontSize: 20,
+            fontWeight: FontWeight.w700,
+            fontFamily: fontDefault),
       ),
       leading: PrefixProduct(url: this.url),
       subtitle: Text(
-        FormatNumberUtils.usdFormat2Digit(dataItem[PackageProductKey.price].toString()).toString()+' \$,'+dataItem[PackageProductKey.remark],
-        style: TextStyle(fontSize: 12,fontWeight: FontWeight.w700, fontFamily: fontDefault, color: primaryColor),
+        FormatNumberUtils.usdFormat2Digit(
+            dataItem[PackageProductKey.price].toString()).toString() + ' \$,' +
+            dataItem[PackageProductKey.remark],
+        style: TextStyle(fontSize: 12,
+            fontWeight: FontWeight.w700,
+            fontFamily: fontDefault,
+            color: primaryColor),
       ),
       trailing: Container(
         width: 130,
@@ -165,8 +187,11 @@ class _PackageProductDropdownPageState extends State<PackageProductDropdownPage>
                 ),
               ],
             ),
-            if (widget.packageProduct.toString() != '{}' && dataItem[PackageProductKey.id] == widget.packageProduct[PackageProductKey.id])
-              Center(child: IconCheck()) else Container()
+            if (widget.packageProduct.toString() != '{}' &&
+                dataItem[PackageProductKey.id] ==
+                    widget.packageProduct[PackageProductKey.id])
+              Center(child: IconCheck()) else
+              Container()
           ],
         ),
       ),
@@ -174,7 +199,9 @@ class _PackageProductDropdownPageState extends State<PackageProductDropdownPage>
   }
 
   onItemChanged(String value) {
-    var dataItems = itemsTmp.where((e) => e[PackageProductKey.name].toLowerCase().contains(value.toLowerCase())).toList();
+    var dataItems = itemsTmp.where((e) =>
+        e[PackageProductKey.name].toLowerCase().contains(value.toLowerCase()))
+        .toList();
     return dataItems;
   }
 
@@ -187,7 +214,9 @@ class _PackageProductDropdownPageState extends State<PackageProductDropdownPage>
         'assets/json_data/package_of_product_list.json');
     Map valueMap = jsonDecode(data);
     var dataItems = valueMap['packageProducts'];
-    var items = dataItems.where((e) => e[PackageProductKey.productId].toString().contains(widget.product[ProductKey.id].toString())).toList();
+    var items = dataItems.where((e) =>
+        e[PackageProductKey.productId].toString().contains(
+            widget.product[ProductKey.id].toString())).toList();
     setState(() {
       this.items = items;
       this.itemsTmp = this.items;

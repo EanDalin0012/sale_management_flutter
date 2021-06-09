@@ -40,14 +40,20 @@ class _CategoryDropdownPageState extends State<CategoryDropdownPage> {
 
   @override
   Widget build(BuildContext context) {
-    size = MediaQuery.of(context).size;
-    styleInput = TextStyle(color: ColorsUtils.isDarkModeColor(), fontSize: 17, fontWeight: FontWeight.w500, fontFamily: fontDefault);
+    size = MediaQuery
+        .of(context)
+        .size;
+    styleInput = TextStyle(color: ColorsUtils.isDarkModeColor(),
+        fontSize: 17,
+        fontWeight: FontWeight.w500,
+        fontFamily: fontDefault);
     return Scaffold(
         backgroundColor: ColorsUtils.scaffoldBackgroundColor(),
         appBar: _buildAppBar(),
         body: Column(
           children: <Widget>[
-            if (vDataLength > 0 ) _buildBody() else CircularProgressLoading(),
+            if (vDataLength > 0 ) _buildBody() else
+              CircularProgressLoading(),
           ],
         )
     );
@@ -63,9 +69,9 @@ class _CategoryDropdownPageState extends State<CategoryDropdownPage> {
       actions: [
         IconButton(
           icon: Icon(this.isNative ? Icons.close : Icons.search),
-          onPressed: ()  {
-            setState(()  {
-              if(this.isNative) {
+          onPressed: () {
+            setState(() {
+              if (this.isNative) {
                 this.vData = vDataTmp;
                 this.vDataLength = this.vData.length;
               }
@@ -76,7 +82,7 @@ class _CategoryDropdownPageState extends State<CategoryDropdownPage> {
         const SizedBox(width: 8),
       ],
       bottom: this.isNative ? PreferredSize(preferredSize: Size.fromHeight(60),
-        child:  Row(
+        child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
@@ -102,9 +108,9 @@ class _CategoryDropdownPageState extends State<CategoryDropdownPage> {
     );
   }
 
-  Widget _buildBody () {
+  Widget _buildBody() {
     return Expanded(
-        child:  ListView.builder(
+        child: ListView.builder(
           itemCount: vDataLength,
           itemBuilder: (context, index) {
             return _buildListTile(
@@ -119,19 +125,26 @@ class _CategoryDropdownPageState extends State<CategoryDropdownPage> {
     required Map dataItem
   }) {
     var isCheck = false;
-    if(widget.vCategory != null && widget.vCategory[CategoryKey.id] == dataItem[CategoryKey.id] ) {
+    if (widget.vCategory != null &&
+        widget.vCategory[CategoryKey.id] == dataItem[CategoryKey.id]) {
       isCheck = true;
     }
     return ListTile(
       onTap: () => onSelectedItem(dataItem),
-      title: Text( dataItem[CategoryKey.name],
-        style: TextStyle( color: ColorsUtils.isDarkModeColor(), fontSize: 20, fontWeight: FontWeight.w700,fontFamily: fontDefault),
+      title: Text(dataItem[CategoryKey.name],
+        style: TextStyle(color: ColorsUtils.isDarkModeColor(),
+            fontSize: 20,
+            fontWeight: FontWeight.w700,
+            fontFamily: fontDefault),
       ),
       subtitle: Text(
         dataItem[CategoryKey.remark],
-        style: TextStyle(fontSize: 12,fontWeight: FontWeight.w700, fontFamily: fontDefault, color: primaryColor),
+        style: TextStyle(fontSize: 12,
+            fontWeight: FontWeight.w700,
+            fontFamily: fontDefault,
+            color: primaryColor),
       ),
-      trailing:  isCheck ? IconCheck() : null,
+      trailing: isCheck ? IconCheck() : null,
     );
   }
 
@@ -141,12 +154,15 @@ class _CategoryDropdownPageState extends State<CategoryDropdownPage> {
   }
 
   onItemChanged(String value) {
-    var dataItems = vDataTmp.where((e) => e[CategoryKey.name].toLowerCase().contains(value.toLowerCase())).toList();
+    var dataItems = vDataTmp.where((e) =>
+        e[CategoryKey.name].toLowerCase().contains(value.toLowerCase()))
+        .toList();
     return dataItems;
   }
 
   _fetchListItems() async {
-    final data = await rootBundle.loadString('assets/json_data/category_list.json');
+    final data = await rootBundle.loadString(
+        'assets/json_data/category_list.json');
     Map mapItems = jsonDecode(data);
     setState(() {
       this.vData = mapItems['categoryList'];

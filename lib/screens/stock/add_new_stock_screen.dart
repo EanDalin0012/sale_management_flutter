@@ -20,7 +20,7 @@ class _AddNewStockScreenState extends State<AddNewStockScreen> {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: ()=> onBackPress(),
+      onWillPop: () => onBackPress(),
       child: LoadingOverlay(
         isLoading: _isLoading,
         opacity: 0.5,
@@ -47,7 +47,7 @@ class _AddNewStockScreenState extends State<AddNewStockScreen> {
   }
 
   Future<bool> onBackPress() {
-    if(this._isLoading == true) {
+    if (this._isLoading == true) {
       return Future<bool>.value(false);
     }
     Navigator.push(

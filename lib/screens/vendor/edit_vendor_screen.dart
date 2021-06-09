@@ -6,6 +6,7 @@ import 'package:easy_localization/easy_localization.dart';
 
 class EditVendorScreen extends StatefulWidget {
   final Map vData;
+
   const EditVendorScreen({Key? key, required this.vData}) : super(key: key);
 
   @override

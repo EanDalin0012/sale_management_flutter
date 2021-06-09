@@ -13,7 +13,10 @@ import 'package:sale_management/shares/widgets/custom_suffix_icon/custom_suffix_
 class ConfirmImportBody extends StatefulWidget {
   final List<dynamic> vData;
   final ValueChanged<List<dynamic>> onChanged;
-  const ConfirmImportBody({Key? key, required this.vData, required this.onChanged}) : super(key: key);
+
+  const ConfirmImportBody(
+      {Key? key, required this.vData, required this.onChanged})
+      : super(key: key);
 
   @override
   _ConfirmImportBodyState createState() => _ConfirmImportBodyState();
@@ -32,9 +35,9 @@ class _ConfirmImportBodyState extends State<ConfirmImportBody> {
 
   @override
   Widget build(BuildContext context) {
-    style       = InputDecorationUtils.textFormFieldStyle();
-    labelStyle  = InputDecorationUtils.inputDecorationLabelStyle();
-    hintStyle   = InputDecorationUtils.inputDecorationHintStyle();
+    style = InputDecorationUtils.textFormFieldStyle();
+    labelStyle = InputDecorationUtils.inputDecorationLabelStyle();
+    hintStyle = InputDecorationUtils.inputDecorationHintStyle();
     enabledBorder = InputDecorationUtils.enabledBorder();
     focusedBorder = InputDecorationUtils.focusedBorder();
     return Column(
@@ -45,16 +48,17 @@ class _ConfirmImportBodyState extends State<ConfirmImportBody> {
                 SizedBox(height: SizeConfig.screenHeight * 0.04), // 4%
                 Text("Import Items", style: TextStyleUtils.headingStyle()),
                 Text(
-                  "Complete your details. \n Please check your items ready then click confirm.",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(color: ColorsUtils.isDarkModeColor())
+                    "Complete your details. \n Please check your items ready then click confirm.",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(color: ColorsUtils.isDarkModeColor())
                 ),
               ],
             ),
           ),
 
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
+            padding: EdgeInsets.symmetric(
+                horizontal: getProportionateScreenWidth(20)),
             child: Column(
                 children: <Widget>[
                   SizedBox(height: SizeConfig.screenHeight * 0.04),
@@ -63,8 +67,9 @@ class _ConfirmImportBodyState extends State<ConfirmImportBody> {
                 ]
             ),
           ),
-            Expanded(child: BuildDataTable(vData: widget.vData, onChanged: widget.onChanged)),
-          _buildConfirmButton ()
+          Expanded(child: BuildDataTable(
+              vData: widget.vData, onChanged: widget.onChanged)),
+          _buildConfirmButton()
         ]
     );
   }
@@ -82,12 +87,13 @@ class _ConfirmImportBodyState extends State<ConfirmImportBody> {
         enabledBorder: this.enabledBorder,
         focusedBorder: this.focusedBorder,
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/border_color_black_24dp.svg"),
+        suffixIcon: CustomSuffixIcon(svgPaddingLeft: 15,
+            svgIcon: "assets/icons/border_color_black_24dp.svg"),
       ),
     );
   }
 
-  Widget _buildConfirmButton () {
+  Widget _buildConfirmButton() {
     setState(() {
       pay = vPay;
     });
@@ -97,16 +103,18 @@ class _ConfirmImportBodyState extends State<ConfirmImportBody> {
           onTap: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => SuccessImportScreen(
-                isAddScreen: true,
-                vData: {
-                  ImportKey.transactionId: 'BAE20210939',
-                  ImportKey.total: this.vPay
-                },
-              )),
+              MaterialPageRoute(builder: (context) =>
+                  SuccessImportScreen(
+                    isAddScreen: true,
+                    vData: {
+                      ImportKey.transactionId: 'BAE20210939',
+                      ImportKey.total: this.vPay
+                    },
+                  )),
             );
           },
-          child: WidgetsUtil.overlayKeyBardContainer(text: 'common.label.confirm'.tr()),
+          child: WidgetsUtil.overlayKeyBardContainer(
+              text: 'common.label.confirm'.tr()),
         ),
       ],
     );

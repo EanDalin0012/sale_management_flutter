@@ -8,7 +8,8 @@ class IconCheck extends StatelessWidget {
     return Container(
       width: 40,
       height: 30,
-      child: Image(image: AssetImage('assets/icons/success-green-check-mark.png')),
+      child: Image(
+          image: AssetImage('assets/icons/success-green-check-mark.png')),
     );
   }
 }

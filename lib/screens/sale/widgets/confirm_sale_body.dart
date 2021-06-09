@@ -19,7 +19,10 @@ import 'package:sale_management/shares/widgets/two_tab/two_tab.dart';
 class ConfirmSaleBody extends StatefulWidget {
   final List<dynamic> vData;
   final ValueChanged<List<dynamic>> onChanged;
-  const ConfirmSaleBody({Key? key, required this.vData, required this.onChanged}) : super(key: key);
+
+  const ConfirmSaleBody(
+      {Key? key, required this.vData, required this.onChanged})
+      : super(key: key);
 
   @override
   _ConfirmSaleBodyState createState() => _ConfirmSaleBodyState();
@@ -35,25 +38,26 @@ class _ConfirmSaleBodyState extends State<ConfirmSaleBody> {
   var focusedBorder;
   var remarkController = new TextEditingController();
   var customerController = new TextEditingController();
-  var phoneController  =new TextEditingController();
+  var phoneController = new TextEditingController();
   var memberController = new TextEditingController();
 
   var selectedCustomer = false;
-  var isClickConfirm  = false;
+  var isClickConfirm = false;
 
   final _formCustomerKey = GlobalKey<FormState>();
   final _formMemberKey = GlobalKey<FormState>();
   var url = DefaultStatic.personUrl;
   int tabIndex = 0;
   late Map member = {};
+
   @override
   Widget build(BuildContext context) {
-    style       = InputDecorationUtils.textFormFieldStyle();
-    labelStyle  = InputDecorationUtils.inputDecorationLabelStyle();
-    hintStyle   = InputDecorationUtils.inputDecorationHintStyle();
+    style = InputDecorationUtils.textFormFieldStyle();
+    labelStyle = InputDecorationUtils.inputDecorationLabelStyle();
+    hintStyle = InputDecorationUtils.inputDecorationHintStyle();
     enabledBorder = InputDecorationUtils.enabledBorder();
     focusedBorder = InputDecorationUtils.focusedBorder();
-    if(this.member.toString() != '{}') {
+    if (this.member.toString() != '{}') {
       this.url = this.member[MemberKey.url].toString();
     }
     this.vPay = 0.0;
@@ -67,13 +71,16 @@ class _ConfirmSaleBodyState extends State<ConfirmSaleBody> {
             onTap: () {
               KeyboardUtil.hideKeyboard(context);
               this.isClickConfirm = true;
-              if(this.tabIndex == 0 && _formCustomerKey.currentState!.validate()) {
+              if (this.tabIndex == 0 &&
+                  _formCustomerKey.currentState!.validate()) {
                 rout();
-              } else if (this.tabIndex == 1 && _formMemberKey.currentState!.validate()) {
+              } else if (this.tabIndex == 1 &&
+                  _formMemberKey.currentState!.validate()) {
                 rout();
               }
             },
-            child: WidgetsUtil.overlayKeyBardContainer(text: 'common.label.confirm'.tr())
+            child: WidgetsUtil.overlayKeyBardContainer(
+                text: 'common.label.confirm'.tr())
         )
 
       ],
@@ -83,7 +90,8 @@ class _ConfirmSaleBodyState extends State<ConfirmSaleBody> {
   Widget _buildBody() {
     return Expanded(
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
+        padding: EdgeInsets.symmetric(
+            horizontal: getProportionateScreenWidth(20)),
         child: SingleChildScrollView(
           physics: ClampingScrollPhysics(),
           child: Column(
@@ -92,7 +100,8 @@ class _ConfirmSaleBodyState extends State<ConfirmSaleBody> {
                 child: Column(
                   children: <Widget>[
                     SizedBox(height: SizeConfig.screenHeight * 0.04), // 4%
-                    Text('sale.label.saleItem'.tr(), style: TextStyleUtils.headingStyle()),
+                    Text('sale.label.saleItem'.tr(),
+                        style: TextStyleUtils.headingStyle()),
                     Text(
                         'sale.label.completeYourDetails'.tr(),
                         textAlign: TextAlign.center,
@@ -112,13 +121,16 @@ class _ConfirmSaleBodyState extends State<ConfirmSaleBody> {
               ),
               Column(
                   children: <Widget>[
-                    tabIndex == 0 ? _buildIsCustomerSelected(): _buildIsMemberSelected(),
+                    tabIndex == 0
+                        ? _buildIsCustomerSelected()
+                        : _buildIsMemberSelected(),
                     SizedBox(height: SizeConfig.screenHeight * 0.02),
                     _buildRemarkField(),
                     SizedBox(height: SizeConfig.screenHeight * 0.02),
                   ]
               ),
-              BuildDataTableSale(vData: widget.vData, onChanged: widget.onChanged),
+              BuildDataTableSale(
+                  vData: widget.vData, onChanged: widget.onChanged),
 
             ],
           ),
@@ -127,7 +139,7 @@ class _ConfirmSaleBodyState extends State<ConfirmSaleBody> {
     );
   }
 
-  Widget _buildConfirmButton () {
+  Widget _buildConfirmButton() {
     setState(() {
       pay = vPay;
     });
@@ -137,9 +149,12 @@ class _ConfirmSaleBodyState extends State<ConfirmSaleBody> {
           bottom: 0,
           child: InkWell(
             onTap: () {
-              this.tabIndex == 0 ? validationCustomerInput(): validationMember();
+              this.tabIndex == 0
+                  ? validationCustomerInput()
+                  : validationMember();
             },
-            child: WidgetsUtil.overlayKeyBardContainer(text: 'common.label.confirm'.tr()),
+            child: WidgetsUtil.overlayKeyBardContainer(
+                text: 'common.label.confirm'.tr()),
           ),
         ),
       ],
@@ -159,7 +174,8 @@ class _ConfirmSaleBodyState extends State<ConfirmSaleBody> {
         enabledBorder: this.enabledBorder,
         focusedBorder: this.focusedBorder,
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/border_color_black_24dp.svg"),
+        suffixIcon: CustomSuffixIcon(svgPaddingLeft: 15,
+            svgIcon: "assets/icons/border_color_black_24dp.svg"),
       ),
     );
   }
@@ -168,15 +184,15 @@ class _ConfirmSaleBodyState extends State<ConfirmSaleBody> {
     return Form(
       key: _formCustomerKey,
       child: Column(
-            children: <Widget>[
-              SizedBox(height: SizeConfig.screenHeight * 0.02),
-              _buildCustomerField(),
-              SizedBox(height: SizeConfig.screenHeight * 0.02),
-              _buildPhoneField(),
-              // SizedBox(height: SizeConfig.screenHeight * 0.02),
-              // _buildRemarkField(),
-            ]
-        ),
+          children: <Widget>[
+            SizedBox(height: SizeConfig.screenHeight * 0.02),
+            _buildCustomerField(),
+            SizedBox(height: SizeConfig.screenHeight * 0.02),
+            _buildPhoneField(),
+            // SizedBox(height: SizeConfig.screenHeight * 0.02),
+            // _buildRemarkField(),
+          ]
+      ),
     );
   }
 
@@ -184,11 +200,11 @@ class _ConfirmSaleBodyState extends State<ConfirmSaleBody> {
     return Form(
       key: _formMemberKey,
       child: Column(
-            children: <Widget>[
-              SizedBox(height: SizeConfig.screenHeight * 0.02),
-              _buildMemberField()
-            ]
-        ),
+          children: <Widget>[
+            SizedBox(height: SizeConfig.screenHeight * 0.02),
+            _buildMemberField()
+          ]
+      ),
     );
   }
 
@@ -213,7 +229,8 @@ class _ConfirmSaleBodyState extends State<ConfirmSaleBody> {
         enabledBorder: this.enabledBorder,
         focusedBorder: this.focusedBorder,
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/help_outline_black_24dp.svg"),
+        suffixIcon: CustomSuffixIcon(svgPaddingLeft: 15,
+            svgIcon: "assets/icons/help_outline_black_24dp.svg"),
       ),
     );
   }
@@ -239,7 +256,8 @@ class _ConfirmSaleBodyState extends State<ConfirmSaleBody> {
         enabledBorder: this.enabledBorder,
         focusedBorder: this.focusedBorder,
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/help_outline_black_24dp.svg"),
+        suffixIcon: CustomSuffixIcon(svgPaddingLeft: 15,
+            svgIcon: "assets/icons/help_outline_black_24dp.svg"),
       ),
     );
   }
@@ -252,9 +270,10 @@ class _ConfirmSaleBodyState extends State<ConfirmSaleBody> {
       onTap: () async {
         final memberBackData = await Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => MemberDropdownPage(vMember: this.member)),
+          MaterialPageRoute(
+              builder: (context) => MemberDropdownPage(vMember: this.member)),
         );
-        if(memberBackData == null) {
+        if (memberBackData == null) {
           return;
         }
         setState(() {
@@ -279,21 +298,21 @@ class _ConfirmSaleBodyState extends State<ConfirmSaleBody> {
         focusedBorder: this.focusedBorder,
         floatingLabelBehavior: FloatingLabelBehavior.always,
         prefixIcon: TextFormFieldPrefixIcon(url: this.url),
-        suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/expand_more_black_24dp.svg"),
+        suffixIcon: CustomSuffixIcon(svgPaddingLeft: 15,
+            svgIcon: "assets/icons/expand_more_black_24dp.svg"),
       ),
     );
   }
 
 
   void validationCustomerInput() {
-    if(this.isClickConfirm == true) {
+    if (this.isClickConfirm == true) {
       _formCustomerKey.currentState!.validate();
     }
-
   }
 
   validationMember() {
-    if(this.isClickConfirm == true) {
+    if (this.isClickConfirm == true) {
       this._formMemberKey.currentState!.validate();
     }
   }
@@ -301,17 +320,18 @@ class _ConfirmSaleBodyState extends State<ConfirmSaleBody> {
   void rout() {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => SuccessSaleScreen(
-        vData: {
-          SaleAddItemKey.transactionID: 'AXD20210320',
-          SaleAddItemKey.total: vPay,
-          SaleAddItemKey.member: this.member,
-          SaleAddItemKey.customer: this.customerController.text,
-          SaleAddItemKey.phone: this.phoneController.text,
-          SaleAddItemKey.tableIndex: this.tabIndex,
-          SaleAddItemKey.remark: this.remarkController.text
-        },
-      )),
+      MaterialPageRoute(builder: (context) =>
+          SuccessSaleScreen(
+            vData: {
+              SaleAddItemKey.transactionID: 'AXD20210320',
+              SaleAddItemKey.total: vPay,
+              SaleAddItemKey.member: this.member,
+              SaleAddItemKey.customer: this.customerController.text,
+              SaleAddItemKey.phone: this.phoneController.text,
+              SaleAddItemKey.tableIndex: this.tabIndex,
+              SaleAddItemKey.remark: this.remarkController.text
+            },
+          )),
     );
   }
 

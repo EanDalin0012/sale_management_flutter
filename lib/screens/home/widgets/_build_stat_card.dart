@@ -26,19 +26,24 @@ class _BuildStatCardState extends State<BuildStatCard> {
     Colors.green,
     Colors.lightBlue,
     Colors.purple,
-    Colors.green,
     Colors.red,
     Colors.yellow,
-    Colors.blue,
+    Colors.blue
   ];
 
   @override
   Widget build(BuildContext context) {
     var length = this.vData.length;
     this.i = 0;
-    double h = MediaQuery.of(context).size.height * 0.22;
-    if(length > 2) {
-      h = MediaQuery.of(context).size.height * 0.44;
+    double h = MediaQuery
+        .of(context)
+        .size
+        .height * 0.22;
+    if (length > 2) {
+      h = MediaQuery
+          .of(context)
+          .size
+          .height * 0.44;
     }
 
     return this.vData.length > 0 ? Container(
@@ -49,49 +54,50 @@ class _BuildStatCardState extends State<BuildStatCard> {
         border: Border.all(color: Color(0xFFe4e6eb), width: 6.0),
       ),
       child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Text('Sell Product'),
-              Container(
-                height: h,
-                width: MediaQuery.of(context).size.width,
-                child: GridView.builder(
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                    ),
-                    itemCount: this.vData.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      this.i = index;
-                      print('ii:'+this._colors.length.toString());
-                      print('i:'+this.i.toString());
-                      if(this.i > this._colors.length - 1) {
-                        this.i = 0;
-                      }
-
-                      return Container(
-                        width: 200,
-                        height: 40,
-                        margin: EdgeInsets.all(10.0),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10.0),
-                          color: this._colors[i],
-                        ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: <Widget>[
-                            Text(this.vData[index][ProductKey.name].toString()),
-                            Text('100'),
-                            Text('1000 USD')
-                          ],
-                        ),
-                      );
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text('Sell Product'),
+            Container(
+              height: h,
+              width: MediaQuery
+                  .of(context)
+                  .size
+                  .width,
+              child: GridView.builder(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                  ),
+                  itemCount: this.vData.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    this.i = index;
+                    if (this.i > this._colors.length - 1) {
+                      this.i = 0;
                     }
-                ),
+
+                    return Container(
+                      width: 200,
+                      height: 40,
+                      margin: EdgeInsets.all(10.0),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10.0),
+                        color: this._colors[i],
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: <Widget>[
+                          Text(this.vData[index][ProductKey.name].toString()),
+                          Text('100'),
+                          Text('1000 USD')
+                        ],
+                      ),
+                    );
+                  }
               ),
-            ]
-        ),
-    ): Container();
+            ),
+          ]
+      ),
+    ) : Container();
   }
 
   Widget _widget() {
@@ -127,17 +133,23 @@ class _BuildStatCardState extends State<BuildStatCard> {
           Flexible(
             child: Row(
               children: <Widget>[
-                _buildStatCard(title: 'Total Case', count: '1.81 M', color: Colors.orange),
-                _buildStatCard(title: 'Total Case', count: '1.81 M', color: Colors.red)
+                _buildStatCard(
+                    title: 'Total Case', count: '1.81 M', color: Colors.orange),
+                _buildStatCard(
+                    title: 'Total Case', count: '1.81 M', color: Colors.red)
               ],
             ),
           ),
           Flexible(
             child: Row(
               children: <Widget>[
-                _buildStatCard(title: 'Total Case', count: '1.81 M', color: Colors.green),
-                _buildStatCard(title: 'Total Case', count: '1.81 M', color: Colors.lightBlue),
-                _buildStatCard(title: 'Total Case', count: '1.81 M', color: Colors.purple),
+                _buildStatCard(
+                    title: 'Total Case', count: '1.81 M', color: Colors.green),
+                _buildStatCard(title: 'Total Case',
+                    count: '1.81 M',
+                    color: Colors.lightBlue),
+                _buildStatCard(
+                    title: 'Total Case', count: '1.81 M', color: Colors.purple),
               ],
             ),
           )
@@ -145,7 +157,8 @@ class _BuildStatCardState extends State<BuildStatCard> {
     );
   }
 
-  Expanded _buildStatCard({required String title, required String count, MaterialColor? color }) {
+  Expanded _buildStatCard(
+      {required String title, required String count, MaterialColor? color }) {
     return Expanded(
       child: Container(
         margin: EdgeInsets.all(8.0),
@@ -158,8 +171,12 @@ class _BuildStatCardState extends State<BuildStatCard> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Text(title, style: TextStyle(color: Colors.white, fontSize: 15.0, fontWeight: FontWeight.w600),),
-            Text(count, style: TextStyle(color: Colors.white, fontSize: 20.0, fontWeight: FontWeight.bold),)
+            Text(title, style: TextStyle(color: Colors.white,
+                fontSize: 15.0,
+                fontWeight: FontWeight.w600),),
+            Text(count, style: TextStyle(color: Colors.white,
+                fontSize: 20.0,
+                fontWeight: FontWeight.bold),)
           ],
         ),
       ),
@@ -167,7 +184,8 @@ class _BuildStatCardState extends State<BuildStatCard> {
   }
 
   _fetchItems() async {
-    final data = await rootBundle.loadString('assets/json_data/product_list.json');
+    final data = await rootBundle.loadString(
+        'assets/json_data/product_list.json');
     Map mapItems = jsonDecode(data);
     setState(() {
       this.vData = mapItems['products'];

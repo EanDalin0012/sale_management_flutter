@@ -6,7 +6,9 @@ import 'package:sale_management/shares/model/key/language_key.dart';
 class LanguageChoice extends StatefulWidget {
   final ValueChanged<Map> onChanged;
   final String code;
-  const LanguageChoice({Key? key, required this.onChanged, required this.code}) : super(key: key);
+
+  const LanguageChoice({Key? key, required this.onChanged, required this.code})
+      : super(key: key);
 
   @override
   _LanguageChoiceState createState() => _LanguageChoiceState();
@@ -24,16 +26,16 @@ class _LanguageChoiceState extends State<LanguageChoice> {
     {
       LanguageKey.code: 'km',
       LanguageKey.text: 'ខ្មែរ',
-      'url':'assets/countries/kh.svg'
+      'url': 'assets/countries/kh.svg'
     },
     {
       LanguageKey.code: 'en',
       LanguageKey.text: 'English',
-      'url':'assets/countries/gb.svg'
-    },{
+      'url': 'assets/countries/gb.svg'
+    }, {
       LanguageKey.code: 'zn',
       LanguageKey.text: '中文',
-      'url':'assets/countries/cn.svg'
+      'url': 'assets/countries/cn.svg'
     }
   ];
 
@@ -41,12 +43,18 @@ class _LanguageChoiceState extends State<LanguageChoice> {
   Widget build(BuildContext context) {
     code = widget.code;
     return Container(
-        height: MediaQuery.of(context).size.height * 0.37,
+        height: MediaQuery
+            .of(context)
+            .size
+            .height * 0.37,
         child: Column(
           children: <Widget>[
             Container(
               height: 60,
-              width: MediaQuery.of(context).size.width,
+              width: MediaQuery
+                  .of(context)
+                  .size
+                  .width,
               color: Colors.deepPurple,
               child: Center(child: Text('Language', style: TextStyle(
                   fontSize: 20,
@@ -68,7 +76,7 @@ class _LanguageChoiceState extends State<LanguageChoice> {
 
   Widget _container(Map map) {
     var isCheck = false;
-    if(map[LanguageKey.code] == code) {
+    if (map[LanguageKey.code] == code) {
       isCheck = true;
     }
 
@@ -82,7 +90,7 @@ class _LanguageChoiceState extends State<LanguageChoice> {
           border: isCheck ? Border(
             top: BorderSide(width: 2, color: color),
             bottom: BorderSide(width: 2, color: color),
-          ): null,
+          ) : null,
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -102,7 +110,11 @@ class _LanguageChoiceState extends State<LanguageChoice> {
                 width: 50.0,
                 height: 50.0,
                 padding: EdgeInsets.only(top: 10),
-                child: Text(map[LanguageKey.text],style: TextStyle(color: Colors.blueGrey, fontSize: 20, fontWeight: FontWeight.w700, fontFamily: fontDefault)),
+                child: Text(map[LanguageKey.text], style: TextStyle(
+                    color: Colors.blueGrey,
+                    fontSize: 20,
+                    fontWeight: FontWeight.w700,
+                    fontFamily: fontDefault)),
               ),
             ),
             isCheck ? _buildIconCheck() : Container()
@@ -117,7 +129,8 @@ class _LanguageChoiceState extends State<LanguageChoice> {
       width: 40,
       height: 30,
       margin: EdgeInsets.only(right: 15),
-      child: Image(image: AssetImage('assets/icons/success-green-check-mark.png')),
+      child: Image(
+          image: AssetImage('assets/icons/success-green-check-mark.png')),
     );
   }
 

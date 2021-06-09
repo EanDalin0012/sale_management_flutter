@@ -20,7 +20,7 @@ class AddNewMemberBody extends StatefulWidget {
 }
 
 class _AddNewMemberBodyState extends State<AddNewMemberBody> {
-  final _formKey  = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>();
   var browsController = new TextEditingController();
   var nameController = new TextEditingController();
   var phoneController = new TextEditingController();
@@ -34,37 +34,40 @@ class _AddNewMemberBodyState extends State<AddNewMemberBody> {
   var focusedBorder;
   var url = DefaultStatic.personUrl;
   var returnUrl;
+
   @override
   Widget build(BuildContext context) {
-    style       = InputDecorationUtils.textFormFieldStyle();
-    labelStyle  = InputDecorationUtils.inputDecorationLabelStyle();
-    hintStyle   = InputDecorationUtils.inputDecorationHintStyle();
+    style = InputDecorationUtils.textFormFieldStyle();
+    labelStyle = InputDecorationUtils.inputDecorationLabelStyle();
+    hintStyle = InputDecorationUtils.inputDecorationHintStyle();
     enabledBorder = InputDecorationUtils.enabledBorder();
     focusedBorder = InputDecorationUtils.focusedBorder();
-    if(this.returnUrl != null) {
+    if (this.returnUrl != null) {
       this.url = this.returnUrl;
     }
 
     return Form(
         key: _formKey,
         child: Column(
-        children: <Widget>[
-          _buildBody(),
-          InkWell(
-            onTap: () {
-              KeyboardUtil.hideKeyboard(context);
-              save();
-            },
-            child: WidgetsUtil.overlayKeyBardContainer(text: 'common.label.save'.tr())
-          )
-        ])
+            children: <Widget>[
+              _buildBody(),
+              InkWell(
+                  onTap: () {
+                    KeyboardUtil.hideKeyboard(context);
+                    save();
+                  },
+                  child: WidgetsUtil.overlayKeyBardContainer(
+                      text: 'common.label.save'.tr())
+              )
+            ])
     );
   }
 
   Widget _buildBody() {
     return Expanded(
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
+        padding: EdgeInsets.symmetric(
+            horizontal: getProportionateScreenWidth(20)),
         child: SingleChildScrollView(
           physics: ClampingScrollPhysics(),
           child: Column(
@@ -73,7 +76,8 @@ class _AddNewMemberBodyState extends State<AddNewMemberBody> {
                 child: Column(
                   children: <Widget>[
                     SizedBox(height: SizeConfig.screenHeight * 0.04), // 4%
-                    Text('member.label.registerMember'.tr(), style: TextStyleUtils.headingStyle()),
+                    Text('member.label.registerMember'.tr(),
+                        style: TextStyleUtils.headingStyle()),
                     Text(
                       'common.label.completeYourDetails'.tr(),
                       textAlign: TextAlign.center,
@@ -119,7 +123,8 @@ class _AddNewMemberBodyState extends State<AddNewMemberBody> {
         enabledBorder: this.enabledBorder,
         focusedBorder: this.focusedBorder,
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/help_outline_black_24dp.svg"),
+        suffixIcon: CustomSuffixIcon(svgPaddingLeft: 15,
+            svgIcon: "assets/icons/help_outline_black_24dp.svg"),
       ),
     );
   }
@@ -145,7 +150,8 @@ class _AddNewMemberBodyState extends State<AddNewMemberBody> {
         enabledBorder: this.enabledBorder,
         focusedBorder: this.focusedBorder,
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/help_outline_black_24dp.svg"),
+        suffixIcon: CustomSuffixIcon(svgPaddingLeft: 15,
+            svgIcon: "assets/icons/help_outline_black_24dp.svg"),
       ),
     );
   }
@@ -165,7 +171,8 @@ class _AddNewMemberBodyState extends State<AddNewMemberBody> {
         focusedBorder: this.focusedBorder,
         floatingLabelBehavior: FloatingLabelBehavior.always,
         prefixIcon: TextFormFieldPrefixIcon(url: this.url),
-        suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/attachment_black_24dp.svg"),
+        suffixIcon: CustomSuffixIcon(svgPaddingLeft: 15,
+            svgIcon: "assets/icons/attachment_black_24dp.svg"),
       ),
     );
   }
@@ -184,31 +191,33 @@ class _AddNewMemberBodyState extends State<AddNewMemberBody> {
         enabledBorder: enabledBorder,
         focusedBorder: this.focusedBorder,
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/border_color_black_24dp.svg"),
+        suffixIcon: CustomSuffixIcon(svgPaddingLeft: 15,
+            svgIcon: "assets/icons/border_color_black_24dp.svg"),
       ),
     );
   }
 
   void save() {
     this.isClickSave = true;
-    if( _formKey.currentState!.validate()) {
+    if (_formKey.currentState!.validate()) {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => MemberSuccessScreen(
-          isAddScreen: true,
-          vData: {
-            MemberKey.name: nameController.text,
-            MemberKey.phone: phoneController.text,
-            MemberKey.url: browsController.text,
-            MemberKey.remark: remarkController.text
-          },
-        )),
+        MaterialPageRoute(builder: (context) =>
+            MemberSuccessScreen(
+              isAddScreen: true,
+              vData: {
+                MemberKey.name: nameController.text,
+                MemberKey.phone: phoneController.text,
+                MemberKey.url: browsController.text,
+                MemberKey.remark: remarkController.text
+              },
+            )),
       );
     }
   }
 
   void checkFormValid() {
-    if(isClickSave) {
+    if (isClickSave) {
       _formKey.currentState!.validate();
     }
   }

@@ -10,7 +10,9 @@ class SuccessStockScreen extends StatefulWidget {
   final bool? isEditScreen;
   final Map vData;
 
-  const SuccessStockScreen({Key ?key, this.isEditScreen, required this.vData, this.isAddScreen}) : super(key: key);
+  const SuccessStockScreen(
+      {Key ?key, this.isEditScreen, required this.vData, this.isAddScreen})
+      : super(key: key);
 
   @override
   _SuccessStockScreenState createState() => _SuccessStockScreenState();
@@ -20,7 +22,7 @@ class _SuccessStockScreenState extends State<SuccessStockScreen> {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: ()=> onBackPress(),
+      onWillPop: () => onBackPress(),
       child: Scaffold(
         backgroundColor: ColorsUtils.scaffoldBackgroundColor(),
         appBar: AppBar(
@@ -29,7 +31,9 @@ class _SuccessStockScreenState extends State<SuccessStockScreen> {
           leading: SizedBox(),
           title: Text('common.label.success'.tr()),
         ),
-        body: SuccessStockBody(vData: widget.vData,isAddScreen: widget.isAddScreen, isEditScreen: widget.isEditScreen,),
+        body: SuccessStockBody(vData: widget.vData,
+          isAddScreen: widget.isAddScreen,
+          isEditScreen: widget.isEditScreen,),
       ),
     );
   }

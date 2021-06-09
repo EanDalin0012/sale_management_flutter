@@ -16,7 +16,7 @@ class MemberSuccessScreen extends StatefulWidget {
     this.isAddScreen,
     this.isEditScreen,
     required this.vData
-  }):super(key: key);
+  }) :super(key: key);
 
   @override
   _MemberSuccessScreenState createState() => _MemberSuccessScreenState();
@@ -35,7 +35,9 @@ class _MemberSuccessScreenState extends State<MemberSuccessScreen> {
           leading: SizedBox(),
           title: Text('common.label.success'.tr()),
         ),
-        body: MemberSuccessBody(vData: widget.vData,isAddScreen: widget.isAddScreen,isEditScreen: widget.isEditScreen,),
+        body: MemberSuccessBody(vData: widget.vData,
+          isAddScreen: widget.isAddScreen,
+          isEditScreen: widget.isEditScreen,),
       ),
     );
   }

@@ -15,13 +15,15 @@ class PackageProductSuccessScreen extends StatefulWidget {
     this.isAddScreen,
     this.isEditScreen,
     required this.vData
-  }):super(key: key);
+  }) :super(key: key);
 
   @override
-  _PackageProductSuccessScreenState createState() => _PackageProductSuccessScreenState();
+  _PackageProductSuccessScreenState createState() =>
+      _PackageProductSuccessScreenState();
 }
 
-class _PackageProductSuccessScreenState extends State<PackageProductSuccessScreen> {
+class _PackageProductSuccessScreenState
+    extends State<PackageProductSuccessScreen> {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -35,7 +37,9 @@ class _PackageProductSuccessScreenState extends State<PackageProductSuccessScree
           leading: SizedBox(),
           title: Text('common.label.success'.tr()),
         ),
-        body: PackageProductSuccessBody(vData: widget.vData,isAddScreen: widget.isAddScreen,isEditScreen: widget.isEditScreen,),
+        body: PackageProductSuccessBody(vData: widget.vData,
+          isAddScreen: widget.isAddScreen,
+          isEditScreen: widget.isEditScreen,),
       ),
     );
   }

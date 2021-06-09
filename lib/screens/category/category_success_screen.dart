@@ -9,7 +9,10 @@ class CategorySuccessScreen extends StatefulWidget {
   final bool? isAddScreen;
   final bool? isEditScreen;
   final Map vData;
-  const CategorySuccessScreen({Key? key, this.isAddScreen, this.isEditScreen, required this.vData}) : super(key: key);
+
+  const CategorySuccessScreen(
+      {Key? key, this.isAddScreen, this.isEditScreen, required this.vData})
+      : super(key: key);
 
   @override
   _CategorySuccessScreenState createState() => _CategorySuccessScreenState();
@@ -28,7 +31,9 @@ class _CategorySuccessScreenState extends State<CategorySuccessScreen> {
           leading: SizedBox(),
           title: Text('common.label.success'.tr()),
         ),
-        body: CategorySuccessBody(vData: widget.vData,isAddScreen: widget.isAddScreen,isEditScreen: widget.isEditScreen,),
+        body: CategorySuccessBody(vData: widget.vData,
+          isAddScreen: widget.isAddScreen,
+          isEditScreen: widget.isEditScreen,),
       ),
     );
   }

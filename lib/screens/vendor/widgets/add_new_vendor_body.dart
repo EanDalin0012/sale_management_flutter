@@ -18,7 +18,7 @@ class AddNewVendorBody extends StatefulWidget {
 }
 
 class _AddNewVendorBodyState extends State<AddNewVendorBody> {
-  final _formKey  = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>();
   var isClickSave = false;
   var style;
   var labelStyle;
@@ -32,33 +32,34 @@ class _AddNewVendorBodyState extends State<AddNewVendorBody> {
 
   @override
   Widget build(BuildContext context) {
-
-    style       = InputDecorationUtils.textFormFieldStyle();
-    labelStyle  = InputDecorationUtils.inputDecorationLabelStyle();
-    hintStyle   = InputDecorationUtils.inputDecorationHintStyle();
+    style = InputDecorationUtils.textFormFieldStyle();
+    labelStyle = InputDecorationUtils.inputDecorationLabelStyle();
+    hintStyle = InputDecorationUtils.inputDecorationHintStyle();
     enabledBorder = InputDecorationUtils.enabledBorder();
     focusedBorder = InputDecorationUtils.focusedBorder();
     return Form(
-      key: _formKey,
-      child: Column(
-          children: <Widget>[
-            _buildBody(),
-            InkWell(
-              onTap: () {
-                KeyboardUtil.hideKeyboard(context);
-                save();
-              },
-              child: WidgetsUtil.overlayKeyBardContainer(text: 'common.label.save'.tr())
-            )
-          ]
-      )
+        key: _formKey,
+        child: Column(
+            children: <Widget>[
+              _buildBody(),
+              InkWell(
+                  onTap: () {
+                    KeyboardUtil.hideKeyboard(context);
+                    save();
+                  },
+                  child: WidgetsUtil.overlayKeyBardContainer(
+                      text: 'common.label.save'.tr())
+              )
+            ]
+        )
     );
   }
 
   Widget _buildBody() {
     return Expanded(
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
+        padding: EdgeInsets.symmetric(
+            horizontal: getProportionateScreenWidth(20)),
         child: SingleChildScrollView(
           physics: ClampingScrollPhysics(),
           child: Column(
@@ -67,7 +68,8 @@ class _AddNewVendorBodyState extends State<AddNewVendorBody> {
                 child: Column(
                   children: <Widget>[
                     SizedBox(height: SizeConfig.screenHeight * 0.04), // 4%
-                    Text('vendor.label.registerVendor'.tr(), style: TextStyleUtils.headingStyle()),
+                    Text('vendor.label.registerVendor'.tr(),
+                        style: TextStyleUtils.headingStyle()),
                     Text(
                       'common.label.completeYourDetails'.tr(),
                       textAlign: TextAlign.center,
@@ -113,7 +115,8 @@ class _AddNewVendorBodyState extends State<AddNewVendorBody> {
         enabledBorder: this.enabledBorder,
         focusedBorder: this.focusedBorder,
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/help_outline_black_24dp.svg"),
+        suffixIcon: CustomSuffixIcon(svgPaddingLeft: 15,
+            svgIcon: "assets/icons/help_outline_black_24dp.svg"),
       ),
     );
   }
@@ -139,7 +142,8 @@ class _AddNewVendorBodyState extends State<AddNewVendorBody> {
         enabledBorder: this.enabledBorder,
         focusedBorder: this.focusedBorder,
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/help_outline_black_24dp.svg"),
+        suffixIcon: CustomSuffixIcon(svgPaddingLeft: 15,
+            svgIcon: "assets/icons/help_outline_black_24dp.svg"),
       ),
     );
   }
@@ -158,7 +162,8 @@ class _AddNewVendorBodyState extends State<AddNewVendorBody> {
         enabledBorder: this.enabledBorder,
         focusedBorder: this.focusedBorder,
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/mail_black_24dp.svg"),
+        suffixIcon: CustomSuffixIcon(
+            svgPaddingLeft: 15, svgIcon: "assets/icons/mail_black_24dp.svg"),
       ),
     );
   }
@@ -176,31 +181,33 @@ class _AddNewVendorBodyState extends State<AddNewVendorBody> {
         enabledBorder: enabledBorder,
         focusedBorder: this.focusedBorder,
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/border_color_black_24dp.svg"),
+        suffixIcon: CustomSuffixIcon(svgPaddingLeft: 15,
+            svgIcon: "assets/icons/border_color_black_24dp.svg"),
       ),
     );
   }
 
   void save() {
     this.isClickSave = true;
-    if( _formKey.currentState!.validate()) {
+    if (_formKey.currentState!.validate()) {
       print('validate');
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => SuccessVendorScreen(
-          isAddScreen: true,
-          vData: {
-            VendorKey.name: nameController.text,
-            VendorKey.phone: phoneController.text,
-            VendorKey.email: emailController.text,
-          },
-        )),
+        MaterialPageRoute(builder: (context) =>
+            SuccessVendorScreen(
+              isAddScreen: true,
+              vData: {
+                VendorKey.name: nameController.text,
+                VendorKey.phone: phoneController.text,
+                VendorKey.email: emailController.text,
+              },
+            )),
       );
     }
   }
 
   void checkFormValid() {
-    if(isClickSave) {
+    if (isClickSave) {
       _formKey.currentState!.validate();
     }
   }

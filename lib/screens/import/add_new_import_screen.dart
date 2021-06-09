@@ -34,7 +34,10 @@ class _AddNewImportScreenState extends State<AddNewImportScreen> {
 
   AppBar _buildAppBar() {
     return AppBar(
-        title: Text('import.label.import'.tr(), style: TextStyle(fontFamily: fontDefault, fontWeight: FontWeight.w700, color: ColorsUtils.isDarkModeColor())),
+        title: Text('import.label.import'.tr(), style: TextStyle(
+            fontFamily: fontDefault,
+            fontWeight: FontWeight.w700,
+            color: ColorsUtils.isDarkModeColor())),
         backgroundColor: ColorsUtils.appBarBackGround(),
         elevation: DefaultStatic.elevationAppBar,
         actions: <Widget>[
@@ -45,7 +48,8 @@ class _AddNewImportScreenState extends State<AddNewImportScreen> {
               width: 55,
               child: Stack(
                 children: <Widget>[
-                  Center(child:  FaIcon(FontAwesomeIcons.cartArrowDown,size: 25 , color: Colors.white,),),
+                  Center(child: FaIcon(FontAwesomeIcons.cartArrowDown, size: 25,
+                    color: Colors.white,),),
                   Container(
                     width: 20,
                     height: 20,
@@ -57,7 +61,10 @@ class _AddNewImportScreenState extends State<AddNewImportScreen> {
                       color: Colors.purple.withOpacity(0.5),
                       borderRadius: BorderRadius.all(Radius.circular(10)),
                     ),
-                    child: Center(child: Text(this.vData.length.toString(), style: TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.w800))),
+                    child: Center(child: Text(this.vData.length.toString(),
+                        style: TextStyle(color: Colors.white,
+                            fontSize: 15,
+                            fontWeight: FontWeight.w800))),
                   ),
                 ],
               ),
@@ -67,12 +74,22 @@ class _AddNewImportScreenState extends State<AddNewImportScreen> {
     );
   }
 
-   _showModelSheet() {
-    var orientation = MediaQuery.of(context).orientation;
-    double height = (MediaQuery.of(context).copyWith().size.height * 0.9);
+  _showModelSheet() {
+    var orientation = MediaQuery
+        .of(context)
+        .orientation;
+    double height = (MediaQuery
+        .of(context)
+        .copyWith()
+        .size
+        .height * 0.9);
     setState(() {
-      if(orientation != Orientation.portrait){
-        height = MediaQuery.of(context).copyWith().size.height * 0.5;
+      if (orientation != Orientation.portrait) {
+        height = MediaQuery
+            .of(context)
+            .copyWith()
+            .size
+            .height * 0.5;
       }
     });
 
@@ -83,7 +100,10 @@ class _AddNewImportScreenState extends State<AddNewImportScreen> {
         builder: (BuildContext builder) {
           return Container(
             height: height,
-            width: MediaQuery.of(context).size.width,
+            width: MediaQuery
+                .of(context)
+                .size
+                .width,
             padding: EdgeInsets.only(top: 3),
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.vertical(top: Radius.circular(20)),

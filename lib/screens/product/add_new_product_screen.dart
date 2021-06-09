@@ -20,7 +20,7 @@ class _AddNewProductScreenState extends State<AddNewProductScreen> {
         backgroundColor: ColorsUtils.appBarBackGround(),
         elevation: DefaultStatic.elevationAppBar,
         title: Text('product.label.product'.tr()),
-    ),
+      ),
       body: SafeArea(
         child: AddNewProductBody(),
       ),

@@ -28,7 +28,7 @@ class _HomeContainerState extends State<HomeContainer> {
       children: <Widget>[
         BuildStatCard(),
         RaisedButton.icon(
-            onPressed: (){
+            onPressed: () {
               DeviceInfoUtils.initPlatformState().then((value) {
                 ShowDialogUtil.dialog(
                     title: Text('Alert'),
@@ -41,7 +41,7 @@ class _HomeContainerState extends State<HomeContainer> {
                 borderRadius: BorderRadius.all(Radius.circular(10.0))),
             label: Text('Alert',
               style: TextStyle(color: Colors.white),),
-            icon: Icon(Icons.android, color:Colors.white,),
+            icon: Icon(Icons.android, color: Colors.white,),
             textColor: Colors.white,
             splashColor: Colors.red,
             color: Colors.green

@@ -7,6 +7,7 @@ import 'package:easy_localization/easy_localization.dart';
 
 class SuccessSaleScreen extends StatefulWidget {
   final Map vData;
+
   const SuccessSaleScreen({Key? key, required this.vData}) : super(key: key);
 
   @override

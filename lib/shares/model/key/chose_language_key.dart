@@ -1,4 +1,4 @@
 class ChoseLanguageKey {
-  static const id         = 'id';
-  static const choose     = "choose";
+  static const id = 'id';
+  static const choose = "choose";
 }

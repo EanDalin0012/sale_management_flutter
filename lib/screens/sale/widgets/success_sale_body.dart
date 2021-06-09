@@ -13,6 +13,7 @@ import 'package:sale_management/shares/widgets/default_button/default_button.dar
 
 class SuccessSaleBody extends StatefulWidget {
   final Map vData;
+
   const SuccessSaleBody({Key? key, required this.vData}) : super(key: key);
 
   @override
@@ -22,10 +23,11 @@ class SuccessSaleBody extends StatefulWidget {
 class _SuccessSaleBodyState extends State<SuccessSaleBody> {
 
   var customerName = '';
+
   @override
   void initState() {
     super.initState();
-    if(widget.vData[SaleAddItemKey.tableIndex] == 0) {
+    if (widget.vData[SaleAddItemKey.tableIndex] == 0) {
       this.customerName = widget.vData[SaleAddItemKey.customer].toString();
     } else if (widget.vData[SaleAddItemKey.tableIndex] == 1) {
       this.customerName = widget.vData[SaleAddItemKey.member][MemberKey.name];
@@ -50,16 +52,22 @@ class _SuccessSaleBodyState extends State<SuccessSaleBody> {
             child: Column(
               children: <Widget>[
                 SizedBox(height: SizeConfig.screenHeight * 0.04), // 4%
-                Text('sale.label.saleItem'.tr(), style: TextStyleUtils.headingStyle()),
-                Text( '\n'+
-                    'sale.label.customerName'.tr() +' : '+customerName
-                    +'\n'+
-                    'sale.label.transactionID'.tr() +' : '+ widget.vData[ImportTransactionKey.transactionID].toString()
-                    +'\n'+
-                    'sale.label.total'.tr() +' : '+ FormatNumberUtils.usdFormat2Digit(widget.vData[ImportAddKey.total].toString()) + ' USD'
-                    +'\n'+
-                      'common.label.remark'.tr() +' : '+widget.vData[ImportAddKey.remark].toString(),
-                  style: TextStyle(color: ColorsUtils.isDarkModeColor(), fontSize: 18),
+                Text('sale.label.saleItem'.tr(),
+                    style: TextStyleUtils.headingStyle()),
+                Text('\n' +
+                    'sale.label.customerName'.tr() + ' : ' + customerName
+                    + '\n' +
+                    'sale.label.transactionID'.tr() + ' : ' +
+                    widget.vData[ImportTransactionKey.transactionID].toString()
+                    + '\n' +
+                    'sale.label.total'.tr() + ' : ' +
+                    FormatNumberUtils.usdFormat2Digit(
+                        widget.vData[ImportAddKey.total].toString()) + ' USD'
+                    + '\n' +
+                    'common.label.remark'.tr() + ' : ' +
+                    widget.vData[ImportAddKey.remark].toString(),
+                  style: TextStyle(
+                      color: ColorsUtils.isDarkModeColor(), fontSize: 18),
                 )
               ],
             ),
@@ -88,7 +96,6 @@ class _SuccessSaleBodyState extends State<SuccessSaleBody> {
                   context,
                   MaterialPageRoute(builder: (context) => SaleScreen()),
                 );
-
               },
             ),
           ),

@@ -3,14 +3,17 @@ import 'package:sale_management/shares/statics/dark_mode_color.dart';
 import 'package:sale_management/shares/statics/default.dart';
 
 class PrefixPerson extends StatelessWidget {
-  final String  url;
+  final String url;
+
   const PrefixPerson({Key? key, required this.url}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    var colorBorder = DarkMode.isDarkMode ? Colors.blueGrey.withOpacity(0.4) :Color(0xFFe4e6eb);
+    var colorBorder = DarkMode.isDarkMode
+        ? Colors.blueGrey.withOpacity(0.4)
+        : Color(0xFFe4e6eb);
     String uri = DefaultStatic.personUrl;
-    if(this.url.toString() != 'null') {
+    if (this.url.toString() != 'null') {
       uri = this.url;
     }
     return Container(
@@ -23,7 +26,7 @@ class PrefixPerson extends StatelessWidget {
         // padding: const EdgeInsets.all(7.0),
         child: CircleAvatar(
           radius: 30.0,
-          backgroundImage:NetworkImage(uri),
+          backgroundImage: NetworkImage(uri),
           backgroundColor: Colors.transparent,
         )
     );

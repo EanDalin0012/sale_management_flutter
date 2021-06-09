@@ -21,7 +21,8 @@ class VendorDropdownPage extends StatefulWidget {
 
 class _VendorDropdownPageState extends State<VendorDropdownPage> {
   var isNative = false;
-  late Size size ;
+  late Size size;
+
   List<dynamic> vData = [];
 
   @override
@@ -32,7 +33,9 @@ class _VendorDropdownPageState extends State<VendorDropdownPage> {
 
   @override
   Widget build(BuildContext context) {
-    size = MediaQuery.of(context).size;
+    size = MediaQuery
+        .of(context)
+        .size;
     return Scaffold(
       backgroundColor: ColorsUtils.scaffoldBackgroundColor(),
       appBar: _buildAppBar(),
@@ -53,14 +56,15 @@ class _VendorDropdownPageState extends State<VendorDropdownPage> {
       actions: [
         IconButton(
           icon: Icon(isNative ? Icons.close : Icons.search),
-          onPressed: () => setState(() {
-            this.isNative = !isNative;
-          }),
+          onPressed: () =>
+              setState(() {
+                this.isNative = !isNative;
+              }),
         ),
         const SizedBox(width: 8),
       ],
       bottom: this.isNative ? PreferredSize(preferredSize: Size.fromHeight(60),
-        child:  Row(
+        child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
@@ -72,48 +76,58 @@ class _VendorDropdownPageState extends State<VendorDropdownPage> {
               child: SearchWidget(
                 hintText: 'search.label.searchName'.tr(),
                 text: 'search.label.searchName'.tr(),
-                onChanged: (value) {
-                },
+                onChanged: (value) {},
               ),
             ),
             // _buildFilterByCategory()
             // _buildFilterByProduct()
           ],
         ),
-      ): null,
+      ) : null,
     );
   }
 
-  Widget _buildBody () {
+  Widget _buildBody() {
     return Expanded(
         child: ListView.builder(
           itemCount: this.vData.length,
           itemBuilder: (context, index) {
             return _buildListTile(
                 dataItem: this.vData[index]
-            );},
+            );
+          },
         )
     );
   }
 
-  Widget _buildListTile( {
+  Widget _buildListTile({
     required Map dataItem
   }) {
     return ListTile(
       onTap: () => onSelectedItem(dataItem),
-      title: Text( dataItem[VendorKey.name],
-        style: TextStyle( color: ColorsUtils.isDarkModeColor(), fontSize: 20, fontWeight: FontWeight.w700,fontFamily: fontDefault),
+      title: Text(dataItem[VendorKey.name],
+        style: TextStyle(color: ColorsUtils.isDarkModeColor(),
+            fontSize: 20,
+            fontWeight: FontWeight.w700,
+            fontFamily: fontDefault),
       ),
       subtitle: Text(
-        dataItem[VendorKey.phone] + ',' +dataItem[VendorKey.email],
-        style: TextStyle(fontSize: 12,fontWeight: FontWeight.w700, fontFamily: fontDefault, color: primaryColor),
+        dataItem[VendorKey.phone] + ',' + dataItem[VendorKey.email],
+        style: TextStyle(fontSize: 12,
+            fontWeight: FontWeight.w700,
+            fontFamily: fontDefault,
+            color: primaryColor),
       ),
-      trailing: widget.vVendor.toString() != 'null' && widget.vVendor[VendorKey.id] == dataItem[VendorKey.id] ? IconCheck() : null,
+      trailing: widget.vVendor.toString() != 'null' &&
+          widget.vVendor[VendorKey.id] == dataItem[VendorKey.id]
+          ? IconCheck()
+          : null,
     );
   }
 
   _fetchItems() async {
-    final data = await rootBundle.loadString('assets/json_data/vendor_list.json');
+    final data = await rootBundle.loadString(
+        'assets/json_data/vendor_list.json');
     Map mapItems = jsonDecode(data);
     setState(() {
       this.vData = mapItems['vendors'];

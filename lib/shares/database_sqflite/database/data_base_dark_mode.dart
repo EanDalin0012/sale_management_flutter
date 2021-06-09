@@ -10,6 +10,7 @@ class DataBaseDarkModeUtils {
   static final DataBaseDarkModeUtils instance = DataBaseDarkModeUtils._init();
   static Database? _dataBase;
   static String dataBaseName = DarModeParam.data_base;
+
   DataBaseDarkModeUtils._init();
 
   Future<Database> get database async {
@@ -22,7 +23,7 @@ class DataBaseDarkModeUtils {
   Future<Database> _initDB(String filePath) async {
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
     final dbPath = documentsDirectory.path;
-    final path = dbPath+'/'+filePath;
+    final path = dbPath + '/' + filePath;
     return await openDatabase(path, version: 1, onCreate: _createDB);
   }
 
@@ -43,9 +44,10 @@ class DataBaseDarkModeUtils {
   static Future<int> create(Map json) async {
     final db = await instance.database;
     var data = await db.rawInsert(
-        'INSERT INTO $dataBaseName(${DarModeParam.id}, ${DarModeParam.code}) VALUES(?, ?)',
+        'INSERT INTO $dataBaseName(${DarModeParam.id}, ${DarModeParam
+            .code}) VALUES(?, ?)',
         [
-          json[DarkModeKey.id],json[DarkModeKey.code]
+          json[DarkModeKey.id], json[DarkModeKey.code]
         ]
     );
     print('create: ${data}');
@@ -55,7 +57,8 @@ class DataBaseDarkModeUtils {
   static Future<int> update(Map json) async {
     final db = await instance.database;
     int count = await db.rawUpdate(
-        'UPDATE  $dataBaseName SET ${DarModeParam.code} = ? WHERE ${DarkModeKey.id} = ?',
+        'UPDATE  $dataBaseName SET ${DarModeParam.code} = ? WHERE ${DarkModeKey
+            .id} = ?',
         [
           json[DarkModeKey.code], json[DarkModeKey.id]
         ]);
@@ -66,11 +69,12 @@ class DataBaseDarkModeUtils {
   static Future<Map> getDarkModeById(int id) async {
     try {
       final db = await instance.database;
-      List<dynamic> vData = await db.rawQuery('SELECT * FROM $dataBaseName WHERE id = ?', [id]);
-      if(vData.length > 0) {
+      List<dynamic> vData = await db.rawQuery(
+          'SELECT * FROM $dataBaseName WHERE id = ?', [id]);
+      if (vData.length > 0) {
         return vData[0];
       }
-    }catch(e) {
+    } catch (e) {
       print('e :${e}');
     }
     return {};

@@ -32,7 +32,8 @@ class _ImportScreenState extends State<ImportScreen> {
   late FToast fToast;
   var isLoading = false;
   var isNative = false;
-  late Size size ;
+  late Size size;
+
   List<dynamic> vData = [];
   var vDataLength = 0;
   var selectedProduct = true;
@@ -49,19 +50,21 @@ class _ImportScreenState extends State<ImportScreen> {
     this._scrollController.addListener(() {
       double maxScroll = _scrollController.position.maxScrollExtent;
       double currentScroll = _scrollController.position.pixels;
-      double delta = MediaQuery.of(context).size.height * 0.25;
-      if(maxScroll - currentScroll <= delta) {
+      double delta = MediaQuery
+          .of(context)
+          .size
+          .height * 0.25;
+      if (maxScroll - currentScroll <= delta) {
         setState(() {
           this.isLoading = true;
         });
         _fetchAllItemsByPageSize().then((value) {
-          if(value.length > 0) {
+          if (value.length > 0) {
             setState(() {
               this.vDataAll = [...vDataAll, ...value];
               this.isLoading = false;
             });
           }
-
         });
       }
     });
@@ -69,42 +72,45 @@ class _ImportScreenState extends State<ImportScreen> {
 
   @override
   Widget build(BuildContext context) {
-    size = MediaQuery.of(context).size;
+    size = MediaQuery
+        .of(context)
+        .size;
     return WillPopScope(
-      onWillPop:  () => onBackPress(),
+      onWillPop: () => onBackPress(),
       child: Scaffold(
-        backgroundColor: ColorsUtils.scaffoldBackgroundColor(),
-        appBar: _buildAppBar(),
-        body: SafeArea(
-          child: InkWell(
-            onTap: () {
-              KeyboardUtil.hideKeyboard(context);
-            },
-            child: Column(
-              children: <Widget>[
-                SizedBox(height: SizeConfig.screenHeight * 0.02),
-                Center(
-                  child: Column(
-                    children: <Widget>[// 4%
-                      Text('import.label.importProduct'.tr(), style: TextStyleUtils.headingStyle()),
-                      Center(
-                        child: Text(
-                          'import.label.allTransactionImport'.tr(),
-                          textAlign: TextAlign.center,
+          backgroundColor: ColorsUtils.scaffoldBackgroundColor(),
+          appBar: _buildAppBar(),
+          body: SafeArea(
+            child: InkWell(
+              onTap: () {
+                KeyboardUtil.hideKeyboard(context);
+              },
+              child: Column(
+                children: <Widget>[
+                  SizedBox(height: SizeConfig.screenHeight * 0.02),
+                  Center(
+                    child: Column(
+                      children: <Widget>[ // 4%
+                        Text('import.label.importProduct'.tr(),
+                            style: TextStyleUtils.headingStyle()),
+                        Center(
+                          child: Text(
+                            'import.label.allTransactionImport'.tr(),
+                            textAlign: TextAlign.center,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-                SizedBox(height: SizeConfig.screenHeight * 0.02),
-                this.vDataAll.length > 0 ? Expanded(
-                  child: _buildBody(),
-                ) : CircularProgressLoading(),
-            ],
+                  SizedBox(height: SizeConfig.screenHeight * 0.02),
+                  this.vDataAll.length > 0 ? Expanded(
+                    child: _buildBody(),
+                  ) : CircularProgressLoading(),
+                ],
+              ),
+            ),
           ),
-          ),
-        ),
-        floatingActionButton: _floatingActionButton()
+          floatingActionButton: _floatingActionButton()
       ),
     );
   }
@@ -124,14 +130,15 @@ class _ImportScreenState extends State<ImportScreen> {
       actions: [
         IconButton(
           icon: Icon(isNative ? Icons.close : Icons.search),
-          onPressed: () => setState(() {
-            this.isNative = !isNative;
-          }),
+          onPressed: () =>
+              setState(() {
+                this.isNative = !isNative;
+              }),
         ),
         const SizedBox(width: 8),
       ],
       bottom: this.isNative ? PreferredSize(preferredSize: Size.fromHeight(60),
-        child:  Row(
+        child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
@@ -143,15 +150,14 @@ class _ImportScreenState extends State<ImportScreen> {
               child: SearchWidget(
                 hintText: 'search.label.searchName'.tr(),
                 text: 'search.label.searchName'.tr(),
-                onChanged: (value) {
-                },
+                onChanged: (value) {},
               ),
             ),
             // _buildFilterByCategory()
             // _buildFilterByProduct()
           ],
         ),
-      ): null,
+      ) : null,
     );
   }
 
@@ -162,7 +168,7 @@ class _ImportScreenState extends State<ImportScreen> {
       child: Column(
         children: <Widget>[
           _buildAllTransaction(),
-             this.isLoading == true ? InfiniteScrollLoading(): Container(
+          this.isLoading == true ? InfiniteScrollLoading() : Container(
             color: Colors.transparent,
             height: 60,
           )
@@ -187,21 +193,25 @@ class _ImportScreenState extends State<ImportScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               OverListItem(
-                text: FormatDateUtils.dateFormat(yyyyMMdd: e[ImportKey.transactionDate].toString()),
+                text: FormatDateUtils.dateFormat(
+                    yyyyMMdd: e[ImportKey.transactionDate].toString()),
                 length: mData.length,
               ),
               Column(
-                children: mData.map((item){
+                children: mData.map((item) {
                   i += 1;
                   return Container(
                     decoration: mDataLength != i ? BoxDecoration(
                         border: Border(
-                          bottom: BorderSide(color: Color(0xCD939BA9).withOpacity(0.2), width: 1.5),
+                          bottom: BorderSide(
+                              color: Color(0xCD939BA9).withOpacity(0.2),
+                              width: 1.5),
                         )
                     ) : null,
                     child: _buildListTile(
                         transactionId: item[ImportKey.transactionId].toString(),
-                        transactionDate: e[ImportKey.transactionDate].toString(),
+                        transactionDate: e[ImportKey.transactionDate]
+                            .toString(),
                         time: item[ImportKey.time].toString(),
                         total: item[ImportKey.total].toString()
                     ),
@@ -225,11 +235,16 @@ class _ImportScreenState extends State<ImportScreen> {
       leading: _buildLeading(),
       title: Text(
         transactionId,
-        style: TextStyle(color: ColorsUtils.isDarkModeColor(), fontWeight: FontWeight.w500, fontFamily: fontDefault),
+        style: TextStyle(color: ColorsUtils.isDarkModeColor(),
+            fontWeight: FontWeight.w500,
+            fontFamily: fontDefault),
       ),
       subtitle: Text(
         FormatDateUtils.dateTime(hhnn: time),
-        style: TextStyle(fontFamily: fontDefault, fontWeight: FontWeight.w500, fontSize: 15, color: primaryColor),
+        style: TextStyle(fontFamily: fontDefault,
+            fontWeight: FontWeight.w500,
+            fontSize: 15,
+            color: primaryColor),
       ),
       trailing: Container(
         width: 110,
@@ -238,10 +253,14 @@ class _ImportScreenState extends State<ImportScreen> {
             children: <Widget>[
               Text(
                 FormatNumberUtils.usdFormat2Digit(total).toString() + ' \$',
-                style: TextStyle(fontFamily: fontDefault, fontSize: 20, fontWeight: FontWeight.w700, color: ColorsUtils.isDarkModeColor()),
+                style: TextStyle(fontFamily: fontDefault,
+                    fontSize: 20,
+                    fontWeight: FontWeight.w700,
+                    color: ColorsUtils.isDarkModeColor()),
               ),
               SizedBox(width: 10,),
-              FaIcon(FontAwesomeIcons.chevronRight,size: 20 , color: Colors.black54.withOpacity(0.5))
+              FaIcon(FontAwesomeIcons.chevronRight, size: 20,
+                  color: Colors.black54.withOpacity(0.5))
             ]
         ),
       ),
@@ -254,12 +273,14 @@ class _ImportScreenState extends State<ImportScreen> {
       height: 40,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(60)),
-        border: Border.all(color: Colors.deepPurpleAccent.withOpacity(0.7), width: 2),
+        border: Border.all(
+            color: Colors.deepPurpleAccent.withOpacity(0.7), width: 2),
       ),
       child: CircleAvatar(
         radius: 30.0,
         backgroundColor: Colors.transparent,
-        child: FaIcon(FontAwesomeIcons.receipt,size: 20 , color: Colors.deepPurple),
+        child: FaIcon(
+            FontAwesomeIcons.receipt, size: 20, color: Colors.deepPurple),
       ),
     );
   }
@@ -267,7 +288,7 @@ class _ImportScreenState extends State<ImportScreen> {
   FloatingActionButton _floatingActionButton() {
     return FloatingActionButton(
       backgroundColor: Colors.purple[900],
-      onPressed: (){
+      onPressed: () {
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => AddNewImportScreen()),
@@ -289,7 +310,8 @@ class _ImportScreenState extends State<ImportScreen> {
 
   _fetchAllItems() async {
     await Future.delayed(Duration(seconds: 1));
-    final data = await rootBundle.loadString('assets/json_data/import_transactions.json');
+    final data = await rootBundle.loadString(
+        'assets/json_data/import_transactions.json');
     Map mapItems = jsonDecode(data);
     setState(() {
       this.vDataAll = mapItems['imports'];
@@ -298,7 +320,8 @@ class _ImportScreenState extends State<ImportScreen> {
 
   Future<List<dynamic>> _fetchAllItemsByPageSize() async {
     await Future.delayed(Duration(seconds: 5));
-    final data = await rootBundle.loadString('assets/json_data/import_transactions.json');
+    final data = await rootBundle.loadString(
+        'assets/json_data/import_transactions.json');
     Map mapItems = jsonDecode(data);
     List<dynamic> mData = mapItems['imports'];
     return Future.value(mData);

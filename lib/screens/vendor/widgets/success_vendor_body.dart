@@ -10,13 +10,16 @@ class SuccessVendorBody extends StatelessWidget {
   final bool? isAddScreen;
   final bool? isEditScreen;
   final Map vData;
-  const SuccessVendorBody({Key? key, this.isAddScreen, this.isEditScreen, required this.vData}) : super(key: key);
+
+  const SuccessVendorBody(
+      {Key? key, this.isAddScreen, this.isEditScreen, required this.vData})
+      : super(key: key);
 
 
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop:  ()  =>onBackPress(context),
+      onWillPop: () => onBackPress(context),
       child: Column(
         children: <Widget>[
           SizedBox(height: SizeConfig.screenHeight * 0.07),
@@ -32,11 +35,15 @@ class SuccessVendorBody extends StatelessWidget {
               children: <Widget>[
                 SizedBox(height: SizeConfig.screenHeight * 0.04), // 4%
                 if (this.isAddScreen == true)
-                  Text('vendor.label.registerVendor'.tr(), style: TextStyleUtils.headingStyle()),
+                  Text('vendor.label.registerVendor'.tr(),
+                      style: TextStyleUtils.headingStyle()),
                 if(this.isEditScreen == true)
-                  Text('vendor.label.updateVendor'.tr(), style: TextStyleUtils.headingStyle()),
+                  Text('vendor.label.updateVendor'.tr(),
+                      style: TextStyleUtils.headingStyle()),
 
-                Text('common.label.isCompleted'.tr(args: [this.vData[VendorKey.name]]),textAlign: TextAlign.center,),
+                Text('common.label.isCompleted'.tr(
+                    args: [this.vData[VendorKey.name]]),
+                  textAlign: TextAlign.center,),
               ],
             ),
           ),
@@ -63,7 +70,6 @@ class SuccessVendorBody extends StatelessWidget {
                   context,
                   MaterialPageRoute(builder: (context) => VendorScreen()),
                 );
-
               },
             ),
           ),

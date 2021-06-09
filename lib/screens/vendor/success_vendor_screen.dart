@@ -9,7 +9,10 @@ class SuccessVendorScreen extends StatefulWidget {
   final bool? isAddScreen;
   final bool? isEditScreen;
   final Map vData;
-  const SuccessVendorScreen({Key? key, this.isAddScreen, this.isEditScreen, required this.vData}) : super(key: key);
+
+  const SuccessVendorScreen(
+      {Key? key, this.isAddScreen, this.isEditScreen, required this.vData})
+      : super(key: key);
 
 
   @override
@@ -29,7 +32,9 @@ class _SuccessVendorScreenState extends State<SuccessVendorScreen> {
           leading: SizedBox(),
           title: Text('common.label.success'.tr()),
         ),
-        body: SuccessVendorBody(vData: widget.vData,isAddScreen: widget.isAddScreen,isEditScreen: widget.isEditScreen,),
+        body: SuccessVendorBody(vData: widget.vData,
+          isAddScreen: widget.isAddScreen,
+          isEditScreen: widget.isEditScreen,),
       ),
     );
   }

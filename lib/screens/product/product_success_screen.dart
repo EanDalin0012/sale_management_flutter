@@ -15,7 +15,7 @@ class ProductSuccessScreen extends StatefulWidget {
     this.isAddScreen,
     this.isEditScreen,
     required this.vData
-  }):super(key: key);
+  }) :super(key: key);
 
   @override
   _ProductSuccessScreenState createState() => _ProductSuccessScreenState();
@@ -35,7 +35,9 @@ class _ProductSuccessScreenState extends State<ProductSuccessScreen> {
           leading: SizedBox(),
           title: Text('common.label.success'.tr()),
         ),
-        body: ProductSuccessBody(vData: widget.vData,isAddScreen: widget.isAddScreen,isEditScreen: widget.isEditScreen,),
+        body: ProductSuccessBody(vData: widget.vData,
+          isAddScreen: widget.isAddScreen,
+          isEditScreen: widget.isEditScreen,),
       ),
     );
   }

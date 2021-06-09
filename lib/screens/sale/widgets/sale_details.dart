@@ -13,6 +13,7 @@ import 'package:sale_management/shares/widgets/prefix_product/prefix_product.dar
 
 class SaleDetails extends StatefulWidget {
   final Map vData;
+
   const SaleDetails({Key? key, required this.vData}) : super(key: key);
 
   @override
@@ -25,6 +26,7 @@ class _SaleDetailsState extends State<SaleDetails> {
   var total = 0.0;
   var style;
   double sizedBoxHeight = 10.0;
+
   @override
   void initState() {
     super.initState();
@@ -33,11 +35,13 @@ class _SaleDetailsState extends State<SaleDetails> {
 
   @override
   Widget build(BuildContext context) {
-    this.style = TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: ColorsUtils.isDarkModeColor());
+    this.style = TextStyle(fontSize: 16,
+        fontWeight: FontWeight.w500,
+        color: ColorsUtils.isDarkModeColor());
     return Container(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-        color: ColorsUtils.scaffoldBackgroundColor()
+          borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+          color: ColorsUtils.scaffoldBackgroundColor()
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -59,25 +63,13 @@ class _SaleDetailsState extends State<SaleDetails> {
               children: <Widget>[
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                 children: <Widget>[
-                   Container(
-                     child: Text('sale.label.transactionID'.tr()+ ' :', style: style),
-                   ),
-                   Text(
-                     widget.vData[SaleKey.transactionId],
-                     style: style,
-                   ),
-                 ],
-                ),
-                SizedBox(height: this.sizedBoxHeight),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Container(
-                      child: Text('sale.label.total'.tr()+ ' :', style: style),
+                      child: Text(
+                          'sale.label.transactionID'.tr() + ' :', style: style),
                     ),
                     Text(
-                      FormatNumberUtils.usdFormat2Digit(widget.vData[SaleDetailsKey.total].toString()) + ' USD'.toString(),
+                      widget.vData[SaleKey.transactionId],
                       style: style,
                     ),
                   ],
@@ -87,7 +79,23 @@ class _SaleDetailsState extends State<SaleDetails> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Container(
-                      child: Text('sale.label.customerName'.tr()+ ' :', style: style),
+                      child: Text('sale.label.total'.tr() + ' :', style: style),
+                    ),
+                    Text(
+                      FormatNumberUtils.usdFormat2Digit(
+                          widget.vData[SaleDetailsKey.total].toString()) +
+                          ' USD'.toString(),
+                      style: style,
+                    ),
+                  ],
+                ),
+                SizedBox(height: this.sizedBoxHeight),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Container(
+                      child: Text(
+                          'sale.label.customerName'.tr() + ' :', style: style),
                     ),
                     Text(
                       widget.vData[SaleKey.customerName].toString(),
@@ -100,7 +108,7 @@ class _SaleDetailsState extends State<SaleDetails> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Container(
-                      child: Text('sale.label.phone'.tr()+ ' :', style: style),
+                      child: Text('sale.label.phone'.tr() + ' :', style: style),
                     ),
                     Text(
                       widget.vData[SaleKey.phoneNumber].toString(),
@@ -113,7 +121,8 @@ class _SaleDetailsState extends State<SaleDetails> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Container(
-                      child: Text('sale.label.transactionDate'.tr()+ ' :', style: style),
+                      child: Text('sale.label.transactionDate'.tr() + ' :',
+                          style: style),
                     ),
                     Text(
                       widget.vData[SaleKey.transactionDate],
@@ -127,13 +136,13 @@ class _SaleDetailsState extends State<SaleDetails> {
           SizedBox(height: 20),
           Center(
             child: Text(
-                'sale.label.sellProduct'.tr(),
-                style: TextStyle(
-                  decoration: TextDecoration.underline,
-                ),
+              'sale.label.sellProduct'.tr(),
+              style: TextStyle(
+                decoration: TextDecoration.underline,
+              ),
             ),
           ),
-          this.vData.length> 0 ? _buildBody() : CircularProgressLoading(),
+          this.vData.length > 0 ? _buildBody() : CircularProgressLoading(),
 
         ],
       ),
@@ -148,7 +157,9 @@ class _SaleDetailsState extends State<SaleDetails> {
             height: 35.0,
             child: Center(
                 child: Text('sale.label.saleDetails'.tr(),
-                    style: TextStyle(fontWeight: FontWeight.w700, fontSize: 20, color: ColorsUtils.isDarkModeColor())
+                    style: TextStyle(fontWeight: FontWeight.w700,
+                        fontSize: 20,
+                        color: ColorsUtils.isDarkModeColor())
                 ) // Your desired title
             ),
           ),
@@ -156,8 +167,10 @@ class _SaleDetailsState extends State<SaleDetails> {
               left: 0.0,
               top: 0.0,
               child: IconButton(
-                  icon: FaIcon(FontAwesomeIcons.arrowLeft,size: 20 , color: ColorsUtils.isDarkModeColor()), // Your desired icon
-                  onPressed: (){
+                  icon: FaIcon(FontAwesomeIcons.arrowLeft, size: 20,
+                      color: ColorsUtils.isDarkModeColor()),
+                  // Your desired icon
+                  onPressed: () {
                     Navigator.of(context).pop();
                   }
               )
@@ -194,6 +207,7 @@ class _SaleDetailsState extends State<SaleDetails> {
       ),
     );
   }
+
   Widget _buildDataTable() {
     var textStyle = TextStyle(color: ColorsUtils.isDarkModeColor());
     return DataTable(
@@ -202,7 +216,7 @@ class _SaleDetailsState extends State<SaleDetails> {
             label: Text('import.label.no'.tr(), style: textStyle),
           ),
           DataColumn(
-            label: Text('import.label.product'.tr(),style: textStyle),
+            label: Text('import.label.product'.tr(), style: textStyle),
           ),
           DataColumn(
             label: Text('import.label.quantity'.tr(), style: textStyle),
@@ -223,14 +237,18 @@ class _SaleDetailsState extends State<SaleDetails> {
                               width: 40,
                               height: 40,
                               margin: EdgeInsets.only(top: 2.0, bottom: 2.0),
-                              child: PrefixProduct(url:  e[SaleDetailsKey.url].toString())),
+                              child: PrefixProduct(
+                                  url: e[SaleDetailsKey.url].toString())),
                           SizedBox(width: 10),
-                          Text(e[SaleDetailsKey.name].toString(), style: textStyle)
+                          Text(e[SaleDetailsKey.name].toString(),
+                              style: textStyle)
                         ]
                     )
                 ),
-                DataCell(Text(e[SaleDetailsKey.quantity].toString(), style: textStyle)),
-                DataCell(Text(e[SaleDetailsKey.total].toString() + ' \$', style: textStyle))
+                DataCell(Text(
+                    e[SaleDetailsKey.quantity].toString(), style: textStyle)),
+                DataCell(Text(e[SaleDetailsKey.total].toString() + ' \$',
+                    style: textStyle))
               ]
           );
         }
@@ -241,7 +259,8 @@ class _SaleDetailsState extends State<SaleDetails> {
 
   _fetchItems() async {
     await Future.delayed(Duration(seconds: 1));
-    final data = await rootBundle.loadString('assets/json_data/sale_details_of_transaction.json');
+    final data = await rootBundle.loadString(
+        'assets/json_data/sale_details_of_transaction.json');
     Map mapItems = jsonDecode(data);
     print(mapItems.toString());
     setState(() {

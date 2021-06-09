@@ -13,6 +13,7 @@ import 'package:sale_management/shares/widgets/custom_suffix_icon/custom_suffix_
 
 class EditCategoryBody extends StatefulWidget {
   final Map vData;
+
   const EditCategoryBody({Key? key, required this.vData}) : super(key: key);
 
   @override
@@ -21,17 +22,18 @@ class EditCategoryBody extends StatefulWidget {
 
 class _EditCategoryBodyState extends State<EditCategoryBody> {
 
-  final _formKey  = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>();
   var isClickSave = false;
 
-  var nameController    = new TextEditingController();
-  var remarkController  = new TextEditingController();
+  var nameController = new TextEditingController();
+  var remarkController = new TextEditingController();
 
   var style;
   var labelStyle;
   var hintStyle;
   var enabledBorder;
   var focusedBorder;
+
   @override
   void initState() {
     super.initState();
@@ -40,9 +42,9 @@ class _EditCategoryBodyState extends State<EditCategoryBody> {
 
   @override
   Widget build(BuildContext context) {
-    style         = InputDecorationUtils.textFormFieldStyle();
-    labelStyle    = InputDecorationUtils.inputDecorationLabelStyle();
-    hintStyle     = InputDecorationUtils.inputDecorationHintStyle();
+    style = InputDecorationUtils.textFormFieldStyle();
+    labelStyle = InputDecorationUtils.inputDecorationLabelStyle();
+    hintStyle = InputDecorationUtils.inputDecorationHintStyle();
     enabledBorder = InputDecorationUtils.enabledBorder();
     focusedBorder = InputDecorationUtils.focusedBorder();
     return Form(
@@ -51,11 +53,12 @@ class _EditCategoryBodyState extends State<EditCategoryBody> {
             children: <Widget>[
               _buildBody(),
               InkWell(
-                onTap: () {
-                  KeyboardUtil.hideKeyboard(context);
-                  save();
-                },
-                child: WidgetsUtil.overlayKeyBardContainer(text: 'common.label.update'.tr())
+                  onTap: () {
+                    KeyboardUtil.hideKeyboard(context);
+                    save();
+                  },
+                  child: WidgetsUtil.overlayKeyBardContainer(
+                      text: 'common.label.update'.tr())
               )
             ]
         )
@@ -65,7 +68,8 @@ class _EditCategoryBodyState extends State<EditCategoryBody> {
   Widget _buildBody() {
     return Expanded(
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
+        padding: EdgeInsets.symmetric(
+            horizontal: getProportionateScreenWidth(20)),
         child: SingleChildScrollView(
           physics: ClampingScrollPhysics(),
           child: Column(
@@ -74,7 +78,8 @@ class _EditCategoryBodyState extends State<EditCategoryBody> {
                 child: Column(
                   children: <Widget>[
                     SizedBox(height: SizeConfig.screenHeight * 0.04), // 4%
-                    Text('category.label.updateCategory'.tr(), style: TextStyleUtils.headingStyle()),
+                    Text('category.label.updateCategory'.tr(),
+                        style: TextStyleUtils.headingStyle()),
                     Text(
                       'common.label.completeYourDetails'.tr(),
                       textAlign: TextAlign.center,
@@ -114,7 +119,8 @@ class _EditCategoryBodyState extends State<EditCategoryBody> {
         enabledBorder: enabledBorder,
         focusedBorder: this.focusedBorder,
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/help_outline_black_24dp.svg"),
+        suffixIcon: CustomSuffixIcon(svgPaddingLeft: 15,
+            svgIcon: "assets/icons/help_outline_black_24dp.svg"),
       ),
     );
   }
@@ -132,7 +138,8 @@ class _EditCategoryBodyState extends State<EditCategoryBody> {
         enabledBorder: enabledBorder,
         focusedBorder: this.focusedBorder,
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/border_color_black_24dp.svg"),
+        suffixIcon: CustomSuffixIcon(svgPaddingLeft: 15,
+            svgIcon: "assets/icons/border_color_black_24dp.svg"),
       ),
     );
   }
@@ -140,23 +147,24 @@ class _EditCategoryBodyState extends State<EditCategoryBody> {
 
   void save() {
     this.isClickSave = true;
-    if( _formKey.currentState!.validate()) {
+    if (_formKey.currentState!.validate()) {
       print('validate');
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => CategorySuccessScreen(
-          isEditScreen: true,
-          vData: {
-            CategoryKey.name: nameController.text,
-            CategoryKey.remark: remarkController.text
-          },
-        )),
+        MaterialPageRoute(builder: (context) =>
+            CategorySuccessScreen(
+              isEditScreen: true,
+              vData: {
+                CategoryKey.name: nameController.text,
+                CategoryKey.remark: remarkController.text
+              },
+            )),
       );
     }
   }
 
   void checkFormValid() {
-    if(isClickSave) {
+    if (isClickSave) {
       _formKey.currentState!.validate();
     }
   }

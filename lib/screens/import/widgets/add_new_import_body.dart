@@ -23,14 +23,16 @@ import 'package:sale_management/shares/widgets/vendor_dropdown/vendor_dropdown.d
 
 class AddNewImportBody extends StatefulWidget {
   final ValueChanged<List<dynamic>> onAddChanged;
-  const AddNewImportBody({Key? key, required this.onAddChanged}) : super(key: key);
+
+  const AddNewImportBody({Key? key, required this.onAddChanged})
+      : super(key: key);
 
   @override
   _AddNewImportBodyState createState() => _AddNewImportBodyState();
 }
 
 class _AddNewImportBodyState extends State<AddNewImportBody> {
-  final _formKey  = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>();
   var isClickSave = false;
   var style;
   var labelStyle;
@@ -53,29 +55,30 @@ class _AddNewImportBodyState extends State<AddNewImportBody> {
 
   @override
   Widget build(BuildContext context) {
-    style       = InputDecorationUtils.textFormFieldStyle();
-    labelStyle  = InputDecorationUtils.inputDecorationLabelStyle();
-    hintStyle   = InputDecorationUtils.inputDecorationHintStyle();
+    style = InputDecorationUtils.textFormFieldStyle();
+    labelStyle = InputDecorationUtils.inputDecorationLabelStyle();
+    hintStyle = InputDecorationUtils.inputDecorationHintStyle();
     enabledBorder = InputDecorationUtils.enabledBorder();
     focusedBorder = InputDecorationUtils.focusedBorder();
 
-    if(this.product[ProductKey.url].toString() != 'null') {
+    if (this.product[ProductKey.url].toString() != 'null') {
       this.url = this.product[ProductKey.url].toString();
     }
 
     return Form(
-      key: _formKey,
+        key: _formKey,
         child: Column(
-          children: <Widget>[
-            _buildBody(),
-            InkWell(
-              onTap: () {
-                KeyboardUtil.hideKeyboard(context);
-                save();
-              },
-              child: WidgetsUtil.overlayKeyBardContainer(text: 'common.label.next'.tr())
-            )
-          ]
+            children: <Widget>[
+              _buildBody(),
+              InkWell(
+                  onTap: () {
+                    KeyboardUtil.hideKeyboard(context);
+                    save();
+                  },
+                  child: WidgetsUtil.overlayKeyBardContainer(
+                      text: 'common.label.next'.tr())
+              )
+            ]
         )
     );
   }
@@ -83,7 +86,8 @@ class _AddNewImportBodyState extends State<AddNewImportBody> {
   Widget _buildBody() {
     return Expanded(
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
+        padding: EdgeInsets.symmetric(
+            horizontal: getProportionateScreenWidth(20)),
         child: SingleChildScrollView(
           physics: ClampingScrollPhysics(),
           child: Column(
@@ -92,7 +96,8 @@ class _AddNewImportBodyState extends State<AddNewImportBody> {
                 child: Column(
                   children: <Widget>[
                     SizedBox(height: SizeConfig.screenHeight * 0.04), // 4%
-                    Text('import.label.importNewProduct'.tr(), style: TextStyleUtils.headingStyle()),
+                    Text('import.label.importNewProduct'.tr(),
+                        style: TextStyleUtils.headingStyle()),
                     Text(
                       'common.label.completeYourDetails'.tr(),
                       textAlign: TextAlign.center,
@@ -134,9 +139,10 @@ class _AddNewImportBodyState extends State<AddNewImportBody> {
       onTap: () async {
         final product = await Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => ProductDropdownPage(vData: this.product)),
+          MaterialPageRoute(
+              builder: (context) => ProductDropdownPage(vData: this.product)),
         );
-        if(product == null) {
+        if (product == null) {
           return;
         }
         setState(() {
@@ -165,7 +171,8 @@ class _AddNewImportBodyState extends State<AddNewImportBody> {
         focusedBorder: this.focusedBorder,
         floatingLabelBehavior: FloatingLabelBehavior.always,
         prefixIcon: TextFormFieldPrefixIcon(url: this.url),
-        suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/expand_more_black_24dp.svg"),
+        suffixIcon: CustomSuffixIcon(svgPaddingLeft: 15,
+            svgIcon: "assets/icons/expand_more_black_24dp.svg"),
       ),
     );
   }
@@ -174,7 +181,7 @@ class _AddNewImportBodyState extends State<AddNewImportBody> {
     return TextFormField(
       style: this.style,
       onTap: () async {
-        if(this.product.toString() == '{}') {
+        if (this.product.toString() == '{}') {
           setState(() {
             this.helperText = 'import.message.pleaseSelectProductFirst'.tr();
           });
@@ -182,32 +189,40 @@ class _AddNewImportBodyState extends State<AddNewImportBody> {
         }
         final packageProduct = await Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => PackageProductDropdownPage(
-            product: this.product,
-            packageProduct: this.packageProduct,
-          )),
+          MaterialPageRoute(builder: (context) =>
+              PackageProductDropdownPage(
+                product: this.product,
+                packageProduct: this.packageProduct,
+              )),
         );
-        if(packageProduct == null) {
+        if (packageProduct == null) {
           return;
         }
         setState(() {
           this.packageProduct = packageProduct;
-          packageProductController.text = this.packageProduct[PackageProductKey.name];
-          quantityController.text = this.packageProduct[PackageProductKey.quantity].toString();
-          var calTotal = (double.parse(quantityController.text) * double.parse(this.packageProduct[PackageProductKey.price].toString())).toString();
-          totalController.text = FormatNumberUtils.usdFormat2Digit(calTotal.toString()).toString();
+          packageProductController.text =
+          this.packageProduct[PackageProductKey.name];
+          quantityController.text =
+              this.packageProduct[PackageProductKey.quantity].toString();
+          var calTotal = (double.parse(quantityController.text) * double.parse(
+              this.packageProduct[PackageProductKey.price].toString()))
+              .toString();
+          totalController.text =
+              FormatNumberUtils.usdFormat2Digit(calTotal.toString()).toString();
 
-          this.helperText = 'import.label.price'.tr() + ' : '+FormatNumberUtils.usdFormat2Digit(this.packageProduct[PackageProductKey.price].toString()).toString() + ' USD';
+          this.helperText = 'import.label.price'.tr() + ' : ' +
+              FormatNumberUtils.usdFormat2Digit(
+                  this.packageProduct[PackageProductKey.price].toString())
+                  .toString() + ' USD';
           this.isSelectPackageProduct = true;
           checkFormValid();
         });
-
       },
       keyboardType: TextInputType.text,
       controller: packageProductController,
       onChanged: (value) => checkFormValid(),
       validator: (value) {
-        if(this.product.toString() == 'null') {
+        if (this.product.toString() == 'null') {
           return 'import.message.pleaseSelectProduct'.tr();
         } else if (value!.isEmpty) {
           return 'import.message.pleaseSelectPackageProduct'.tr();
@@ -223,10 +238,12 @@ class _AddNewImportBodyState extends State<AddNewImportBody> {
         enabledBorder: this.enabledBorder,
         focusedBorder: this.focusedBorder,
         helperText: helperText,
-        helperStyle: TextStyle(color: isSelectPackageProduct ? Colors.indigo : Colors.red),
+        helperStyle: TextStyle(
+            color: isSelectPackageProduct ? Colors.indigo : Colors.red),
         floatingLabelBehavior: FloatingLabelBehavior.always,
         prefixIcon: TextFormFieldPrefixIcon(url: this.url),
-        suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/expand_more_black_24dp.svg"),
+        suffixIcon: CustomSuffixIcon(svgPaddingLeft: 15,
+            svgIcon: "assets/icons/expand_more_black_24dp.svg"),
       ),
     );
   }
@@ -237,11 +254,12 @@ class _AddNewImportBodyState extends State<AddNewImportBody> {
       onTap: () async {
         final vendor = await Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => VendorDropdownPage(
-              vVendor: this.vendor
-          )),
+          MaterialPageRoute(builder: (context) =>
+              VendorDropdownPage(
+                  vVendor: this.vendor
+              )),
         );
-        if(vendor == null) {
+        if (vendor == null) {
           return;
         }
         setState(() {
@@ -268,7 +286,8 @@ class _AddNewImportBodyState extends State<AddNewImportBody> {
         enabledBorder: this.enabledBorder,
         focusedBorder: this.focusedBorder,
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/expand_more_black_24dp.svg"),
+        suffixIcon: CustomSuffixIcon(svgPaddingLeft: 15,
+            svgIcon: "assets/icons/expand_more_black_24dp.svg"),
       ),
     );
   }
@@ -294,7 +313,8 @@ class _AddNewImportBodyState extends State<AddNewImportBody> {
         enabledBorder: this.enabledBorder,
         focusedBorder: this.focusedBorder,
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/help_outline_black_24dp.svg"),
+        suffixIcon: CustomSuffixIcon(svgPaddingLeft: 15,
+            svgIcon: "assets/icons/help_outline_black_24dp.svg"),
       ),
     );
   }
@@ -320,7 +340,8 @@ class _AddNewImportBodyState extends State<AddNewImportBody> {
         enabledBorder: this.enabledBorder,
         focusedBorder: this.focusedBorder,
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/help_outline_black_24dp.svg"),
+        suffixIcon: CustomSuffixIcon(svgPaddingLeft: 15,
+            svgIcon: "assets/icons/help_outline_black_24dp.svg"),
       ),
     );
   }
@@ -338,13 +359,14 @@ class _AddNewImportBodyState extends State<AddNewImportBody> {
         enabledBorder: this.enabledBorder,
         focusedBorder: this.focusedBorder,
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/border_color_black_24dp.svg"),
+        suffixIcon: CustomSuffixIcon(svgPaddingLeft: 15,
+            svgIcon: "assets/icons/border_color_black_24dp.svg"),
       ),
     );
   }
 
   Widget _buildAddButton() {
-    return  Container(
+    return Container(
       height: 50,
       width: 110,
       margin: EdgeInsets.only(right: 10),
@@ -358,21 +380,26 @@ class _AddNewImportBodyState extends State<AddNewImportBody> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            FaIcon(FontAwesomeIcons.plusCircle,size: 25 , color: Colors.white),
-            Center(child: Text('common.label.add'.tr(), style: TextStyle(fontFamily: fontDefault, fontWeight: FontWeight.w700, fontSize: 20, color: Colors.white),)),
+            FaIcon(FontAwesomeIcons.plusCircle, size: 25, color: Colors.white),
+            Center(child: Text('common.label.add'.tr(), style: TextStyle(
+                fontFamily: fontDefault,
+                fontWeight: FontWeight.w700,
+                fontSize: 20,
+                color: Colors.white),)),
           ],
         ),
         onPressed: () {
           this.isClickSave = true;
           KeyboardUtil.hideKeyboard(context);
-          if( _formKey.currentState!.validate()) {
+          if (_formKey.currentState!.validate()) {
             setState(() {
               Map data = {
                 ImportAddKey.product: this.product,
                 ImportAddKey.packageProduct: this.packageProduct,
                 ImportAddKey.vendor: this.vendor,
                 ImportAddKey.quantity: this.quantityController.text,
-                ImportAddKey.price: this.packageProduct[PackageProductKey.price],
+                ImportAddKey.price: this.packageProduct[PackageProductKey
+                    .price],
                 ImportAddKey.total: this.totalController.text,
                 ImportAddKey.remark: this.remarkController.text
               };
@@ -398,16 +425,17 @@ class _AddNewImportBodyState extends State<AddNewImportBody> {
   }
 
 
-  void save() async{
+  void save() async {
     this.isClickSave = true;
-    if(this.vData.length > 0) {
+    if (this.vData.length > 0) {
       final confirmBack = await Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => ConfirmImportScreen(
-          vData: this.vData,
-        )),
+        MaterialPageRoute(builder: (context) =>
+            ConfirmImportScreen(
+              vData: this.vData,
+            )),
       );
-      if(confirmBack == null) {
+      if (confirmBack == null) {
         return;
       }
       setState(() {
@@ -418,7 +446,7 @@ class _AddNewImportBodyState extends State<AddNewImportBody> {
   }
 
   void checkFormValid() {
-    if(isClickSave) {
+    if (isClickSave) {
       _formKey.currentState!.validate();
     }
   }

@@ -19,11 +19,12 @@ class AddNewPackageProductBody extends StatefulWidget {
   const AddNewPackageProductBody({Key? key}) : super(key: key);
 
   @override
-  _AddNewPackageProductBodyState createState() => _AddNewPackageProductBodyState();
+  _AddNewPackageProductBodyState createState() =>
+      _AddNewPackageProductBodyState();
 }
 
 class _AddNewPackageProductBodyState extends State<AddNewPackageProductBody> {
-  final _formKey  = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>();
   var productNameController = new TextEditingController();
   var productController = new TextEditingController();
   var nameController = new TextEditingController();
@@ -39,30 +40,32 @@ class _AddNewPackageProductBodyState extends State<AddNewPackageProductBody> {
   var enabledBorder;
   var focusedBorder;
   var url = DefaultStatic.url;
+
   @override
   Widget build(BuildContext context) {
-    style       = InputDecorationUtils.textFormFieldStyle();
-    labelStyle  = InputDecorationUtils.inputDecorationLabelStyle();
-    hintStyle   = InputDecorationUtils.inputDecorationHintStyle();
+    style = InputDecorationUtils.textFormFieldStyle();
+    labelStyle = InputDecorationUtils.inputDecorationLabelStyle();
+    hintStyle = InputDecorationUtils.inputDecorationHintStyle();
     enabledBorder = InputDecorationUtils.enabledBorder();
     focusedBorder = InputDecorationUtils.focusedBorder();
-    if(this.product[ProductKey.url].toString() != 'null') {
+    if (this.product[ProductKey.url].toString() != 'null') {
       this.url = this.product[ProductKey.url].toString();
     }
     return Form(
-      key: _formKey,
-      child: Column(
-          children: <Widget>[
-            _buildBody(),
-            InkWell(
-              onTap: () {
-                KeyboardUtil.hideKeyboard(context);
-                save();
-              },
-              child: WidgetsUtil.overlayKeyBardContainer(text: 'common.label.save'.tr())
-            )
-          ]
-      )
+        key: _formKey,
+        child: Column(
+            children: <Widget>[
+              _buildBody(),
+              InkWell(
+                  onTap: () {
+                    KeyboardUtil.hideKeyboard(context);
+                    save();
+                  },
+                  child: WidgetsUtil.overlayKeyBardContainer(
+                      text: 'common.label.save'.tr())
+              )
+            ]
+        )
 
     );
   }
@@ -70,7 +73,8 @@ class _AddNewPackageProductBodyState extends State<AddNewPackageProductBody> {
   Widget _buildBody() {
     return Expanded(
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
+        padding: EdgeInsets.symmetric(
+            horizontal: getProportionateScreenWidth(20)),
         child: SingleChildScrollView(
           physics: ClampingScrollPhysics(),
           child: Column(
@@ -79,7 +83,8 @@ class _AddNewPackageProductBodyState extends State<AddNewPackageProductBody> {
                 child: Column(
                   children: <Widget>[
                     SizedBox(height: SizeConfig.screenHeight * 0.04), // 4%
-                    Text('packageProduct.label.registerPackageProduct'.tr(), style: TextStyleUtils.headingStyle()),
+                    Text('packageProduct.label.registerPackageProduct'.tr(),
+                        style: TextStyleUtils.headingStyle()),
                     Text(
                       'common.label.completeYourDetails'.tr(),
                       textAlign: TextAlign.center,
@@ -130,7 +135,8 @@ class _AddNewPackageProductBodyState extends State<AddNewPackageProductBody> {
         enabledBorder: this.enabledBorder,
         focusedBorder: this.focusedBorder,
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/help_outline_black_24dp.svg"),
+        suffixIcon: CustomSuffixIcon(svgPaddingLeft: 15,
+            svgIcon: "assets/icons/help_outline_black_24dp.svg"),
       ),
     );
   }
@@ -140,9 +146,10 @@ class _AddNewPackageProductBodyState extends State<AddNewPackageProductBody> {
       onTap: () async {
         final product = await Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => ProductDropdownPage(vData: this.product,)),
+          MaterialPageRoute(
+              builder: (context) => ProductDropdownPage(vData: this.product,)),
         );
-        if(product == null) {
+        if (product == null) {
           return;
         }
         setState(() {
@@ -170,8 +177,11 @@ class _AddNewPackageProductBodyState extends State<AddNewPackageProductBody> {
         enabledBorder: this.enabledBorder,
         focusedBorder: this.focusedBorder,
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        prefixIcon: this.product != {} ? TextFormFieldPrefixIcon(url: this.url) : null,
-        suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/expand_more_black_24dp.svg"),
+        prefixIcon: this.product != {}
+            ? TextFormFieldPrefixIcon(url: this.url)
+            : null,
+        suffixIcon: CustomSuffixIcon(svgPaddingLeft: 15,
+            svgIcon: "assets/icons/expand_more_black_24dp.svg"),
       ),
     );
   }
@@ -196,7 +206,8 @@ class _AddNewPackageProductBodyState extends State<AddNewPackageProductBody> {
         enabledBorder: this.enabledBorder,
         focusedBorder: this.focusedBorder,
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/help_outline_black_24dp.svg"),
+        suffixIcon: CustomSuffixIcon(svgPaddingLeft: 15,
+            svgIcon: "assets/icons/help_outline_black_24dp.svg"),
       ),
     );
   }
@@ -222,7 +233,8 @@ class _AddNewPackageProductBodyState extends State<AddNewPackageProductBody> {
         enabledBorder: this.enabledBorder,
         focusedBorder: this.focusedBorder,
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/help_outline_black_24dp.svg"),
+        suffixIcon: CustomSuffixIcon(svgPaddingLeft: 15,
+            svgIcon: "assets/icons/help_outline_black_24dp.svg"),
       ),
     );
   }
@@ -240,32 +252,34 @@ class _AddNewPackageProductBodyState extends State<AddNewPackageProductBody> {
         enabledBorder: enabledBorder,
         focusedBorder: this.focusedBorder,
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSuffixIcon( svgPaddingLeft: 15,svgIcon: "assets/icons/border_color_black_24dp.svg"),
+        suffixIcon: CustomSuffixIcon(svgPaddingLeft: 15,
+            svgIcon: "assets/icons/border_color_black_24dp.svg"),
       ),
     );
   }
 
   void save() {
     this.isClickSave = true;
-    if( _formKey.currentState!.validate()) {
+    if (_formKey.currentState!.validate()) {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => PackageProductSuccessScreen(
-          isAddScreen: true,
-          vData: {
-            PackageProductKey.name: this.nameController.text,
-            PackageProductKey.productId: this.product[ProductKey.id],
-            PackageProductKey.quantity: this.qtyController.text,
-            PackageProductKey.price: this.priceController.text,
-            PackageProductKey.remark: this.remarkController.text
-          },
-        )),
+        MaterialPageRoute(builder: (context) =>
+            PackageProductSuccessScreen(
+              isAddScreen: true,
+              vData: {
+                PackageProductKey.name: this.nameController.text,
+                PackageProductKey.productId: this.product[ProductKey.id],
+                PackageProductKey.quantity: this.qtyController.text,
+                PackageProductKey.price: this.priceController.text,
+                PackageProductKey.remark: this.remarkController.text
+              },
+            )),
       );
     }
   }
 
   void checkFormValid() {
-    if(isClickSave) {
+    if (isClickSave) {
       _formKey.currentState!.validate();
     }
   }

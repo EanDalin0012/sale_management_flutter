@@ -11,7 +11,10 @@ import 'build_data_table_sale.dart';
 class ViewItemsSelected extends StatefulWidget {
   final List<dynamic> vData;
   final ValueChanged<List<dynamic>> onChanged;
-  const ViewItemsSelected({Key? key, required this.vData, required this.onChanged}) : super(key: key);
+
+  const ViewItemsSelected(
+      {Key? key, required this.vData, required this.onChanged})
+      : super(key: key);
 
   @override
   _ViewItemsSelectedState createState() => _ViewItemsSelectedState();
@@ -25,20 +28,21 @@ class _ViewItemsSelectedState extends State<ViewItemsSelected> {
   Widget build(BuildContext context) {
     i = 0;
     this.total = 0;
-    if(widget.vData.length > 0) {
-      widget.vData.map((e) => this.total += double.parse(e[SaleAddItemKey.total].toString())).toList();
+    if (widget.vData.length > 0) {
+      widget.vData.map((e) =>
+      this.total += double.parse(e[SaleAddItemKey.total].toString())).toList();
     }
 
     return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-        color: ColorsUtils.scaffoldBackgroundColor(),
-      ),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+          color: ColorsUtils.scaffoldBackgroundColor(),
+        ),
         child: Column(
           children: <Widget>[
             _widgetStack(context),
             drawerHandler(),
-              BuildDataTableSale(vData: widget.vData, onChanged: widget.onChanged)
+            BuildDataTableSale(vData: widget.vData, onChanged: widget.onChanged)
           ],
         )
     );
@@ -52,7 +56,10 @@ class _ViewItemsSelectedState extends State<ViewItemsSelected> {
             height: 35.0,
             child: Center(
                 child: Text('sale.label.saleItemSelect'.tr(),
-                    style: TextStyle(fontFamily: fontDefault, fontWeight: FontWeight.w700, fontSize: 20, color: ColorsUtils.isDarkModeColor())
+                    style: TextStyle(fontFamily: fontDefault,
+                        fontWeight: FontWeight.w700,
+                        fontSize: 20,
+                        color: ColorsUtils.isDarkModeColor())
                 ) // Your desired title
             ),
           ),
@@ -60,8 +67,10 @@ class _ViewItemsSelectedState extends State<ViewItemsSelected> {
               left: 0.0,
               top: 0.0,
               child: IconButton(
-                  icon: FaIcon(FontAwesomeIcons.arrowLeft,size: 20 , color: ColorsUtils.isDarkModeColor()), // Your desired icon
-                  onPressed: (){
+                  icon: FaIcon(FontAwesomeIcons.arrowLeft, size: 20,
+                      color: ColorsUtils.isDarkModeColor()),
+                  // Your desired icon
+                  onPressed: () {
                     Navigator.of(context).pop();
                   }
               )

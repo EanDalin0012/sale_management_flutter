@@ -47,7 +47,8 @@ class _AddNewSaleScreenState extends State<AddNewSaleScreen> {
               width: 55,
               child: Stack(
                 children: <Widget>[
-                  Center(child:  FaIcon(FontAwesomeIcons.cartArrowDown,size: 25 , color: Colors.white,),),
+                  Center(child: FaIcon(FontAwesomeIcons.cartArrowDown, size: 25,
+                    color: Colors.white,),),
                   Container(
                     width: 20,
                     height: 20,
@@ -59,7 +60,10 @@ class _AddNewSaleScreenState extends State<AddNewSaleScreen> {
                       color: Colors.purple.withOpacity(0.5),
                       borderRadius: BorderRadius.all(Radius.circular(10)),
                     ),
-                    child: Center(child: Text(this.vData.length.toString(), style: TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.w800))),
+                    child: Center(child: Text(this.vData.length.toString(),
+                        style: TextStyle(color: Colors.white,
+                            fontSize: 15,
+                            fontWeight: FontWeight.w800))),
                   ),
                 ],
               ),
@@ -70,11 +74,21 @@ class _AddNewSaleScreenState extends State<AddNewSaleScreen> {
   }
 
   _showModelSheet() {
-    var orientation = MediaQuery.of(context).orientation;
-    double height = (MediaQuery.of(context).copyWith().size.height * 0.9);
+    var orientation = MediaQuery
+        .of(context)
+        .orientation;
+    double height = (MediaQuery
+        .of(context)
+        .copyWith()
+        .size
+        .height * 0.9);
     setState(() {
-      if(orientation != Orientation.portrait){
-        height = MediaQuery.of(context).copyWith().size.height * 0.5;
+      if (orientation != Orientation.portrait) {
+        height = MediaQuery
+            .of(context)
+            .copyWith()
+            .size
+            .height * 0.5;
       }
     });
 
@@ -85,7 +99,10 @@ class _AddNewSaleScreenState extends State<AddNewSaleScreen> {
         builder: (BuildContext builder) {
           return Container(
             height: height,
-            width: MediaQuery.of(context).size.width,
+            width: MediaQuery
+                .of(context)
+                .size
+                .width,
             padding: EdgeInsets.only(top: 3),
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
