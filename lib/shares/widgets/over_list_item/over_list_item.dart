@@ -19,10 +19,7 @@ class OverListItem extends StatelessWidget {
     }
     return Container(
       color: color,
-      width: MediaQuery
-          .of(context)
-          .size
-          .width,
+      width: MediaQuery.of(context).size.width,
       padding: EdgeInsets.only(
           left: 20,
           top: 10,

@@ -1,1 +1,1 @@
-var fontDefault = 'Muli,khmer siemreap';
+var fontDefault = 'Muli,Content';

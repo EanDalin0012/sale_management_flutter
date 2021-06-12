@@ -52,7 +52,8 @@ class _SettingBodyState extends State<SettingBody> {
   @override
   Widget build(BuildContext context) {
     style = TextStyle(fontFamily: fontDefault,
-        fontWeight: FontWeight.w500,
+        fontWeight: FontWeight.w400,
+        fontSize: 19,
         color: ColorsUtils.isDarkModeColor());
     this.languageCode = context.locale.toString();
     if (this.languageCode == 'km') {
@@ -92,8 +93,9 @@ class _SettingBodyState extends State<SettingBody> {
                     'setting.label.userInformation'.tr(),
                     style: TextStyle(
                       color: ColorsUtils.isDarkModeColor(),
-                      fontWeight: FontWeight.w500,
-                      fontSize: 16,
+                      fontWeight: FontWeight.w400,
+                      fontSize: 25,
+                      fontFamily: fontDefault
                     ),
                     textAlign: TextAlign.left,
                   ),
@@ -224,14 +226,14 @@ class _SettingBodyState extends State<SettingBody> {
             leading: Icon(
               Icons.touch_app, size: 30, color: ColorsUtils.iConColor(),),
             title: Text('setting.label.changePIN'.tr(),
-              style: TextStyle(color: ColorsUtils.isDarkModeColor()),),
+              style: TextStyle(color: ColorsUtils.isDarkModeColor(), fontSize: 18,fontWeight: FontWeight.w400),),
           ),
 
           ListTile(
             leading: Icon(Icons.fingerprint_rounded, size: 30,
               color: ColorsUtils.iConColor(),),
             title: Text('setting.label.useFingerprintForLogin'.tr(),
-              style: TextStyle(color: ColorsUtils.isDarkModeColor()),),
+              style: TextStyle(color: ColorsUtils.isDarkModeColor(),fontSize: 18,fontWeight: FontWeight.w400),),
             trailing: Container(
               width: 50,
               child: FlutterSwitch(
@@ -253,7 +255,7 @@ class _SettingBodyState extends State<SettingBody> {
             leading: Icon(darkMode ? Icons.dark_mode : Icons.light, size: 30,
               color: ColorsUtils.iConColor(),),
             title: Text('setting.label.darkMode'.tr(),
-              style: TextStyle(color: ColorsUtils.isDarkModeColor()),),
+              style: TextStyle(color: ColorsUtils.isDarkModeColor(),fontSize: 18,fontWeight: FontWeight.w400),),
             trailing: Container(
               width: 50,
               child: FlutterSwitch(

@@ -18,7 +18,7 @@ import 'package:sale_management/shares/widgets/circular_progress_indicator/circu
 import 'package:sale_management/shares/widgets/infinite_scroll_loading/infinite_scroll_loading.dart';
 import 'package:sale_management/shares/widgets/over_list_item/over_list_item.dart';
 import 'package:sale_management/shares/widgets/search_widget/search_widget.dart';
-
+import 'package:share/share.dart';
 import 'add_new_sale_screen.dart';
 
 class SaleScreen extends StatefulWidget {
@@ -71,7 +71,7 @@ class _SaleScreenState extends State<SaleScreen> {
     return WillPopScope(
       onWillPop: () => onBackPress(),
       child: Scaffold(
-        backgroundColor: ColorsUtils.scaffoldBackgroundColor(),
+        backgroundColor: Color(0xff14171C),
         appBar: _buildAppBar(),
         floatingActionButton: _floatingActionButton(),
         body: SafeArea(
@@ -114,22 +114,7 @@ class _SaleScreenState extends State<SaleScreen> {
                     Column(
                       children: mData.map((item) {
                         i += 1;
-                        return Container(
-                          decoration: mDataLength != i ? BoxDecoration(
-                              border: Border(bottom: BorderSide(
-                                  color: Color(0xCD939BA9).withOpacity(0.2),
-                                  width: 1.5),)
-                          ) : null,
-                          child: _buildListTile(
-                              transactionDate: FormatDateUtils.dateFormat(
-                                  yyyyMMdd: e[SaleKey.transactionDate]
-                                      .toString()),
-                              time: e[SaleKey.transactionDate]
-                                  .toString()
-                                  .substring(8, 12),
-                              dataItems: item
-                          ),
-                        );
+                        return _buildCard();
                       }).toList(),
                     ),
                   ]
@@ -142,8 +127,8 @@ class _SaleScreenState extends State<SaleScreen> {
 
   AppBar _buildAppBar() {
     return AppBar(
-      backgroundColor: ColorsUtils.appBarBackGround(),
-      elevation: DefaultStatic.elevationAppBar,
+      backgroundColor: Color(0xFF222B45),
+      elevation: 0,
       title: Text('sale.label.sale'.tr()),
       leading: SizedBox(),
       actions: [
@@ -193,6 +178,113 @@ class _SaleScreenState extends State<SaleScreen> {
     );
   }
 
+  Widget _buildCard() {
+    return Padding(
+      padding: EdgeInsets.only(left: 3, right: 3, top: 3, bottom: 3),
+      child: Column(
+        children: <Widget>[
+          Container(
+            height: 150,
+            width: MediaQuery.of(context).size.width,
+            decoration: BoxDecoration(
+              color: Color(0xFF222B45),
+              borderRadius: BorderRadius.circular(15)
+            ),
+            child: Padding(
+              padding: EdgeInsets.all(15),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text('Sell'),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Text('Customer Name :'),
+                      Text('Dalin Ean'),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Text('Phone Number :'),
+                      Text('096 65 55 879'),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Text('Amount :'),
+                      Text('100 USD'),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Text('Trans ID :'),
+                      Text('ABC2020123'),
+                    ],
+                  ),
+                  Spacer(),
+
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Text('20:00 AM'),
+                      Container(
+                        //color: Colors.red,
+                        width: 55,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            InkWell(
+                              onTap: () {
+                                print("Share");
+                              },
+                              child: Container(
+                                  height: 25,
+                                  width: 25,
+                                  padding: EdgeInsets.all(2),
+                                  decoration: BoxDecoration(
+                                      color: Color(0xff6E747F),
+                                      borderRadius: BorderRadius.circular(50)
+                                  ),
+                                  child: Center(child: FaIcon(FontAwesomeIcons.infoCircle, size: 15, color: Colors.white,))),
+                            ),
+                            Builder(builder: (BuildContext contexta) {
+                              return InkWell(
+                                onTap: () {
+                                  print("Share");
+                                  //final RenderBox box = context.findRenderObject();
+                                  Share.share(
+                                      'check out my website https://www.google.com/',
+                                      subject: 'Look what I made!'
+                                  );
+                                },
+                                child: Container(
+                                    height: 25,
+                                    width: 25,
+                                    padding: EdgeInsets.all(2),
+                                    decoration: BoxDecoration(
+                                        color: Color(0xff6E747F),
+                                        borderRadius: BorderRadius.circular(50)
+                                    ),
+                                    child: Center(child: FaIcon(FontAwesomeIcons.shareAltSquare, size: 15, color: Colors.white,))),
+                              );
+                            }),
+                          ],
+                        ),
+                      )
+                    ],
+                  )
+                ],
+              ),
+            ),
+          )
+        ],
+      ),
+    );
+  }
 
   Widget _buildListTile({
     required String transactionDate,

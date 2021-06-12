@@ -10,7 +10,6 @@ import 'package:sale_management/shares/model/key/dark_mode_key.dart';
 import 'package:sale_management/shares/provider/main_provider.dart';
 import 'package:sale_management/shares/statics/dark_mode_color.dart';
 import 'package:sale_management/shares/utils/device_info.dart';
-import 'package:sale_management/shares/utils/toast_util.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
