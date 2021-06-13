@@ -76,7 +76,7 @@ class _LoginBodyState extends State<LoginBody> {
                       KeyboardUtil.hideKeyboard(context);
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => HomeScreen()),
+                        MaterialPageRoute(builder: (context) => HomeScreen(selectIndex: 0)),
                       );
                     },
                   ),

@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:sale_management/screens/sale/sale_screen.dart';
-import 'package:sale_management/shares/model/key/import_add_key.dart';
+import 'package:sale_management/screens/home/home_screen.dart';
 import 'package:sale_management/shares/model/key/member_key.dart';
 import 'package:sale_management/shares/model/key/sale_add_key.dart';
 import 'package:sale_management/shares/model/key/sale_key.dart';
 import 'package:sale_management/shares/statics/default.dart';
 import 'package:sale_management/shares/statics/size_config.dart';
-import 'package:sale_management/shares/utils/colors_util.dart';
 import 'package:sale_management/shares/utils/format_date.dart';
 import 'package:sale_management/shares/utils/number_format.dart';
-import 'package:sale_management/shares/utils/text_style_util.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:sale_management/shares/widgets/default_button/default_button.dart';
 import 'package:share/share.dart';
@@ -107,7 +104,7 @@ class _SuccessSaleBodyState extends State<SuccessSaleBody> {
               press: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => SaleScreen()),
+                  MaterialPageRoute(builder: (context) => HomeScreen(selectIndex: 1)),
                 );
               },
             ),

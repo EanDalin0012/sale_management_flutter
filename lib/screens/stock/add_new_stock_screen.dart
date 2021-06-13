@@ -3,7 +3,6 @@ import 'package:loading_overlay/loading_overlay.dart';
 import 'package:sale_management/screens/home/home_screen.dart';
 import 'package:sale_management/screens/stock/widgets/add_new_stock_body.dart';
 import 'package:sale_management/shares/statics/default.dart';
-import 'package:sale_management/shares/statics/size_config.dart';
 import 'package:sale_management/shares/utils/colors_util.dart';
 import 'package:easy_localization/easy_localization.dart';
 
@@ -52,7 +51,7 @@ class _AddNewStockScreenState extends State<AddNewStockScreen> {
     }
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => HomeScreen()),
+      MaterialPageRoute(builder: (context) => HomeScreen(selectIndex: 0)),
     );
     return Future<bool>.value(true);
   }

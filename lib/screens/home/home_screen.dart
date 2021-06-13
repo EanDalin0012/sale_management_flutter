@@ -11,7 +11,8 @@ import 'package:sale_management/shares/statics/default.dart';
 import 'package:sale_management/shares/utils/colors_util.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  final int selectIndex;
+  const HomeScreen({Key? key, required this.selectIndex}) : super(key: key);
 
   @override
   _HomeScreenState createState() => _HomeScreenState();
@@ -26,6 +27,16 @@ class _HomeScreenState extends State<HomeScreen> {
     HomeContainer(),
     SaleScreen()
   ];
+
+
+  @override
+  void initState() {
+    super.initState();
+    _selectedIndex = widget.selectIndex;
+    if(_selectedIndex == 1) {
+      this.isShowAppBar = false;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {

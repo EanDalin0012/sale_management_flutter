@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sale_management/screens/sale/sale_screen.dart';
+import 'package:sale_management/screens/home/home_screen.dart';
 import 'package:sale_management/screens/sale/widgets/success_sale_body.dart';
 import 'package:sale_management/shares/statics/default.dart';
 import 'package:sale_management/shares/utils/colors_util.dart';
@@ -35,7 +35,7 @@ class _SuccessSaleScreenState extends State<SuccessSaleScreen> {
   Future<bool> onBackPress() {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => SaleScreen()),
+      MaterialPageRoute(builder: (context) => HomeScreen(selectIndex: 1)),
     );
     return Future<bool>.value(true);
   }

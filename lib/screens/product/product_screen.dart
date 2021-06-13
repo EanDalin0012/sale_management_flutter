@@ -74,7 +74,7 @@ class _ProductScreenState extends State<ProductScreen> {
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => HomeScreen()),
+            MaterialPageRoute(builder: (context) => HomeScreen(selectIndex: 0)),
           );
         },
       ),
@@ -248,7 +248,7 @@ class _ProductScreenState extends State<ProductScreen> {
   Future<bool> onBackPress() {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => HomeScreen()),
+      MaterialPageRoute(builder: (context) => HomeScreen(selectIndex: 0)),
     );
     return Future<bool>.value(true);
   }

@@ -44,7 +44,7 @@ class _SettingScreenState extends State<SettingScreen> {
   Future<bool> onBackPress() {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => HomeScreen()),
+      MaterialPageRoute(builder: (context) => HomeScreen(selectIndex: 0)),
     );
     return Future<bool>.value(true);
   }

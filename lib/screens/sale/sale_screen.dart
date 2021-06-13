@@ -4,11 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sale_management/screens/home/home_screen.dart';
 import 'package:sale_management/screens/sale/widgets/sale_details.dart';
-import 'package:sale_management/shares/constants/color.dart';
-import 'package:sale_management/shares/constants/fonts.dart';
-import 'package:sale_management/shares/constants/text_style.dart';
 import 'package:sale_management/shares/model/key/sale_key.dart';
-import 'package:sale_management/shares/statics/dark_mode_color.dart';
 import 'package:sale_management/shares/utils/colors_util.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:sale_management/shares/utils/format_date.dart';
@@ -164,7 +160,7 @@ class _SaleScreenState extends State<SaleScreen> {
 
   FloatingActionButton _floatingActionButton() {
     return FloatingActionButton(
-      backgroundColor: Colors.purple[900],
+      backgroundColor: Color(0xff6E747F),
       onPressed: () {
         Navigator.push(
           context,
@@ -311,7 +307,7 @@ class _SaleScreenState extends State<SaleScreen> {
   Future<bool> onBackPress() {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => HomeScreen()),
+      MaterialPageRoute(builder: (context) => HomeScreen(selectIndex: 0)),
     );
     return Future<bool>.value(true);
   }
