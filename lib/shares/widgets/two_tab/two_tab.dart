@@ -36,6 +36,7 @@ class _TwoTabsState extends State<TwoTabs> {
         ),
         child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               InkWell(
                   onTap: () {
@@ -46,8 +47,8 @@ class _TwoTabsState extends State<TwoTabs> {
                   },
                   child: Container(
                       width: w,
-                      padding: EdgeInsets.symmetric(
-                          vertical: 13.0, horizontal: 40.0),
+                      height: 45,
+                      //padding: EdgeInsets.symmetric(vertical: 13.0, horizontal: 40.0),
                       decoration: BoxDecoration(
                           color: _place == "tab0" ? ColorsUtils.twoTabContainer() : null,
                           borderRadius: BorderRadius.circular(30.0)
@@ -79,7 +80,7 @@ class _TwoTabsState extends State<TwoTabs> {
                   child: Container(
                       width: w,
                       height: 45,
-                      padding: EdgeInsets.symmetric(vertical: 13.0, horizontal: 35.0),
+                      //padding: EdgeInsets.symmetric(vertical: 13.0, horizontal: 35.0),
                       decoration: BoxDecoration(
                           color: _place == "tab1" ? ColorsUtils.twoTabContainer() : null,
                           borderRadius: BorderRadius.circular(30.0)
