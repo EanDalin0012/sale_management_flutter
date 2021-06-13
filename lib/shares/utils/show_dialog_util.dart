@@ -64,7 +64,7 @@ class ShowDialogUtil {
         builder: (BuildContext context) {
           return AlertDialog(
               elevation: 5,
-              backgroundColor: Color(0xff273970),
+              backgroundColor: Color(0xff273950),
               title: Center(child: title),
               content: SingleChildScrollView(
                   child: content
@@ -81,8 +81,8 @@ class ShowDialogUtil {
                   icon: Icon(
                     Icons.check_circle_outline_outlined, color: Colors.white,),
                   textColor: Colors.white,
-                  splashColor: Color(0xff273990),
-                  color: Color(0xff273980),
+                  splashColor: Color(0xff273950),
+                  color: Color(0xff273950),
                 ),
               ]
           );

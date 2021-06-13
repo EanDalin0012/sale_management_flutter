@@ -5,6 +5,7 @@
       "delete": "លុប",
       "yes": "បាទ/ចាស",
       "no": "ទេ",
+      "ok": "យល់ព្រម",
       "next": "បន្ទាប់",
       "details": "ព័ត៌មានលម្អិត",
       "confirm": "បញ្ជាក់",
@@ -308,7 +309,7 @@
       "pleaseEnterCustomerName": "សូមបញ្ចូលឈ្មោះអតិថិជន",
       "pleaseEnterPhoneNumber": "សូមបញ្ចូលលេខទូរស័ព្ទ",
       "pleaseChooseMember.": "សូមជ្រើសរើសសមាជិក",
-      "saleItemZeroMessage": "Items លក់របស់អ្នកគឺសូន្យ។ សូមបន្ថែម Items របស់លក់របស់អ្នក!"
+      "saleItemZeroMessage": "Items លក់របស់អ្នកគឺសូន្យ។ សូមបន្ថែម Items លក់របស់អ្នក!"
     },
     "holder": {
       "enterCustomerName": "បញ្ចូលឈ្មោះអតិថិជន",

@@ -321,7 +321,7 @@ class _AddNewSaleBodyState extends State<AddNewSaleBody> {
     } else {
       ShowDialogUtil.dialog(
           buildContext: context,
-          content: Text("Your sale items is zero. Please add sale items",style: TextStyle(color: Colors.white))
+          content: Text('sale.message.saleItemZeroMessage'.tr(),style: TextStyle(color: Colors.white))
       );
     }
   }

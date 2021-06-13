@@ -160,7 +160,7 @@ class _SaleScreenState extends State<SaleScreen> {
 
   FloatingActionButton _floatingActionButton() {
     return FloatingActionButton(
-      backgroundColor: Color(0xff6E747F),
+      backgroundColor: ColorsUtils.floatingActionButton(),
       onPressed: () {
         Navigator.push(
           context,

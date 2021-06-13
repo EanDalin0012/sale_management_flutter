@@ -23,12 +23,14 @@ class _BuildStatCardState extends State<BuildStatCard> {
   }
 
   List<Color> _colors = [
-    Colors.green,
-    Colors.lightBlue,
-    Colors.purple,
-    Colors.red,
-    Colors.yellow,
-    Colors.blue
+    Color(0xff2f3935),
+    Color(0xff2f3945),
+    Color(0xff2f3955),
+    Color(0xff2f3965),
+    Color(0xff2f3975),
+    Color(0xff2f3985),
+    Color(0xff2f3995),
+    Color(0xff2f4095)
   ];
 
   @override
@@ -51,7 +53,7 @@ class _BuildStatCardState extends State<BuildStatCard> {
       padding: EdgeInsets.all(5.0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15.0),
-        border: Border.all(color: Color(0xFFe4e6eb), width: 6.0),
+        border: Border.all(color: Color(0xff2f3965), width: 6.0),
       ),
       child: Column(
           mainAxisAlignment: MainAxisAlignment.start,

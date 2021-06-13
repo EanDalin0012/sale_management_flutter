@@ -55,4 +55,9 @@ class ColorsUtils {
     //return DarkMode.isDarkMode ?  Color(0xff2f3953) : Color(0xff2f3953);
     return Color(0xff2f3953);
   }
+  static Color? floatingActionButton() {
+    //return DarkMode.isDarkMode ?  Color(0xff2f3953) : Color(0xff2f3953);
+    return Color(0xff273965);
+  }
+
 }
