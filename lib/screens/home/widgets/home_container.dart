@@ -23,7 +23,6 @@ class _HomeContainerState extends State<HomeContainer> {
 
   @override
   Widget build(BuildContext context) {
-    print('dd');
     return Column(
       children: <Widget>[
         BuildStatCard(),

@@ -20,7 +20,7 @@ class TextFormFieldPrefixIcon extends StatelessWidget {
         margin: EdgeInsets.all(5),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(50)),
-          border: Border.all(color: colorBorder, width: 4),
+          border: Border.all(color: Color(0xff273955), width: 4),
         ),
         child: CircleAvatar(
           radius: 30.0,

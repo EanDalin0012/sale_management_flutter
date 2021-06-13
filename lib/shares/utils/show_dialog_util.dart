@@ -63,7 +63,8 @@ class ShowDialogUtil {
         context: buildContext,
         builder: (BuildContext context) {
           return AlertDialog(
-              elevation: elevation,
+              elevation: 5,
+              backgroundColor: Color(0xff273970),
               title: Center(child: title),
               content: SingleChildScrollView(
                   child: content
@@ -76,12 +77,12 @@ class ShowDialogUtil {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(Radius.circular(50))),
                   label: Text('common.label.ok'.tr(),
-                    style: TextStyle(color: Colors.black),),
+                    style: TextStyle(color: Colors.white,fontSize: 18),),
                   icon: Icon(
                     Icons.check_circle_outline_outlined, color: Colors.white,),
                   textColor: Colors.white,
-                  splashColor: Colors.red,
-                  color: Colors.green,
+                  splashColor: Color(0xff273990),
+                  color: Color(0xff273980),
                 ),
               ]
           );

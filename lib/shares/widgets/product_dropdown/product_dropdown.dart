@@ -4,9 +4,11 @@ import 'package:flutter/services.dart';
 import 'package:sale_management/shares/constants/color.dart';
 import 'package:sale_management/shares/constants/fonts.dart';
 import 'package:sale_management/shares/model/key/product_key.dart';
+import 'package:sale_management/shares/statics/default.dart';
 import 'package:sale_management/shares/utils/colors_util.dart';
 import 'package:sale_management/shares/widgets/circular_progress_indicator/circular_progress_indicator.dart';
 import 'package:sale_management/shares/widgets/icon_check/icon_check.dart';
+import 'package:sale_management/shares/widgets/prefix_product/prefix_product.dart';
 import 'package:sale_management/shares/widgets/search_widget/search_widget.dart';
 import 'package:easy_localization/easy_localization.dart';
 
@@ -26,6 +28,7 @@ class _ProductDropdownPageState extends State<ProductDropdownPage> {
   var isSearch = false;
   var isItemChanged = false;
   var styleInput;
+  var url = DefaultStatic.url;
 
   int vDataLength = 0;
   List<dynamic> vData = [];
@@ -110,7 +113,9 @@ class _ProductDropdownPageState extends State<ProductDropdownPage> {
     if (obj != null) {
       productName = obj[ProductKey.name].toString().toLowerCase();
     }
-
+    if (dataItem[ProductKey.url].toString() != 'null') {
+      this.url = dataItem[ProductKey.url].toString();
+    }
     return ListTile(
       onTap: () => selectProduct(dataItem),
       title: Text('${dataItem[ProductKey.name]}',
@@ -119,7 +124,8 @@ class _ProductDropdownPageState extends State<ProductDropdownPage> {
             fontWeight: FontWeight.w700,
             fontFamily: fontDefault),
       ),
-      leading: _buildLeading(dataItem[ProductKey.url]),
+      // leading: _buildLeading(dataItem[ProductKey.url]),
+      leading: PrefixProduct(url: this.url),
       subtitle: Text('${dataItem[ProductKey.remark]}',
         style: TextStyle(fontSize: 12,
             fontWeight: FontWeight.w700,
@@ -129,22 +135,6 @@ class _ProductDropdownPageState extends State<ProductDropdownPage> {
       trailing: (dataItem[ProductKey.name]).toLowerCase() == productName
           ? IconCheck()
           : null,
-    );
-  }
-
-  Widget _buildLeading(String url) {
-    return Container(
-      width: 50,
-      height: 50,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(60)),
-        border: Border.all(color: Colors.grey, width: 2),
-      ),
-      child: CircleAvatar(
-        radius: 30.0,
-        backgroundImage: NetworkImage(url),
-        backgroundColor: Colors.transparent,
-      ),
     );
   }
 

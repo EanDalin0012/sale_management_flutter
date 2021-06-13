@@ -260,7 +260,7 @@
       "vendor": "អ្នកផ្គត់ផ្គង",
       "quantity": "ចំនួន",
       "total": "សរុប",
-      "totalParam": "តម្លៃ {}",
+      "totalParam": "តម្លៃ : {}",
       "price": "តម្លៃ",
       "no": "លេខរៀង",
       "action": "សកម្មភាព",
@@ -278,8 +278,8 @@
     },
     "holder": {
       "selectProduct": "ជ្រើសរើសផលិតផល",
-      "selectPackageProduct": "សូ្រើសរើសអ្នកផ្គត់ផ្គង",
-      "selectVendor": "រើសរើសអ្នកផ្គត់ផ្គង",
+      "selectPackageProduct": "ជ្រើសរើសកញ្ចប់តំណាង",
+      "selectVendor": "ជ្រើសរើសអ្នកផ្គត់ផ្គង",
       "enterQuantity": "សូមបញ្ចូលចំនួន",
       "enterTotal": "បញ្ចូលសរុប"
     }
@@ -289,7 +289,7 @@
       "sale": "លក់",
       "saleItem": "លក់ផលិតផល",
       "saleItemSelect": "ផលិតផលបានជ្រើសរើស",
-      "completeYourDetails": "បំពេញព័ត៌មានលម្អិតរបស់អ្នក \n សូមពិនិត្យមើលផលិតផលរបស់អ្នករួចចុចបញ្ជាក់.",
+      "completeYourDetails": "បំពេញព័ត៌មានលម្អិតរបស់អ្នក \n សូមពិនិត្យមើលផលិតផលរបស់អ្នករួចចុចបញ្ជាក់",
       "customer": "អតិថិជន",
       "member": "សមាជិក",
       "phone": "លេខទូរសព្",
@@ -299,12 +299,16 @@
       "total": "សរុប",
       "saleDetails": "ព័ត៌មានលម្អិតការលក់",
       "transactionDate": "ថ្ងៃធ្វើប្រតិបត្តិការ",
-      "sellProduct": "ផលិតផលដែលបានលក់"
+      "sellProduct": "ផលិតផលដែលបានលក់",
+      "sell": "លក់",
+      "amount": "ចំនួនទឹកប្រាក់",
+      "transID": "លេខសម្គាល់ប្រតិបត្ដិការ"
     },
     "message": {
       "pleaseEnterCustomerName": "សូមបញ្ចូលឈ្មោះអតិថិជន",
       "pleaseEnterPhoneNumber": "សូមបញ្ចូលលេខទូរស័ព្ទ",
-      "pleaseChooseMember.": "សូមជ្រើសរើសសមាជិក"
+      "pleaseChooseMember.": "សូមជ្រើសរើសសមាជិក",
+      "saleItemZeroMessage": "Items លក់របស់អ្នកគឺសូន្យ។ សូមបន្ថែម Items របស់លក់របស់អ្នក!"
     },
     "holder": {
       "enterCustomerName": "បញ្ចូលឈ្មោះអតិថិជន",

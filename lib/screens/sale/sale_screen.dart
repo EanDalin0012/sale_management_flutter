@@ -9,7 +9,6 @@ import 'package:sale_management/shares/constants/fonts.dart';
 import 'package:sale_management/shares/constants/text_style.dart';
 import 'package:sale_management/shares/model/key/sale_key.dart';
 import 'package:sale_management/shares/statics/dark_mode_color.dart';
-import 'package:sale_management/shares/statics/default.dart';
 import 'package:sale_management/shares/utils/colors_util.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:sale_management/shares/utils/format_date.dart';
@@ -71,7 +70,7 @@ class _SaleScreenState extends State<SaleScreen> {
     return WillPopScope(
       onWillPop: () => onBackPress(),
       child: Scaffold(
-        backgroundColor: Color(0xff14171C),
+        backgroundColor: ColorsUtils.scaffoldBackgroundColor(),
         appBar: _buildAppBar(),
         floatingActionButton: _floatingActionButton(),
         body: SafeArea(
@@ -114,7 +113,7 @@ class _SaleScreenState extends State<SaleScreen> {
                     Column(
                       children: mData.map((item) {
                         i += 1;
-                        return _buildCard();
+                        return _buildCard(dataItem: item, transactionDate: e[SaleKey.transactionDate].toString());
                       }).toList(),
                     ),
                   ]
@@ -127,7 +126,7 @@ class _SaleScreenState extends State<SaleScreen> {
 
   AppBar _buildAppBar() {
     return AppBar(
-      backgroundColor: Color(0xFF222B45),
+      backgroundColor: ColorsUtils.appBarBackGround(),
       elevation: 0,
       title: Text('sale.label.sale'.tr()),
       leading: SizedBox(),
@@ -178,16 +177,16 @@ class _SaleScreenState extends State<SaleScreen> {
     );
   }
 
-  Widget _buildCard() {
+  Widget _buildCard({required Map dataItem, required String transactionDate}) {
     return Padding(
       padding: EdgeInsets.only(left: 3, right: 3, top: 3, bottom: 3),
       child: Column(
         children: <Widget>[
           Container(
-            height: 150,
+            height: 178,
             width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
-              color: Color(0xFF222B45),
+              color: Color(0xFF22293D),
               borderRadius: BorderRadius.circular(15)
             ),
             child: Padding(
@@ -196,33 +195,42 @@ class _SaleScreenState extends State<SaleScreen> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Text('Sell'),
+                  Text('sale.label.sell'.tr()),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
-                      Text('Customer Name :'),
-                      Text('Dalin Ean'),
+                      Text(('sale.label.customerName'.tr()) + ' :'),
+                      Text(dataItem[SaleKey.customerName].toString()),
                     ],
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
-                      Text('Phone Number :'),
-                      Text('096 65 55 879'),
+                      Text(('sale.label.phone'.tr()) + ' :'),
+                      Text(dataItem[SaleKey.phoneNumber].toString()),
                     ],
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
-                      Text('Amount :'),
-                      Text('100 USD'),
+                      Text(('sale.label.amount'.tr()) + ' :'),
+                      Text( FormatNumberUtils.usdFormat2Digit(dataItem[SaleKey.total].toString()).toString() + ' USD'),
                     ],
                   ),
+
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
-                      Text('Trans ID :'),
-                      Text('ABC2020123'),
+                      Text(('sale.label.transID'.tr()) + ' :'),
+                      Text(dataItem[SaleKey.transactionId].toString()),
+                    ],
+                  ),
+
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Text(('common.label.remark'.tr()) + ' :'),
+                      Text(dataItem[SaleKey.remark].toString()),
                     ],
                   ),
                   Spacer(),
@@ -230,7 +238,7 @@ class _SaleScreenState extends State<SaleScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
-                      Text('20:00 AM'),
+                      Text( FormatDateUtils.dateTime(hhnn: transactionDate.substring(8,12))),
                       Container(
                         //color: Colors.red,
                         width: 55,
@@ -239,7 +247,17 @@ class _SaleScreenState extends State<SaleScreen> {
                           children: <Widget>[
                             InkWell(
                               onTap: () {
-                                print("Share");
+                                Map json = {
+                                  SaleKey.phoneNumber: dataItem[SaleKey.phoneNumber],
+                                  SaleKey.customerName: dataItem[SaleKey.customerName],
+                                  SaleKey.transactionId: dataItem[SaleKey.transactionId],
+                                  SaleKey.transactionDate: transactionDate + ' ' +FormatDateUtils.dateTime(hhnn: transactionDate.substring(8,12)),
+                                  SaleKey.time: transactionDate.substring(8,12),
+                                  SaleKey.total: FormatNumberUtils.usdFormat2Digit(
+                                      dataItem[SaleKey.total].toString()).toString()
+                                };
+
+                                _showModelSheet(json);
                               },
                               child: Container(
                                   height: 25,
@@ -251,13 +269,17 @@ class _SaleScreenState extends State<SaleScreen> {
                                   ),
                                   child: Center(child: FaIcon(FontAwesomeIcons.infoCircle, size: 15, color: Colors.white,))),
                             ),
-                            Builder(builder: (BuildContext contexta) {
+                            Builder(builder: (BuildContext context) {
                               return InkWell(
                                 onTap: () {
-                                  print("Share");
-                                  //final RenderBox box = context.findRenderObject();
                                   Share.share(
-                                      'check out my website https://www.google.com/',
+                                      'Sell'+"\n"
+                                      +'Customer Name : ${dataItem[SaleKey.customerName].toString()}'+"\n"
+                                      +'Phone Number : ${dataItem[SaleKey.phoneNumber].toString()}'+"\n"
+                                      +'Amount : ${FormatNumberUtils.usdFormat2Digit(dataItem[SaleKey.total].toString()).toString() + ' USD'}'+"\n"
+                                      +'Trans ID : ${dataItem[SaleKey.transactionId].toString()}'+"\n"
+                                      +'Time : ${FormatDateUtils.dateTime(hhnn: transactionDate.substring(8,12))}'+"\n"
+                                      +'Remark : ${dataItem[SaleKey.remark].toString()}'+"\n",
                                       subject: 'Look what I made!'
                                   );
                                 },
@@ -286,77 +308,6 @@ class _SaleScreenState extends State<SaleScreen> {
     );
   }
 
-  Widget _buildListTile({
-    required String transactionDate,
-    required String time,
-    required Map dataItems
-  }) {
-    Map json = {
-      SaleKey.phoneNumber: dataItems[SaleKey.phoneNumber],
-      SaleKey.customerName: dataItems[SaleKey.customerName],
-      SaleKey.transactionId: dataItems[SaleKey.transactionId],
-      SaleKey.transactionDate: transactionDate + ' ' +
-          FormatDateUtils.dateTime(hhnn: time),
-      SaleKey.time: time,
-      SaleKey.total: FormatNumberUtils.usdFormat2Digit(
-          dataItems[SaleKey.total].toString()).toString()
-    };
-    return ListTile(
-      leading: _buildLeading(),
-      title: Text(
-        dataItems[SaleKey.transactionId].toString(),
-        style: TextStyle(color: ColorsUtils.isDarkModeColor(),
-            fontWeight: FontWeight.w500,
-            fontFamily: fontDefault),
-      ),
-      subtitle: Text(
-        dataItems[SaleKey.remark] + ',' + FormatDateUtils.dateTime(hhnn: time),
-        style: TextStyle(fontFamily: fontDefault,
-            fontWeight: FontWeight.w500,
-            fontSize: 15,
-            color: primaryColor),
-      ),
-      trailing: Container(
-        width: 110,
-        child: Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: <Widget>[
-              Text(
-                FormatNumberUtils.usdFormat2Digit(
-                    dataItems[SaleKey.total].toString()).toString() + ' \$',
-                style: TextStyle(fontFamily: fontDefault,
-                    fontSize: 20,
-                    fontWeight: FontWeight.w700,
-                    color: ColorsUtils.isDarkModeColor()),
-              ),
-              SizedBox(width: 10,),
-              Container(
-                width: 10,
-                child: _offsetPopup(json),
-              )
-            ]
-        ),
-      ),
-    );
-  }
-
-  Widget _buildLeading() {
-    var colorBorder = DarkMode.isDarkMode
-        ? Colors.blueGrey.withOpacity(0.4)
-        : Color(0xFFe4e6eb);
-    return Container(
-      width: 40,
-      height: 40,
-      padding: EdgeInsets.all(1.5),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.all(Radius.circular(60)),
-        border: Border.all(color: colorBorder, width: 5),
-      ),
-      child: Image.asset('assets/icons/sale.png'),
-    );
-  }
-
   Future<bool> onBackPress() {
     Navigator.push(
       context,
@@ -364,68 +315,6 @@ class _SaleScreenState extends State<SaleScreen> {
     );
     return Future<bool>.value(true);
   }
-
-
-  Widget _offsetPopup(Map item) =>
-      PopupMenuButton<int>(
-        itemBuilder: (context) =>
-        [
-          PopupMenuItem(
-              value: 0,
-              child: Row(
-                children: <Widget>[
-                  FaIcon(FontAwesomeIcons.edit, size: 20,
-                      color: Colors.purple[900]),
-                  SizedBox(width: 10,),
-                  Text(
-                    // 'common.label.edit'.tr(),
-                    'Details',
-                    style: menuStyle,
-                  ),
-                ],
-              )
-          ),
-          PopupMenuItem(
-              value: 0,
-              child: Row(
-                children: <Widget>[
-                  FaIcon(FontAwesomeIcons.edit, size: 20,
-                      color: Colors.purple[900]),
-                  SizedBox(width: 10,),
-                  Text(
-                    // 'common.label.edit'.tr(),
-                    'Cancel Transaction',
-                    style: menuStyle,
-                  ),
-                ],
-              )
-          ),
-          PopupMenuItem(
-              value: 1,
-              child: Row(
-                children: <Widget>[
-                  FaIcon(FontAwesomeIcons.trash, size: 20,
-                      color: Colors.purple[900]),
-                  SizedBox(width: 10,),
-                  Text(
-                    'common.label.delete'.tr(),
-                    style: menuStyle,
-                  ),
-                ],
-              )
-          ),
-        ],
-        icon: FaIcon(FontAwesomeIcons.ellipsisV, size: 20,
-            color: ColorsUtils.isDarkModeColor()),
-        offset: Offset(0, 45),
-        onSelected: (value) {
-          if (value == 0) {
-            _showModelSheet(item);
-          } else if (value == 1) {
-            // _showDialog(item);
-          }
-        },
-      );
 
   _showModelSheet(Map item) {
     var orientation = MediaQuery
@@ -452,11 +341,8 @@ class _SaleScreenState extends State<SaleScreen> {
         isScrollControlled: true,
         builder: (BuildContext builder) {
           return Container(
-            height: height,
-            width: MediaQuery
-                .of(context)
-                .size
-                .width,
+            height: MediaQuery.of(context).copyWith().size.height * 0.9,
+            width: MediaQuery.of(context).size.width,
             padding: EdgeInsets.only(top: 3),
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.vertical(top: Radius.circular(20)),

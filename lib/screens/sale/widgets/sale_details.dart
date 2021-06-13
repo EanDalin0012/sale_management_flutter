@@ -79,7 +79,7 @@ class _SaleDetailsState extends State<SaleDetails> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Container(
-                      child: Text('sale.label.total'.tr() + ' :', style: style),
+                      child: Text('sale.label.amount'.tr() + ' :', style: style),
                     ),
                     Text(
                       FormatNumberUtils.usdFormat2Digit(

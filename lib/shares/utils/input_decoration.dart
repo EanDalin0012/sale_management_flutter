@@ -45,7 +45,7 @@ class InputDecorationUtils {
 
   static OutlineInputBorder focusedBorder() {
     return OutlineInputBorder(
-      borderSide: const BorderSide(color: Colors.indigo, width: 2.0),
+      borderSide: const BorderSide(color: Color(0xff273965), width: 2.0),
       borderRadius: BorderRadius.circular(25.0),
     );
     // if(DarkMode.isDarkMode == true) {

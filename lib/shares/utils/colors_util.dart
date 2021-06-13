@@ -4,7 +4,8 @@ import 'package:sale_management/shares/statics/dark_mode_color.dart';
 
 class ColorsUtils {
   static Color scaffoldBackgroundColor() {
-    return DarkMode.isDarkMode == true ? Color(0xff333436) : Colors.white;
+    return Color(0xff14171C);
+    // return DarkMode.isDarkMode == true ? Color(0xff333436) : Colors.white;
   }
 
   static Color textTheme() {
@@ -37,7 +38,8 @@ class ColorsUtils {
   }
 
   static Color buttonContainer() {
-    return DarkMode.isDarkMode == true ? Color(0xff242527) : Colors.red;
+    return Color(0xff273955);
+    // return DarkMode.isDarkMode == true ? Color(0xff242527) : Colors.red;
   }
 
   static Color buttonColorContainer() {
@@ -45,7 +47,8 @@ class ColorsUtils {
   }
 
   static Color? appBarBackGround() {
-    return DarkMode.isDarkMode == true ? Color(0xff242527) : Colors.purple[900];
+    return Color(0xFF22293D);
+    //return DarkMode.isDarkMode == true ? Color(0xff242527) : Colors.purple[900];
   }
 
   static Color? twoTabContainer() {

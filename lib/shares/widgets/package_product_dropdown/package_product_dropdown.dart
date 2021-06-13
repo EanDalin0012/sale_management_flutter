@@ -175,12 +175,15 @@ class _PackageProductDropdownPageState
               children: <Widget>[
                 Row(
                   children: <Widget>[
-                    Text(
-                      dataItem[PackageProductKey.quantity].toString(),
-                      style: TextStyle(
-                        color: Colors.black87,
-                        fontSize: 18,
-                        fontWeight: FontWeight.w900,
+                    Padding(
+                      padding: EdgeInsets.only(right: 5.0),
+                      child: Text(
+                        dataItem[PackageProductKey.quantity].toString(),
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                          fontWeight: FontWeight.w900,
+                        ),
                       ),
                     ),
                   ],

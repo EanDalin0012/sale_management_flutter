@@ -110,6 +110,7 @@ class _ConfirmSaleBodyState extends State<ConfirmSaleBody> {
                   ],
                 ),
               ),
+              SizedBox(height: SizeConfig.screenHeight * 0.02),
               TwoTabs(
                 textTab0: 'sale.label.customer'.tr(),
                 textTab1: 'sale.label.member'.tr(),
@@ -136,28 +137,6 @@ class _ConfirmSaleBodyState extends State<ConfirmSaleBody> {
           ),
         ),
       ),
-    );
-  }
-
-  Widget _buildConfirmButton() {
-    setState(() {
-      pay = vPay;
-    });
-    return Stack(
-      children: <Widget>[
-        Positioned(
-          bottom: 0,
-          child: InkWell(
-            onTap: () {
-              this.tabIndex == 0
-                  ? validationCustomerInput()
-                  : validationMember();
-            },
-            child: WidgetsUtil.overlayKeyBardContainer(
-                text: 'common.label.confirm'.tr()),
-          ),
-        ),
-      ],
     );
   }
 

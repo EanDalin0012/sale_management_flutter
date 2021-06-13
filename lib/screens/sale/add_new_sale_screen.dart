@@ -57,7 +57,7 @@ class _AddNewSaleScreenState extends State<AddNewSaleScreen> {
                         left: 30
                     ),
                     decoration: BoxDecoration(
-                      color: Colors.purple.withOpacity(0.5),
+                      color: Color(0xff273965),
                       borderRadius: BorderRadius.all(Radius.circular(10)),
                     ),
                     child: Center(child: Text(this.vData.length.toString(),

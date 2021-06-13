@@ -39,8 +39,7 @@ class _BuildDataTableSaleState extends State<BuildDataTableSale> {
     return Column(
         children: <Widget>[
           Text(
-            'import.label.totalParam'.tr(args: [
-              FormatNumberUtils.usdFormat2Digit(total.toString()) +
+            'import.label.totalParam'.tr(args: [FormatNumberUtils.usdFormat2Digit(total.toString()) +
                   ' USD'.toString()
             ]),
             style: TextStyle(fontSize: 25,

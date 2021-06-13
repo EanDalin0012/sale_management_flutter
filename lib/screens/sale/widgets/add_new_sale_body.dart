@@ -11,6 +11,7 @@ import 'package:sale_management/shares/utils/colors_util.dart';
 import 'package:sale_management/shares/utils/input_decoration.dart';
 import 'package:sale_management/shares/utils/keyboard_util.dart';
 import 'package:sale_management/shares/utils/number_format.dart';
+import 'package:sale_management/shares/utils/show_dialog_util.dart';
 import 'package:sale_management/shares/utils/text_style_util.dart';
 import 'package:sale_management/shares/utils/widgets_util.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -317,6 +318,11 @@ class _AddNewSaleBodyState extends State<AddNewSaleBody> {
         this.vData = confirmBack;
         widget.onAddChanged(this.vData);
       });
+    } else {
+      ShowDialogUtil.dialog(
+          buildContext: context,
+          content: Text("Your sale items is zero. Please add sale items",style: TextStyle(color: Colors.white))
+      );
     }
   }
 
@@ -326,7 +332,7 @@ class _AddNewSaleBodyState extends State<AddNewSaleBody> {
       width: 110,
       margin: EdgeInsets.only(right: 10),
       child: RaisedButton(
-        color: Colors.red,
+        color: Color(0xff273965),
         textColor: Colors.white,
         elevation: 0,
         shape: RoundedRectangleBorder(
@@ -338,7 +344,7 @@ class _AddNewSaleBodyState extends State<AddNewSaleBody> {
             FaIcon(FontAwesomeIcons.plusCircle, size: 25, color: Colors.white),
             Center(child: Text('common.label.add'.tr(), style: TextStyle(
                 fontFamily: fontDefault,
-                fontWeight: FontWeight.w700,
+                fontWeight: FontWeight.w500,
                 fontSize: 20,
                 color: Colors.white),)),
           ],

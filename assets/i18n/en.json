@@ -261,7 +261,7 @@
       "vendor": "Vendor",
       "quantity": "Quantity",
       "total": "Total",
-      "totalParam": "Total {}",
+      "totalParam": "Total : {}",
       "price": "Price",
       "no": "No",
       "action": "Action",
@@ -300,12 +300,16 @@
       "total": "Total",
       "saleDetails": "Sale details",
       "transactionDate": "Transaction Date",
-      "sellProduct": "Sell Product"
+      "sellProduct": "Sell Product",
+      "sell": "Sell",
+      "amount": "Amount",
+      "transID": "Trans ID"
     },
     "message": {
       "pleaseEnterCustomerName": "Please enter customer name.",
       "pleaseEnterPhoneNumber": "Please enter phone number.",
-      "pleaseChooseMember.": "Please choose member."
+      "pleaseChooseMember.": "Please choose member.",
+      "saleItemZeroMessage": "Your sale items is zero. Please add sale items!"
     },
     "holder": {
       "enterCustomerName": "Enter customer name",
