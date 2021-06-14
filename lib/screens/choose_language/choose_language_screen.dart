@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sale_management/screens/login/login_screen.dart';
 import 'package:sale_management/shares/constants/fonts.dart';
 import 'package:sale_management/shares/database_sqflite/database/data_base_chose_language.dart';
 import 'package:sale_management/shares/model/key/chose_language_key.dart';
 import 'package:sale_management/shares/model/key/language_key.dart';
 import 'package:sale_management/shares/statics/size_config.dart';
+import 'package:sale_management/shares/utils/keyboard_util.dart';
 import 'package:sale_management/shares/widgets/icon_check/icon_check.dart';
 import 'package:easy_localization/easy_localization.dart';
 
@@ -47,7 +49,7 @@ class _ChooseLanguageScreenState extends State<ChooseLanguageScreen> {
     height = (size.height - SizeConfig.screenHeight * 0.06 -
         SizeConfig.screenHeight * 0.06);
     return Scaffold(
-        backgroundColor: Color(0xFF3f496d),
+        backgroundColor: Color(0xff273955),
         body: Column(
             children: <Widget>[
               SizedBox(height: SizeConfig.screenHeight * 0.06),
@@ -101,16 +103,17 @@ class _ChooseLanguageScreenState extends State<ChooseLanguageScreen> {
                     }
                   });
                 },
-                child: Container(
-                  width: size.width,
-                  height: 45,
-                  color: Colors.red,
-                  child: Center(child: Text('Next', style: TextStyle(
-                      fontWeight: FontWeight.w700,
-                      color: Colors.white,
-                      fontFamily: 'roboto',
-                      fontSize: 18))),
-                ),
+                // child: Container(
+                //   width: size.width,
+                //   height: 45,
+                //   color: Colors.red,
+                //   child: Center(child: Text('Next', style: TextStyle(
+                //       fontWeight: FontWeight.w700,
+                //       color: Colors.white,
+                //       fontFamily: 'roboto',
+                //       fontSize: 18))),
+                // ),
+                child: _buildNextButton(),
               ),
             ]
         )
@@ -172,6 +175,47 @@ class _ChooseLanguageScreenState extends State<ChooseLanguageScreen> {
     return SvgPicture.asset(
       url.toString(),
       height: 50,
+    );
+  }
+
+  Widget _buildNextButton() {
+    return Container(
+      height: 50,
+      width: MediaQuery.of(context).size.width,
+      // margin: EdgeInsets.only(right: 10),
+      child: RaisedButton(
+        color: Color(0xff273965),
+        textColor: Colors.white,
+        elevation: 0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+            topRight: Radius.circular(15.0),
+            topLeft: Radius.circular(15.0),
+          ),
+        ),
+        child: Stack(
+          children: <Widget>[
+            Center(child: Text('login.label.continue'.tr(), style: TextStyle(
+                fontFamily: fontDefault,
+                fontWeight: FontWeight.w500,
+                fontSize: 20,
+                color: Colors.white),)
+            ),
+            Positioned(
+                right: 0,
+                top: 12.5,
+                child: FaIcon(FontAwesomeIcons.arrowCircleRight, size: 25, color: Colors.white)
+            ),
+          ],
+        ),
+        onPressed: () {
+          KeyboardUtil.hideKeyboard(context);
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => LogInScreen()),
+          );
+        },
+      ),
     );
   }
 
