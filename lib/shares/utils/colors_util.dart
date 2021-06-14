@@ -25,11 +25,13 @@ class ColorsUtils {
   }
 
   static Color iConColor() {
-    return DarkMode.isDarkMode == true ? Colors.white : Colors.black45;
+    return Colors.white;
+    // return DarkMode.isDarkMode == true ? Colors.white : Colors.black45;
   }
 
   static Color isDarkModeColor() {
-    return DarkMode.isDarkMode == true ? Colors.white : Colors.black;
+    return Colors.white;
+    //return DarkMode.isDarkMode == true ? Colors.white : Colors.black;
   }
 
   static Color unselectedWidgetColor() {
@@ -59,6 +61,11 @@ class ColorsUtils {
   static Color? floatingActionButton() {
     //return DarkMode.isDarkMode ?  Color(0xff2f3953) : Color(0xff2f3953);
     return Color(0xff273965);
+  }
+
+  static Color? offsetPopup() {
+    //return DarkMode.isDarkMode ?  Color(0xff2f3953) : Color(0xff2f3953);
+    return Color(0xff273955);
   }
 
 }

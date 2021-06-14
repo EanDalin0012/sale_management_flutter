@@ -30,6 +30,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
 
   List<dynamic> vData = [];
 
+  var menuStyle;
   @override
   void initState() {
     this._fetchItems();
@@ -38,9 +39,8 @@ class _CategoryScreenState extends State<CategoryScreen> {
 
   @override
   Widget build(BuildContext context) {
-    size = MediaQuery
-        .of(context)
-        .size;
+    size = MediaQuery.of(context).size;
+    this.menuStyle = TextStyle(color: ColorsUtils.isDarkModeColor(),fontWeight: FontWeight.w500,fontFamily: fontDefault);
     return WillPopScope(
       onWillPop: () => onBackPress(),
       child: Scaffold(
@@ -174,8 +174,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
               value: 0,
               child: Row(
                 children: <Widget>[
-                  FaIcon(FontAwesomeIcons.edit, size: 20,
-                      color: Colors.purple[900]),
+                  FaIcon(FontAwesomeIcons.edit, size: 20,color: ColorsUtils.iConColor()),
                   SizedBox(width: 10,),
                   Text(
                     'common.label.edit'.tr(),
@@ -188,8 +187,11 @@ class _CategoryScreenState extends State<CategoryScreen> {
               value: 1,
               child: Row(
                 children: <Widget>[
-                  FaIcon(FontAwesomeIcons.trash, size: 20,
-                      color: Colors.purple[900]),
+                  FaIcon(
+                      FontAwesomeIcons.trash,
+                      size: 20,
+                      color: ColorsUtils.iConColor()
+                  ),
                   SizedBox(width: 10,),
                   Text(
                     'common.label.delete'.tr(),
@@ -199,9 +201,12 @@ class _CategoryScreenState extends State<CategoryScreen> {
               )
           ),
         ],
-        icon: FaIcon(FontAwesomeIcons.ellipsisV, size: 20,
-            color: ColorsUtils.isDarkModeColor()),
+        icon: FaIcon(
+            FontAwesomeIcons.ellipsisV, size: 20,
+            color: ColorsUtils.isDarkModeColor()
+        ),
         offset: Offset(0, 45),
+        color: ColorsUtils.offsetPopup(),
         onSelected: (value) {
           if (value == 0) {
             Navigator.push(
