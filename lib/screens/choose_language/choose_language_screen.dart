@@ -38,7 +38,7 @@ class _ChooseLanguageScreenState extends State<ChooseLanguageScreen> {
   late Size size;
   double height = 0.0;
   var code = 'en';
-  var color = Color(0xff32b8a1);
+  var color = Color(0xff6E747F);
 
   @override
   Widget build(BuildContext context) {
