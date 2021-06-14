@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sale_management/screens/login/login_screen.dart';
 import 'package:sale_management/screens/setting/setting.dart';
 import 'package:sale_management/shares/constants/fonts.dart';
@@ -34,7 +35,7 @@ class MyDrawer extends StatelessWidget {
                           Container(
                               padding: EdgeInsets.only(
                                   top: 15, left: 8, right: 8, bottom: 15),
-                              color: Color(0xFF88070B),
+                              color: Color(0xff273965),
                               child: Row(
                                 children: <Widget>[
                                   ClipRRect(
@@ -63,11 +64,10 @@ class MyDrawer extends StatelessWidget {
                             onTap: () => _callNumber(),
                             title: Text(
                               'drawer.label.contactUs'.tr(), style: style,),
-                            leading: Icon(
-                                Icons.phone, color: ColorsUtils.iConColor()),),
+                            leading: FaIcon(FontAwesomeIcons.mobile, size: 20, color: Colors.white)),
                           ListTile(title: Text(
                               'drawer.label.termsCondition'.tr(), style: style),
-                            leading: Icon(Icons.card_giftcard,
+                            leading: Icon(Icons.list_alt,
                                 color: ColorsUtils.iConColor()),),
                           Divider(
                             color: ColorsUtils.isDarkModeColor(),
@@ -84,8 +84,7 @@ class MyDrawer extends StatelessWidget {
                             title: Text('drawer.label.settings'.tr(),
                               style: TextStyle(
                                   color: ColorsUtils.isDarkModeColor()),),
-                            leading: Icon(
-                                Icons.settings, color: ColorsUtils.iConColor()),
+                            leading: FaIcon(FontAwesomeIcons.cog, size: 20, color: Colors.white),
                           ),
                           Column(
                             children: <Widget>[
@@ -99,10 +98,7 @@ class MyDrawer extends StatelessWidget {
                                   ),
                                   textAlign: TextAlign.left,
                                 ),
-                                trailing: new Icon(
-                                  Icons.power_settings_new,
-                                  color: Colors.red,
-                                ),
+                                trailing: FaIcon(FontAwesomeIcons.signOutAlt, size: 20, color: Colors.white),
                                 onTap: () {
                                   Navigator.pop(context);
                                   Navigator.push(
@@ -131,7 +127,7 @@ class MyDrawer extends StatelessWidget {
                         width: size.width,
                         padding: const EdgeInsets.symmetric(
                           vertical: 16.0, horizontal: 60.0,),
-                        color: Color(0XFFAEA1E5).withOpacity(0.3),
+                        color: Color(0xff273955),
                         child: Text("2.20.00"),
                       )
                   )

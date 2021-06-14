@@ -47,7 +47,8 @@ class ColorsUtils {
   }
 
   static Color? appBarBackGround() {
-    return Color(0xFF22293D);
+    return Color(0xff273955);
+    //return Color(0xFF22293D);
     //return DarkMode.isDarkMode == true ? Color(0xff242527) : Colors.purple[900];
   }
 

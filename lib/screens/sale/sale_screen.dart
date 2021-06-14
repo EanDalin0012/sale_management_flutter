@@ -263,7 +263,8 @@ class _SaleScreenState extends State<SaleScreen> {
                                       color: Color(0xff6E747F),
                                       borderRadius: BorderRadius.circular(50)
                                   ),
-                                  child: Center(child: FaIcon(FontAwesomeIcons.infoCircle, size: 15, color: Colors.white,))),
+                                  child: Center(child: FaIcon(FontAwesomeIcons.infoCircle, size: 15, color: Colors.white,))
+                              ),
                             ),
                             Builder(builder: (BuildContext context) {
                               return InkWell(

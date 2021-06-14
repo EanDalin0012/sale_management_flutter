@@ -7,6 +7,16 @@ class IconCheck extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+        height: 25,
+        width: 25,
+        padding: EdgeInsets.all(2),
+        decoration: BoxDecoration(
+            color: Color(0xff6E747F),
+            borderRadius: BorderRadius.circular(50)
+        ),
+        child: Center(child: FaIcon(FontAwesomeIcons.checkDouble, size: 15, color: Colors.white,))
+    );
+    return Container(
       width: 35,
       height: 35,
       padding: EdgeInsets.all(2),
