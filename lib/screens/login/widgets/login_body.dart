@@ -172,7 +172,7 @@ class _LoginBodyState extends State<LoginBody> {
       child: RaisedButton(
         color: Color(0xff273965),
         textColor: Colors.white,
-        elevation: 0,
+        elevation: 2,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(50.0),
         ),
@@ -187,7 +187,7 @@ class _LoginBodyState extends State<LoginBody> {
             Positioned(
                 right: 0,
                 top: 12.5,
-                child: FaIcon(FontAwesomeIcons.arrowCircleRight, size: 25, color: Colors.white)
+                child: FaIcon(FontAwesomeIcons.signOutAlt, size: 25, color: Colors.white)
             ),
           ],
         ),

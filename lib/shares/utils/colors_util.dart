@@ -4,7 +4,8 @@ import 'package:sale_management/shares/statics/dark_mode_color.dart';
 
 class ColorsUtils {
   static Color scaffoldBackgroundColor() {
-    return Color(0xff14171C);
+    return Color(0xff273955);
+    //return Color(0xff14171C);
     // return DarkMode.isDarkMode == true ? Color(0xff333436) : Colors.white;
   }
 

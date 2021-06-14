@@ -110,6 +110,7 @@ class _HomeScreenState extends State<HomeScreen> {
       currentIndex: _selectedIndex,
       showSelectedLabels: false,
       showUnselectedLabels: false,
+      backgroundColor: Color(0xff273965),
       items: [
         BottomNavigationBarItem(
           icon: Icon(
