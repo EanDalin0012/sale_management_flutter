@@ -18,17 +18,20 @@ class InputDecorationUtils {
   }
 
   static TextStyle textFormFieldStyle() {
-    if (DarkMode.isDarkMode == true) {
-      return TextStyle(color: Colors.white);
-    }
-    return TextStyle(color: Colors.black);
+    return TextStyle(color: Colors.white);
+    // if (DarkMode.isDarkMode == true) {
+    //   return TextStyle(color: Colors.white);
+    // }
+    // return TextStyle(color: Colors.black);
   }
 
   static OutlineInputBorder outlineInputBorder() {
     return OutlineInputBorder(
       borderRadius: BorderRadius.circular(28),
       borderSide: BorderSide(
-          color: DarkMode.isDarkMode ? Colors.white : Colors.black),
+          //color: DarkMode.isDarkMode ? Colors.white : Colors.black),
+          color: Colors.white,
+      ),
       gapPadding: 10,
     );
   }
@@ -37,7 +40,8 @@ class InputDecorationUtils {
     return OutlineInputBorder(
       borderRadius: BorderRadius.circular(25.0),
       borderSide: BorderSide(
-        color: DarkMode.isDarkMode ? Colors.white : Colors.black87,
+        // color: DarkMode.isDarkMode ? Colors.white : Colors.black87,
+        color: Colors.white,
         width: 1.0,
       ),
     );
@@ -45,7 +49,7 @@ class InputDecorationUtils {
 
   static OutlineInputBorder focusedBorder() {
     return OutlineInputBorder(
-      borderSide: const BorderSide(color: Color(0xff273965), width: 2.0),
+      borderSide: const BorderSide(color: Color(0xff273985), width: 2.0),
       borderRadius: BorderRadius.circular(25.0),
     );
     // if(DarkMode.isDarkMode == true) {

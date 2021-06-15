@@ -164,7 +164,7 @@ class _LoginBodyState extends State<LoginBody> {
     );
   }
 
-  Widget _buildAddButton() {
+  Widget  _buildAddButton() {
     return Container(
       height: 50,
       width: MediaQuery.of(context).size.width - getProportionateScreenWidth(20),

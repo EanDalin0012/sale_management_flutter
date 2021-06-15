@@ -39,8 +39,8 @@ class MainProvider extends ChangeNotifier {
       hintStyle: InputDecorationUtils.inputDecorationHintStyle(),
       floatingLabelBehavior: FloatingLabelBehavior.always,
       contentPadding: EdgeInsets.symmetric(horizontal: 42, vertical: 20),
-      enabledBorder: outlineInputBorder,
-      focusedBorder: outlineInputBorder,
+      enabledBorder: InputDecorationUtils.enabledBorder(),
+      focusedBorder: InputDecorationUtils.focusedBorder(),
       border: outlineInputBorder,
     );
   }

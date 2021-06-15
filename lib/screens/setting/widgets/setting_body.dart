@@ -159,7 +159,7 @@ class _SettingBodyState extends State<SettingBody> {
                             }
                             ToastUtils.showToast(
                                 context: 'setting.label.changedLanguage'.tr(
-                                    args: [this.language]), fToast: fToast);
+                                    args: [this.language]), fToast: fToast, duration: 2);
                           },
                         )
                     );
@@ -276,7 +276,7 @@ class _SettingBodyState extends State<SettingBody> {
                       var context = val
                           ? 'setting.label.darkModeEnable'.tr()
                           : 'setting.label.darkModeDisable'.tr();
-                      ToastUtils.showToast(context: context, fToast: fToast);
+                      ToastUtils.showToast(context: context, fToast: fToast, duration: 2);
                     }
                   });
                 },

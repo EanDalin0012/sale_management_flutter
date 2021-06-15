@@ -334,7 +334,7 @@ class _AddNewSaleBodyState extends State<AddNewSaleBody> {
       child: RaisedButton(
         color: Color(0xff273965),
         textColor: Colors.white,
-        elevation: 0,
+        elevation: 2,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(50.0),
         ),

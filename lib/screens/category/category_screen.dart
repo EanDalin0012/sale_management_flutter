@@ -2,19 +2,21 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sale_management/screens/category/add_new_category_screen.dart';
 import 'package:sale_management/screens/category/edit_category_screen.dart';
 import 'package:sale_management/screens/home/home_screen.dart';
 import 'package:sale_management/shares/constants/fonts.dart';
-import 'package:sale_management/shares/constants/text_style.dart';
 import 'package:sale_management/shares/model/key/category_key.dart';
 import 'package:sale_management/shares/statics/default.dart';
 import 'package:sale_management/shares/utils/colors_util.dart';
 import 'package:sale_management/shares/utils/show_dialog_util.dart';
+import 'package:sale_management/shares/utils/toast_util.dart';
 import 'package:sale_management/shares/widgets/circular_progress_indicator/circular_progress_indicator.dart';
 import 'package:sale_management/shares/widgets/over_list_item/over_list_item.dart';
 import 'package:sale_management/shares/widgets/search_widget/search_widget.dart';
+import 'package:http/http.dart' as http;
 
 class CategoryScreen extends StatefulWidget {
   const CategoryScreen({Key? key}) : super(key: key);
@@ -27,20 +29,28 @@ class _CategoryScreenState extends State<CategoryScreen> {
   var isNative = false;
   bool isSearch = false;
   late Size size;
-
+  late FToast fToast;
   List<dynamic> vData = [];
 
   var menuStyle;
+
   @override
   void initState() {
     this._fetchItems();
+    fToast = FToast();
+    fToast.init(context);
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    size = MediaQuery.of(context).size;
-    this.menuStyle = TextStyle(color: ColorsUtils.isDarkModeColor(),fontWeight: FontWeight.w500,fontFamily: fontDefault);
+    print('set');
+    size = MediaQuery
+        .of(context)
+        .size;
+    this.menuStyle = TextStyle(color: ColorsUtils.isDarkModeColor(),
+        fontWeight: FontWeight.w500,
+        fontFamily: fontDefault);
     return WillPopScope(
       onWillPop: () => onBackPress(),
       child: Scaffold(
@@ -153,7 +163,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
 
   FloatingActionButton _floatingActionButton() {
     return FloatingActionButton(
-      backgroundColor: Colors.purple[900],
+      backgroundColor: ColorsUtils.floatingActionButton(),
       onPressed: () {
         Navigator.push(
           context,
@@ -174,7 +184,8 @@ class _CategoryScreenState extends State<CategoryScreen> {
               value: 0,
               child: Row(
                 children: <Widget>[
-                  FaIcon(FontAwesomeIcons.edit, size: 20,color: ColorsUtils.iConColor()),
+                  FaIcon(FontAwesomeIcons.edit, size: 20,
+                      color: ColorsUtils.iConColor()),
                   SizedBox(width: 10,),
                   Text(
                     'common.label.edit'.tr(),
@@ -215,7 +226,8 @@ class _CategoryScreenState extends State<CategoryScreen> {
                   builder: (context) => EditCategoryScreen(vData: item)),
             );
           } else if (value == 1) {
-            _showDialog(item);
+            // _showDialog(item);
+            getJson();
           }
         },
       );
@@ -252,6 +264,27 @@ class _CategoryScreenState extends State<CategoryScreen> {
       MaterialPageRoute(builder: (context) => HomeScreen(selectIndex: 0)),
     );
     return Future<bool>.value(true);
+  }
+
+  void getJson() async {
+    print('getJson');
+    String url = 'https://run.mocky.io/v3/02a7d93f-1def-42f0-89b0-ded89037862e';
+    try{
+      http.read(Uri.parse(url)).then((value) {
+        ToastUtils.showToast(context: value.toString(), fToast: fToast, duration: 2);
+        print('data');
+      });
+    }catch(err) {
+      print('err:'+err.toString());
+    };
+
+    // return http.get(Uri.parse(url)).then((response) {
+    //   print(response.statusCode);
+    // });
+  }
+
+  Future<http.Response> fetchAlbum() {
+    return http.get(Uri.parse('https://jsonplaceholder.typicode.com/albums/1'));
   }
 
 }

@@ -74,6 +74,7 @@ class _MyAppState extends State<MyApp> {
       }
     });
     DataBaseChoseLanguage.getChooseLanguageById(1).then((value) {
+      print("value"+value.toString());
       setState(() {
         if (value.toString() == '{}') {
           this.chose = false;
@@ -99,9 +100,7 @@ class _MyAppState extends State<MyApp> {
         localizationsDelegates: context.localizationDelegates,
         supportedLocales: context.supportedLocales,
         locale: context.locale,
-        home: this.chose
-            ? LogInScreen()
-            : ChooseLanguageScreen() //LogInScreen(),
+        home: this.chose ? LogInScreen() : ChooseLanguageScreen() //LogInScreen(),
     );
   }
 

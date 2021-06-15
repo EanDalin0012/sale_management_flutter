@@ -118,34 +118,69 @@ class _BuildDataTableSaleState extends State<BuildDataTableSale> {
                 DataCell(_buildRemoveButton(e))
               ]
           );
-        }
-
-        ).toList()
+        }).toList()
     );
   }
 
-  Widget _buildRemoveButton(Map<dynamic, dynamic> item) {
+  Widget  _buildRemoveButton(Map<dynamic, dynamic> item) {
     return Container(
-      height: 35,
-      width: 120,
-      child: RaisedButton.icon(
-          color: Colors.red,
-          elevation: 4.0,
-          onPressed: () {
-            setState(() {
-              widget.vData.remove(item);
-              widget.onChanged(widget.vData);
-            });
-          },
-          icon: FaIcon(
-              FontAwesomeIcons.minusCircle, size: 20, color: Colors.white),
-          label: Text('common.label.remove'.tr(), style: TextStyle(
-              fontFamily: fontDefault,
-              fontWeight: FontWeight.w700,
-              fontSize: 15,
-              color: Colors.white))
+      height: 50,
+      width: 150,
+      margin: EdgeInsets.only(top: 7, bottom: 7),
+      child: RaisedButton(
+        color: Color(0xff273965),
+        textColor: Colors.white,
+        elevation: 2,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(50.0),
+        ),
+        child: Stack(
+          children: <Widget>[
+            Center(child: Text('common.label.remove'.tr(), style: TextStyle(
+                fontFamily: fontDefault,
+                fontWeight: FontWeight.w500,
+                fontSize: 18,
+                color: Colors.redAccent),)
+            ),
+            Positioned(
+                left: 0,
+                top: 6.0,
+                child: FaIcon(FontAwesomeIcons.minusCircle, size: 18, color: Colors.redAccent)
+            ),
+          ],
+        ),
+        onPressed: () {
+          setState(() {
+            widget.vData.remove(item);
+            widget.onChanged(widget.vData);
+          });
+        },
       ),
     );
   }
+  //
+  // Widget _buildRemoveButton(Map<dynamic, dynamic> item) {
+  //   return Container(
+  //     height: 35,
+  //     width: 120,
+  //     child: RaisedButton.icon(
+  //         color: Colors.red,
+  //         elevation: 4.0,
+  //         onPressed: () {
+  //           setState(() {
+  //             widget.vData.remove(item);
+  //             widget.onChanged(widget.vData);
+  //           });
+  //         },
+  //         icon: FaIcon(
+  //             FontAwesomeIcons.minusCircle, size: 20, color: Colors.white),
+  //         label: Text('common.label.remove'.tr(), style: TextStyle(
+  //             fontFamily: fontDefault,
+  //             fontWeight: FontWeight.w700,
+  //             fontSize: 15,
+  //             color: Colors.white))
+  //     ),
+  //   );
+  // }
 
 }

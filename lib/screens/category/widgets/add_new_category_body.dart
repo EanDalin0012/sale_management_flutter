@@ -12,7 +12,8 @@ import 'package:sale_management/shares/utils/widgets_util.dart';
 import 'package:sale_management/shares/widgets/custom_suffix_icon/custom_suffix_icon.dart';
 
 class AddBewCategoryBody extends StatefulWidget {
-  const AddBewCategoryBody({Key? key}) : super(key: key);
+  final ValueChanged<bool> onChanged;
+  const AddBewCategoryBody({Key? key, required this.onChanged}) : super(key: key);
 
   @override
   _AddBewCategoryBodyState createState() => _AddBewCategoryBodyState();
@@ -152,6 +153,11 @@ class _AddBewCategoryBodyState extends State<AddBewCategoryBody> {
   void save() {
     this.isClickSave = true;
     if (_formKey.currentState!.validate()) {
+      widget.onChanged(true);
+      setState(() {
+        _isLoading = true;
+      });
+
       showOverlay();
     }
   }
@@ -163,9 +169,6 @@ class _AddBewCategoryBodyState extends State<AddBewCategoryBody> {
   }
 
   Future<void> showOverlay() async {
-    setState(() {
-      _isLoading = true;
-    });
 
     await Future.delayed(Duration(seconds: 10));
 

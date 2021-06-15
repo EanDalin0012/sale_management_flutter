@@ -14,6 +14,7 @@ class ColorsUtils {
   }
 
   static Color toastBackgroundContainer() {
+    return Color(0xff273965);
     return DarkMode.isDarkMode == true ? Color(0xff242527) : Colors.greenAccent;
   }
 
@@ -61,7 +62,7 @@ class ColorsUtils {
   }
   static Color? floatingActionButton() {
     //return DarkMode.isDarkMode ?  Color(0xff2f3953) : Color(0xff2f3953);
-    return Color(0xff273965);
+    return Color(0xff273975);
   }
 
   static Color? offsetPopup() {

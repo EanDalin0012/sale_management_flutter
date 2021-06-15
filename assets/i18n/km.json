@@ -20,7 +20,8 @@
       "isCompleted": "{} ត្រូវបានបញ្ចប់",
       "browse": "រុករក",
       "exitApp": "ចាកចេញពីកម្មវិធី",
-      "doYouWantToExitApp": "តើអ្នកចង់ចាកចេញពីកម្មវិធីទេ?"
+      "doYouWantToExitApp": "តើអ្នកចង់ចាកចេញពីកម្មវិធីទេ?",
+      "isLoadingCanNotBack": "កំពុងផ loading មិនអាចត្រឡប់មកវិញបានទេ"
     },
     "holder": {
       "enterRemark": "បញ្ចូលការកត់សម្គាល់",

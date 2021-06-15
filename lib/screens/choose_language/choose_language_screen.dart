@@ -81,13 +81,7 @@ class _ChooseLanguageScreenState extends State<ChooseLanguageScreen> {
               ),
               InkWell(
                 onTap: () async {
-                  if (this.code == 'en') {
-                    await context.setLocale(context.supportedLocales[0]);
-                  } else if (this.code == 'kh') {
-                    await context.setLocale(context.supportedLocales[1]);
-                  }
-                  DataBaseChoseLanguage.getChooseLanguageById(1).then((value) {
-                    print(value.toString());
+                  DataBaseChoseLanguage.getChooseLanguageById(1).then((value) async {
                     if (value.toString() == '{}') {
                       Map json = {
                         ChoseLanguageKey.id: 1,
@@ -101,18 +95,13 @@ class _ChooseLanguageScreenState extends State<ChooseLanguageScreen> {
                         );
                       });
                     }
+                    if (this.code == 'en') {
+                      await context.setLocale(context.supportedLocales[0]);
+                    } else if (this.code == 'kh') {
+                      await context.setLocale(context.supportedLocales[1]);
+                    }
                   });
                 },
-                // child: Container(
-                //   width: size.width,
-                //   height: 45,
-                //   color: Colors.red,
-                //   child: Center(child: Text('Next', style: TextStyle(
-                //       fontWeight: FontWeight.w700,
-                //       color: Colors.white,
-                //       fontFamily: 'roboto',
-                //       fontSize: 18))),
-                // ),
                 child: _buildNextButton(),
               ),
             ]
@@ -146,9 +135,6 @@ class _ChooseLanguageScreenState extends State<ChooseLanguageScreen> {
               width: 55,
               height: 55,
               margin: EdgeInsets.all(15),
-              // decoration: BoxDecoration(
-              //     color: Colors.red
-              // ),
               child: _buildFlag(map['url'].toString()),
             ),
             Expanded(
@@ -210,10 +196,20 @@ class _ChooseLanguageScreenState extends State<ChooseLanguageScreen> {
         ),
         onPressed: () {
           KeyboardUtil.hideKeyboard(context);
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => LogInScreen()),
-          );
+          Map json = {
+            ChoseLanguageKey.id: 1,
+            ChoseLanguageKey.choose: code
+          };
+          DataBaseChoseLanguage.create(json).then((value) async {
+            if(value > 0) {
+              await context.setLocale(context.supportedLocales[0]);
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => LogInScreen()),
+              );
+            }
+          });
+
         },
       ),
     );

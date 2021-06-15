@@ -20,7 +20,8 @@
       "isCompleted": "{} is completed",
       "browse": "Browse",
       "exitApp": "Exit App",
-      "doYouWantToExitApp": "Do you want to exit app?"
+      "doYouWantToExitApp": "Do you want to exit app?",
+      "isLoadingCanNotBack": "Is loading can not back"
     },
     "holder": {
       "enterRemark": "Enter remark",

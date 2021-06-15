@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:loading_overlay/loading_overlay.dart';
 import 'package:sale_management/screens/category/category_success_screen.dart';
 import 'package:sale_management/shares/constants/text_style.dart';
 import 'package:sale_management/shares/model/key/category_key.dart';
@@ -13,8 +14,8 @@ import 'package:sale_management/shares/widgets/custom_suffix_icon/custom_suffix_
 
 class EditCategoryBody extends StatefulWidget {
   final Map vData;
-
-  const EditCategoryBody({Key? key, required this.vData}) : super(key: key);
+  final ValueChanged<bool> onChanged;
+  const EditCategoryBody({Key? key, required this.vData, required this.onChanged}) : super(key: key);
 
   @override
   _EditCategoryBodyState createState() => _EditCategoryBodyState();
@@ -33,6 +34,7 @@ class _EditCategoryBodyState extends State<EditCategoryBody> {
   var hintStyle;
   var enabledBorder;
   var focusedBorder;
+  bool _isLoading = false;
 
   @override
   void initState() {
@@ -47,21 +49,33 @@ class _EditCategoryBodyState extends State<EditCategoryBody> {
     hintStyle = InputDecorationUtils.inputDecorationHintStyle();
     enabledBorder = InputDecorationUtils.enabledBorder();
     focusedBorder = InputDecorationUtils.focusedBorder();
-    return Form(
-        key: _formKey,
-        child: Column(
-            children: <Widget>[
-              _buildBody(),
-              InkWell(
-                  onTap: () {
-                    KeyboardUtil.hideKeyboard(context);
-                    save();
-                  },
-                  child: WidgetsUtil.overlayKeyBardContainer(
-                      text: 'common.label.update'.tr())
-              )
-            ]
-        )
+    return LoadingOverlay(
+      child: Form(
+          key: _formKey,
+          child: Column(
+              children: <Widget>[
+                _buildBody(),
+                InkWell(
+                    onTap: () {
+                      KeyboardUtil.hideKeyboard(context);
+                      save();
+                    },
+                    child: WidgetsUtil.overlayKeyBardContainer(
+                        text: 'common.label.update'.tr())
+                )
+              ]
+          )
+      ),
+      isLoading: _isLoading,
+      opacity: 0.5,
+      progressIndicator: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          CircularProgressIndicator(),
+          SizedBox(height: SizeConfig.screenHeight * 0.02),
+          Text('Loading'),
+        ],
+      ),
     );
   }
 
@@ -148,18 +162,11 @@ class _EditCategoryBodyState extends State<EditCategoryBody> {
   void save() {
     this.isClickSave = true;
     if (_formKey.currentState!.validate()) {
-      print('validate');
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) =>
-            CategorySuccessScreen(
-              isEditScreen: true,
-              vData: {
-                CategoryKey.name: nameController.text,
-                CategoryKey.remark: remarkController.text
-              },
-            )),
-      );
+      widget.onChanged(true);
+      setState(() {
+        _isLoading = true;
+      });
+      showOverlay();
     }
   }
 
@@ -167,6 +174,23 @@ class _EditCategoryBodyState extends State<EditCategoryBody> {
     if (isClickSave) {
       _formKey.currentState!.validate();
     }
+  }
+
+  Future<void> showOverlay() async {
+
+    await Future.delayed(Duration(seconds: 10));
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) =>
+          CategorySuccessScreen(
+            isEditScreen: true,
+            vData: {
+              CategoryKey.name: nameController.text,
+              CategoryKey.remark: remarkController.text
+            },
+          )),
+    );
   }
 
 }

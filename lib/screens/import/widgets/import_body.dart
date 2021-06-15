@@ -56,14 +56,14 @@ class _ImportBodyState extends State<ImportBody> {
           this.isLoading = true;
         });
         ToastUtils.showToast(
-            context: this.vDataAll.length.toString(), fToast: fToast);
+            context: this.vDataAll.length.toString(), fToast: fToast, duration: 2);
         _fetchAllItemsByPageSize().then((value) {
           if (value.length > 0) {
             setState(() {
               this.vDataAll = [...vDataAll, ...value];
               this.isLoading = false;
               ToastUtils.showToast(context: '_fetchAllItemsByPageSize:' +
-                  this.vDataAll.length.toString(), fToast: fToast);
+                  this.vDataAll.length.toString(), fToast: fToast, duration: 2);
             });
           }
         });
