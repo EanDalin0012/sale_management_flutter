@@ -7,7 +7,7 @@ import 'package:sale_management/shares/utils/colors_util.dart';
 class ToastUtils {
   static showToast({ required String context, required FToast fToast, required int duration}) {
     Widget toast = Container(
-      padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
+      padding: EdgeInsets.only(left: 5, right: 10, top: 5, bottom: 5),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(25.0),
         color: ColorsUtils.toastBackgroundContainer(),
