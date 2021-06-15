@@ -38,7 +38,7 @@ class _EditCategoryScreenState extends State<EditCategoryScreen> {
           backgroundColor: ColorsUtils.appBarBackGround(),
           leading: IconButton(
             icon: FaIcon(
-                FontAwesomeIcons.arrowLeft, color: Colors.white, size: 20
+                FontAwesomeIcons.arrowLeft, color: Colors.white, size: 19
             ),
             color: Colors.white,
             onPressed: () {

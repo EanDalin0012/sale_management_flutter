@@ -8,10 +8,10 @@ import 'package:sale_management/screens/product/add_new_product_screen.dart';
 import 'package:sale_management/screens/product/edit_product.dart';
 import 'package:sale_management/shares/constants/color.dart';
 import 'package:sale_management/shares/constants/fonts.dart';
-import 'package:sale_management/shares/constants/text_style.dart';
 import 'package:sale_management/shares/model/key/product_key.dart';
 import 'package:sale_management/shares/statics/default.dart';
 import 'package:sale_management/shares/utils/colors_util.dart';
+import 'package:sale_management/shares/utils/keyboard_util.dart';
 import 'package:sale_management/shares/utils/show_dialog_util.dart';
 import 'package:sale_management/shares/widgets/circular_progress_indicator/circular_progress_indicator.dart';
 import 'package:sale_management/shares/widgets/over_list_item/over_list_item.dart';
@@ -31,7 +31,7 @@ class _ProductScreenState extends State<ProductScreen> {
   late Size size;
 
   List<dynamic> vData = [];
-
+  var menuStyle;
   @override
   void initState() {
     this._fetchItems();
@@ -40,23 +40,30 @@ class _ProductScreenState extends State<ProductScreen> {
 
   @override
   Widget build(BuildContext context) {
-    size = MediaQuery
-        .of(context)
-        .size;
+    size = MediaQuery.of(context).size;
+    this.menuStyle = TextStyle(color: ColorsUtils.isDarkModeColor(),
+        fontWeight: FontWeight.w500,
+        fontFamily: fontDefault
+    );
     return WillPopScope(
       onWillPop: () => onBackPress(),
       child: Scaffold(
           backgroundColor: ColorsUtils.scaffoldBackgroundColor(),
           appBar: _buildAppBar(),
           body: SafeArea(
-            child: this.vData.length > 0 ? Column(
-              children: <Widget>[
-                OverListItem(
-                  text: 'product.label.productList'.tr(),
-                  length: this.vData.length,
-                ),
-                _buildBody()
-              ],
+            child: this.vData.length > 0 ? GestureDetector(
+              onTap: () {
+                KeyboardUtil.hideKeyboard(context);
+              },
+              child: Column(
+                children: <Widget>[
+                  OverListItem(
+                    text: 'product.label.productList'.tr(),
+                    length: this.vData.length,
+                  ),
+                  _buildBody()
+                ],
+              ),
             ) : CircularProgressLoading(),
           ),
           floatingActionButton: _floatingActionButton()
@@ -70,7 +77,9 @@ class _ProductScreenState extends State<ProductScreen> {
       elevation: DefaultStatic.elevationAppBar,
       title: Text('product.label.product'.tr()),
       leading: IconButton(
-        icon: Icon(Icons.arrow_back),
+        icon: FaIcon(
+            FontAwesomeIcons.arrowLeft, color: Colors.white, size: 19
+        ),
         onPressed: () {
           Navigator.push(
             context,
@@ -80,7 +89,7 @@ class _ProductScreenState extends State<ProductScreen> {
       ),
       actions: [
         IconButton(
-          icon: Icon(isNative ? Icons.close : Icons.search),
+          icon: isNative ? FaIcon(FontAwesomeIcons.timesCircle, color: Colors.white, size: 18) : FaIcon(FontAwesomeIcons.search, color: Colors.white, size: 18),
           onPressed: () =>
               setState(() {
                 this.isNative = !isNative;
@@ -179,11 +188,11 @@ class _ProductScreenState extends State<ProductScreen> {
               child: Row(
                 children: <Widget>[
                   FaIcon(FontAwesomeIcons.edit, size: 20,
-                      color: Colors.purple[900]),
+                      color: ColorsUtils.iConColor()),
                   SizedBox(width: 10,),
                   Text(
                     'common.label.edit'.tr(),
-                    style: menuStyle,
+                    style: this.menuStyle,
                   ),
                 ],
               )
@@ -193,19 +202,23 @@ class _ProductScreenState extends State<ProductScreen> {
               child: Row(
                 children: <Widget>[
                   FaIcon(FontAwesomeIcons.trash, size: 20,
-                      color: Colors.purple[900]),
+                      color: ColorsUtils.iConColor()),
                   SizedBox(width: 10,),
                   Text(
                     'common.label.delete'.tr(),
-                    style: menuStyle,
+                    style: this.menuStyle,
                   ),
                 ],
               )
           ),
         ],
-        icon: FaIcon(FontAwesomeIcons.ellipsisV, size: 20,
-            color: ColorsUtils.iConColor()),
-        offset: Offset(0, 45),
+        icon: FaIcon(
+            FontAwesomeIcons.ellipsisV,
+            size: 20,
+            color: ColorsUtils.iConColor()
+        ),
+        offset: Offset(0, 40),
+        color: ColorsUtils.offsetPopup(),
         onSelected: (value) {
           if (value == 0) {
             Navigator.push(
@@ -222,9 +235,9 @@ class _ProductScreenState extends State<ProductScreen> {
   void _showDialog(Map item) {
     ShowDialogUtil.showDialogYesNo(
         buildContext: context,
-        title: Text(item[ProductKey.name]),
+        title: Text(item[ProductKey.name], style: TextStyle(color: ColorsUtils.isDarkModeColor())),
         content: Text('category.message.doYouWantToDeleteProduct'.tr(
-            args: [item[ProductKey.name]])),
+            args: [item[ProductKey.name]]), style: TextStyle(color: ColorsUtils.isDarkModeColor())),
         onPressedYes: () {
           print('onPressedBntRight');
         },

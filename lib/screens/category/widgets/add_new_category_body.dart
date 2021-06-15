@@ -56,7 +56,7 @@ class _AddBewCategoryBodyState extends State<AddBewCategoryBody> {
               ]
           )
       ),
-      isLoading: _isLoading,
+      isLoading: this._isLoading,
       opacity: 0.5,
       progressIndicator: Column(
         mainAxisAlignment: MainAxisAlignment.center,

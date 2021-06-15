@@ -34,7 +34,7 @@ class _AddNewCategoryScreenState extends State<AddNewCategoryScreen> {
         appBar: AppBar(
           leading: IconButton(
             icon: FaIcon(
-              FontAwesomeIcons.arrowLeft, color: Colors.white, size: 20
+              FontAwesomeIcons.arrowLeft, color: Colors.white, size: 19
             ),
             color: Colors.white,
             onPressed: () {

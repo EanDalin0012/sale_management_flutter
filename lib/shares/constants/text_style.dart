@@ -13,9 +13,10 @@ var containStyle = TextStyle(color: ColorsUtils.isDarkModeColor(),
     fontFamily: fontDefault);
 var appBarStyle = TextStyle(
     fontFamily: fontDefault, fontWeight: FontWeight.w700);
-var menuStyle = TextStyle(color: Colors.purple[900],
+var menuStyle = TextStyle(color: ColorsUtils.isDarkModeColor(),
     fontWeight: FontWeight.w500,
-    fontFamily: fontDefault);
+    fontFamily: fontDefault
+);
 
 const kPrimaryColor = Color(0xFFFF7643);
 const kPrimaryLightColor = Color(0xFFFFECDF);

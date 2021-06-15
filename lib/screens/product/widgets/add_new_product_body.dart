@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:loading_overlay/loading_overlay.dart';
 import 'package:sale_management/screens/product/product_success_screen.dart';
 import 'package:sale_management/shares/model/key/category_key.dart';
 import 'package:sale_management/shares/model/key/product_key.dart';
@@ -13,7 +14,8 @@ import 'package:sale_management/shares/widgets/category_dropdown/category_dropdo
 import 'package:sale_management/shares/widgets/custom_suffix_icon/custom_suffix_icon.dart';
 
 class AddNewProductBody extends StatefulWidget {
-  const AddNewProductBody({Key? key}) : super(key: key);
+  final ValueChanged<bool> onChanged;
+  const AddNewProductBody({Key? key, required this.onChanged}) : super(key: key);
 
   @override
   _AddNewProductBodyState createState() => _AddNewProductBodyState();
@@ -28,7 +30,7 @@ class _AddNewProductBodyState extends State<AddNewProductBody> {
   var browController = new TextEditingController();
   var remarkController = new TextEditingController();
   late Map categoryMap = {};
-
+  bool _isLoading = false;
   var style;
   var labelStyle;
   var hintStyle;
@@ -42,20 +44,32 @@ class _AddNewProductBodyState extends State<AddNewProductBody> {
     hintStyle = InputDecorationUtils.inputDecorationHintStyle();
     enabledBorder = InputDecorationUtils.enabledBorder();
     focusedBorder = InputDecorationUtils.focusedBorder();
-    return Form(
-      key: _formKey,
-      child: Column(
+    return LoadingOverlay(
+      isLoading: this._isLoading,
+      opacity: 0.5,
+      progressIndicator: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          _buildBody(),
-          InkWell(
-              onTap: () {
-                KeyboardUtil.hideKeyboard(context);
-                mySave();
-              },
-              child: WidgetsUtil.overlayKeyBardContainer(
-                  text: 'common.label.save'.tr())
-          )
+          CircularProgressIndicator(),
+          SizedBox(height: SizeConfig.screenHeight * 0.02),
+          Text('Loading'),
         ],
+      ),
+      child: Form(
+        key: _formKey,
+        child: Column(
+          children: <Widget>[
+            _buildBody(),
+            InkWell(
+                onTap: () {
+                  KeyboardUtil.hideKeyboard(context);
+                  mySave();
+                },
+                child: WidgetsUtil.overlayKeyBardContainer(
+                    text: 'common.label.save'.tr())
+            )
+          ],
+        ),
       ),
     );
   }
@@ -210,18 +224,11 @@ class _AddNewProductBodyState extends State<AddNewProductBody> {
   void mySave() {
     this.isClickSave = true;
     if (_formKey.currentState!.validate()) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) =>
-            ProductSuccessScreen(
-              isAddScreen: true,
-              vData: {
-                ProductKey.name: this.nameController.text,
-                ProductKey.category: categoryController.text,
-                ProductKey.remark: this.remarkController.text,
-              },
-            )),
-      );
+      widget.onChanged(true);
+      setState(() {
+        _isLoading = true;
+      });
+      routToSuccess();
     }
   }
 
@@ -229,5 +236,23 @@ class _AddNewProductBodyState extends State<AddNewProductBody> {
     if (isClickSave) {
       _formKey.currentState!.validate();
     }
+  }
+
+  Future<void> routToSuccess() async {
+
+    await Future.delayed(Duration(seconds: 2));
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) =>
+          ProductSuccessScreen(
+            isAddScreen: true,
+            vData: {
+              ProductKey.name: this.nameController.text,
+              ProductKey.category: categoryController.text,
+              ProductKey.remark: this.remarkController.text,
+            },
+          )
+    ));
   }
 }

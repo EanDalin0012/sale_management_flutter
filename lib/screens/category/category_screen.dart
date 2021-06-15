@@ -11,6 +11,7 @@ import 'package:sale_management/shares/constants/fonts.dart';
 import 'package:sale_management/shares/model/key/category_key.dart';
 import 'package:sale_management/shares/statics/default.dart';
 import 'package:sale_management/shares/utils/colors_util.dart';
+import 'package:sale_management/shares/utils/keyboard_util.dart';
 import 'package:sale_management/shares/utils/show_dialog_util.dart';
 import 'package:sale_management/shares/utils/toast_util.dart';
 import 'package:sale_management/shares/widgets/circular_progress_indicator/circular_progress_indicator.dart';
@@ -57,14 +58,19 @@ class _CategoryScreenState extends State<CategoryScreen> {
           backgroundColor: ColorsUtils.scaffoldBackgroundColor(),
           appBar: _buildAppBar(),
           body: SafeArea(
-            child: this.vData.length > 0 ? Column(
-              children: <Widget>[
-                OverListItem(
-                  text: 'category.label.categoryList'.tr(),
-                  length: this.vData.length,
-                ),
-                _buildBody()
-              ],
+            child: this.vData.length > 0 ? GestureDetector(
+              onTap: () {
+                KeyboardUtil.hideKeyboard(context);
+              },
+              child: Column(
+                children: <Widget>[
+                  OverListItem(
+                    text: 'category.label.categoryList'.tr(),
+                    length: this.vData.length,
+                  ),
+                  _buildBody()
+                ],
+              ),
             ) : CircularProgressLoading(),
           ),
           floatingActionButton: _floatingActionButton()
@@ -78,7 +84,9 @@ class _CategoryScreenState extends State<CategoryScreen> {
       elevation: DefaultStatic.elevationAppBar,
       title: Text('category.label.category'.tr()),
       leading: IconButton(
-        icon: Icon(Icons.arrow_back),
+        icon: FaIcon(
+            FontAwesomeIcons.arrowLeft, color: Colors.white, size: 19
+        ),
         onPressed: () {
           Navigator.push(
             context,
@@ -88,7 +96,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
       ),
       actions: [
         IconButton(
-          icon: Icon(isNative ? Icons.close : Icons.search),
+          icon: isNative ? FaIcon(FontAwesomeIcons.timesCircle, color: Colors.white, size: 18) : FaIcon(FontAwesomeIcons.search, color: Colors.white, size: 18),
           onPressed: () =>
               setState(() {
                 this.isNative = !isNative;

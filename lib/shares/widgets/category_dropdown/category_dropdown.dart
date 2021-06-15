@@ -1,9 +1,11 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sale_management/shares/constants/color.dart';
 import 'package:sale_management/shares/constants/fonts.dart';
 import 'package:sale_management/shares/model/key/category_key.dart';
+import 'package:sale_management/shares/statics/default.dart';
 import 'package:sale_management/shares/utils/colors_util.dart';
 import 'package:sale_management/shares/widgets/circular_progress_indicator/circular_progress_indicator.dart';
 import 'package:sale_management/shares/widgets/icon_check/icon_check.dart';
@@ -65,10 +67,11 @@ class _CategoryDropdownPageState extends State<CategoryDropdownPage> {
 
     return AppBar(
       backgroundColor: ColorsUtils.appBarBackGround(),
+      elevation: DefaultStatic.elevationAppBar,
       title: Text('$label'),
       actions: [
         IconButton(
-          icon: Icon(this.isNative ? Icons.close : Icons.search),
+          icon: isNative ? FaIcon(FontAwesomeIcons.timesCircle, color: Colors.white, size: 18) : FaIcon(FontAwesomeIcons.search, color: Colors.white, size: 18),
           onPressed: () {
             setState(() {
               if (this.isNative) {
