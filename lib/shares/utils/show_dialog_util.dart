@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class ShowDialogUtil {
 
@@ -14,7 +15,8 @@ class ShowDialogUtil {
     showDialog(context: buildContext,
         builder: (BuildContext context) {
           return AlertDialog(
-              elevation: elevation,
+              elevation: 3,
+              backgroundColor: Color(0xff273950),
               title: Center(child: title),
               content: content,
               actions: <Widget>[
@@ -26,12 +28,43 @@ class ShowDialogUtil {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(Radius.circular(50))),
                   label: Text('common.label.no'.tr(),
-                    style: TextStyle(color: Colors.black),),
-                  icon: Icon(Icons.cancel_rounded, color: Colors.white,),
+                    style: TextStyle(color: Colors.white, fontSize: 18),),
+                  icon: FaIcon(FontAwesomeIcons.timesCircle, size: 20, color: Colors.white),
                   textColor: Colors.white,
-                  splashColor: Colors.red,
-                  color: Colors.red,
+                  splashColor: Color(0xff273950),
+                  color: Colors.redAccent,
                 ),
+
+                // RaisedButton.icon(
+                //   onPressed: () {
+                //     Navigator.of(context).pop(false);
+                //     onPressedNo();
+                //   },
+                //   shape: RoundedRectangleBorder(
+                //       borderRadius: BorderRadius.all(Radius.circular(50))),
+                //   label: Text('common.label.no'.tr(),
+                //     style: TextStyle(color: Colors.black),),
+                //   icon: Icon(Icons.cancel_rounded, color: Colors.white,),
+                //   textColor: Colors.white,
+                //   splashColor: Colors.red,
+                //   color: Colors.red,
+                // ),
+                // RaisedButton.icon(
+                //   onPressed: () {
+                //     Navigator.of(context).pop(false);
+                //     onPressedYes();
+                //   },
+                //   shape: RoundedRectangleBorder(
+                //       borderRadius: BorderRadius.all(Radius.circular(50))),
+                //   label: Text('common.label.yes'.tr(),
+                //     style: TextStyle(color: Colors.black),),
+                //   icon: Icon(
+                //     Icons.check_circle_outline_outlined, color: Colors.white,),
+                //   textColor: Colors.white,
+                //   splashColor: Colors.red,
+                //   color: Colors.green,
+                // ),
+
                 RaisedButton.icon(
                   onPressed: () {
                     Navigator.of(context).pop(false);
@@ -40,14 +73,12 @@ class ShowDialogUtil {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(Radius.circular(50))),
                   label: Text('common.label.yes'.tr(),
-                    style: TextStyle(color: Colors.black),),
-                  icon: Icon(
-                    Icons.check_circle_outline_outlined, color: Colors.white,),
+                    style: TextStyle(color: Colors.white,fontSize: 18),),
+                  icon: FaIcon(FontAwesomeIcons.checkCircle, size: 20, color: Colors.white),
                   textColor: Colors.white,
-                  splashColor: Colors.red,
-                  color: Colors.green,
+                  splashColor: Color(0xff273950),
+                  color: Colors.indigo,
                 ),
-
               ]
           );
         });

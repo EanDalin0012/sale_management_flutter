@@ -226,8 +226,8 @@ class _CategoryScreenState extends State<CategoryScreen> {
                   builder: (context) => EditCategoryScreen(vData: item)),
             );
           } else if (value == 1) {
-            // _showDialog(item);
-            getJson();
+            _showDialog(item);
+            // getJson();
           }
         },
       );
@@ -235,9 +235,9 @@ class _CategoryScreenState extends State<CategoryScreen> {
   void _showDialog(Map item) {
     ShowDialogUtil.showDialogYesNo(
         buildContext: context,
-        title: Text(item[CategoryKey.name]),
+        title: Text(item[CategoryKey.name], style: TextStyle(color: ColorsUtils.isDarkModeColor()),),
         content: Text('category.message.doYouWantToDeleteCategory'.tr(
-            args: [item[CategoryKey.name]])),
+            args: [item[CategoryKey.name]]), style: TextStyle(color: ColorsUtils.isDarkModeColor())),
         onPressedYes: () {
           print('onPressedBntRight');
         },
