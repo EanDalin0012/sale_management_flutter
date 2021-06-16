@@ -70,6 +70,7 @@ class _ProductScreenState extends State<ProductScreen> {
           ),
           floatingActionButton: WidgetFloatingActionButton(
             onPressed: () {
+              KeyboardUtil.hideKeyboard(context);
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => AddNewProductScreen()),
@@ -90,6 +91,7 @@ class _ProductScreenState extends State<ProductScreen> {
             FontAwesomeIcons.arrowLeft, color: Colors.white, size: 19
         ),
         onPressed: () {
+
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => HomeScreen(selectIndex: 0)),
@@ -103,13 +105,6 @@ class _ProductScreenState extends State<ProductScreen> {
             }),
             isNative: this.isNative
         ),
-        // IconButton(
-        //   icon: isNative ? FaIcon(FontAwesomeIcons.timesCircle, color: Colors.white, size: 18) : FaIcon(FontAwesomeIcons.search, color: Colors.white, size: 18),
-        //   onPressed: () =>
-        //       setState(() {
-        //         this.isNative = !isNative;
-        //       }),
-        // ),
         const SizedBox(width: 8),
       ],
       bottom: this.isNative ? PreferredSize(preferredSize: Size.fromHeight(60),
@@ -125,7 +120,9 @@ class _ProductScreenState extends State<ProductScreen> {
               child: SearchWidget(
                 hintText: 'search.label.searchName'.tr(),
                 text: 'search.label.search'.tr(),
-                onChanged: (String value) {},
+                onChanged: (String value) {
+                  print(value);
+                },
               ),
             ),
             // _buildFilterByProduct()

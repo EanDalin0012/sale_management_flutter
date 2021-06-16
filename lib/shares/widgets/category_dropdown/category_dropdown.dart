@@ -7,6 +7,7 @@ import 'package:sale_management/shares/constants/fonts.dart';
 import 'package:sale_management/shares/model/key/category_key.dart';
 import 'package:sale_management/shares/statics/default.dart';
 import 'package:sale_management/shares/utils/colors_util.dart';
+import 'package:sale_management/shares/widgets/app_bar_actions/appBarActions.dart';
 import 'package:sale_management/shares/widgets/circular_progress_indicator/circular_progress_indicator.dart';
 import 'package:sale_management/shares/widgets/icon_check/icon_check.dart';
 import 'package:sale_management/shares/widgets/search_widget/search_widget.dart';
@@ -70,17 +71,11 @@ class _CategoryDropdownPageState extends State<CategoryDropdownPage> {
       elevation: DefaultStatic.elevationAppBar,
       title: Text('$label'),
       actions: [
-        IconButton(
-          icon: isNative ? FaIcon(FontAwesomeIcons.timesCircle, color: Colors.white, size: 18) : FaIcon(FontAwesomeIcons.search, color: Colors.white, size: 18),
-          onPressed: () {
-            setState(() {
-              if (this.isNative) {
-                this.vData = vDataTmp;
-                this.vDataLength = this.vData.length;
-              }
-              this.isNative = !this.isNative;
-            });
-          },
+        WidgetAppBarAction(
+            onChanged: (v) => setState(() {
+              this.isNative = v;
+            }),
+            isNative: this.isNative
         ),
         const SizedBox(width: 8),
       ],

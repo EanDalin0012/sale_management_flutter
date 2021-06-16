@@ -2,16 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sale_management/screens/product/product_screen.dart';
 import 'package:sale_management/shares/constants/fonts.dart';
-import 'package:sale_management/shares/model/key/product_key.dart';
 import 'package:sale_management/shares/model/key/sale_key.dart';
 import 'package:sale_management/shares/statics/default.dart';
 import 'package:sale_management/shares/statics/size_config.dart';
-import 'package:sale_management/shares/utils/colors_util.dart';
 import 'package:sale_management/shares/utils/format_date.dart';
-import 'package:sale_management/shares/utils/number_format.dart';
 import 'package:sale_management/shares/utils/text_style_util.dart';
-import 'package:sale_management/shares/widgets/default_button/default_button.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:sale_management/shares/widgets/elevate_button_back/elevate_button_back.dart';
 
 class ProductSuccessBody extends StatefulWidget {
   final bool? isAddScreen;
@@ -71,50 +68,23 @@ class _ProductSuccessBodyState extends State<ProductSuccessBody> {
                   ),
                 ),
               ),
+
               _buildCard(dataItem: json, transactionDate: transactionDate),
 
             ],
           ),
         ),
+        SizedBox(height: SizeConfig.screenHeight * 0.02),
+        ElevatedButtonBack(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => ProductScreen()),
+            );
+          }
+        ),
         Spacer(),
-        _buildBackButton()
       ],
-    );
-  }
-
-  Widget  _buildBackButton() {
-    return Container(
-      height: 50,
-      width: MediaQuery.of(context).size.width - getProportionateScreenWidth(70),
-      child: RaisedButton(
-        color: Color(0xff273965),
-        textColor: Colors.white,
-        elevation: 2,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(25.0),
-        ),
-        child: Stack(
-          children: <Widget>[
-            Center(child: Text('common.label.back'.tr(), style: TextStyle(
-                fontFamily: fontDefault,
-                fontWeight: FontWeight.w500,
-                fontSize: 20,
-                color: Colors.white),)
-            ),
-            Positioned(
-                left: 0,
-                top: 12.5,
-                child: FaIcon(FontAwesomeIcons.arrowCircleLeft, size: 25, color: Colors.white)
-            ),
-          ],
-        ),
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => ProductScreen()),
-          );
-        },
-      ),
     );
   }
 
@@ -136,11 +106,10 @@ class _ProductSuccessBodyState extends State<ProductSuccessBody> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  // Text('sale.label.sell'.tr()),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
-                      Text( 'ID :'),
+                      Text( 'common.label.ID'.tr() + ' :'),
                       Text(dataItem[SaleKey.transactionId].toString()),
                     ],
                   ),
@@ -148,7 +117,7 @@ class _ProductSuccessBodyState extends State<ProductSuccessBody> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
-                      Text( 'Product Name :'),
+                      Text( 'product.label.productName'.tr() + ' :'),
                       Text(dataItem[SaleKey.customerName].toString()),
                     ],
                   ),
@@ -156,7 +125,7 @@ class _ProductSuccessBodyState extends State<ProductSuccessBody> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
-                      Text('Category :'),
+                      Text('product.label.category'.tr() + ' :'),
                       Text(dataItem[SaleKey.phoneNumber].toString()),
                     ],
                   ),

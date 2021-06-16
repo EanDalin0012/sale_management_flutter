@@ -14,7 +14,7 @@ import 'package:sale_management/shares/utils/colors_util.dart';
 import 'package:sale_management/shares/utils/keyboard_util.dart';
 import 'package:sale_management/shares/utils/show_dialog_util.dart';
 import 'package:sale_management/shares/utils/toast_util.dart';
-import 'package:sale_management/shares/utils/widgets_util.dart';
+import 'package:sale_management/shares/widgets/app_bar_actions/appBarActions.dart';
 import 'package:sale_management/shares/widgets/circular_progress_indicator/circular_progress_indicator.dart';
 import 'package:sale_management/shares/widgets/floating_action_button/floating_action_button.dart';
 import 'package:sale_management/shares/widgets/over_list_item/over_list_item.dart';
@@ -96,6 +96,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
             FontAwesomeIcons.arrowLeft, color: Colors.white, size: 19
         ),
         onPressed: () {
+          KeyboardUtil.hideKeyboard(context);
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => HomeScreen(selectIndex: 0)),
@@ -103,12 +104,11 @@ class _CategoryScreenState extends State<CategoryScreen> {
         },
       ),
       actions: [
-        IconButton(
-          icon: isNative ? FaIcon(FontAwesomeIcons.timesCircle, color: Colors.white, size: 18) : FaIcon(FontAwesomeIcons.search, color: Colors.white, size: 18),
-          onPressed: () =>
-              setState(() {
-                this.isNative = !isNative;
-              }),
+        WidgetAppBarAction(
+            onChanged: (v) => setState(() {
+              this.isNative = v;
+            }),
+            isNative: this.isNative
         ),
         const SizedBox(width: 8),
       ],
@@ -125,7 +125,9 @@ class _CategoryScreenState extends State<CategoryScreen> {
               child: SearchWidget(
                 hintText: 'search.label.searchName'.tr(),
                 text: 'search.label.search'.tr(),
-                onChanged: (String value) {},
+                onChanged: (String value) {
+                  print(value);
+                },
               ),
             ),
             // _buildFilterByProduct()

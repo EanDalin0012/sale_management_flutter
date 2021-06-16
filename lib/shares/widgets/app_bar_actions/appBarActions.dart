@@ -14,35 +14,17 @@ class _WidgetAppBarActionState extends State<WidgetAppBarAction> {
   @override
   Widget build(BuildContext context) {
     return IconButton(
-      icon: widget.isNative ? _crossButton() : _searchButton(),
+      icon: widget.isNative ?  _searchButton() : _crossButton() ,
       onPressed: () => widget.onChanged(!widget.isNative)
     );
   }
 
   Widget _crossButton() {
-    return Container(
-      height: 25,
-      width: 25,
-        padding: EdgeInsets.all(2),
-        decoration: BoxDecoration(
-            color: Color(0xff6E747F),
-            borderRadius: BorderRadius.circular(50)
-        ),
-        child: Center(child: FaIcon(FontAwesomeIcons.timesCircle, size: 16, color: Colors.white,))
-    );
+    return FaIcon(FontAwesomeIcons.search, color: Colors.white, size: 18);
   }
 
   Widget _searchButton() {
-    return Container(
-      height: 25,
-      width: 25,
-        padding: EdgeInsets.all(3),
-        decoration: BoxDecoration(
-            color: Color(0xff6E747F),
-            borderRadius: BorderRadius.circular(50)
-        ),
-        child: Center(child: FaIcon(FontAwesomeIcons.search, size: 15, color: Colors.white,))
-    );
+    return FaIcon(FontAwesomeIcons.timesCircle, color: Colors.white, size: 18);
   }
 
 }

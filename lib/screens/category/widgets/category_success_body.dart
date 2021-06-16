@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sale_management/screens/category/category_screen.dart';
-import 'package:sale_management/shares/constants/fonts.dart';
 import 'package:sale_management/shares/model/key/category_key.dart';
 import 'package:sale_management/shares/statics/default.dart';
 import 'package:sale_management/shares/statics/size_config.dart';
 import 'package:sale_management/shares/utils/format_date.dart';
 import 'package:sale_management/shares/utils/text_style_util.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:sale_management/shares/widgets/elevate_button_back/elevate_button_back.dart';
 
 class CategorySuccessBody extends StatefulWidget {
   final bool? isAddScreen;
@@ -65,45 +64,16 @@ class _CategorySuccessBodyState extends State<CategorySuccessBody> {
           ),
         ),
         SizedBox(height: SizeConfig.screenHeight * 0.02),
-        _buildAddButton(),
+        ElevatedButtonBack(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => CategoryScreen()),
+              );
+            }
+        ),
         Spacer(),
       ],
-    );
-  }
-
-  Widget  _buildAddButton() {
-    return Container(
-      height: 50,
-      width: MediaQuery.of(context).size.width - getProportionateScreenWidth(70),
-      child: RaisedButton(
-        color: Color(0xff273965),
-        textColor: Colors.white,
-        elevation: 2,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(25.0),
-        ),
-        child: Stack(
-          children: <Widget>[
-            Center(child: Text('common.label.back'.tr(), style: TextStyle(
-                fontFamily: fontDefault,
-                fontWeight: FontWeight.w500,
-                fontSize: 20,
-                color: Colors.white),)
-            ),
-            Positioned(
-                left: 0,
-                top: 12.5,
-                child: FaIcon(FontAwesomeIcons.arrowCircleLeft, size: 25, color: Colors.white)
-            ),
-          ],
-        ),
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => CategoryScreen()),
-          );
-        },
-      ),
     );
   }
 

@@ -145,6 +145,7 @@
   "product": {
     "label": {
       "product": "Product",
+      "productName": "Product Name",
       "productList": "Product List",
       "addNewProduct": "Add New Product",
       "registerProduct": "Register Product",
