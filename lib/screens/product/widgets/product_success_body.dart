@@ -77,8 +77,7 @@ class _ProductSuccessBodyState extends State<ProductSuccessBody> {
           ),
         ),
         Spacer(),
-        _buildBackButton(),
-        Spacer(),
+        _buildBackButton()
       ],
     );
   }
