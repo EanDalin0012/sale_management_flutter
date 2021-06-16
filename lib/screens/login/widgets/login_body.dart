@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sale_management/screens/home/home_screen.dart';
+import 'package:sale_management/screens/login/login_screen.dart';
 import 'package:sale_management/screens/sign_up/sign_up_screen.dart';
 import 'package:sale_management/shares/constants/fonts.dart';
 import 'package:sale_management/shares/constants/text_style.dart';
@@ -79,7 +80,8 @@ class _LoginBodyState extends State<LoginBody> {
                     ],
                   ),
                   SizedBox(height: SizeConfig.screenHeight * 0.02),
-                  _buildAddButton(),
+                  // _buildAddButton(),
+                  _buildRemoveButton(),
                   SizedBox(height: SizeConfig.screenHeight * 0.04),
                   noAccount()
                 ],
@@ -164,21 +166,22 @@ class _LoginBodyState extends State<LoginBody> {
     );
   }
 
-  Widget  _buildAddButton() {
+  Widget _buildRemoveButton() {
     return Container(
       height: 50,
-      width: MediaQuery.of(context).size.width - getProportionateScreenWidth(20),
-      // margin: EdgeInsets.only(right: 10),
-      child: RaisedButton(
-        color: Color(0xff273965),
-        textColor: Colors.white,
-        elevation: 2,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(50.0),
+      width: MediaQuery.of(context).size.width - getProportionateScreenWidth(70),
+      child: ElevatedButton(
+        style: ButtonStyle(
+            backgroundColor: MaterialStateProperty.all<Color>(Color(0xff273965)),
+            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(50)
+                )
+            )
         ),
         child: Stack(
           children: <Widget>[
-            Center(child: Text('login.label.continue'.tr(), style: TextStyle(
+            Center(child: Text('login.label.login'.tr(), style: TextStyle(
                 fontFamily: fontDefault,
                 fontWeight: FontWeight.w500,
                 fontSize: 20,
@@ -191,8 +194,7 @@ class _LoginBodyState extends State<LoginBody> {
             ),
           ],
         ),
-        onPressed: () {
-          KeyboardUtil.hideKeyboard(context);
+        onPressed: (){
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => HomeScreen(selectIndex: 0)),

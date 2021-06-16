@@ -71,6 +71,6 @@ class _AddNewCategoryScreenState extends State<AddNewCategoryScreen> {
     } else {
       return Future<bool>.value(true);
     }
-
   }
+
 }

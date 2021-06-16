@@ -13,8 +13,12 @@ import 'package:sale_management/shares/model/key/package_product_key.dart';
 import 'package:sale_management/shares/model/key/product_key.dart';
 import 'package:sale_management/shares/statics/default.dart';
 import 'package:sale_management/shares/utils/colors_util.dart';
+import 'package:sale_management/shares/utils/keyboard_util.dart';
 import 'package:sale_management/shares/utils/number_format.dart';
+import 'package:sale_management/shares/utils/show_dialog_util.dart';
+import 'package:sale_management/shares/widgets/app_bar_actions/appBarActions.dart';
 import 'package:sale_management/shares/widgets/circular_progress_indicator/circular_progress_indicator.dart';
+import 'package:sale_management/shares/widgets/floating_action_button/floating_action_button.dart';
 import 'package:sale_management/shares/widgets/infinite_scroll_loading/infinite_scroll_loading.dart';
 import 'package:sale_management/shares/widgets/over_list_item/over_list_item.dart';
 import 'package:sale_management/shares/widgets/prefix_product/prefix_product.dart';
@@ -86,21 +90,33 @@ class _PackageProductScreenState extends State<PackageProductScreen> {
           backgroundColor: ColorsUtils.scaffoldBackgroundColor(),
           appBar: _buildAppBar(),
           body: SafeArea(
-            child: this.vData.length > 0 ? Column(
-              children: <Widget>[
-                OverListItem(
-                  text: 'packageProduct.label.packageProductList'.tr(),
-                  length: this.vData.length,
-                ),
-                _buildBody(),
-                this.isLoading == true ? InfiniteScrollLoading() : Container(
-                  color: Colors.transparent,
-                  height: 60,
-                )
-              ],
+            child: this.vData.length > 0 ? GestureDetector(
+              onTap: () {
+                KeyboardUtil.hideKeyboard(context);
+              },
+              child: Column(
+                children: <Widget>[
+                  OverListItem(
+                    text: 'packageProduct.label.packageProductList'.tr(),
+                    length: this.vData.length,
+                  ),
+                  _buildBody(),
+                  this.isLoading == true ? InfiniteScrollLoading() : Container(
+                    color: Colors.transparent,
+                    height: 60,
+                  )
+                ],
+              ),
             ) : CircularProgressLoading(),
           ),
-          floatingActionButton: _floatingActionButton()
+          floatingActionButton: WidgetFloatingActionButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => AddNewPackageProductScreen()),
+              );
+            },
+          )
       ),
     );
   }
@@ -109,10 +125,14 @@ class _PackageProductScreenState extends State<PackageProductScreen> {
     return AppBar(
       backgroundColor: ColorsUtils.appBarBackGround(),
       elevation: DefaultStatic.elevationAppBar,
+
       title: Text('packageProduct.label.packageProduct'.tr()),
       leading: IconButton(
-        icon: Icon(Icons.arrow_back),
+        icon: FaIcon(
+            FontAwesomeIcons.arrowLeft, color: Colors.white, size: 19
+        ),
         onPressed: () {
+          KeyboardUtil.hideKeyboard(context);
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => HomeScreen(selectIndex: 0)),
@@ -120,12 +140,11 @@ class _PackageProductScreenState extends State<PackageProductScreen> {
         },
       ),
       actions: [
-        IconButton(
-          icon: Icon(isNative ? Icons.close : Icons.search),
-          onPressed: () =>
-              setState(() {
-                this.isNative = !isNative;
-              }),
+        WidgetAppBarAction(
+            onChanged: (v) => setState(() {
+              this.isNative = v;
+            }),
+            isNative: this.isNative
         ),
         const SizedBox(width: 8),
       ],
@@ -208,7 +227,7 @@ class _PackageProductScreenState extends State<PackageProductScreen> {
                     Text(
                       dataItem[PackageProductKey.quantity].toString(),
                       style: TextStyle(
-                        color: Colors.black87,
+                        color: ColorsUtils.isDarkModeColor(),
                         fontSize: 18,
                         fontWeight: FontWeight.w900,
                       ),
@@ -260,21 +279,6 @@ class _PackageProductScreenState extends State<PackageProductScreen> {
     );
   }
 
-  FloatingActionButton _floatingActionButton() {
-    return FloatingActionButton(
-      backgroundColor: Colors.purple[900],
-      onPressed: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => AddNewPackageProductScreen()),
-        );
-      },
-      tooltip: 'packageProduct.label.addNewProductPackage'.tr(),
-      elevation: 5,
-      child: Icon(Icons.add_circle, size: 50,),
-    );
-  }
-
   Widget _offsetPopup(Map item) =>
       PopupMenuButton<int>(
         itemBuilder: (context) =>
@@ -283,8 +287,11 @@ class _PackageProductScreenState extends State<PackageProductScreen> {
               value: 0,
               child: Row(
                 children: <Widget>[
-                  FaIcon(FontAwesomeIcons.edit, size: 20,
-                      color: Colors.purple[900]),
+                  FaIcon(
+                      FontAwesomeIcons.edit,
+                      size: 20,
+                      color: ColorsUtils.isDarkModeColor()
+                  ),
                   SizedBox(width: 10,),
                   Text('common.label.edit'.tr(),
                     style: menuStyle,
@@ -297,7 +304,7 @@ class _PackageProductScreenState extends State<PackageProductScreen> {
               child: Row(
                 children: <Widget>[
                   FaIcon(FontAwesomeIcons.trash, size: 20,
-                      color: Colors.purple[900]),
+                      color: ColorsUtils.isDarkModeColor()),
                   SizedBox(width: 10,),
                   Text('common.label.delete'.tr(),
                     style: menuStyle,
@@ -306,9 +313,13 @@ class _PackageProductScreenState extends State<PackageProductScreen> {
               )
           ),
         ],
-        icon: FaIcon(FontAwesomeIcons.ellipsisV, size: 20,
-            color: ColorsUtils.iConColor()),
+        icon: FaIcon(
+            FontAwesomeIcons.ellipsisV,
+            size: 20,
+            color: ColorsUtils.iConColor()
+        ),
         offset: Offset(0, 45),
+        color: ColorsUtils.offsetPopup(),
         onSelected: (value) {
           if (value == 0) {
             Navigator.push(
@@ -318,10 +329,25 @@ class _PackageProductScreenState extends State<PackageProductScreen> {
               ),
             );
           } else if (value == 1) {
-            // _showDialog(item);
+            _showDialog(item);
           }
         },
       );
+
+  void _showDialog(Map item) {
+    ShowDialogUtil.showDialogYesNo(
+        buildContext: context,
+        title: Text(item[ProductKey.name], style: TextStyle(color: ColorsUtils.isDarkModeColor())),
+        content: Text('packageProduct.message.doYouWantDeletePackageProduct'.tr(
+            args: [item[PackageProductKey.name]]), style: TextStyle(color: ColorsUtils.isDarkModeColor())),
+        onPressedYes: () {
+          print('onPressedBntRight');
+        },
+        onPressedNo: () {
+          print('onPressedBntLeft');
+        }
+    );
+  }
 
   String _searchProductById(int productId) {
     if (this.productItems.length > 0) {

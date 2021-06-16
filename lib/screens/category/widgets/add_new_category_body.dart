@@ -158,7 +158,7 @@ class _AddBewCategoryBodyState extends State<AddBewCategoryBody> {
         _isLoading = true;
       });
 
-      showOverlay();
+      rout();
     }
   }
 
@@ -168,7 +168,7 @@ class _AddBewCategoryBodyState extends State<AddBewCategoryBody> {
     }
   }
 
-  Future<void> showOverlay() async {
+  Future<void> rout() async {
 
     await Future.delayed(Duration(seconds: 10));
 

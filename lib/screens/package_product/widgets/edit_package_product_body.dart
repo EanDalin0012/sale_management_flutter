@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:loading_overlay/loading_overlay.dart';
 import 'package:sale_management/screens/package_product/package_product_success_screen.dart';
 import 'package:sale_management/shares/model/key/package_product_key.dart';
 import 'package:sale_management/shares/model/key/product_key.dart';
@@ -18,8 +19,8 @@ import 'package:sale_management/shares/widgets/product_dropdown/product_dropdown
 
 class EditPackageProductBody extends StatefulWidget {
   final Map vData;
-
-  const EditPackageProductBody({Key? key, required this.vData})
+  final ValueChanged<bool> onChanged;
+  const EditPackageProductBody({Key? key, required this.vData, required this.onChanged})
       : super(key: key);
 
   @override
@@ -44,15 +45,15 @@ class _EditPackageProductBodyState extends State<EditPackageProductBody> {
   var hintStyle;
   var enabledBorder;
   var focusedBorder;
+  var _isLoading = false;
 
   @override
   void initState() {
     this._fetchItems();
+    print(widget.vData);
     this.nameController.text = widget.vData[PackageProductKey.name];
-    this.qtyController.text = FormatNumberUtils.usdFormat2Digit(
-        widget.vData[PackageProductKey.quantity].toString());
-    this.priceController.text =
-        widget.vData[PackageProductKey.price].toString();
+    this.qtyController.text =  widget.vData[PackageProductKey.quantity].toString();
+    this.priceController.text = FormatNumberUtils.usdFormat2Digit(widget.vData[PackageProductKey.price].toString());
     this.remarkController.text =
         widget.vData[PackageProductKey.remark].toString();
     super.initState();
@@ -65,22 +66,34 @@ class _EditPackageProductBodyState extends State<EditPackageProductBody> {
     hintStyle = InputDecorationUtils.inputDecorationHintStyle();
     enabledBorder = InputDecorationUtils.enabledBorder();
     focusedBorder = InputDecorationUtils.focusedBorder();
-    return Form(
-        key: _formKey,
-        child: Column(
-            children: <Widget>[
-              _buildBody(),
-              InkWell(
-                  onTap: () {
-                    KeyboardUtil.hideKeyboard(context);
-                    save();
-                  },
-                  child: WidgetsUtil.overlayKeyBardContainer(
-                      text: 'common.label.update'.tr())
-              )
-            ]
-        )
+    return LoadingOverlay(
+      isLoading: this._isLoading,
+      opacity: 0.5,
+      progressIndicator: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          CircularProgressIndicator(),
+          SizedBox(height: SizeConfig.screenHeight * 0.02),
+          Text('Loading'),
+        ],
+      ),
+      child: Form(
+          key: _formKey,
+          child: Column(
+              children: <Widget>[
+                _buildBody(),
+                InkWell(
+                    onTap: () {
+                      KeyboardUtil.hideKeyboard(context);
+                      save();
+                    },
+                    child: WidgetsUtil.overlayKeyBardContainer(
+                        text: 'common.label.update'.tr())
+                )
+              ]
+          )
 
+      ),
     );
   }
 
@@ -205,6 +218,7 @@ class _EditPackageProductBodyState extends State<EditPackageProductBody> {
       style: this.style,
       keyboardType: TextInputType.number,
       textInputAction: TextInputAction.next,
+      controller: this.qtyController,
       onChanged: (value) => checkFormValid(),
       validator: (value) {
         if (value!.isEmpty) {
@@ -231,7 +245,7 @@ class _EditPackageProductBodyState extends State<EditPackageProductBody> {
       style: this.style,
       keyboardType: TextInputType.number,
       textInputAction: TextInputAction.next,
-      controller: priceController,
+      controller: this.priceController,
       onChanged: (value) => checkFormValid(),
       validator: (value) {
         if (value!.isEmpty) {
@@ -276,20 +290,14 @@ class _EditPackageProductBodyState extends State<EditPackageProductBody> {
   void save() {
     this.isClickSave = true;
     if (_formKey.currentState!.validate()) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) =>
-            PackageProductSuccessScreen(
-              isEditScreen: true,
-              vData: {
-                PackageProductKey.name: this.nameController.text,
-                PackageProductKey.productId: this.product[ProductKey.id],
-                PackageProductKey.quantity: this.qtyController.text,
-                PackageProductKey.price: this.priceController.text,
-                PackageProductKey.remark: this.remarkController.text
-              },
-            )),
-      );
+
+      widget.onChanged(true);
+      setState(() {
+        _isLoading = true;
+      });
+
+
+      rout();
     }
   }
 
@@ -320,4 +328,27 @@ class _EditPackageProductBodyState extends State<EditPackageProductBody> {
     }).toList();
     return data;
   }
+
+  Future<void> rout() async {
+    await Future.delayed(Duration(seconds: 3));
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) =>
+          PackageProductSuccessScreen(
+            isAddScreen: true,
+            vData: {
+              PackageProductKey.id: "ABC20210212",
+              PackageProductKey.product: this.product,
+              PackageProductKey.name: this.nameController.text,
+              PackageProductKey.productId: this.product[ProductKey.id],
+              PackageProductKey.quantity: this.qtyController.text,
+              PackageProductKey.price: this.priceController.text,
+              PackageProductKey.remark: this.remarkController.text
+            },
+          )),
+    );
+
+  }
+
 }

@@ -49,7 +49,7 @@
       "login": "Login",
       "email": "Email",
       "password": "Password",
-      "dontHaveAnAccount": "Don’t have an account?",
+      "dontHaveAnAccount": "Don’t have an account ? ",
       "signUp": "Sign Up",
       "rememberMe": "Remember me",
       "forgotPassword": "Forgot Password",
@@ -67,7 +67,7 @@
     "label": {
       "signUp": "Sign Up",
       "createAccount": "Create Account",
-      "completeDetails": "Complete your details or continue \nwith social media",
+      "completeDetails": "Complete your details or continue \n with social media",
       "save": "Save",
       "firstName": "First Name",
       "confirmPassword": "Confirm Password",
@@ -193,7 +193,8 @@
       "pleaseEnterPackageProduct": "Please enter package product name.",
       "pleaseEnterQuantity": "Please enter quantity.",
       "pleaseEnterPrice": "Please enter price.",
-      "pleaseSelectProduct": "Please select product."
+      "pleaseSelectProduct": "Please select product.",
+      "doYouWantDeletePackageProduct": "Do you want to delete package product {}"
     }
   },
   "member":{

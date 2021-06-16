@@ -38,8 +38,9 @@ class ColorsUtils {
   }
 
   static Color unselectedWidgetColor() {
-    return DarkMode.isDarkMode == true ? Colors.white.withOpacity(0.8) : Colors
-        .black45;
+    return Colors.white;
+    // return DarkMode.isDarkMode == true ? Colors.white.withOpacity(0.8) : Colors
+    //     .black45;
   }
 
   static Color buttonContainer() {

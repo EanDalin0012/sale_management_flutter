@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:loading_overlay/loading_overlay.dart';
 import 'package:sale_management/screens/package_product/package_product_success_screen.dart';
 import 'package:sale_management/shares/model/key/package_product_key.dart';
 import 'package:sale_management/shares/model/key/product_key.dart';
@@ -16,7 +17,8 @@ import 'package:sale_management/shares/widgets/product_dropdown/product_dropdown
 import 'package:sale_management/shares/widgets/text_form_field_prefix_icon/text_form_field_prefix_icon.dart';
 
 class AddNewPackageProductBody extends StatefulWidget {
-  const AddNewPackageProductBody({Key? key}) : super(key: key);
+  final ValueChanged<bool> onChanged;
+  const AddNewPackageProductBody({Key? key, required this.onChanged}) : super(key: key);
 
   @override
   _AddNewPackageProductBodyState createState() =>
@@ -40,6 +42,7 @@ class _AddNewPackageProductBodyState extends State<AddNewPackageProductBody> {
   var enabledBorder;
   var focusedBorder;
   var url = DefaultStatic.url;
+  var _isLoading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -51,22 +54,34 @@ class _AddNewPackageProductBodyState extends State<AddNewPackageProductBody> {
     if (this.product[ProductKey.url].toString() != 'null') {
       this.url = this.product[ProductKey.url].toString();
     }
-    return Form(
-        key: _formKey,
-        child: Column(
-            children: <Widget>[
-              _buildBody(),
-              InkWell(
-                  onTap: () {
-                    KeyboardUtil.hideKeyboard(context);
-                    save();
-                  },
-                  child: WidgetsUtil.overlayKeyBardContainer(
-                      text: 'common.label.save'.tr())
-              )
-            ]
-        )
+    return LoadingOverlay(
+      isLoading: this._isLoading,
+      opacity: 0.5,
+      progressIndicator: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          CircularProgressIndicator(),
+          SizedBox(height: SizeConfig.screenHeight * 0.02),
+          Text('Loading'),
+        ],
+      ),
+      child: Form(
+          key: _formKey,
+          child: Column(
+              children: <Widget>[
+                _buildBody(),
+                InkWell(
+                    onTap: () {
+                      KeyboardUtil.hideKeyboard(context);
+                      save();
+                    },
+                    child: WidgetsUtil.overlayKeyBardContainer(
+                        text: 'common.label.save'.tr())
+                )
+              ]
+          )
 
+      ),
     );
   }
 
@@ -83,8 +98,11 @@ class _AddNewPackageProductBodyState extends State<AddNewPackageProductBody> {
                 child: Column(
                   children: <Widget>[
                     SizedBox(height: SizeConfig.screenHeight * 0.04), // 4%
-                    Text('packageProduct.label.registerPackageProduct'.tr(),
-                        style: TextStyleUtils.headingStyle()),
+                    Center(
+                      child: Text('packageProduct.label.registerPackageProduct'.tr(),
+                          style: TextStyleUtils.headingStyle()
+                      ),
+                    ),
                     Text(
                       'common.label.completeYourDetails'.tr(),
                       textAlign: TextAlign.center,
@@ -191,6 +209,7 @@ class _AddNewPackageProductBodyState extends State<AddNewPackageProductBody> {
       style: this.style,
       keyboardType: TextInputType.number,
       textInputAction: TextInputAction.next,
+      controller: this.qtyController,
       onChanged: (value) => checkFormValid(),
       validator: (value) {
         if (value!.isEmpty) {
@@ -217,7 +236,7 @@ class _AddNewPackageProductBodyState extends State<AddNewPackageProductBody> {
       style: this.style,
       keyboardType: TextInputType.number,
       textInputAction: TextInputAction.next,
-      controller: priceController,
+      controller: this.priceController,
       onChanged: (value) => checkFormValid(),
       validator: (value) {
         if (value!.isEmpty) {
@@ -261,20 +280,13 @@ class _AddNewPackageProductBodyState extends State<AddNewPackageProductBody> {
   void save() {
     this.isClickSave = true;
     if (_formKey.currentState!.validate()) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) =>
-            PackageProductSuccessScreen(
-              isAddScreen: true,
-              vData: {
-                PackageProductKey.name: this.nameController.text,
-                PackageProductKey.productId: this.product[ProductKey.id],
-                PackageProductKey.quantity: this.qtyController.text,
-                PackageProductKey.price: this.priceController.text,
-                PackageProductKey.remark: this.remarkController.text
-              },
-            )),
-      );
+      widget.onChanged(true);
+      setState(() {
+        _isLoading = true;
+      });
+
+      rout();
+
     }
   }
 
@@ -284,5 +296,26 @@ class _AddNewPackageProductBodyState extends State<AddNewPackageProductBody> {
     }
   }
 
+  Future<void> rout() async {
+    await Future.delayed(Duration(seconds: 3));
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) =>
+          PackageProductSuccessScreen(
+            isAddScreen: true,
+            vData: {
+              PackageProductKey.id: "ABC20210212",
+              PackageProductKey.product: this.product,
+              PackageProductKey.name: this.nameController.text,
+              PackageProductKey.productId: this.product[ProductKey.id],
+              PackageProductKey.quantity: this.qtyController.text,
+              PackageProductKey.price: this.priceController.text,
+              PackageProductKey.remark: this.remarkController.text
+            },
+          )),
+    );
+
+  }
 
 }

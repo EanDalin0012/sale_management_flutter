@@ -193,7 +193,8 @@
       "pleaseEnterPackageProduct": "សូមបញ្ចូលឈ្មោះកញ្ចប់តំណាង",
       "pleaseEnterQuantity": "សូមបញ្ចូលចំនួន",
       "pleaseEnterPrice": "សូមបញ្ចូលតម្លៃ",
-      "pleaseSelectProduct": "សូមជ្រើសរើសផលិតផល"
+      "pleaseSelectProduct": "សូមជ្រើសរើសផលិតផល",
+      "doYouWantDeletePackageProduct": "តើអ្នកចង់លុបកញ្ចប់តំណាង {}"
     }
   },
   "member":{
