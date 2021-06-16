@@ -1,6 +1,7 @@
 {
   "common":{
     "label": {
+      "ID": "លេខសម្គាល់",
       "edit": "កែសម្រួល",
       "delete": "លុប",
       "yes": "បាទ/ចាស",
@@ -125,6 +126,7 @@
   "category": {
     "label": {
       "category": "ប្រភេទ",
+      "categoryName": "ឈ្មោះប្រភេទ",
       "categoryList": "បញ្ជីប្រភេទ",
       "addNewCategory": "បន្ថែមប្រភេទថ្មី",
       "registerCategory": "ចុះឈ្មោះប្រភេទ",

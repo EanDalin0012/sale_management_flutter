@@ -32,7 +32,7 @@ class OverListItem extends StatelessWidget {
           Text(
             text.toString(),
             style: TextStyle(
-                color: DarkMode.isDarkMode ? Colors.white : Color(0xFF222B45),
+                color: ColorsUtils.isDarkModeColor(),
                 fontSize: 18,
                 fontWeight: FontWeight.w500,
                 fontFamily: fontDefault),

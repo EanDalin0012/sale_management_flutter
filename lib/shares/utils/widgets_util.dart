@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sale_management/shares/statics/dark_mode_color.dart';
 import 'package:sale_management/shares/utils/colors_util.dart';
 
@@ -69,5 +70,32 @@ class WidgetsUtil {
           fontSize: 18))),
     );
   }
+
+  // static Widget floatingActionButton({String? tooltip, required VoidCallback onPressed}) {
+  //   return InkWell(
+  //     onHover: (value) {
+  //
+  //     },
+  //     child: Container(
+  //         height: 45,
+  //         width: 45,
+  //         padding: EdgeInsets.all(2),
+  //         decoration: BoxDecoration(
+  //             color: Color(0xff6E747F),
+  //             borderRadius: BorderRadius.circular(50)
+  //         ),
+  //         child: Center(child: FaIcon(FontAwesomeIcons.plusCircle, size: 25, color: Colors.white,))
+  //     ),
+  //   );
+  //   return FloatingActionButton(
+  //     backgroundColor: ColorsUtils.floatingActionButton(),
+  //     onPressed: () => onPressed(),
+  //     tooltip: tooltip,
+  //     elevation: 0,
+  //     child:  FaIcon(
+  //         FontAwesomeIcons.plusCircle, color: Colors.white, size: 35
+  //     ),
+  //   );
+  // }
 
 }

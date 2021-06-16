@@ -14,7 +14,9 @@ import 'package:sale_management/shares/utils/colors_util.dart';
 import 'package:sale_management/shares/utils/keyboard_util.dart';
 import 'package:sale_management/shares/utils/show_dialog_util.dart';
 import 'package:sale_management/shares/utils/toast_util.dart';
+import 'package:sale_management/shares/utils/widgets_util.dart';
 import 'package:sale_management/shares/widgets/circular_progress_indicator/circular_progress_indicator.dart';
+import 'package:sale_management/shares/widgets/floating_action_button/floating_action_button.dart';
 import 'package:sale_management/shares/widgets/over_list_item/over_list_item.dart';
 import 'package:sale_management/shares/widgets/search_widget/search_widget.dart';
 import 'package:http/http.dart' as http;
@@ -45,7 +47,6 @@ class _CategoryScreenState extends State<CategoryScreen> {
 
   @override
   Widget build(BuildContext context) {
-    print('set');
     size = MediaQuery
         .of(context)
         .size;
@@ -73,7 +74,14 @@ class _CategoryScreenState extends State<CategoryScreen> {
               ),
             ) : CircularProgressLoading(),
           ),
-          floatingActionButton: _floatingActionButton()
+          floatingActionButton:  WidgetFloatingActionButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => AddNewCategoryScreen()),
+              );
+            },
+          )
       ),
     );
   }
@@ -169,21 +177,6 @@ class _CategoryScreenState extends State<CategoryScreen> {
     );
   }
 
-  FloatingActionButton _floatingActionButton() {
-    return FloatingActionButton(
-      backgroundColor: ColorsUtils.floatingActionButton(),
-      onPressed: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => AddNewCategoryScreen()),
-        );
-      },
-      tooltip: 'category.label.addNewCategory'.tr(),
-      elevation: 5,
-      child: Icon(Icons.add_circle, size: 50,),
-    );
-  }
-
   Widget _offsetPopup(Map item) =>
       PopupMenuButton<int>(
         itemBuilder: (context) =>
@@ -221,9 +214,10 @@ class _CategoryScreenState extends State<CategoryScreen> {
           ),
         ],
         icon: FaIcon(
-            FontAwesomeIcons.ellipsisV, size: 20,
+            FontAwesomeIcons.ellipsisV, size: 15,
             color: ColorsUtils.isDarkModeColor()
         ),
+        tooltip: 'Hello',
         offset: Offset(0, 45),
         color: ColorsUtils.offsetPopup(),
         onSelected: (value) {

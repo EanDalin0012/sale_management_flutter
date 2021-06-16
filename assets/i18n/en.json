@@ -1,6 +1,7 @@
 {
   "common":{
     "label": {
+      "ID": "ID",
       "edit": "Edit",
       "delete": "Delete",
       "yes": "Yes",
@@ -125,6 +126,7 @@
   "category": {
     "label": {
       "category": "Category",
+      "categoryName": "Category Name",
       "categoryList": "Category List",
       "addNewCategory": "Add New Category",
       "registerCategory": "Register Category",

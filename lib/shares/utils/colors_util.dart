@@ -23,7 +23,8 @@ class ColorsUtils {
   }
 
   static Color? svgPictureSufFixIconColor() {
-    return DarkMode.isDarkMode == true ? Colors.white : null;
+    return Colors.white;
+    // return DarkMode.isDarkMode == true ? Colors.white : null;
   }
 
   static Color iConColor() {
@@ -62,12 +63,12 @@ class ColorsUtils {
   }
   static Color? floatingActionButton() {
     //return DarkMode.isDarkMode ?  Color(0xff2f3953) : Color(0xff2f3953);
-    return Color(0xff273975);
+    return Color(0xFF222B45);
   }
 
   static Color? offsetPopup() {
     //return DarkMode.isDarkMode ?  Color(0xff2f3953) : Color(0xff2f3953);
-    return Color(0xff273955);
+    return Color(0xff273965);
   }
 
 }

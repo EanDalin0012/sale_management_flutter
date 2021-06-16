@@ -166,7 +166,7 @@ class _EditCategoryBodyState extends State<EditCategoryBody> {
       setState(() {
         _isLoading = true;
       });
-      showOverlay();
+      rout();
     }
   }
 
@@ -176,9 +176,9 @@ class _EditCategoryBodyState extends State<EditCategoryBody> {
     }
   }
 
-  Future<void> showOverlay() async {
+  Future<void> rout() async {
 
-    await Future.delayed(Duration(seconds: 10));
+    await Future.delayed(Duration(seconds: 3));
 
     Navigator.push(
       context,
@@ -186,6 +186,7 @@ class _EditCategoryBodyState extends State<EditCategoryBody> {
           CategorySuccessScreen(
             isEditScreen: true,
             vData: {
+              CategoryKey.id: 'Abc20210212',
               CategoryKey.name: nameController.text,
               CategoryKey.remark: remarkController.text
             },

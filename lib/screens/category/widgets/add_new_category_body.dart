@@ -178,6 +178,7 @@ class _AddBewCategoryBodyState extends State<AddBewCategoryBody> {
           CategorySuccessScreen(
             isAddScreen: true,
             vData: {
+              CategoryKey.id: 'Abc20210212',
               CategoryKey.name: nameController.text,
               CategoryKey.remark: remarkController.text
             },
