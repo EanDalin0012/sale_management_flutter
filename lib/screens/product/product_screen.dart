@@ -13,7 +13,9 @@ import 'package:sale_management/shares/statics/default.dart';
 import 'package:sale_management/shares/utils/colors_util.dart';
 import 'package:sale_management/shares/utils/keyboard_util.dart';
 import 'package:sale_management/shares/utils/show_dialog_util.dart';
+import 'package:sale_management/shares/widgets/app_bar_actions/appBarActions.dart';
 import 'package:sale_management/shares/widgets/circular_progress_indicator/circular_progress_indicator.dart';
+import 'package:sale_management/shares/widgets/floating_action_button/floating_action_button.dart';
 import 'package:sale_management/shares/widgets/over_list_item/over_list_item.dart';
 import 'package:sale_management/shares/widgets/prefix_product/prefix_product.dart';
 import 'package:sale_management/shares/widgets/search_widget/search_widget.dart';
@@ -66,7 +68,14 @@ class _ProductScreenState extends State<ProductScreen> {
               ),
             ) : CircularProgressLoading(),
           ),
-          floatingActionButton: _floatingActionButton()
+          floatingActionButton: WidgetFloatingActionButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => AddNewProductScreen()),
+              );
+            },
+          )
       ),
     );
   }
@@ -88,13 +97,19 @@ class _ProductScreenState extends State<ProductScreen> {
         },
       ),
       actions: [
-        IconButton(
-          icon: isNative ? FaIcon(FontAwesomeIcons.timesCircle, color: Colors.white, size: 18) : FaIcon(FontAwesomeIcons.search, color: Colors.white, size: 18),
-          onPressed: () =>
-              setState(() {
-                this.isNative = !isNative;
-              }),
+        WidgetAppBarAction(
+            onChanged: (v) => setState(() {
+              this.isNative = v;
+            }),
+            isNative: this.isNative
         ),
+        // IconButton(
+        //   icon: isNative ? FaIcon(FontAwesomeIcons.timesCircle, color: Colors.white, size: 18) : FaIcon(FontAwesomeIcons.search, color: Colors.white, size: 18),
+        //   onPressed: () =>
+        //       setState(() {
+        //         this.isNative = !isNative;
+        //       }),
+        // ),
         const SizedBox(width: 8),
       ],
       bottom: this.isNative ? PreferredSize(preferredSize: Size.fromHeight(60),
@@ -117,21 +132,6 @@ class _ProductScreenState extends State<ProductScreen> {
           ],
         ),
       ) : null,
-    );
-  }
-
-  FloatingActionButton _floatingActionButton() {
-    return FloatingActionButton(
-      backgroundColor: Colors.purple[900],
-      onPressed: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => AddNewProductScreen()),
-        );
-      },
-      tooltip: 'product.label.addNewProduct'.tr(),
-      elevation: 5,
-      child: Icon(Icons.add_circle, size: 50,),
     );
   }
 
