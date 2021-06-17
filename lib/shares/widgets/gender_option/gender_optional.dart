@@ -15,7 +15,7 @@ class GenderForm extends FormField<String> {
       initialValue: initialValue,
       autovalidate: autovalidate,
       builder: (FormFieldState<String> state) {
-        var validateColor = state.hasError ? Colors.red : Colors.black;
+        var validateColor = state.hasError ? Colors.red : Colors.white;
         return Column(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -40,7 +40,7 @@ class GenderForm extends FormField<String> {
                       height: 45,
                       decoration: BoxDecoration(
                         border: Border.all(color: initialValue != null
-                            ? Colors.indigo
+                            ? Colors.white
                             : validateColor),
                         borderRadius: BorderRadius.circular(28),
                       ),
@@ -53,7 +53,7 @@ class GenderForm extends FormField<String> {
                           ),
                           Radio(
                               value: 'm',
-                              activeColor: Colors.indigo,
+                              activeColor: Colors.white,
                               groupValue: initialValue,
                               onChanged: (v) => onChanged(v.toString())
                           ),
@@ -71,7 +71,7 @@ class GenderForm extends FormField<String> {
                       height: 45,
                       decoration: BoxDecoration(
                         border: Border.all(color: initialValue != null
-                            ? Colors.indigo
+                            ? Colors.white
                             : validateColor),
                         borderRadius: BorderRadius.circular(28),
                       ),
@@ -84,7 +84,7 @@ class GenderForm extends FormField<String> {
                           ),
                           Radio(
                               value: 'f',
-                              activeColor: Colors.indigo,
+                              activeColor: Colors.white,
                               groupValue: initialValue,
                               onChanged: (v) => onChanged(v.toString())
                           ),

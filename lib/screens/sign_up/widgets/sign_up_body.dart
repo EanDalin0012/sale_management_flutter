@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sale_management/shares/constants/reg_exp.dart';
 import 'package:sale_management/shares/statics/size_config.dart';
+import 'package:sale_management/shares/utils/input_decoration.dart';
 import 'package:sale_management/shares/utils/keyboard_util.dart';
 import 'package:sale_management/shares/utils/text_style_util.dart';
 import 'package:sale_management/shares/utils/widgets_util.dart';
@@ -30,12 +31,23 @@ class _SignUpBodyState extends State<SignUpBody> {
   final _formKey = GlobalKey<FormState>();
   late Size size;
 
+  var style;
+  var labelStyle;
+  var hintStyle;
+  var enabledBorder;
+  var focusedBorder;
+  bool _isLoading = false;
+
   @override
   Widget build(BuildContext context) {
-    size = MediaQuery
-        .of(context)
-        .size;
+    size = MediaQuery.of(context).size;
     SizeConfig.init(context);
+    style = InputDecorationUtils.textFormFieldStyle();
+    labelStyle = InputDecorationUtils.inputDecorationLabelStyle();
+    hintStyle = InputDecorationUtils.inputDecorationHintStyle();
+    enabledBorder = InputDecorationUtils.enabledBorder();
+    focusedBorder = InputDecorationUtils.focusedBorder();
+
     return Form(
       key: _formKey,
       child: Column(
@@ -47,7 +59,7 @@ class _SignUpBodyState extends State<SignUpBody> {
                 save();
               },
               child: WidgetsUtil.overlayKeyBardContainer(
-                  text: 'common.label.save'.tr())
+                  text: 'signUp.label.create'.tr())
           )
         ],
       ),
@@ -169,9 +181,14 @@ class _SignUpBodyState extends State<SignUpBody> {
         }
         return null;
       },
+      style: this.style,
       decoration: InputDecoration(
         labelText: 'signUp.label.firstName'.tr(),
+        labelStyle: this.labelStyle,
         hintText: 'signUp.holder.enterYourFistName'.tr(),
+        hintStyle: this.hintStyle,
+        enabledBorder: this.enabledBorder,
+        focusedBorder: this.focusedBorder,
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: CustomSuffixIcon(svgPaddingLeft: 15,
             svgIcon: "assets/icons/help_outline_black_24dp.svg"),
@@ -191,9 +208,14 @@ class _SignUpBodyState extends State<SignUpBody> {
         }
         return null;
       },
+      style: this.style,
       decoration: InputDecoration(
         labelText: 'signUp.label.lastName'.tr(),
+        labelStyle: this.labelStyle,
         hintText: 'signUp.holder.enterYourLastName'.tr(),
+        hintStyle: this.hintStyle,
+        enabledBorder: this.enabledBorder,
+        focusedBorder: this.focusedBorder,
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: CustomSuffixIcon(svgPaddingLeft: 15,
             svgIcon: "assets/icons/help_outline_black_24dp.svg"),
@@ -213,9 +235,14 @@ class _SignUpBodyState extends State<SignUpBody> {
         }
         return null;
       },
+      style: this.style,
       decoration: InputDecoration(
         labelText: 'signUp.label.email'.tr(),
+        labelStyle: this.labelStyle,
         hintText: 'signUp.holder.enterYourEmail'.tr(),
+        hintStyle: this.hintStyle,
+        enabledBorder: this.enabledBorder,
+        focusedBorder: this.focusedBorder,
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: CustomSuffixIcon(svgPaddingLeft: 15,
             svgIcon: "assets/icons/mark_as_unread_black_24dp.svg"),

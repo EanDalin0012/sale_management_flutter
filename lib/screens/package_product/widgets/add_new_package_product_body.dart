@@ -195,9 +195,7 @@ class _AddNewPackageProductBodyState extends State<AddNewPackageProductBody> {
         enabledBorder: this.enabledBorder,
         focusedBorder: this.focusedBorder,
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        prefixIcon: this.product != {}
-            ? TextFormFieldPrefixIcon(url: this.url)
-            : null,
+        prefixIcon: TextFormFieldPrefixIcon(url: this.url),
         suffixIcon: CustomSuffixIcon(svgPaddingLeft: 15,
             svgIcon: "assets/icons/expand_more_black_24dp.svg"),
       ),

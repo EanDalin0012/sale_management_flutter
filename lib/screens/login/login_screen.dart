@@ -21,6 +21,7 @@ class _LogInScreenState extends State<LogInScreen> {
         backgroundColor: ColorsUtils.scaffoldBackgroundColor(),
         appBar: AppBar(
           backgroundColor: ColorsUtils.appBarBackGround(),
+          leading: Container(),
           elevation: 0,
           title: Text('login.label.login'.tr()
           ),

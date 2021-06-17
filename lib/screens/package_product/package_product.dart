@@ -81,9 +81,7 @@ class _PackageProductScreenState extends State<PackageProductScreen> {
 
   @override
   Widget build(BuildContext context) {
-    size = MediaQuery
-        .of(context)
-        .size;
+    size = MediaQuery.of(context).size;
     return WillPopScope(
       onWillPop: () => onBackPress(),
       child: Scaffold(
@@ -125,7 +123,6 @@ class _PackageProductScreenState extends State<PackageProductScreen> {
     return AppBar(
       backgroundColor: ColorsUtils.appBarBackGround(),
       elevation: DefaultStatic.elevationAppBar,
-
       title: Text('packageProduct.label.packageProduct'.tr()),
       leading: IconButton(
         icon: FaIcon(

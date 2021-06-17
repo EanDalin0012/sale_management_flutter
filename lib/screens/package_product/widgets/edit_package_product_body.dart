@@ -5,6 +5,7 @@ import 'package:loading_overlay/loading_overlay.dart';
 import 'package:sale_management/screens/package_product/package_product_success_screen.dart';
 import 'package:sale_management/shares/model/key/package_product_key.dart';
 import 'package:sale_management/shares/model/key/product_key.dart';
+import 'package:sale_management/shares/statics/default.dart';
 import 'package:sale_management/shares/statics/size_config.dart';
 import 'package:sale_management/shares/utils/colors_util.dart';
 import 'package:sale_management/shares/utils/input_decoration.dart';
@@ -16,6 +17,7 @@ import 'package:sale_management/shares/utils/widgets_util.dart';
 import 'package:sale_management/shares/widgets/custom_suffix_icon/custom_suffix_icon.dart';
 import 'package:sale_management/shares/widgets/prefix_product/prefix_product.dart';
 import 'package:sale_management/shares/widgets/product_dropdown/product_dropdown.dart';
+import 'package:sale_management/shares/widgets/text_form_field_prefix_icon/text_form_field_prefix_icon.dart';
 
 class EditPackageProductBody extends StatefulWidget {
   final Map vData;
@@ -46,6 +48,7 @@ class _EditPackageProductBodyState extends State<EditPackageProductBody> {
   var enabledBorder;
   var focusedBorder;
   var _isLoading = false;
+  var url = DefaultStatic.url;
 
   @override
   void initState() {
@@ -66,6 +69,11 @@ class _EditPackageProductBodyState extends State<EditPackageProductBody> {
     hintStyle = InputDecorationUtils.inputDecorationHintStyle();
     enabledBorder = InputDecorationUtils.enabledBorder();
     focusedBorder = InputDecorationUtils.focusedBorder();
+
+    if (this.product[ProductKey.url].toString() != 'null') {
+      this.url = this.product[ProductKey.url].toString();
+    }
+
     return LoadingOverlay(
       isLoading: this._isLoading,
       opacity: 0.5,
@@ -205,8 +213,7 @@ class _EditPackageProductBodyState extends State<EditPackageProductBody> {
         enabledBorder: this.enabledBorder,
         focusedBorder: this.focusedBorder,
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        prefixIcon: this.product != {} ? PrefixProduct(
-            url: this.product[ProductKey.url].toString()) : null,
+        prefixIcon: TextFormFieldPrefixIcon(url: this.url),
         suffixIcon: CustomSuffixIcon(svgPaddingLeft: 15,
             svgIcon: "assets/icons/expand_more_black_24dp.svg"),
       ),

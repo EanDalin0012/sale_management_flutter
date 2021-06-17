@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sale_management/screens/home/widgets/home_container.dart';
 import 'package:sale_management/screens/home/widgets/my_drawer.dart';
 import 'package:sale_management/screens/home/widgets/sheet_container.dart';
 import 'package:sale_management/screens/sale/sale_screen.dart';
 import 'package:sale_management/shares/constants/color.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:sale_management/shares/constants/fonts.dart';
 import 'package:sale_management/shares/statics/default.dart';
 import 'package:sale_management/shares/utils/colors_util.dart';
 
@@ -206,38 +208,84 @@ class _HomeScreenState extends State<HomeScreen> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-              elevation: 2,
-              title: Center(child: Text('common.label.exitApp'.tr())),
-              content: Text('common.label.doYouWantToExitApp'.tr()),
+              elevation: 3,
+              backgroundColor: Color(0xff273950),
+              title: Center(child: Text('common.label.exitApp'.tr(), style: TextStyle(color: ColorsUtils.isDarkModeColor()),)),
+              content: Text('common.label.doYouWantToExitApp'.tr(), style: TextStyle(color: ColorsUtils.isDarkModeColor())),
               actions: <Widget>[
-                RaisedButton.icon(
-                  onPressed: () {
-                    Navigator.of(context).pop(false);
-                  },
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(50))),
-                  label: Text('common.label.no'.tr(),
-                    style: TextStyle(color: Colors.black),),
-                  icon: Icon(Icons.cancel_rounded, color: Colors.white,),
-                  textColor: Colors.white,
-                  splashColor: Colors.red,
-                  color: Colors.red,
-                ),
-                RaisedButton.icon(
-                  onPressed: () {
-                    SystemNavigator.pop();
-                  },
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(50))),
-                  label: Text('common.label.yes'.tr(),
-                    style: TextStyle(color: Colors.black),),
-                  icon: Icon(
-                    Icons.check_circle_outline_outlined, color: Colors.white,),
-                  textColor: Colors.white,
-                  splashColor: Colors.red,
-                  color: Colors.green,
+                Container(
+                  height: 40,
+                  width: 90,
+                  child: ElevatedButton(
+                    style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all<Color>(Color(0xff2f3945)),
+                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                            RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(50)
+                            )
+                        )
+                    ),
+                    child: Stack(
+                      children: <Widget>[
+                        Positioned(
+                          right: 0,
+                          top: 10.0,
+                          child: Text('common.label.no'.tr(), style: TextStyle(
+                              fontFamily: fontDefault,
+                              fontWeight: FontWeight.w500,
+                              fontSize: 18,
+                              color: Colors.red)
+                          ),
+                        ),
+                        Positioned(
+                            left: 0,
+                            top: 10.0,
+                            child: FaIcon(FontAwesomeIcons.timesCircle, size: 20, color: Colors.red)
+                        ),
+                      ],
+                    ),
+                    onPressed: () {
+                      Navigator.of(context).pop(false);
+                    },
+                  ),
                 ),
 
+                Container(
+                  height: 40,
+                  width: 90,
+                  child: ElevatedButton(
+                    style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all<Color>(Color(0xff273965)),
+                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                            RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(50)
+                            )
+                        )
+                    ),
+                    child: Stack(
+                      children: <Widget>[
+                        Positioned(
+                          right: 0,
+                          top: 10.0,
+                          child: Text('common.label.yes'.tr(), style: TextStyle(
+                              fontFamily: fontDefault,
+                              fontWeight: FontWeight.w500,
+                              fontSize: 18,
+                              color: Colors.white)
+                          ),
+                        ),
+                        Positioned(
+                            left: 0,
+                            top: 10.0,
+                            child: FaIcon(FontAwesomeIcons.checkCircle, size: 20, color: Colors.white)
+                        ),
+                      ],
+                    ),
+                    onPressed: () {
+                      SystemNavigator.pop();
+                    },
+                  ),
+                ),
               ]
           );
         }

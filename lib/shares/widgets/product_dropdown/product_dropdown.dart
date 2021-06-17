@@ -1,11 +1,13 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sale_management/shares/constants/color.dart';
 import 'package:sale_management/shares/constants/fonts.dart';
 import 'package:sale_management/shares/model/key/product_key.dart';
 import 'package:sale_management/shares/statics/default.dart';
 import 'package:sale_management/shares/utils/colors_util.dart';
+import 'package:sale_management/shares/widgets/app_bar_actions/appBarActions.dart';
 import 'package:sale_management/shares/widgets/circular_progress_indicator/circular_progress_indicator.dart';
 import 'package:sale_management/shares/widgets/icon_check/icon_check.dart';
 import 'package:sale_management/shares/widgets/prefix_product/prefix_product.dart';
@@ -45,7 +47,8 @@ class _ProductDropdownPageState extends State<ProductDropdownPage> {
     styleInput = TextStyle(color: ColorsUtils.isDarkModeColor(),
         fontSize: 17,
         fontWeight: FontWeight.w500,
-        fontFamily: fontDefault);
+        fontFamily: fontDefault
+    );
     return Scaffold(
       backgroundColor: ColorsUtils.scaffoldBackgroundColor(),
       appBar: _buildAppBar(),
@@ -63,11 +66,23 @@ class _ProductDropdownPageState extends State<ProductDropdownPage> {
 
     return AppBar(
       backgroundColor: ColorsUtils.appBarBackGround(),
+      leading: IconButton(
+        icon: FaIcon(
+            FontAwesomeIcons.arrowLeft, color: Colors.white, size: 19
+        ),
+        color: Colors.white,
+        onPressed: () {
+          Navigator.of(context).pop();
+        },
+      ),
+      elevation: DefaultStatic.elevationAppBar,
       title: Text('$label'),
       actions: [
-        IconButton(
-          icon: Icon(isNative ? Icons.close : Icons.search),
-          onPressed: () => setState(() => this.isNative = !isNative),
+        WidgetAppBarAction(
+            onChanged: (v) => setState(() {
+              this.isNative = v;
+            }),
+            isNative: this.isNative
         ),
         const SizedBox(width: 8),
       ],
